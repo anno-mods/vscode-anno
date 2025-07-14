@@ -26,14 +26,20 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function refreshSchemas() {
+  if (!vscode.workspace.workspaceFolders) {
+    return;
+  }
 
+  for (const folder of vscode.workspace.workspaceFolders) {
+    refreshFolderSchemas(folder.uri);
+  }
 }
 
 export function refreshFolderSchemas(scopeUri: vscode.Uri) {
   const config = vscode.workspace.getConfiguration('anno', scopeUri);
   const customXmlLanguageMode: boolean = config.get('workspaceCustomXmlLanguage') || true;
-  const modopSchema: boolean = config.get('workspace.workspaceSchemas') || true;
-  const modinfoSchema: boolean = config.get('workspace.workspaceSchemas') || true;
+  const modopSchema: boolean = config.get('workspaceSchemas') || true;
+  const modinfoSchema: boolean = config.get('workspaceSchemas') || true;
 
   if (customXmlLanguageMode || modopSchema || modinfoSchema) {
     writeWorkspaceSettings(customXmlLanguageMode, modopSchema, modinfoSchema, scopeUri);
@@ -97,6 +103,9 @@ async function writeWorkspaceSettings(languageMode: boolean, modopSchema: boolea
         settings['files.associations']['**/data/base/config/{engine,export,game,gui}/**/*.xml'] = 'anno-xml';
       }
     }
+    else {
+      updateLanguage = false;
+    }
 
     if (modopSchema) {
       const schemaUrl = "https://raw.githubusercontent.com/anno-mods/vscode-anno-modding-tools/main/generated/assets.xsd";
@@ -117,6 +126,9 @@ async function writeWorkspaceSettings(languageMode: boolean, modopSchema: boolea
         });
       }
     }
+    else {
+      updateModopSchema = false;
+    }
     if (modinfoSchema) {
       settings['json.schemas'] ??= [];
 
@@ -133,6 +145,9 @@ async function writeWorkspaceSettings(languageMode: boolean, modopSchema: boolea
           "url": "https://raw.githubusercontent.com/anno-mods/vscode-anno-modding-tools/main/languages/modinfo-schema.json"
         });
       }
+    }
+    else {
+      updateModinfoSchema = false;
     }
 
     if (updateLanguage || updateModinfoSchema || updateModopSchema) {
