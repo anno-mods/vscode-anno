@@ -137,8 +137,7 @@ export class GamePaths {
   }
 
   public static ensureGamePath(options?: { filePath?: string, version?: anno.GameVersion }): boolean {
-    const uri = options?.filePath ? vscode.Uri.file(options.filePath) : undefined;
-    const config = vscode.workspace.getConfiguration('anno', uri);
+    const config = vscode.workspace.getConfiguration('anno');
     const version = options?.version ?? modContext.getVersion();
 
     let valid = false;
@@ -192,8 +191,7 @@ export class GamePaths {
   }
 
   public static hasGamePath(options?: { filePath?: string, uri?: vscode.Uri, version?: anno.GameVersion }): boolean {
-    const uri = options?.uri ?? (options?.filePath ? vscode.Uri.file(options.filePath) : undefined);
-    const config = vscode.workspace.getConfiguration('anno', uri);
+    const config = vscode.workspace.getConfiguration('anno');
 
     const version = options?.version ?? modContext.getVersion();
 
