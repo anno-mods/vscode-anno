@@ -68,18 +68,20 @@ function extractFromRda(relativePath: string, version: anno.GameVersion) {
     return absolutePath;
   }
 
+  const rdaName = path.basename(path.dirname(relativePath)) == 'infotips' ? 'infotips.rda' : 'config.rda';
+
   const gamePath = ensureGamePath();
   if (!gamePath) {
     // error case
-    return `<anno.${getGamePathSetting()}>/maindata/config.rda:${relativePath}`;
+    return `<anno.${getGamePathSetting()}>/maindata/${rdaName}:${relativePath}`;
   }
 
-  const rdaPath = path.join(gamePath, 'maindata/config.rda');
+  const rdaPath = path.join(gamePath, 'maindata', rdaName);
 
   const success = rdaConsole.extract(rdaPath, rdaCachePath, relativePath, _asAbsolutePath)
   if (!success) {
-    logger.error(`Couldn't extract '${relativePath}' from 'maindata/config.rda'`);
-    return `<anno.${getGamePathSetting()}>/maindata/config.rda:${relativePath}`;
+    logger.error(`Couldn't extract '${relativePath}' from 'maindata/${rdaName}'`);
+    return `<anno.${getGamePathSetting()}>/maindata/${rdaName}:${relativePath}`;
   }
 
   return absolutePath;
