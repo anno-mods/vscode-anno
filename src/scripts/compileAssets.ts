@@ -27,7 +27,7 @@ const EXCLUDE_TEMPLATES = [
   'Expedition',
   'ExpeditionOption',
   'ExpeditionDecision',
-  'InfoTip',
+  // 'InfoTip',
   'PlayerCounterConfig',
   'GenericPopup'
 ];
