@@ -1,6 +1,10 @@
 # Change Log
 
-## 2.1.0
+## 2.1
+
+### 2.1.3
+
+- Update for public demo
 
 ### New
 
