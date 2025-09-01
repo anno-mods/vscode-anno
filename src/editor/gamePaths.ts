@@ -7,9 +7,9 @@ import * as anno from '../anno';
 
 const ANNO8_SEARCH_PATHS = [
   `C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games\\Anno 117`,
-  `C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games\\Anno 117 Closed Beta`,
+  `C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games\\Anno 117 Demo`,
   `D:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games\\Anno 117`,
-  `D:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games\\Anno 117 Closed Beta`
+  `D:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games\\Anno 117 Demo`
 ]
 
 export class GamePaths {
