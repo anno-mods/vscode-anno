@@ -35,5 +35,21 @@
 	"indentationRules": {
 		"increaseIndentPattern": "<(?!/)([^\\s/>]+)([^/>]*)>(?!.*</\\1>)",
 		"decreaseIndentPattern": "^\\s*</[^>]+>"
-	}
+	},
+	"onEnterRules": [
+    {
+      "beforeText": "^\\s*<(ModOp|Group)(?![^>]*>)",
+      "action": {
+        "indent": "none",
+        "appendText": "       "
+      }
+    },
+		{
+			"beforeText": "^\\s*<\\[:A-Z_a-z][-.:A-Z_a-z0-9]*(?![^>]*>)",
+      "action": {
+        "indent": "none",
+        "appendText": "  "
+      }
+		}
+  ]
 }
