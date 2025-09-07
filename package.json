@@ -409,103 +409,115 @@
 				}
 			]
 		},
-		"configuration": [ {
-			"title": "Anno Modding Tools",
-			"properties": {
-				"anno.workspaceCustomXmlLanguage": {
-					"type": "boolean",
-					"default": true,
-					"markdownDescription": "Enable custom `Anno ModOps XML` language for Anno specific highlighting, validation and behavior without relying on other XML extensions.\n\nThis writes to your workspace folder settings (`.vscode/settings.json`) when you open a workspace containing `modinfo.json` files.\n\n- `files.associations` entry for `assets*.xml`, `texts_*.xml` and `*.include.xml`.",
-					"scope": "resource"
-				},
-				"anno.workspaceSchemas": {
-					"type": "boolean",
-					"default": true,
-					"markdownDescription": "Enable schemas for validation and auto complete.\n\nThis writes to your workspace folder settings (`.vscode/settings.json`) when you open a workspace containing `modinfo.json` files.\n\n- `json.schemas` entry for `modinfo.json`.\n- `xml.fileAssociations` entry for `assets*.xml`, `texts_*.xml` and `*.include.xml`.\n\n  You need to install the [XML Language Support by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) extension to use XML validations.",
-					"scope": "resource"
-				},
-				"anno.checkFileNames": {
-					"type": "boolean",
-					"default": true,
-					"markdownDescription": "Check file paths set in `Filename`, `FileName` and `IconFilename`.",
-					"scope": "resource"
-				},
-				"anno.liveModopAnalysis.validate": {
-					"type": "boolean",
-					"default": true,
-					"markdownDescription": "Validate ModOp's on save or open by running xmltest in the background.",
-					"scope": "resource"
-				},
-				"anno.liveModopAnalysis.warningThreshold": {
-					"type": "number",
-					"default": 80,
-					"markdownDescription": "Threshold to highlight ModOp times in warning color (milliseconds) if `#anno.liveModopAnalysis.validate#` is active.",
-					"scope": "resource"
+		"configuration": [
+			{
+				"title": "Anno Modding Tools",
+				"properties": {
+					"anno.workspaceCustomXmlLanguage": {
+						"type": "boolean",
+						"default": true,
+						"markdownDescription": "Enable custom `Anno ModOps XML` language for Anno specific highlighting, validation and behavior without relying on other XML extensions.\n\nThis writes to your workspace folder settings (`.vscode/settings.json`) when you open a workspace containing `modinfo.json` files.\n\n- `files.associations` entry for `assets*.xml`, `texts_*.xml` and `*.include.xml`.",
+						"scope": "resource"
+					},
+					"anno.workspaceSchemas": {
+						"type": "boolean",
+						"default": true,
+						"markdownDescription": "Enable schemas for validation and auto complete.\n\nThis writes to your workspace folder settings (`.vscode/settings.json`) when you open a workspace containing `modinfo.json` files.\n\n- `json.schemas` entry for `modinfo.json`.\n- `xml.fileAssociations` entry for `assets*.xml`, `texts_*.xml` and `*.include.xml`.\n\n  You need to install the [XML Language Support by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) extension to use XML validations.",
+						"scope": "resource"
+					},
+					"anno.checkFileNames": {
+						"type": "boolean",
+						"default": true,
+						"markdownDescription": "Check file paths set in `Filename`, `FileName` and `IconFilename`.",
+						"scope": "resource"
+					},
+					"anno.liveModopAnalysis.validate": {
+						"type": "boolean",
+						"default": true,
+						"markdownDescription": "Validate ModOp's on save or open by running xmltest in the background.",
+						"scope": "resource"
+					},
+					"anno.liveModopAnalysis.warningThreshold": {
+						"type": "number",
+						"default": 80,
+						"markdownDescription": "Threshold to highlight ModOp times in warning color (milliseconds) if `#anno.liveModopAnalysis.validate#` is active.",
+						"scope": "resource"
+					}
+				}
+			},
+			{
+				"title": "Anno 117",
+				"properties": {
+					"anno.117.autoGuid": {
+						"type": "number",
+						"markdownDescription": "Use automatically increasing GUIDs. Enter next free number.",
+						"minimum": 0,
+						"scope": "resource"
+					},
+					"anno.117.gamePath": {
+						"type": "string",
+						"format": [
+							"uri",
+							null
+						],
+						"markdownDescription": "Path to your Anno 117 installation. E.g. *'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games\\Anno 117'*.\n\n[Select Folder](command:anno-modding-tools.selectAnno117GamePath)",
+						"scope": "window"
+					},
+					"anno.117.modsFolder": {
+						"type": "string",
+						"format": [
+							"uri",
+							null
+						],
+						"markdownDescription": "Path to your `mods/` folder to deploy and resolve dependencies. Defaults to *'&lt;Game Path&gt;/mods/'*.\n\n[Select Folder](command:anno-modding-tools.selectAnno117ModsFolder)",
+						"scope": "window"
+					}
+				}
+			},
+			{
+				"title": "Anno 1800",
+				"properties": {
+					"anno.autoGuid": {
+						"type": "number",
+						"markdownDescription": "Use automatically increasing GUIDs. Enter next free number.",
+						"minimum": 0,
+						"scope": "resource"
+					},
+					"anno.modsFolder": {
+						"type": "string",
+						"format": [
+							"uri",
+							null
+						],
+						"markdownDescription": "Your `mods/` folder to deploy mods into. It is also used to resolve dependencies.",
+						"scope": "window"
+					},
+					"anno.rdaFolder": {
+						"type": "string",
+						"format": [
+							"uri",
+							null
+						],
+						"markdownDescription": "Path to extracted RDA data.\nIt is used for compare and live error features.\n\nUse `c:\\anno\\all-rda` if you have `c:\\anno\\all-rda\\data\\config\\export\\main\\asset\\assets.xml`.",
+						"scope": "window"
+					}
 				}
 			}
-		}, {
-			"title": "Anno 117",
-			"properties": {
-				"anno.117.autoGuid": {
-					"type": "number",
-					"markdownDescription": "Use automatically increasing GUIDs. Enter next free number.",
-					"minimum": 0,
-					"scope": "resource"
-				},
-				"anno.117.gamePath": {
-					"type": "string",
-					"format": [
-						"uri",
-						null
-					],
-					"markdownDescription": "Path to your Anno 117 installation. E.g. *'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games\\Anno 117'*.\n\n[Select Folder](command:anno-modding-tools.selectAnno117GamePath)",
-					"scope": "window"
-				},
-				"anno.117.modsFolder": {
-					"type": "string",
-					"format": [
-						"uri",
-						null
-					],
-					"markdownDescription": "Path to your `mods/` folder to deploy and resolve dependencies. Defaults to *'&lt;Game Path&gt;/mods/'*.\n\n[Select Folder](command:anno-modding-tools.selectAnno117ModsFolder)",
-					"scope": "window"
-				}
-			}
-		}, {
-			"title": "Anno 1800",
-			"properties": {
-				"anno.autoGuid": {
-					"type": "number",
-					"markdownDescription": "Use automatically increasing GUIDs. Enter next free number.",
-					"minimum": 0,
-					"scope": "resource"
-				},
-				"anno.modsFolder": {
-					"type": "string",
-					"format": [
-						"uri",
-						null
-					],
-					"markdownDescription": "Your `mods/` folder to deploy mods into. It is also used to resolve dependencies.",
-					"scope": "window"
-				},
-				"anno.rdaFolder": {
-					"type": "string",
-					"format": [
-						"uri",
-						null
-					],
-					"markdownDescription": "Path to extracted RDA data.\nIt is used for compare and live error features.\n\nUse `c:\\anno\\all-rda` if you have `c:\\anno\\all-rda\\data\\config\\export\\main\\asset\\assets.xml`.",
-					"scope": "window"
-				}
-			}
-		} ],
+		],
 		"configurationDefaults": {
-      "[json]":  { "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?" },
-      "[jsonc]": { "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?" },
-      "[xml]":   { "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?" },
-			"[anno-xml]":   { "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?" }
-    }
+			"[json]": {
+				"editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+			},
+			"[jsonc]": {
+				"editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+			},
+			"[xml]": {
+				"editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+			},
+			"[anno-xml]": {
+				"editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+			}
+		}
 	},
 	"bin": {
 		"buildMod": "./out/buildMod.js"
@@ -562,7 +574,6 @@
 		"js-yaml": "^4.1.0",
 		"jsonc-parser": "^3.3.1",
 		"vsce": "^2.3.0",
-		"xml-formatter": "^3.6.6",
 		"xml2js": "^0.4.23",
 		"xmldoc": "^1.2.0"
 	},
