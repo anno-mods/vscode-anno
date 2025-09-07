@@ -499,7 +499,13 @@
 					"scope": "window"
 				}
 			}
-		} ]
+		} ],
+		"configurationDefaults": {
+      "[json]":  { "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?" },
+      "[jsonc]": { "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?" },
+      "[xml]":   { "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?" },
+			"[anno-xml]":   { "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?" }
+    }
 	},
 	"bin": {
 		"buildMod": "./out/buildMod.js"
