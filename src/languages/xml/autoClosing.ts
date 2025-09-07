@@ -21,6 +21,22 @@ export function registerAutoClosing(context: vscode.ExtensionContext) {
   return disposable;
 }
 
+function isInOpenQuotation(line: string) {
+  var singleQuote = false;
+  var doubleQuote = false;
+
+  for (var char of line) {
+    if (char === '\'') {
+      singleQuote = !singleQuote;
+    }
+    else if (char === '\"') {
+      doubleQuote = !doubleQuote;
+    }
+  }
+
+  return singleQuote || doubleQuote;
+}
+
 function autoClose(editor: vscode.TextEditor, change: vscode.TextDocumentContentChangeEvent) {
   // TODO cleanup this vibe code
 
@@ -28,8 +44,18 @@ function autoClose(editor: vscode.TextEditor, change: vscode.TextDocumentContent
   const cursorPos = change.range.start.character;
 
   const beforeCursor = lineText.substring(0, cursorPos);
-  const tagMatch = beforeCursor.match(/<([A-Za-z0-9_:.-]+)$/);
-  if (!tagMatch) return;
+  if (beforeCursor.endsWith('/')) {
+    return;
+  }
+
+  if (isInOpenQuotation(beforeCursor)) {
+    return;
+  }
+
+  const tagMatch = beforeCursor.match(/<([A-Za-z0-9_:.-]+)[^>]*$/);
+  if (!tagMatch) {
+    return;
+  }
 
   const tagName = tagMatch[1];
 
