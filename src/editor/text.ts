@@ -148,7 +148,7 @@ export function getAutoCompletePath(document: vscode.TextDocument, position: vsc
     }
   }
 
-  return [ undefined, undefined ];
+  return getNodePath(document, position);
 }
 
 function endsWithUnclosedString(line: string): number {
