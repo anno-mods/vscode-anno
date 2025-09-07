@@ -6,20 +6,9 @@ import { ASSETS_FILENAME_PATTERN, ASSETS_FILENAME_PATTERN_STRICT } from '../othe
 const PATCH_FILENAME_PATTERN_STRICT = '**/{assets*,*.include,game/asset/**/*,export.bin,*.fc,*.cfg}.xml';
 
 export function isAnnoXml(document: vscode.TextDocument): boolean {
-  if (document.languageId !== 'anno-xml' && !minimatch(document.fileName, ASSETS_FILENAME_PATTERN, { dot: true })) {
-    return false;
-  }
-
-  if (document.lineCount > 100000) {
-    // ignore 30k+ lines
-    return false;
-  }
-
-  return true;
-}
-
-export function isAssetsXml(document: vscode.TextDocument): boolean {
-  if (document.languageId !== 'anno-xml' && !minimatch(document.fileName, ASSETS_FILENAME_PATTERN_STRICT, { dot: true })) {
+  if (document.languageId !== 'anno-xml'
+      && !(document.uri.scheme.startsWith('annodiff') || document.uri.scheme.startsWith('annoasset'))
+      && !minimatch(document.fileName, ASSETS_FILENAME_PATTERN, { dot: true })) {
     return false;
   }
 
@@ -34,6 +23,10 @@ export function isAssetsXml(document: vscode.TextDocument): boolean {
   }
 
   return true;
+}
+
+export function isAssetsXml(document: vscode.TextDocument): boolean {
+  return isAnnoXml(document);
 }
 
 export function allowLiveValidation(document: vscode.TextDocument): boolean {
