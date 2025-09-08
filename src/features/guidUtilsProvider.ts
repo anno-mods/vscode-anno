@@ -94,16 +94,16 @@ function _findLastKeywordInLine(line: string, position?: number): IKeyword | und
 }
 
 function findKeywordBeforePosition(document: vscode.TextDocument, position: vscode.Position) {
-  const [ name, path ] = text.getAutoCompletePath(document, position);
+  const result = text.getAutoCompletePath(document, position);
 
-  if (!name) {
+  if (!result.tagName) {
     return undefined;
   }
 
   return {
-    name,
-    path,
-    type: path?.startsWith('XPath') ? 'xpath' : 'tag'
+    name: result?.tagName,
+    path: result?.path,
+    type: result.path?.startsWith('XPath') ? 'xpath' : 'tag'
   };
 }
 

@@ -128,27 +128,98 @@ function _findLastKeywordInLine(line: string, position?: number): any {
   return undefined;
 }
 
-export function getAutoCompletePath(document: vscode.TextDocument, position: vscode.Position): [string?, string?] {
+class XmlPosition {
+  public tagName?: string;
+  public path?: string;
+  public type?: 'other' | 'afterClose' | 'freshOpen' | 'freshTagName' | 'attribute';
+}
+
+function findPreviousCharacter(document: vscode.TextDocument, position: vscode.Position, character: string) {
+  // TODO check quotes
+
+  let lineNumber = position.line;
+  while (lineNumber >= 0) {
+    const line = document.lineAt(lineNumber).text;
+    const lineEnd = lineNumber === position.line ? position.character : line.length;
+
+    for (var i = lineEnd - 1; i >= 0; i--) {
+      if (line.charAt(i) === character) {
+        return new vscode.Position(lineNumber, i);
+      }
+    }
+    lineNumber--;
+  }
+
+  return undefined;
+}
+
+export function getAutoCompletePath(document: vscode.TextDocument, position: vscode.Position): XmlPosition {
   let line = document.lineAt(position.line).text.substring(0, position.character);
 
-  if (line.endsWith('>')) {
-    return getNodePath(document, position); // xml tag
-  }
-  else if (line.endsWith('@') || line.endsWith('=') || line.endsWith('\'') || line.endsWith('\"') || line.endsWith(' ') || line.endsWith(',')) {
-    const stringStart = endsWithUnclosedString(line);
-    if (stringStart >= 0) {
-      // TODO, rework this
+  var result: XmlPosition = { };
 
-      const keyword = _findLastKeywordInLine(line, stringStart);
-      if (keyword?.type === 'xpath' && keyword.name) {
-        return [ keyword.name, 'XPath'];
+  const quoteStart = endsWithUnclosedString(line);
+
+  const previewsOpen = findPreviousCharacter(document, position, '<');
+  const previewsClose = findPreviousCharacter(document, position, '>');
+  const isInTag = previewsOpen ? previewsClose?.isBefore(previewsOpen) ?? true : false;
+
+  if (isInTag) {
+    if (quoteStart > 0) {
+      result.type = "attribute";
+
+      if (line.endsWith('@') || line.endsWith('=') || line.endsWith('\'') || line.endsWith('\"') || line.endsWith(' ') || line.endsWith(',')) {
+        if (quoteStart >= 0) {
+          // TODO, rework this
+
+          const keyword = _findLastKeywordInLine(line, quoteStart);
+          if (keyword?.type === 'xpath' && keyword.name) {
+            result.tagName = keyword.name;
+          }
+          result.path = 'XPath';
+        }
       }
-
-      return [ undefined, 'XPath' ];
     }
+    else {
+      if (line.endsWith('<')) {
+        const path = getNodePath(document, position); // xml tag
+        result.tagName = path[0];
+        result.path = path[1];
+        result.type = 'freshOpen';
+      }
+      else {
+        const space = findPreviousCharacter(document, position, ' ');
+        if (space?.isAfter(previewsOpen!)) {
+          // somewhere in attributes, e.g. "<Name " or "<Name bla=''"
+          const path = getNodePath(document, position); // xml tag
+          result.tagName = path[0];
+          result.path = path[1];
+          result.type = 'attribute';
+        }
+        else {
+          // Directly after name "<Name"
+          const path = getNodePath(document, position); // xml tag
+          result.tagName = path[0];
+          result.path = path[1];
+          result.type = 'freshTagName';
+        }
+      }
+    }
+
+    return result;
+  }
+  else if (line.endsWith('>')) {
+    result.type = 'afterClose';
+    const path = getNodePath(document, position); // xml tag
+    result.tagName = path[0];
+    result.path = path[1];
+    return result;
   }
 
-  return getNodePath(document, position);
+  const path = getNodePath(document, position);
+  result.tagName = path[0];
+  result.path = path[1];
+  return result;
 }
 
 function endsWithUnclosedString(line: string): number {

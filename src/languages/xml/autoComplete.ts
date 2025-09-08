@@ -4,76 +4,68 @@ import { GuidCounter } from '../../features/guidCounter';
 import * as text from '../../editor/text';
 import { SymbolRegistry } from '../../data/symbols';
 
-export function activate() {
-  const provider = vscode.languages.registerCompletionItemProvider(
-    { language: 'anno-xml', scheme: 'file' },
-    {
-      provideCompletionItems(document, position, token, context) {
-        const [ nodeName, nodePath ] = text.getAutoCompletePath(document, position);
+function getModOpCompletion(skipOpenBracket: boolean) {
+  const startingBracket = skipOpenBracket ? '' : '<';
 
-        if (!nodePath && !nodeName) {
-          return [];
-        }
+  // TODO // getAutoComplete should know if it's tag, attribute, value, XPath, ...
 
-        if ((nodeName === 'ModOps' && !nodePath)
-          || (nodeName === 'Group' && (!nodePath || nodePath.endsWith('Group')))) {
-          const add = new vscode.CompletionItem({
-            label: `Add`,
-            description: `Adds the content at the end insider of the selection.`,
-          }, vscode.CompletionItemKind.Snippet);
-          add.insertText = new vscode.SnippetString(`<ModOp Add="@$0">\n</ModOp>`);
-          add.sortText = `12`;
-          const remove = new vscode.CompletionItem({
-            label: `Remove`,
-            description: `Removes the selected elements.`,
-          }, vscode.CompletionItemKind.Snippet);
-          remove.sortText = `15`;
-          remove.insertText = new vscode.SnippetString(`<ModOp Remove="@$0" />`);
-          const append = new vscode.CompletionItem({
-            label: `Append`,
-            detail: ` aka addNextSibling`,
-            description: `Adds the content after the selection.`,
-          }, vscode.CompletionItemKind.Snippet);
-          append.insertText = new vscode.SnippetString(`<ModOp Append="@$0">\n</ModOp>`);
-          const prepend = new vscode.CompletionItem({
-            label: `Prepend`,
-            detail: ` aka addPreviousSibling`,
-            description: `Adds the content before the selection.`,
-          }, vscode.CompletionItemKind.Snippet);
-          append.sortText = `13`;
-          prepend.insertText = new vscode.SnippetString(`<ModOp Prepend="@$0">\n</ModOp>`);
-          const replace = new vscode.CompletionItem({
-            label: `Replace`,
-            description: `Replaces the selected element.`,
-          }, vscode.CompletionItemKind.Snippet);
-          prepend.sortText = `14`;
-          replace.insertText = new vscode.SnippetString(`<ModOp Replace="@$0">\n</ModOp>`);
-          replace.sortText = `10`;
-          const merge = new vscode.CompletionItem({
-            label: `Merge`,
-            description: `Adds the content, or replaces it if it already exists.`,
-          }, vscode.CompletionItemKind.Snippet);
-          merge.insertText = new vscode.SnippetString(`<ModOp Merge="@$0">\n</ModOp>`);
-          merge.sortText = `11`;
+  const add = new vscode.CompletionItem({
+    label: `ModOp Add`,
+    description: `Adds the content at the end insider of the selection.`,
+  }, vscode.CompletionItemKind.Snippet);
+  add.insertText = new vscode.SnippetString(`${startingBracket}ModOp Add="@$0">\n</ModOp>`);
+  add.sortText = `12`;
+  const remove = new vscode.CompletionItem({
+    label: `ModOp Remove`,
+    description: `Removes the selected elements.`,
+  }, vscode.CompletionItemKind.Snippet);
+  remove.sortText = `15`;
+  remove.insertText = new vscode.SnippetString(`${startingBracket}ModOp Remove="@$0" />`);
+  const append = new vscode.CompletionItem({
+    label: `ModOp Append`,
+    detail: ` aka addNextSibling`,
+    description: `Adds the content after the selection.`,
+  }, vscode.CompletionItemKind.Snippet);
+  append.insertText = new vscode.SnippetString(`${startingBracket}ModOp Append="@$0">\n</ModOp>`);
+  const prepend = new vscode.CompletionItem({
+    label: `ModOp Prepend`,
+    detail: ` aka addPreviousSibling`,
+    description: `Adds the content before the selection.`,
+  }, vscode.CompletionItemKind.Snippet);
+  append.sortText = `13`;
+  prepend.insertText = new vscode.SnippetString(`${startingBracket}ModOp Prepend="@$0">\n</ModOp>`);
+  const replace = new vscode.CompletionItem({
+    label: `ModOp Replace`,
+    description: `Replaces the selected element.`,
+  }, vscode.CompletionItemKind.Snippet);
+  prepend.sortText = `14`;
+  replace.insertText = new vscode.SnippetString(`${startingBracket}ModOp Replace="@$0">\n</ModOp>`);
+  replace.sortText = `10`;
+  const merge = new vscode.CompletionItem({
+    label: `ModOp Merge`,
+    description: `Adds the content, or replaces it if it already exists.`,
+  }, vscode.CompletionItemKind.Snippet);
+  merge.insertText = new vscode.SnippetString(`${startingBracket}ModOp Merge="@$0">\n</ModOp>`);
+  merge.sortText = `11`;
 
-          const include = new vscode.CompletionItem({
-            label: `Include`,
-            description: `Includes ModOps from another XML file.`
-          }, vscode.CompletionItemKind.Snippet);
-          include.insertText = new vscode.SnippetString(`<Include File="$0" />`);
+  const include = new vscode.CompletionItem({
+    label: `Include`,
+    description: `Includes ModOps from another XML file.`
+  }, vscode.CompletionItemKind.Snippet);
+  include.insertText = new vscode.SnippetString(`${startingBracket}Include File="$0" />`);
 
-          const group = new vscode.CompletionItem({
-            label: `Group`,
-            description: `Groups multiple ModOps.`
-          }, vscode.CompletionItemKind.Snippet);
-          group.insertText = new vscode.SnippetString(`<Group>\n  $0\n</Group>`);
+  const group = new vscode.CompletionItem({
+    label: `Group`,
+    description: `Groups multiple ModOps.`
+  }, vscode.CompletionItemKind.Snippet);
+  group.insertText = new vscode.SnippetString(`${startingBracket}Group>\n  $0\n</Group>`);
 
-          const asset = new vscode.CompletionItem({
-            label: `Asset`,
-            detail: ` template`,
-            description: `Adds an asset using \`Template\`.`
-          }, vscode.CompletionItemKind.Snippet);
-          asset.insertText = new vscode.SnippetString(`<Asset>
+  const asset = new vscode.CompletionItem({
+    label: `Asset`,
+    detail: ` template`,
+    description: `Adds an asset using \`Template\`.`
+  }, vscode.CompletionItemKind.Snippet);
+  asset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
   <Template>$0</Template>
   <Values>
     <Standard>
@@ -82,12 +74,12 @@ export function activate() {
     </Standard>
   </Values>
 </Asset>`);
-          const baseAsset = new vscode.CompletionItem({
-            label: `Asset`,
-            detail: ` base asset`,
-            description: `Adds an asset using \`BaseAssetGUID\`.`
-          }, vscode.CompletionItemKind.Snippet);
-          baseAsset.insertText = new vscode.SnippetString(`<Asset>
+  const baseAsset = new vscode.CompletionItem({
+    label: `Asset`,
+    detail: ` base asset`,
+    description: `Adds an asset using \`BaseAssetGUID\`.`
+  }, vscode.CompletionItemKind.Snippet);
+  baseAsset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
   <BaseAssetGUID>$0</BaseAssetGUID>
   <Values>
     <Standard>
@@ -96,15 +88,35 @@ export function activate() {
     </Standard>
   </Values>
 </Asset>`);
-          return [ add, append, prepend, replace, merge, remove, include, group, asset, baseAsset ];
+  return [ add, append, prepend, replace, merge, remove, include, group, asset, baseAsset ];
+}
+
+export function activate() {
+  const provider = vscode.languages.registerCompletionItemProvider(
+    { language: 'anno-xml', scheme: 'file' },
+    {
+      provideCompletionItems(document, position, token, context) {
+        const nodeInfo = text.getAutoCompletePath(document, position);
+
+        if (!nodeInfo.path && !nodeInfo.tagName && nodeInfo.type !== 'freshOpen') {
+          return [];
         }
 
-        const xpath = nodePath?.startsWith('XPath');
+        vscode.window.showErrorMessage(`name: ${nodeInfo.tagName} path: ${nodeInfo.path} type: ${nodeInfo.type}`);
+
+        if ((nodeInfo.tagName === 'ModOps' && !nodeInfo.path)
+          || (nodeInfo.tagName === 'Group' && (!nodeInfo.path || nodeInfo.path.endsWith('Group')))) {
+          if (nodeInfo.type !== 'attribute') {
+            return getModOpCompletion(nodeInfo.type === 'freshOpen' || nodeInfo.type === 'freshTagName');
+          }
+        }
+
+        const xpath = nodeInfo.path?.startsWith('XPath');
         if (xpath && !(
-          nodeName === 'GUID'
-          || nodeName === 'Path' || nodeName === 'Content'
-          || nodeName === 'Add' || nodeName === 'Remove'
-          || nodeName === 'Append' || nodeName === 'Prepand')) {
+          nodeInfo.tagName === 'GUID'
+          || nodeInfo.tagName === 'Path' || nodeInfo.tagName === 'Content'
+          || nodeInfo.tagName === 'Add' || nodeInfo.tagName === 'Remove'
+          || nodeInfo.tagName === 'Append' || nodeInfo.tagName === 'Prepand')) {
           return [];
         }
 
