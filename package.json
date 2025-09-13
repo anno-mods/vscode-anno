@@ -229,6 +229,10 @@
 			{
 				"command": "anno-modding-tools.createAnnoMod",
 				"title": "Anno: Create Mod from Template"
+			},
+			{
+				"command": "anno-modding-tools.openModloaderReference",
+				"title": "Anno: Modloader Reference"
 			}
 		],
 		"menus": {
@@ -405,7 +409,13 @@
 			"editor/context": [
 				{
 					"when": "resourceFilename =~ /.+\\.xml$/ && anno-modding-tools.openPatchFile",
-					"command": "anno-modding-tools.showSelectionDiff"
+					"command": "anno-modding-tools.openModloaderReference",
+					"group": "zz_anno@1"
+				},
+				{
+					"when": "resourceFilename =~ /.+\\.xml$/ && anno-modding-tools.openPatchFile",
+					"command": "anno-modding-tools.showSelectionDiff",
+					"group": "zz_anno@2"
 				}
 			]
 		},
