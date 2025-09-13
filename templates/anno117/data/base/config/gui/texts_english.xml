@@ -1,6 +1,10 @@
 <ModOps>
-  <!-- Anno 117 Language Template -->
   <!--
+    Anno 117 Language Template
+
+    Modloder Reference
+    https://jakobharder.github.io/anno-mod-loader/
+
     Note: Texts are now based on LineId and not GUID.
   -->
   <ModOp Add="/TextExport/Texts[1]">

@@ -1,7 +1,10 @@
 <ModOps>
-  <!-- Happy Anno 1800 modding! -->
+  <!--
+    Happy Anno 1800 modding!
 
-  <!-- https://github.com/anno-mods/modding-guide -->
+    Modloder Reference
+    https://jakobharder.github.io/anno-mod-loader/
+  -->
 
   <!-- # Outline Section 1 -->
   <!-- Named Group 1 -->

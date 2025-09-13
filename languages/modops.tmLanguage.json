@@ -2,52 +2,8 @@
 	"name": "Anno ModOps XML",
 	"scopeName": "text.xml.modops",
 	"patterns": [
-		{
-			"begin": "(</?)(ModOpContent|ModOp|ModOps|Include|Group|ModInsert|ModContent|ModValue|ModItem)(?=([ >/]))",
-			"captures": {
-				"1": {
-					"name": "punctuation.definition.tag.xml"
-				},
-				"2": {
-					"name": "keyword.control"
-				},
-				"3": {
-					"name": "punctuation.definition.tag.xml"
-				}
-			},
-			"end": "(/?>)",
-			"name": "meta.keyword.modops",
-			"patterns": [
-				{
-					"include": "#tagStuff"
-				}
-			]
-		},
-		{
-			"begin": "(<\\?)\\s*([-_a-zA-Z0-9]+)",
-			"captures": {
-				"1": {
-					"name": "punctuation.definition.tag.xml"
-				},
-				"2": {
-					"name": "entity.name.tag.xml"
-				}
-			},
-			"end": "(\\?>)",
-			"name": "meta.tag.preprocessor.xml",
-			"patterns": [
-				{
-					"match": " ([a-zA-Z-]+)",
-					"name": "entity.other.attribute-name.xml"
-				},
-				{
-					"include": "#doublequotedString"
-				},
-				{
-					"include": "#singlequotedString"
-				}
-			]
-		},
+		{ "include": "#modopsElement" },
+		{ "include": "#xmlTag" },
 		{
 			"begin": "(<!)(DOCTYPE)\\s+([:a-zA-Z_][:a-zA-Z0-9_.-]*)",
 			"captures": {
@@ -69,60 +25,29 @@
 				}
 			]
 		},
-		{
-			"include": "#comments"
-		},
-		{
-			"begin": "(<)((?:([-_a-zA-Z0-9]+)(:))?([-_a-zA-Z0-9:]+))(?=(\\s[^>]*)?></\\2>)",
-			"beginCaptures": {
+		{ "include": "#comments" },
+		{ "include": "#cdata" }
+	],
+	"repository": {
+		"inlineModop": {
+			"begin": "(</?)(ModOpContent|ModValueContent|ModValue|ModItem)",
+			"captures": {
 				"1": {
 					"name": "punctuation.definition.tag.xml"
 				},
 				"2": {
-					"name": "entity.name.tag.xml"
-				},
-				"3": {
-					"name": "entity.name.tag.namespace.xml"
-				},
-				"4": {
-					"name": "punctuation.separator.namespace.xml"
-				},
-				"5": {
-					"name": "entity.name.tag.localname.xml"
+					"name": "keyword.control"
 				}
 			},
-			"end": "(>)(</)((?:([-_a-zA-Z0-9]+)(:))?([-_a-zA-Z0-9:]+))(>)",
-			"endCaptures": {
-				"1": {
-					"name": "punctuation.definition.tag.xml"
-				},
-				"2": {
-					"name": "punctuation.definition.tag.xml"
-				},
-				"3": {
-					"name": "entity.name.tag.xml"
-				},
-				"4": {
-					"name": "entity.name.tag.namespace.xml"
-				},
-				"5": {
-					"name": "punctuation.separator.namespace.xml"
-				},
-				"6": {
-					"name": "entity.name.tag.localname.xml"
-				},
-				"7": {
-					"name": "punctuation.definition.tag.xml"
-				}
-			},
-			"name": "meta.tag.no-content.xml",
+			"end": "(/?>)",
+			"name": "meta.tag.inlineModOp",
 			"patterns": [
 				{
-					"include": "#tagStuff"
+					"include": "#attributes"
 				}
 			]
 		},
-		{
+		"xmlTag": {
 			"begin": "(</?)(?:([-\\w\\.]+)((:)))?([-\\w\\.:]+)",
 			"captures": {
 				"1": {
@@ -145,65 +70,154 @@
 			"name": "meta.tag.xml",
 			"patterns": [
 				{
-					"include": "#tagStuff"
+					"include": "#attributes"
 				}
 			]
 		},
-		{
-			"include": "#entity"
-		},
-		{
-			"include": "#bare-ampersand"
-		},
-		{
-			"begin": "<!\\[CDATA\\[",
+		"modopsElement": {
+			"name": "meta.block.modops",
+			"begin": "(<)(ModOps)(?=([\\s>/]))",
 			"beginCaptures": {
-				"0": {
-					"name": "punctuation.definition.string.begin.xml"
-				}
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "keyword.control" },
+				"3": { "name": "punctuation.definition.tag.xml" }
 			},
-			"end": "]]>",
+
+			"end": "(</)(ModOps)(\\s*)(>)",
 			"endCaptures": {
-				"0": {
-					"name": "punctuation.definition.string.end.xml"
-				}
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "keyword.control" },
+				"4": { "name": "punctuation.definition.tag.xml" }
 			},
-			"name": "string.unquoted.cdata.xml"
-		}
-	],
-	"repository": {
-		"EntityDecl": {
-			"begin": "(<!)(ENTITY)\\s+(%\\s+)?([:a-zA-Z_][:a-zA-Z0-9_.-]*)(\\s+(?:SYSTEM|PUBLIC)\\s+)?",
-			"captures": {
-				"1": {
-					"name": "punctuation.definition.tag.xml"
-				},
-				"2": {
-					"name": "keyword.other.entity.xml"
-				},
-				"3": {
-					"name": "punctuation.definition.entity.xml"
-				},
-				"4": {
-					"name": "variable.language.entity.xml"
-				},
-				"5": {
-					"name": "keyword.other.entitytype.xml"
-				}
+			"patterns": [
+				{ "include": "#groupElement" },
+				{ "include": "#modopElement" },
+				{ "include": "#assetModopElement" },
+				{ "include": "#modopElementSelfClosing" },
+				{ "include": "#xmlTag" },
+				{ "include": "#comments" }
+			]
+		},
+		"groupElement": {
+			"name": "meta.block.group",
+			"begin": "(<)(?=Group([\\s>]))(?!Group[^>]*\\/>)",
+			"beginCaptures": {
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "keyword.control" },
+				"3": { "name": "punctuation.definition.tag.xml" }
 			},
-			"end": "(>)",
+			"end": "(</)(Group)(\\s*)(>)",
+			"endCaptures": {
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "keyword.control" },
+				"4": { "name": "punctuation.definition.tag.xml" }
+			},
 			"patterns": [
 				{
-					"include": "#doublequotedString"
+					"begin": "(Group)(?=([\\s>]))",
+					"beginCaptures": {
+						"1": { "name": "keyword.control" },
+						"2": { "name": "punctuation.definition.tag.xml" }
+					},
+					"end": "(>)",
+					"endCaptures": {
+						"1": { "name": "punctuation.definition.tag.xml" }
+					},
+					"patterns": [
+						{ "include": "#attributes" }
+					]
 				},
-				{
-					"include": "#singlequotedString"
-				}
+				{ "include": "#groupElement" },
+				{ "include": "#modopElement" },
+				{ "include": "#assetModopElement" },
+				{ "include": "#modopElementSelfClosing" },
+				{ "include": "#xmlTag" },
+				{ "include": "#comments" }
 			]
 		},
-		"bare-ampersand": {
-			"match": "&",
-			"name": "invalid.illegal.bad-ampersand.xml"
+		"modopElement": {
+			"begin": "(<)(?=ModOp([\\s>]))(?!ModOp[^>]*\\/>)",
+			"beginCaptures": {
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "punctuation.definition.tag.xml" }
+			},
+			"end": "(</)(ModOp)(\\s*)(>)",
+			"endCaptures": {
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "keyword.control" },
+				"4": { "name": "punctuation.definition.tag.xml" }
+			},
+			"name": "meta.keyword.modop",
+			"patterns": [
+				{
+					"begin": "(ModOp)(?=([\\s>]))",
+					"beginCaptures": {
+						"1": { "name": "keyword.control" },
+						"2": { "name": "punctuation.definition.tag.xml" }
+					},
+					"end": "(>)",
+					"endCaptures": {
+						"1": { "name": "punctuation.definition.tag.xml" }
+					},
+					"patterns": [
+						{ "include": "#attributes" }
+					]
+				},
+				{ "include": "#inlineModop" },
+				{ "include": "#xmlTag" },
+				{ "include": "#comments" }
+			]
+		},
+		"modopElementSelfClosing": {
+			"begin": "(<)(ModOp|Inlude|Group|Asset)(?=[\\s>][^/>]*/>)",
+			"beginCaptures": {
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "keyword.control" },
+				"3": { "name": "punctuation.definition.tag.xml" }
+			},
+			"end": "(\\s*)(/>)",
+			"endCaptures": {
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "punctuation.definition.tag.xml" }
+			},
+			"name": "meta.keyword.modop",
+			"patterns": [
+				{ "include": "#attributes" }
+			]
+		},
+		"assetModopElement": {
+			"begin": "(<)(?=Asset([\\s>]))(?!Asset[^>]*\\/>)",
+			"beginCaptures": {
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "keyword.control" },
+				"3": { "name": "punctuation.definition.tag.xml" }
+			},
+			"end": "(</)(Asset)(\\s*)(>)",
+			"endCaptures": {
+				"1": { "name": "punctuation.definition.tag.xml" },
+				"2": { "name": "keyword.control" },
+				"4": { "name": "punctuation.definition.tag.xml" }
+			},
+			"name": "meta.keyword.modops",
+			"patterns": [
+				{
+					"begin": "(Asset)(?=([\\s>]))",
+					"beginCaptures": {
+						"1": { "name": "keyword.control" },
+						"2": { "name": "punctuation.definition.tag.xml" }
+					},
+					"end": "(>)",
+					"endCaptures": {
+						"1": { "name": "punctuation.definition.tag.xml" }
+					},
+					"patterns": [
+						{ "include": "#attributes" }
+					]
+				},
+				{ "include": "#inlineModop" },
+				{ "include": "#xmlTag" },
+				{ "include": "#comments" }
+			]
 		},
 		"doublequotedString": {
 			"begin": "\"",
@@ -218,27 +232,7 @@
 					"name": "punctuation.definition.string.end.xml"
 				}
 			},
-			"name": "string.quoted.double.xml",
-			"patterns": [
-				{
-					"include": "#entity"
-				},
-				{
-					"include": "#bare-ampersand"
-				}
-			]
-		},
-		"entity": {
-			"captures": {
-				"1": {
-					"name": "punctuation.definition.constant.xml"
-				},
-				"3": {
-					"name": "punctuation.definition.constant.xml"
-				}
-			},
-			"match": "(&)([:a-zA-Z_][:a-zA-Z0-9_.-]*|#[0-9]+|#x[0-9a-fA-F]+)(;)",
-			"name": "constant.character.entity.xml"
+			"name": "string.quoted.double.xml"
 		},
 		"internalSubset": {
 			"begin": "(\\[)",
@@ -250,9 +244,6 @@
 			"end": "(\\])",
 			"name": "meta.internalsubset.xml",
 			"patterns": [
-				{
-					"include": "#EntityDecl"
-				},
 				{
 					"include": "#parameterEntity"
 				},
@@ -286,29 +277,10 @@
 					"name": "punctuation.definition.string.end.xml"
 				}
 			},
-			"name": "string.quoted.single.xml",
-			"patterns": [
-				{
-					"include": "#entity"
-				},
-				{
-					"include": "#bare-ampersand"
-				}
-			]
+			"name": "string.quoted.single.xml"
 		},
-		"tagStuff": {
+		"attributes": {
 			"patterns": [
-				{
-					"captures": {
-						"1": {
-							"name": "keyword.control"
-						},
-						"2": {
-							"name": "keyword.control"
-						}
-					},
-					"match": "(?:^|\\s+)(ModOpPath|ModOpTargetItem|ModTargetItem|ModMergeItem|ModReplaceItem|ModSkipItem|ModAddAfter|ModAddBefore)\\s*="
-				},
 				{
 					"captures": {
 						"1": {
@@ -367,6 +339,21 @@
 					]
 				}
 			]
+		},
+		"cdata": {
+			"begin": "<!\\[CDATA\\[",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.xml"
+				}
+			},
+			"end": "]]>",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.xml"
+				}
+			},
+			"name": "string.unquoted.cdata.xml"
 		}
 	}
 }

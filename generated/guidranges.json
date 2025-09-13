@@ -15,6 +15,11 @@
       "end": 2268
     },
     {
+      "name": "Jakob",
+      "start": 601382,
+      "end": 601384
+    },
+    {
       "name": "Fishboss",
       "start": 850000,
       "end": 859999
@@ -80,6 +85,16 @@
       "end": 133700999
     },
     {
+      "name": "Zazuno",
+      "start": 1011921800,
+      "end": 1011923800
+    },
+    {
+      "name": "Asmodai",
+      "start": 1200200000,
+      "end": 1200201000
+    },
+    {
       "name": "adjagu",
       "start": 1337471142,
       "end": 1337471999
@@ -90,6 +105,21 @@
       "end": 1337472999
     },
     {
+      "name": "stotzem",
+      "start": 1337473000,
+      "end": 1337473999
+    },
+    {
+      "name": "Fiasco",
+      "start": 1337474000,
+      "end": 1337474999
+    },
+    {
+      "name": "Phreakz",
+      "start": 1337475000,
+      "end": 1337476999
+    },
+    {
       "name": "Lethani",
       "start": 1337499000,
       "end": 1337499999
@@ -97,7 +127,7 @@
     {
       "name": "muggenstuermer",
       "start": 1337500000,
-      "end": 1337510000
+      "end": 1337519999
     },
     {
       "name": "zeltice",
@@ -125,6 +155,11 @@
       "end": 1404449999
     },
     {
+      "name": "Phatchara",
+      "start": 1410000000,
+      "end": 1410000999
+    },
+    {
       "name": "New Horizons",
       "start": 1414000000,
       "end": 1414999999
@@ -133,6 +168,11 @@
       "name": "Chocolate Project",
       "start": 1415000000,
       "end": 1415009999
+    },
+    {
+      "name": "Vaeloridas",
+      "start": 1416000000,
+      "end": 1419999999
     },
     {
       "name": "Spice it Up 3.0",
@@ -152,11 +192,6 @@
     {
       "name": "Jakob",
       "start": 1500010001,
-      "end": 1500019999
-    },
-    {
-      "name": "NW Tier 4",
-      "start": 1500020000,
       "end": 1500023999
     },
     {
@@ -168,6 +203,16 @@
       "name": "ManuKero",
       "start": 1500027000,
       "end": 1500027999
+    },
+    {
+      "name": "MrR0b3rt",
+      "start": 1500030000,
+      "end": 1500039999
+    },
+    {
+      "name": "NW Tier 4",
+      "start": 1500040000,
+      "end": 1500099999
     },
     {
       "name": "bergi",
@@ -265,6 +310,11 @@
       "end": 1800002099
     },
     {
+      "name": "Alex.S.",
+      "start": 1800003000,
+      "end": 1800004000
+    },
+    {
       "name": "Hanthe2th",
       "start": 1821456000,
       "end": 1821457000
@@ -275,9 +325,19 @@
       "end": 1888988000
     },
     {
+      "name": "Satanoy",
+      "start": 1888999001,
+      "end": 1889000000
+    },
+    {
       "name": "Grusin99",
       "start": 1900000000,
       "end": 1900009999
+    },
+    {
+      "name": "zakraffy",
+      "start": 1900050000,
+      "end": 1900051000
     },
     {
       "name": "Fridhmyr",
@@ -350,6 +410,11 @@
       "end": 2025999999
     },
     {
+      "name": "Criss McCloud",
+      "start": 2026500000,
+      "end": 2026500999
+    },
+    {
       "name": "JimDiGriz77",
       "start": 2077000000,
       "end": 2077999999
@@ -383,6 +448,11 @@
       "name": "jookeers",
       "start": 2103701000,
       "end": 2103701999
+    },
+    {
+      "name": "PlatonischerRebell",
+      "start": 2104701000,
+      "end": 2104701999
     },
     {
       "name": "Phloup",
@@ -482,7 +552,7 @@
     {
       "name": "Khobs",
       "start": 2143505001,
-      "end": 2143505999
+      "end": 2143509999
     },
     {
       "name": "Garthnait",
@@ -495,9 +565,29 @@
       "end": 2145010999
     },
     {
+      "name": "arcalys",
+      "start": 2145100000,
+      "end": 2145100999
+    },
+    {
+      "name": "CaptainHurricane",
+      "start": 2146000000,
+      "end": 2146000999
+    },
+    {
+      "name": "reserved for special cases",
+      "start": 2147480000,
+      "end": 2147483599
+    },
+    {
       "name": "Jakob",
       "start": 2147483600,
       "end": 2147483609
+    },
+    {
+      "name": "reserved for special cases",
+      "start": 2147483610,
+      "end": 2147483647
     }
   ]
 }

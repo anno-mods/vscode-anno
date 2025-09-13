@@ -665,21 +665,47 @@
     }
   },
   "BuildingInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
       "/Values/CustomizableButtonConfig": [],
-      "/Values/RightClickMenu/RightClickMenuRegions/Moderate/RightClickBuildings/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/RightClickMenu/RightClickMenuRegions/Colony01/RightClickBuildings/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/RightClickMenu/RightClickMenuRegions/Arctic/RightClickBuildings/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/RightClickMenu/RightClickMenuRegions/Africa/RightClickBuildings/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/ConstructionMenu/PinButtonRegions/Moderate/PinButtonListLeft/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/ConstructionMenu/PinButtonRegions/Moderate/PinButtonListRight/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/ConstructionMenu/PinButtonRegions/Colony01/PinButtonListLeft/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/ConstructionMenu/PinButtonRegions/Colony01/PinButtonListRight/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/ConstructionMenu/PinButtonRegions/Arctic/PinButtonListLeft/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/ConstructionMenu/PinButtonRegions/Arctic/PinButtonListRight/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/ConstructionMenu/PinButtonRegions/Africa/PinButtonListLeft/Item/Config/Values/CustomizableButtonConfig": [],
-      "/Values/ConstructionMenu/PinButtonRegions/Africa/PinButtonListRight/Item/Config/Values/CustomizableButtonConfig": []
+      "/Values/RightClickMenu/RightClickMenuRegions/Moderate/RightClickBuildings/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/RightClickMenu/RightClickMenuRegions/Colony01/RightClickBuildings/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/RightClickMenu/RightClickMenuRegions/Arctic/RightClickBuildings/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/RightClickMenu/RightClickMenuRegions/Africa/RightClickBuildings/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/ConstructionMenu/PinButtonRegions/Moderate/PinButtonListLeft/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/ConstructionMenu/PinButtonRegions/Moderate/PinButtonListRight/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/ConstructionMenu/PinButtonRegions/Colony01/PinButtonListLeft/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/ConstructionMenu/PinButtonRegions/Colony01/PinButtonListRight/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/ConstructionMenu/PinButtonRegions/Arctic/PinButtonListLeft/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/ConstructionMenu/PinButtonRegions/Arctic/PinButtonListRight/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/ConstructionMenu/PinButtonRegions/Africa/PinButtonListLeft/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ],
+      "/Values/ConstructionMenu/PinButtonRegions/Africa/PinButtonListRight/Item/Config/Values/CustomizableButtonConfig": [
+        "InfoTip"
+      ]
     }
   },
   "ObjectGUID": {
@@ -2517,11 +2543,17 @@
     }
   },
   "AudioSliderInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
       "/Values/OptionAudioSlider": [],
-      "/Values/SettingsMenu/Container/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionAudioSlider": [],
-      "/Values/SettingsMenu/AlternativeContainer/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionAudioSlider": []
+      "/Values/SettingsMenu/Container/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionAudioSlider": [
+        "InfoTip"
+      ],
+      "/Values/SettingsMenu/AlternativeContainer/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionAudioSlider": [
+        "InfoTip"
+      ]
     }
   },
   "ComboboxHeadline": {
@@ -2533,11 +2565,17 @@
     }
   },
   "ComboboxInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
       "/Values/OptionCombobox": [],
-      "/Values/SettingsMenu/Container/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionCombobox": [],
-      "/Values/SettingsMenu/AlternativeContainer/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionCombobox": []
+      "/Values/SettingsMenu/Container/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionCombobox": [
+        "InfoTip"
+      ],
+      "/Values/SettingsMenu/AlternativeContainer/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionCombobox": [
+        "InfoTip"
+      ]
     }
   },
   "SliderHeadline": {
@@ -2549,11 +2587,17 @@
     }
   },
   "SliderInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
       "/Values/OptionSlider": [],
-      "/Values/SettingsMenu/Container/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionSlider": [],
-      "/Values/SettingsMenu/AlternativeContainer/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionSlider": []
+      "/Values/SettingsMenu/Container/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionSlider": [
+        "InfoTip"
+      ],
+      "/Values/SettingsMenu/AlternativeContainer/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionSlider": [
+        "InfoTip"
+      ]
     }
   },
   "ToggleHeadline": {
@@ -2565,11 +2609,17 @@
     }
   },
   "ToggleInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
       "/Values/OptionToggle": [],
-      "/Values/SettingsMenu/Container/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionToggle": [],
-      "/Values/SettingsMenu/AlternativeContainer/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionToggle": []
+      "/Values/SettingsMenu/Container/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionToggle": [
+        "InfoTip"
+      ],
+      "/Values/SettingsMenu/AlternativeContainer/Item/Container/Values/OptionGrid/Controls/Item/Controls/Values/OptionToggle": [
+        "InfoTip"
+      ]
     }
   },
   "ObjectMatched": {
@@ -4204,14 +4254,20 @@
   },
   "Tooltip": {
     "templates": [
-      "Collectable"
+      "Collectable",
+      "InfoTip"
     ],
     "paths": {
       "/Values/MinimapTokenSettings": [
-        "Collectable"
+        "Collectable",
+        "InfoTip"
       ],
-      "/Values/DiplomacyScene/RadialMenuButton/Item": [],
-      "/Values/DiplomacyScene/GiftButtons/Item": []
+      "/Values/DiplomacyScene/RadialMenuButton/Item": [
+        "InfoTip"
+      ],
+      "/Values/DiplomacyScene/GiftButtons/Item": [
+        "InfoTip"
+      ]
     }
   },
   "OverwriteNameWithTextAsset": {
@@ -4420,6 +4476,7 @@
       "InputBalancing",
       "ScenarioInformation",
       "SessionSouthAmerica",
+      "InfoTip",
       "OrnamentalBuilding"
     ],
     "paths": {
@@ -4549,11 +4606,13 @@
         "Profile_3rdParty-PlayerCounter"
       ],
       "/Values/ParticipantMessages/MessageTriggers/NewspaperPublishedWithoutPropagandaGood/Reactions/Item/Notification/Values/BaseNotification": [
-        "Profile_3rdParty-PlayerCounter"
+        "Profile_3rdParty-PlayerCounter",
+        "InfoTip"
       ],
       "/Values/ParticipantMessages/MessageTriggers/NewspaperPublishedWithoutPropagandaBad/Reactions/Item/Notification/Values/BaseNotification": [
         "Profile_3rdParty-PlayerCounter",
-        "OrnamentalBuilding"
+        "OrnamentalBuilding",
+        "InfoTip"
       ],
       "/Values/ParticipantMessages/MessageTriggers/ProgressLevelHigherThanNPC/Reactions/Item/Notification/Values/BaseNotification": [
         "Profile_3rdParty-PlayerCounter"
@@ -4628,9 +4687,13 @@
     }
   },
   "InfoCorner": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/Selection": []
+      "/Values/Selection": [
+        "InfoTip"
+      ]
     }
   },
   "PickingColor": {
@@ -5556,9 +5619,13 @@
     }
   },
   "ModuleButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ModuleOwner/BlueprintModuleOption": []
+      "/Values/ModuleOwner/BlueprintModuleOption": [
+        "InfoTip"
+      ]
     }
   },
   "ModulePopupHeader": {
@@ -5808,9 +5875,13 @@
     }
   },
   "OrnamentIconInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/Ornament": []
+      "/Values/Ornament": [
+        "InfoTip"
+      ]
     }
   },
   "OrnamentDescription": {
@@ -6564,53 +6635,138 @@
   },
   "InfoTip": {
     "templates": [
+      "InfoTip",
       "SessionSouthAmerica",
       "SessionModerate",
       "SessionArctic"
     ],
     "paths": {
-      "/Values/DifficultySettings/Descriptions/ConstructionCostRefund": [],
-      "/Values/DifficultySettings/Descriptions/DistributionWorkforce": [],
-      "/Values/DifficultySettings/Descriptions/Fertility": [],
-      "/Values/DifficultySettings/Descriptions/HostileTakeover": [],
-      "/Values/DifficultySettings/Descriptions/InactiveCosts": [],
-      "/Values/DifficultySettings/Descriptions/Incidents": [],
-      "/Values/DifficultySettings/Descriptions/LossCondition": [],
-      "/Values/DifficultySettings/Descriptions/OptionalQuestFrequency": [],
-      "/Values/DifficultySettings/Descriptions/RawMaterial": [],
-      "/Values/DifficultySettings/Descriptions/RelocateBuildings": [],
-      "/Values/DifficultySettings/Descriptions/RevealedMap": [],
-      "/Values/DifficultySettings/Descriptions/Revenue": [],
-      "/Values/DifficultySettings/Descriptions/StartCredits": [],
-      "/Values/DifficultySettings/Descriptions/StartSession": [],
-      "/Values/DifficultySettings/Descriptions/StartSessionIslandDifficulty": [],
-      "/Values/DifficultySettings/Descriptions/StartSessionIslandSize": [],
-      "/Values/DifficultySettings/Descriptions/StartShips": [],
-      "/Values/DifficultySettings/Descriptions/StartWithKontor": [],
-      "/Values/DifficultySettings/Descriptions/TraderRefillRate": [],
-      "/Values/DifficultySettings/Descriptions/VictoryConditionMonuments": [],
-      "/Values/DifficultySettings/Descriptions/VictoryConditionInvestors": [],
-      "/Values/DifficultySettings/Descriptions/VictoryConditionPopulation": [],
-      "/Values/DifficultySettings/Descriptions/VictoryConditionWealth": [],
-      "/Values/DifficultySettings/Descriptions/VictoryConditionIncome": [],
-      "/Values/DifficultySettings/Descriptions/VictoryConditionAllOrOne": [],
-      "/Values/DifficultySettings/Descriptions/VictoryConditionDiplomacy": [],
-      "/Values/DifficultySettings/Descriptions/MapType": [],
-      "/Values/DifficultySettings/Descriptions/Influence": [],
-      "/Values/DifficultySettings/Descriptions/SkyscraperMaintentance": [],
-      "/Values/PassiveTradeWindow/TradeButtons/None": [],
-      "/Values/PassiveTradeWindow/TradeButtons/BuySell": [],
-      "/Values/PassiveTradeWindow/TradeButtons/SellOnly": [],
-      "/Values/PassiveTradeWindow/TradeButtons/BuyOnly": [],
-      "/Values/SessionTradeRouteOverviewScene/RouteCreateButtons/Normal": [],
-      "/Values/SessionTradeRouteOverviewScene/RouteCreateButtons/Charter": [],
-      "/Values/SessionTradeRouteOverviewScene/RouteCreateButtons/Oil": [],
-      "/Values/SessionTradeRouteOverviewScene/RouteCreateButtons/Mail": [],
-      "/Values/IncidentBuffConfig/PerIncidentBuffConfig/Fire": [],
-      "/Values/IncidentBuffConfig/PerIncidentBuffConfig/Riot": [],
-      "/Values/IncidentBuffConfig/PerIncidentBuffConfig/Illness": [],
-      "/Values/IncidentBuffConfig/PerIncidentBuffConfig/ArcticIllness": [],
-      "/Values/ObjectmenuHeader/BuffDisplayList/Item": [],
+      "/Values/DifficultySettings/Descriptions/ConstructionCostRefund": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/DistributionWorkforce": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/Fertility": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/HostileTakeover": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/InactiveCosts": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/Incidents": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/LossCondition": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/OptionalQuestFrequency": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/RawMaterial": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/RelocateBuildings": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/RevealedMap": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/Revenue": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/StartCredits": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/StartSession": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/StartSessionIslandDifficulty": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/StartSessionIslandSize": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/StartShips": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/StartWithKontor": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/TraderRefillRate": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/VictoryConditionMonuments": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/VictoryConditionInvestors": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/VictoryConditionPopulation": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/VictoryConditionWealth": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/VictoryConditionIncome": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/VictoryConditionAllOrOne": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/VictoryConditionDiplomacy": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/MapType": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/Influence": [
+        "InfoTip"
+      ],
+      "/Values/DifficultySettings/Descriptions/SkyscraperMaintentance": [
+        "InfoTip"
+      ],
+      "/Values/PassiveTradeWindow/TradeButtons/None": [
+        "InfoTip"
+      ],
+      "/Values/PassiveTradeWindow/TradeButtons/BuySell": [
+        "InfoTip"
+      ],
+      "/Values/PassiveTradeWindow/TradeButtons/SellOnly": [
+        "InfoTip"
+      ],
+      "/Values/PassiveTradeWindow/TradeButtons/BuyOnly": [
+        "InfoTip"
+      ],
+      "/Values/SessionTradeRouteOverviewScene/RouteCreateButtons/Normal": [
+        "InfoTip"
+      ],
+      "/Values/SessionTradeRouteOverviewScene/RouteCreateButtons/Charter": [
+        "InfoTip"
+      ],
+      "/Values/SessionTradeRouteOverviewScene/RouteCreateButtons/Oil": [
+        "InfoTip"
+      ],
+      "/Values/SessionTradeRouteOverviewScene/RouteCreateButtons/Mail": [
+        "InfoTip"
+      ],
+      "/Values/IncidentBuffConfig/PerIncidentBuffConfig/Fire": [
+        "InfoTip"
+      ],
+      "/Values/IncidentBuffConfig/PerIncidentBuffConfig/Riot": [
+        "InfoTip"
+      ],
+      "/Values/IncidentBuffConfig/PerIncidentBuffConfig/Illness": [
+        "InfoTip"
+      ],
+      "/Values/IncidentBuffConfig/PerIncidentBuffConfig/ArcticIllness": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuHeader/BuffDisplayList/Item": [
+        "InfoTip"
+      ],
       "/Values/ObjectmenuKontorScene/RegionGoodFilter/Item": [
         "SessionSouthAmerica",
         "SessionModerate",
@@ -6623,6 +6779,7 @@
     "templates": [
       "ScenarioWorkshopItem",
       "Season",
+      "InfoTip",
       "Profile_3rdParty-PlayerCounter",
       "TrafficFeedbackUnit"
     ],
@@ -6633,7 +6790,9 @@
       "/Values/DifficultySettings/VictoryConditionPopulation/Hard": [
         "Season"
       ],
-      "/Values/DifficultySettings/VictoryConditionWealth/Medium": [],
+      "/Values/DifficultySettings/VictoryConditionWealth/Medium": [
+        "InfoTip"
+      ],
       "/Values/DifficultySettings/VictoryConditionIncome/Hard": [
         "Season"
       ],
@@ -9870,15 +10029,23 @@
     }
   },
   "PauseResumeButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/GameSpeedFeature": []
+      "/Values/GameSpeedFeature": [
+        "InfoTip"
+      ]
     }
   },
   "SpeedButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/GameSpeedFeature": []
+      "/Values/GameSpeedFeature": [
+        "InfoTip"
+      ]
     }
   },
   "OldGUID": {
@@ -10235,51 +10402,127 @@
     }
   },
   "Infotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature/HighscoreUIEntries/UrbanizationScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/TotalAttractivenessScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/DiscoveredItemsScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/SocketedItemsScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/CompletedSetsScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/AirshipScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/MilitaryShipScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/TradeShipScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/GlobalStorageScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/GlobalProductionScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/GlobalCostsScore": [],
-      "/Values/HighscoreFeature/HighscoreUIEntries/MostAttractiveIsland": [],
-      "/Values/Notification/NotificationType/Values/CharacterNotification/ThirdpartyNotificationButtons/Item": [],
+      "/Values/HighscoreFeature/HighscoreUIEntries/UrbanizationScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/TotalAttractivenessScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/DiscoveredItemsScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/SocketedItemsScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/CompletedSetsScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/AirshipScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/MilitaryShipScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/TradeShipScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/GlobalStorageScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/GlobalProductionScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/GlobalCostsScore": [
+        "InfoTip"
+      ],
+      "/Values/HighscoreFeature/HighscoreUIEntries/MostAttractiveIsland": [
+        "InfoTip"
+      ],
+      "/Values/Notification/NotificationType/Values/CharacterNotification/ThirdpartyNotificationButtons/Item": [
+        "InfoTip"
+      ],
       "/Values/Notification/NotificationType/Values/SideNotification": [],
-      "/Values/SideNotification": [],
-      "/Values/NavigationMenuScene/Tools/Item": [],
-      "/Values/NavigationMenuScene/BuildingOptions/Item": [],
-      "/Values/NavigationMenuScene/ContextualCommands/Item": [],
-      "/Values/SideNotificationsArchive/ArchiveButtons/Scenario": [],
-      "/Values/SideNotificationsArchive/ArchiveButtons/Quest": [],
-      "/Values/SideNotificationsArchive/ArchiveButtons/Newspaper": [],
-      "/Values/SideNotificationsArchive/ArchiveButtons/Expedition": [],
-      "/Values/SideNotificationsArchive/ArchiveButtons/Event": [],
-      "/Values/SideNotificationsArchive/ArchiveButtons/General": [],
-      "/Values/SideNotificationsArchive/ArchiveButtons/Warning": [],
-      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/WorkingConditions": [],
-      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Pollution": [],
-      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Needs": [],
-      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/War": [],
-      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Newspaper": [],
-      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Hotspots": [],
-      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Attractiveness": [],
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Fire": [],
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Riot": [],
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Illness": [],
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/ArcticIllness": [],
+      "/Values/SideNotification": [
+        "InfoTip"
+      ],
+      "/Values/NavigationMenuScene/Tools/Item": [
+        "InfoTip"
+      ],
+      "/Values/NavigationMenuScene/BuildingOptions/Item": [
+        "InfoTip"
+      ],
+      "/Values/NavigationMenuScene/ContextualCommands/Item": [
+        "InfoTip"
+      ],
+      "/Values/SideNotificationsArchive/ArchiveButtons/Scenario": [
+        "InfoTip"
+      ],
+      "/Values/SideNotificationsArchive/ArchiveButtons/Quest": [
+        "InfoTip"
+      ],
+      "/Values/SideNotificationsArchive/ArchiveButtons/Newspaper": [
+        "InfoTip"
+      ],
+      "/Values/SideNotificationsArchive/ArchiveButtons/Expedition": [
+        "InfoTip"
+      ],
+      "/Values/SideNotificationsArchive/ArchiveButtons/Event": [
+        "InfoTip"
+      ],
+      "/Values/SideNotificationsArchive/ArchiveButtons/General": [
+        "InfoTip"
+      ],
+      "/Values/SideNotificationsArchive/ArchiveButtons/Warning": [
+        "InfoTip"
+      ],
+      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/WorkingConditions": [
+        "InfoTip"
+      ],
+      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Pollution": [
+        "InfoTip"
+      ],
+      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Needs": [
+        "InfoTip"
+      ],
+      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/War": [
+        "InfoTip"
+      ],
+      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Newspaper": [
+        "InfoTip"
+      ],
+      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Hotspots": [
+        "InfoTip"
+      ],
+      "/Values/ObjectMenuResidenceHappinessSceneConfig/ResidentHappinessCategory/Attractiveness": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Fire": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Riot": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Illness": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/ArcticIllness": [
+        "InfoTip"
+      ],
       "/Values/Quest/OnQuestDeclined/Values/ActionList/Actions/Item/Action/Values/ActionNotification/Notification/Values/SideNotification": [],
       "/Values/Quest/OnQuestFailed/Values/ActionList/Actions/Item/Action/Values/ActionNotification/Notification/Values/SideNotification": [],
       "/Values/Quest/OnQuestDiscarded/Values/ActionList/Actions/Item/Action/Values/ActionNotification/Notification/Values/SideNotification": [],
       "/Values/Quest/OnQuestSucceeded/Values/ActionList/Actions/Item/Action/Values/ActionNotification/Notification/Values/SideNotification": [],
       "/Values/Quest/OnQuestSucceeded/Values/ActionList/Actions/Item/Action/Values/ActionDelayedActions/DelayedActions/Values/ActionList/Actions/Item/Action/Values/ActionNotification/Notification/Values/SideNotification": [],
-      "/Values/Reward/PenaltyList/Item/Penalty": [],
-      "/Values/ParticipantMessages/MessageTriggers/NewspaperCreated/Reactions/Item/Notification/Values/CharacterNotification/ThirdpartyNotificationButtons/Item": []
+      "/Values/Reward/PenaltyList/Item/Penalty": [
+        "InfoTip"
+      ],
+      "/Values/ParticipantMessages/MessageTriggers/NewspaperCreated/Reactions/Item/Notification/Values/CharacterNotification/ThirdpartyNotificationButtons/Item": [
+        "InfoTip"
+      ]
     }
   },
   "NeededDLC": {
@@ -10318,57 +10561,93 @@
     }
   },
   "PopulationInfotipGuid": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature": []
+      "/Values/HighscoreFeature": [
+        "InfoTip"
+      ]
     }
   },
   "SessionBalanceInfotipGuid": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature": []
+      "/Values/HighscoreFeature": [
+        "InfoTip"
+      ]
     }
   },
   "TopStoredGoodInfotipGuid": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature": []
+      "/Values/HighscoreFeature": [
+        "InfoTip"
+      ]
     }
   },
   "TopProducedGoodInfotipGuid": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature": []
+      "/Values/HighscoreFeature": [
+        "InfoTip"
+      ]
     }
   },
   "ScreenshotInfotipGuid": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature": []
+      "/Values/HighscoreFeature": [
+        "InfoTip"
+      ]
     }
   },
   "DlcIconInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature": []
+      "/Values/HighscoreFeature": [
+        "InfoTip"
+      ]
     }
   },
   "HighscoreAmountInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature": []
+      "/Values/HighscoreFeature": [
+        "InfoTip"
+      ]
     }
   },
   "HighscoreMultiplierInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature": []
+      "/Values/HighscoreFeature": [
+        "InfoTip"
+      ]
     }
   },
   "HighscoreTotalInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/HighscoreFeature": []
+      "/Values/HighscoreFeature": [
+        "InfoTip"
+      ]
     }
   },
   "UrbanizationFactor": {
@@ -10796,24 +11075,58 @@
     }
   },
   "SubCategoryInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/InfluenceFeature/InfluenceConfig/GuildHouse": [],
-      "/Values/InfluenceFeature/InfluenceConfig/Townhall": [],
-      "/Values/InfluenceFeature/InfluenceConfig/HarborOffice": [],
-      "/Values/InfluenceFeature/InfluenceConfig/WarShip": [],
-      "/Values/InfluenceFeature/InfluenceConfig/DefenseBuilding": [],
-      "/Values/InfluenceFeature/InfluenceConfig/TradeShip": [],
-      "/Values/InfluenceFeature/InfluenceConfig/ZooModule": [],
-      "/Values/InfluenceFeature/InfluenceConfig/MuseumModule": [],
-      "/Values/InfluenceFeature/InfluenceConfig/Kontor": [],
-      "/Values/InfluenceFeature/InfluenceConfig/WorkforceTransfer": [],
-      "/Values/InfluenceFeature/InfluenceConfig/CharterRoutes": [],
-      "/Values/InfluenceFeature/InfluenceConfig/Shares": [],
-      "/Values/InfluenceFeature/InfluenceConfig/BotanicModule": [],
-      "/Values/InfluenceFeature/InfluenceConfig/AirshipTrade": [],
-      "/Values/InfluenceFeature/InfluenceConfig/AirshipCombat": [],
-      "/Values/ConstructionMenu": []
+      "/Values/InfluenceFeature/InfluenceConfig/GuildHouse": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/Townhall": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/HarborOffice": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/WarShip": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/DefenseBuilding": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/TradeShip": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/ZooModule": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/MuseumModule": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/Kontor": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/WorkforceTransfer": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/CharterRoutes": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/Shares": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/BotanicModule": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/AirshipTrade": [
+        "InfoTip"
+      ],
+      "/Values/InfluenceFeature/InfluenceConfig/AirshipCombat": [
+        "InfoTip"
+      ],
+      "/Values/ConstructionMenu": [
+        "InfoTip"
+      ]
     }
   },
   "FreeAmount": {
@@ -10916,9 +11229,13 @@
     }
   },
   "PropagandaInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/InfluenceFeature": []
+      "/Values/InfluenceFeature": [
+        "InfoTip"
+      ]
     }
   },
   "SourceSpreadMax": {
@@ -11595,7 +11912,9 @@
     }
   },
   "Default": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
       "/Values/StreetFeature/OverbuildableBy/Default": [],
       "/Values/StreetFeature/OverbuildableBy/BadStreet": [],
@@ -11606,7 +11925,9 @@
       "/Values/StreetFeature/OverbuildableBy/IrrigationPipeStreetCrossing": [],
       "/Values/StreetFeature/OverbuildableBy/Harbour": [],
       "/Values/StreetFeature/OverbuildableBy/QuayStreet": [],
-      "/Values/MPLobbyScene/LobbyInfoTips/DlcButtonInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips/DlcButtonInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "BadStreet": {
@@ -13004,27 +13325,43 @@
     }
   },
   "ArchiveButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/NewspaperBalancing": []
+      "/Values/NewspaperBalancing": [
+        "InfoTip"
+      ]
     }
   },
   "ShowNewspaperInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/NewspaperBalancing": []
+      "/Values/NewspaperBalancing": [
+        "InfoTip"
+      ]
     }
   },
   "PublishNewspaperInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/NewspaperBalancing": []
+      "/Values/NewspaperBalancing": [
+        "InfoTip"
+      ]
     }
   },
   "NewspaperCategoryInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/NewspaperBalancing": []
+      "/Values/NewspaperBalancing": [
+        "InfoTip"
+      ]
     }
   },
   "None": {
@@ -14294,21 +14631,33 @@
     }
   },
   "MutePlayerButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/Chat/InfoTips": []
+      "/Values/Chat/InfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "MuteOwnAudioButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/Chat/InfoTips": []
+      "/Values/Chat/InfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "MuteOwnMicButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/Chat/InfoTips": []
+      "/Values/Chat/InfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "MaxChatHistoryLength": {
@@ -14396,9 +14745,13 @@
     }
   },
   "InfoLayerInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/InfoLayerIcon": []
+      "/Values/InfoLayerIcon": [
+        "InfoTip"
+      ]
     }
   },
   "InteractionCursor": {
@@ -14514,12 +14867,22 @@
     }
   },
   "AlternativeInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/PassiveTradeWindow/TradeButtons/None": [],
-      "/Values/PassiveTradeWindow/TradeButtons/BuySell": [],
-      "/Values/PassiveTradeWindow/TradeButtons/SellOnly": [],
-      "/Values/PassiveTradeWindow/TradeButtons/BuyOnly": []
+      "/Values/PassiveTradeWindow/TradeButtons/None": [
+        "InfoTip"
+      ],
+      "/Values/PassiveTradeWindow/TradeButtons/BuySell": [
+        "InfoTip"
+      ],
+      "/Values/PassiveTradeWindow/TradeButtons/SellOnly": [
+        "InfoTip"
+      ],
+      "/Values/PassiveTradeWindow/TradeButtons/BuyOnly": [
+        "InfoTip"
+      ]
     }
   },
   "LoadingHeadline": {
@@ -14567,10 +14930,16 @@
     }
   },
   "InfoTipGUID": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ShipList/StanceIcons/Item": [],
-      "/Values/ShipList/GroupStanceIcons/Item": []
+      "/Values/ShipList/StanceIcons/Item": [
+        "InfoTip"
+      ],
+      "/Values/ShipList/GroupStanceIcons/Item": [
+        "InfoTip"
+      ]
     }
   },
   "Video": {
@@ -14618,15 +14987,23 @@
     }
   },
   "ShipInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/WorldMapConfig/Infotips": []
+      "/Values/WorldMapConfig/Infotips": [
+        "InfoTip"
+      ]
     }
   },
   "FleetInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/WorldMapConfig/Infotips": []
+      "/Values/WorldMapConfig/Infotips": [
+        "InfoTip"
+      ]
     }
   },
   "Globe": {
@@ -15011,9 +15388,13 @@
     }
   },
   "BuysEverythingInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ActiveTradeScene": []
+      "/Values/ActiveTradeScene": [
+        "InfoTip"
+      ]
     }
   },
   "StackModeText": {
@@ -15048,9 +15429,13 @@
     }
   },
   "RerollInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ActiveTradeScene": []
+      "/Values/ActiveTradeScene": [
+        "InfoTip"
+      ]
     }
   },
   "RerollText": {
@@ -15090,27 +15475,43 @@
     }
   },
   "RadialBuildingInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConstructionRadialScene": []
+      "/Values/ConstructionRadialScene": [
+        "InfoTip"
+      ]
     }
   },
   "RadialSubCategoryInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConstructionRadialScene": []
+      "/Values/ConstructionRadialScene": [
+        "InfoTip"
+      ]
     }
   },
   "RadialProductionChainInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConstructionRadialScene": []
+      "/Values/ConstructionRadialScene": [
+        "InfoTip"
+      ]
     }
   },
   "SidePanelBuildingInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConstructionRadialScene": []
+      "/Values/ConstructionRadialScene": [
+        "InfoTip"
+      ]
     }
   },
   "RadialProductionChainSubtitle": {
@@ -15179,9 +15580,13 @@
     }
   },
   "SelectedItemInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/CraftingPopup": []
+      "/Values/CraftingPopup": [
+        "InfoTip"
+      ]
     }
   },
   "CraftingItemFilter": {
@@ -15261,9 +15666,13 @@
     }
   },
   "PortraitInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/CreateGameScene": []
+      "/Values/CreateGameScene": [
+        "InfoTip"
+      ]
     }
   },
   "Logo": {
@@ -15333,9 +15742,13 @@
     }
   },
   "InUseInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/CreateGameScene": []
+      "/Values/CreateGameScene": [
+        "InfoTip"
+      ]
     }
   },
   "BulletPoint": {
@@ -15526,15 +15939,23 @@
     }
   },
   "SecondPartyDlcWarningInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DifficultySettingsScene": []
+      "/Values/DifficultySettingsScene": [
+        "InfoTip"
+      ]
     }
   },
   "SecondPartyConfirmBtnWarningInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DifficultySettingsScene": []
+      "/Values/DifficultySettingsScene": [
+        "InfoTip"
+      ]
     }
   },
   "ButtonPrompt_StartGame": {
@@ -15550,9 +15971,13 @@
     }
   },
   "GameSeedInfotipGUID": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DifficultySettingsScene": []
+      "/Values/DifficultySettingsScene": [
+        "InfoTip"
+      ]
     }
   },
   "GamepadIcon": {
@@ -15566,9 +15991,13 @@
     }
   },
   "TooltipHuman": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DiplomacyScene/RadialMenuButton/Item": []
+      "/Values/DiplomacyScene/RadialMenuButton/Item": [
+        "InfoTip"
+      ]
     }
   },
   "FaceIcon": {
@@ -15582,28 +16011,46 @@
     }
   },
   "PeaceTooltip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DiplomacyScene/NegotiationButton": [],
-      "/Values/DiplomacyScene/ThreatButton": []
+      "/Values/DiplomacyScene/NegotiationButton": [
+        "InfoTip"
+      ],
+      "/Values/DiplomacyScene/ThreatButton": [
+        "InfoTip"
+      ]
     }
   },
   "WarTootlip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DiplomacyScene/NegotiationButton": []
+      "/Values/DiplomacyScene/NegotiationButton": [
+        "InfoTip"
+      ]
     }
   },
   "QueenKnighthoodTooltip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DiplomacyScene/NegotiationButton": []
+      "/Values/DiplomacyScene/NegotiationButton": [
+        "InfoTip"
+      ]
     }
   },
   "WarTooltip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DiplomacyScene/ThreatButton": []
+      "/Values/DiplomacyScene/ThreatButton": [
+        "InfoTip"
+      ]
     }
   },
   "VisibleWithAI": {
@@ -15662,57 +16109,93 @@
     }
   },
   "PyramidExportGoodInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "TradeContractExportGoodInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "TradeContractImportGoodInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "TradeContractEmptyInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "TradeContractRatioInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "TradeContractModuleWarningInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "ImportTraderInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "ImportGoodInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "GoodAlreadyInUseInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "TraderStatusWaitingForTraderText": {
@@ -15760,15 +16243,23 @@
     }
   },
   "TradeContractExportWarningInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "TradeContractImportWarningInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DocklandsScene": []
+      "/Values/DocklandsScene": [
+        "InfoTip"
+      ]
     }
   },
   "ExpeditionShowEventButtonText": {
@@ -15844,9 +16335,13 @@
     }
   },
   "ExpeditionMoralInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ExpeditionOverviewScene": []
+      "/Values/ExpeditionOverviewScene": [
+        "InfoTip"
+      ]
     }
   },
   "NewExpeditionsTab": {
@@ -15978,11 +16473,19 @@
     }
   },
   "TresholdInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/IslandBarPollutionScene/PerQualityConfiguration/Water/VisibleThresholds/Item": [],
-      "/Values/IslandBarPollutionScene/PerQualityConfiguration/Soil/VisibleThresholds/Item": [],
-      "/Values/IslandBarPollutionScene/PerQualityConfiguration/Air/VisibleThresholds/Item": []
+      "/Values/IslandBarPollutionScene/PerQualityConfiguration/Water/VisibleThresholds/Item": [
+        "InfoTip"
+      ],
+      "/Values/IslandBarPollutionScene/PerQualityConfiguration/Soil/VisibleThresholds/Item": [
+        "InfoTip"
+      ],
+      "/Values/IslandBarPollutionScene/PerQualityConfiguration/Air/VisibleThresholds/Item": [
+        "InfoTip"
+      ]
     }
   },
   "TextCropDiversity": {
@@ -16010,15 +16513,23 @@
     }
   },
   "WorkforceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/IslandBarScene": []
+      "/Values/IslandBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "CultureSizeIndicatorInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/IslandBarScene": []
+      "/Values/IslandBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "AttractivenessButton": {
@@ -16102,21 +16613,33 @@
     }
   },
   "ResourceInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/IslandBarScene": []
+      "/Values/IslandBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "EmptyResourceInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/IslandBarScene": []
+      "/Values/IslandBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "GoodPopupResourceInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/IslandBarScene": []
+      "/Values/IslandBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "WorkforceEntry": {
@@ -16130,9 +16653,13 @@
     }
   },
   "WorkforceInfotip_NotCommutable": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/IslandBarScene": []
+      "/Values/IslandBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "FestivalTimeRemainingText": {
@@ -16407,21 +16934,33 @@
     }
   },
   "LodesInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MinimapScene": []
+      "/Values/MinimapScene": [
+        "InfoTip"
+      ]
     }
   },
   "FertilitiesInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MinimapScene": []
+      "/Values/MinimapScene": [
+        "InfoTip"
+      ]
     }
   },
   "SwappableFertilityInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MinimapScene": []
+      "/Values/MinimapScene": [
+        "InfoTip"
+      ]
     }
   },
   "TargetBuilding": {
@@ -16482,75 +17021,123 @@
     }
   },
   "StartButtonWarningInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips/DlcWarnings": []
+      "/Values/MPLobbyScene/LobbyInfoTips/DlcWarnings": [
+        "InfoTip"
+      ]
     }
   },
   "FixButtonDisabledInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips/DlcWarnings": []
+      "/Values/MPLobbyScene/LobbyInfoTips/DlcWarnings": [
+        "InfoTip"
+      ]
     }
   },
   "DisabledLocked": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips/DlcButtonInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips/DlcButtonInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "EnabledLocked": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips/DlcButtonInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips/DlcButtonInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "DisabledUnlocked": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips/DlcButtonInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips/DlcButtonInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "DlcDescriptionInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "DlcMissingInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "KickPlayerInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "DisabledStartGameInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "ReinvitePlayerInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "DlcMissingInfoStartBtnInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "ChecksumIsDifferentStartBtnInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MPLobbyScene/LobbyInfoTips": []
+      "/Values/MPLobbyScene/LobbyInfoTips": [
+        "InfoTip"
+      ]
     }
   },
   "StateTextLine1": {
@@ -16875,15 +17462,23 @@
     }
   },
   "ArticleInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/NewspaperScene": []
+      "/Values/NewspaperScene": [
+        "InfoTip"
+      ]
     }
   },
   "ArchiveArticleInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/NewspaperScene": []
+      "/Values/NewspaperScene": [
+        "InfoTip"
+      ]
     }
   },
   "AnarchyCategoryText": {
@@ -17067,9 +17662,13 @@
     }
   },
   "ResolutionInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/OptionsScene": []
+      "/Values/OptionsScene": [
+        "InfoTip"
+      ]
     }
   },
   "TextLanguageHeadline": {
@@ -17079,9 +17678,13 @@
     }
   },
   "TextLanguageInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/OptionsScene": []
+      "/Values/OptionsScene": [
+        "InfoTip"
+      ]
     }
   },
   "AudioLanguageHeadline": {
@@ -17091,9 +17694,13 @@
     }
   },
   "AudioLanguageInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/OptionsScene": []
+      "/Values/OptionsScene": [
+        "InfoTip"
+      ]
     }
   },
   "DirectXHeadline": {
@@ -17103,9 +17710,13 @@
     }
   },
   "DirectXInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/OptionsScene": []
+      "/Values/OptionsScene": [
+        "InfoTip"
+      ]
     }
   },
   "DirectX11Entry": {
@@ -17127,9 +17738,13 @@
     }
   },
   "GraphicAdapterInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/OptionsScene": []
+      "/Values/OptionsScene": [
+        "InfoTip"
+      ]
     }
   },
   "ToggleOn": {
@@ -17145,15 +17760,23 @@
     }
   },
   "ShortcutChangeableInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/OptionsScene": []
+      "/Values/OptionsScene": [
+        "InfoTip"
+      ]
     }
   },
   "ShortcutUnchangableInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/OptionsScene": []
+      "/Values/OptionsScene": [
+        "InfoTip"
+      ]
     }
   },
   "ResetToDefaultGPAction": {
@@ -17320,27 +17943,43 @@
     }
   },
   "StoryTextInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/QuestTrackerScene": []
+      "/Values/QuestTrackerScene": [
+        "InfoTip"
+      ]
     }
   },
   "RewardInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/QuestTrackerScene": []
+      "/Values/QuestTrackerScene": [
+        "InfoTip"
+      ]
     }
   },
   "RewardItemInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/QuestTrackerScene": []
+      "/Values/QuestTrackerScene": [
+        "InfoTip"
+      ]
     }
   },
   "RewardReputationInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/QuestTrackerScene": []
+      "/Values/QuestTrackerScene": [
+        "InfoTip"
+      ]
     }
   },
   "RewardDisguisedInfotip": {
@@ -17400,15 +18039,23 @@
     }
   },
   "IngredientInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/RecipeBuildingScene": []
+      "/Values/RecipeBuildingScene": [
+        "InfoTip"
+      ]
     }
   },
   "LockedRecipeInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/RecipeBuildingScene": []
+      "/Values/RecipeBuildingScene": [
+        "InfoTip"
+      ]
     }
   },
   "ItemRecipeResearchButtonText": {
@@ -17466,15 +18113,23 @@
     }
   },
   "CraftingItemInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "DonationItemInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "Godlike": {
@@ -17514,75 +18169,123 @@
     }
   },
   "MissingElectricityInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "NotEnoughResearchInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "NotEnoughWorkforceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "NoGodlikeSelectedInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "NoResearchFieldSelectedInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "NoItemSelectedInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "NoPackageSelectedInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "QueueFullInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "CraftingInProcessInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "GodlikeRewardInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "InvestResearchFieldButtonInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "IdentifyRecipesButtonInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "RecipePoolCompletedText": {
@@ -17640,21 +18343,33 @@
     }
   },
   "DevelopmentWarningInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "QueueEntryInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResearchCentreScene": []
+      "/Values/ResearchCentreScene": [
+        "InfoTip"
+      ]
     }
   },
   "CreditsInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene/CreditInfo": []
+      "/Values/ResourceBarScene/CreditInfo": [
+        "InfoTip"
+      ]
     }
   },
   "ProductMoneyAsset": {
@@ -17668,9 +18383,13 @@
     }
   },
   "BalanceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene/BalanceInfo": []
+      "/Values/ResourceBarScene/BalanceInfo": [
+        "InfoTip"
+      ]
     }
   },
   "BalanceAsset": {
@@ -17680,9 +18399,13 @@
     }
   },
   "PopulationInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene/PopulationInfo": []
+      "/Values/ResourceBarScene/PopulationInfo": [
+        "InfoTip"
+      ]
     }
   },
   "GlobalPopulationAsset": {
@@ -17692,9 +18415,13 @@
     }
   },
   "ResearchInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene/ResearchInfo": []
+      "/Values/ResourceBarScene/ResearchInfo": [
+        "InfoTip"
+      ]
     }
   },
   "ProductResearchAsset": {
@@ -17708,9 +18435,13 @@
     }
   },
   "InfluenceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene/InfluenceInfo": []
+      "/Values/ResourceBarScene/InfluenceInfo": [
+        "InfoTip"
+      ]
     }
   },
   "ProductInfluenceAsset": {
@@ -17744,39 +18475,63 @@
     }
   },
   "DawnBtnInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene": []
+      "/Values/ResourceBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "DayBtnInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene": []
+      "/Values/ResourceBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "DuskBtnInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene": []
+      "/Values/ResourceBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "NightBtnInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene": []
+      "/Values/ResourceBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "BuffInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene": []
+      "/Values/ResourceBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "SeasonTradeEffectInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ResourceBarScene": []
+      "/Values/ResourceBarScene": [
+        "InfoTip"
+      ]
     }
   },
   "Session": {
@@ -17900,27 +18655,43 @@
     }
   },
   "NoGoodsInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRouteOverviewScene": []
+      "/Values/SessionTradeRouteOverviewScene": [
+        "InfoTip"
+      ]
     }
   },
   "NoShipsInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRouteOverviewScene": []
+      "/Values/SessionTradeRouteOverviewScene": [
+        "InfoTip"
+      ]
     }
   },
   "AllShipsPausedInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRouteOverviewScene": []
+      "/Values/SessionTradeRouteOverviewScene": [
+        "InfoTip"
+      ]
     }
   },
   "GeneralWarningInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRouteOverviewScene": []
+      "/Values/SessionTradeRouteOverviewScene": [
+        "InfoTip"
+      ]
     }
   },
   "FocusStrategicMapText": {
@@ -17984,9 +18755,13 @@
     }
   },
   "ShipListInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRoutesScene": []
+      "/Values/SessionTradeRoutesScene": [
+        "InfoTip"
+      ]
     }
   },
   "WarIcon": {
@@ -18010,39 +18785,63 @@
     }
   },
   "NotEnoughSlotsInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRoutesScene": []
+      "/Values/SessionTradeRoutesScene": [
+        "InfoTip"
+      ]
     }
   },
   "NotEnoughStationsInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRoutesScene": []
+      "/Values/SessionTradeRoutesScene": [
+        "InfoTip"
+      ]
     }
   },
   "InvalidStationInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRoutesScene": []
+      "/Values/SessionTradeRoutesScene": [
+        "InfoTip"
+      ]
     }
   },
   "GoodsWarningInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRoutesScene": []
+      "/Values/SessionTradeRoutesScene": [
+        "InfoTip"
+      ]
     }
   },
   "LongWaitingInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRoutesScene": []
+      "/Values/SessionTradeRoutesScene": [
+        "InfoTip"
+      ]
     }
   },
   "MismatchingGoodInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRoutesScene": []
+      "/Values/SessionTradeRoutesScene": [
+        "InfoTip"
+      ]
     }
   },
   "SelectGoodPopupHeadlineLoading": {
@@ -18058,9 +18857,13 @@
     }
   },
   "GoodsInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRoutesScene/SelectGoodPopup": []
+      "/Values/SessionTradeRoutesScene/SelectGoodPopup": [
+        "InfoTip"
+      ]
     }
   },
   "PirateText": {
@@ -18092,9 +18895,13 @@
     }
   },
   "LostShipMarkerInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SessionTradeRoutesScene": []
+      "/Values/SessionTradeRoutesScene": [
+        "InfoTip"
+      ]
     }
   },
   "EmptyGoodSlotIcon": {
@@ -18222,9 +19029,13 @@
     }
   },
   "RadialShipMenuInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ShipMenuRadial": []
+      "/Values/ShipMenuRadial": [
+        "InfoTip"
+      ]
     }
   },
   "ShipSortingBy": {
@@ -18343,9 +19154,13 @@
     }
   },
   "CoopPeerButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SideNotificationsArchive": []
+      "/Values/SideNotificationsArchive": [
+        "InfoTip"
+      ]
     }
   },
   "JumpToBtnText": {
@@ -18411,9 +19226,13 @@
     }
   },
   "CategoryInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/SideNotificationScene": []
+      "/Values/SideNotificationScene": [
+        "InfoTip"
+      ]
     }
   },
   "IslandSelectionGlobal": {
@@ -18451,69 +19270,113 @@
     }
   },
   "ProductionGoodInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "WarehouseGoodInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "PopulationGraphInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "ProductionGraphGenerationInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "ProductionGraphConsumptionInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "WarehouseGraphInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "HappinessGraphInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "ProductionCheckboxGenerationInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "ProductionCheckboxConsumptionInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "ProductionCheckboxProcessingInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "PopulationCheckboxInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/StatisticMenu/StatisticMenuInfotips": []
+      "/Values/StatisticMenu/StatisticMenuInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "BuildingsTabText": {
@@ -19067,9 +19930,13 @@
     }
   },
   "RepairInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "LoadingSpeedIcon": {
@@ -19083,9 +19950,13 @@
     }
   },
   "LoadingSpeedInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "LoadingSpeedBonusIcon": {
@@ -19099,9 +19970,13 @@
     }
   },
   "LoadingSpeedBonusInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "DamageIcon": {
@@ -19111,9 +19986,13 @@
     }
   },
   "DamageInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "HitpointsIcon": {
@@ -19123,9 +20002,13 @@
     }
   },
   "HitpointsInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "MaintenanceIcon": {
@@ -19139,33 +20022,53 @@
     }
   },
   "MaintenanceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "ShipMaintenanceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "MaintenanceWorkforceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "GenerateWorkforceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "ResearchWorkforceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "StorageBonusIcon": {
@@ -19179,9 +20082,13 @@
     }
   },
   "StorageBonusInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "AttractivenessIcon": {
@@ -19198,10 +20105,16 @@
     }
   },
   "AttractivenessInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": [],
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": [
+        "InfoTip"
+      ]
     }
   },
   "ResidenceInfluenceIcon": {
@@ -19215,9 +20128,13 @@
     }
   },
   "ResidenceInfluenceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "IncomeIcon": {
@@ -19231,9 +20148,13 @@
     }
   },
   "IncomeInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "ResearchOutputIcon": {
@@ -19247,15 +20168,23 @@
     }
   },
   "ResearchOutputInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "EcoMaintenanceInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "HaciendaRadiusIcon": {
@@ -19269,9 +20198,13 @@
     }
   },
   "HaciendaRadiusInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/MaintenanceBarConfig": []
+      "/Values/MaintenanceBarConfig": [
+        "InfoTip"
+      ]
     }
   },
   "BeforeIncidentChanceHeadline": {
@@ -19357,21 +20290,33 @@
     }
   },
   "AutomatedProtectionInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuCityInstitutionScene": []
+      "/Values/ObjectmenuCityInstitutionScene": [
+        "InfoTip"
+      ]
     }
   },
   "OverallBarInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuCommuterHarbourScene": []
+      "/Values/ObjectmenuCommuterHarbourScene": [
+        "InfoTip"
+      ]
     }
   },
   "IslandEntryInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuCommuterHarbourScene": []
+      "/Values/ObjectmenuCommuterHarbourScene": [
+        "InfoTip"
+      ]
     }
   },
   "UpdateInterval": {
@@ -19562,21 +20507,33 @@
     }
   },
   "CartSlotInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuKontorScene": []
+      "/Values/ObjectmenuKontorScene": [
+        "InfoTip"
+      ]
     }
   },
   "KontorUpgradeInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuKontorScene": []
+      "/Values/ObjectmenuKontorScene": [
+        "InfoTip"
+      ]
     }
   },
   "WarehouseUpgradeInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuKontorScene": []
+      "/Values/ObjectmenuKontorScene": [
+        "InfoTip"
+      ]
     }
   },
   "ButtonPromptLabelKontor": {
@@ -19869,36 +20826,62 @@
     }
   },
   "ProximityInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Fire": [],
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Riot": [],
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Illness": [],
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/ArcticIllness": []
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Fire": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Riot": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/Illness": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles/IncidentBubbles/ArcticIllness": [
+        "InfoTip"
+      ]
     }
   },
   "DisabledStateInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": []
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": [
+        "InfoTip"
+      ]
     }
   },
   "SatisfactionMissingInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": []
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": [
+        "InfoTip"
+      ]
     }
   },
   "NeedLockedInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": []
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": [
+        "InfoTip"
+      ]
     }
   },
   "OccupancyMissingInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": []
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": [
+        "InfoTip"
+      ]
     }
   },
   "OccupancyMissingIcon": {
@@ -19908,9 +20891,13 @@
     }
   },
   "UpgradeInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": []
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": [
+        "InfoTip"
+      ]
     }
   },
   "UpgradeIcon": {
@@ -19924,9 +20911,13 @@
     }
   },
   "NewspaperInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": []
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": [
+        "InfoTip"
+      ]
     }
   },
   "NewspaperIcon": {
@@ -19940,9 +20931,13 @@
     }
   },
   "WorkforceStressInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": []
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": [
+        "InfoTip"
+      ]
     }
   },
   "WorkforceStressIcon": {
@@ -19966,9 +20961,13 @@
     }
   },
   "PollutionInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": []
+      "/Values/ObjectmenuResidenceScene/FeedbackBubbles": [
+        "InfoTip"
+      ]
     }
   },
   "HappinessText": {
@@ -20048,10 +21047,16 @@
     }
   },
   "ButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene/MallPopup": [],
-      "/Values/ObjectmenuResidenceScene/BonusNeeds": []
+      "/Values/ObjectmenuResidenceScene/MallPopup": [
+        "InfoTip"
+      ],
+      "/Values/ObjectmenuResidenceScene/BonusNeeds": [
+        "InfoTip"
+      ]
     }
   },
   "BonusNeedsPopupHeaderText": {
@@ -20163,9 +21168,13 @@
     }
   },
   "MoveInOutInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuResidenceScene": []
+      "/Values/ObjectmenuResidenceScene": [
+        "InfoTip"
+      ]
     }
   },
   "ButtonLabel": {
@@ -20183,21 +21192,33 @@
     }
   },
   "SwitchSessionButtonEnabledInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuShipScene": []
+      "/Values/ObjectmenuShipScene": [
+        "InfoTip"
+      ]
     }
   },
   "SwitchSessionButtonDisabledInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuShipScene": []
+      "/Values/ObjectmenuShipScene": [
+        "InfoTip"
+      ]
     }
   },
   "SwitchSessionAreaButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ObjectmenuShipScene": []
+      "/Values/ObjectmenuShipScene": [
+        "InfoTip"
+      ]
     }
   },
   "ActivateItemFeedbackLabel": {
@@ -20263,15 +21284,23 @@
     }
   },
   "InfotipArmModeButton": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DropGoodPopup": []
+      "/Values/DropGoodPopup": [
+        "InfoTip"
+      ]
     }
   },
   "InfotipDropShaft": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/DropGoodPopup": []
+      "/Values/DropGoodPopup": [
+        "InfoTip"
+      ]
     }
   },
   "ButtonPromptJumpToTrain": {
@@ -20297,15 +21326,23 @@
     }
   },
   "BuildButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConstructionMenu": []
+      "/Values/ConstructionMenu": [
+        "InfoTip"
+      ]
     }
   },
   "ProductionChainButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConstructionMenu": []
+      "/Values/ConstructionMenu": [
+        "InfoTip"
+      ]
     }
   },
   "DragAndDropHint": {
@@ -20315,21 +21352,33 @@
     }
   },
   "EmptyPinInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConstructionMenu": []
+      "/Values/ConstructionMenu": [
+        "InfoTip"
+      ]
     }
   },
   "StampInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConstructionMenu": []
+      "/Values/ConstructionMenu": [
+        "InfoTip"
+      ]
     }
   },
   "StampFolderInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConstructionMenu": []
+      "/Values/ConstructionMenu": [
+        "InfoTip"
+      ]
     }
   },
   "DeleteStampPopupBuildingThreshold": {
@@ -20339,9 +21388,13 @@
     }
   },
   "PinButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ShipListConfig": []
+      "/Values/ShipListConfig": [
+        "InfoTip"
+      ]
     }
   },
   "CategoryAsset": {
@@ -20365,9 +21418,13 @@
     }
   },
   "ItemFilterInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ItemFilter": []
+      "/Values/ItemFilter": [
+        "InfoTip"
+      ]
     }
   },
   "BuildingReplacingWorkforceKey": {
@@ -20987,9 +22044,13 @@
     }
   },
   "ProductFilterInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ProductFilter": []
+      "/Values/ProductFilter": [
+        "InfoTip"
+      ]
     }
   },
   "RestartButtonText": {
@@ -21017,21 +22078,33 @@
     }
   },
   "BadgeInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ScenarioGameOverScene": []
+      "/Values/ScenarioGameOverScene": [
+        "InfoTip"
+      ]
     }
   },
   "MedalInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ScenarioGameOverScene": []
+      "/Values/ScenarioGameOverScene": [
+        "InfoTip"
+      ]
     }
   },
   "CurrencyRewardInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ScenarioGameOverScene": []
+      "/Values/ScenarioGameOverScene": [
+        "InfoTip"
+      ]
     }
   },
   "DefaultScenario": {
@@ -24024,9 +25097,13 @@
     }
   },
   "ThreatInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ExpeditionFeature/ThreatImpactOnEventRarity/Item": []
+      "/Values/ExpeditionFeature/ThreatImpactOnEventRarity/Item": [
+        "InfoTip"
+      ]
     }
   },
   "Region": {
@@ -24070,15 +25147,23 @@
     }
   },
   "ShowUiButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ExpeditionFeature/CharacterMessage": []
+      "/Values/ExpeditionFeature/CharacterMessage": [
+        "InfoTip"
+      ]
     }
   },
   "DiscardButtonInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ExpeditionFeature/CharacterMessage": []
+      "/Values/ExpeditionFeature/CharacterMessage": [
+        "InfoTip"
+      ]
     }
   },
   "DiscardButtonIcon": {
@@ -24207,9 +25292,13 @@
     }
   },
   "OptionInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ExpeditionTrade": []
+      "/Values/ExpeditionTrade": [
+        "InfoTip"
+      ]
     }
   },
   "TradeHeadline": {
@@ -24627,9 +25716,13 @@
     }
   },
   "AttractivenessInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/Region": []
+      "/Values/Region": [
+        "InfoTip"
+      ]
     }
   },
   "Residence": {
@@ -25835,9 +26928,13 @@
     }
   },
   "InfoCornerInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/Profile": []
+      "/Values/Profile": [
+        "InfoTip"
+      ]
     }
   },
   "InfoCornerDescription": {
@@ -26954,9 +28051,13 @@
     }
   },
   "ProductionOutputInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/FactoryBase": []
+      "/Values/FactoryBase": [
+        "InfoTip"
+      ]
     }
   },
   "MissingHeatInfolayer": {
@@ -27251,13 +28352,25 @@
     }
   },
   "DebuffInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/PopulationLevel7/HappinessDebuff/Needs": [],
-      "/Values/PopulationLevel7/HappinessDebuff/War": [],
-      "/Values/PopulationLevel7/HappinessDebuff/Newspaper": [],
-      "/Values/PopulationLevel7/HappinessDebuff/Hotspots": [],
-      "/Values/PopulationLevel7/HappinessDebuff/Attractiveness": []
+      "/Values/PopulationLevel7/HappinessDebuff/Needs": [
+        "InfoTip"
+      ],
+      "/Values/PopulationLevel7/HappinessDebuff/War": [
+        "InfoTip"
+      ],
+      "/Values/PopulationLevel7/HappinessDebuff/Newspaper": [
+        "InfoTip"
+      ],
+      "/Values/PopulationLevel7/HappinessDebuff/Hotspots": [
+        "InfoTip"
+      ],
+      "/Values/PopulationLevel7/HappinessDebuff/Attractiveness": [
+        "InfoTip"
+      ]
     }
   },
   "LowWorkforceInfolayer": {
@@ -29542,9 +30655,13 @@
     }
   },
   "InfotipGUID": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/AttractivenessConsoleScene/InfotipConfig": []
+      "/Values/AttractivenessConsoleScene/InfotipConfig": [
+        "InfoTip"
+      ]
     }
   },
   "HeaderTextGUID": {
@@ -29620,9 +30737,13 @@
     }
   },
   "ArticleSelectionCategoryInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/NewspaperConsoleScene": []
+      "/Values/NewspaperConsoleScene": [
+        "InfoTip"
+      ]
     }
   },
   "AddGood": {
@@ -29918,9 +31039,13 @@
     }
   },
   "FestivalInfotipGUID": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/IslandDetailConsoleScene": []
+      "/Values/IslandDetailConsoleScene": [
+        "InfoTip"
+      ]
     }
   },
   "JumpToIslandPrompt": {
@@ -30150,21 +31275,33 @@
     }
   },
   "InfotipButtonRemappingAllowed": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConsoleOptionScene/RemappingInfotips": []
+      "/Values/ConsoleOptionScene/RemappingInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "InfotipActionRemappingAllowed": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConsoleOptionScene/RemappingInfotips": []
+      "/Values/ConsoleOptionScene/RemappingInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "InfotipActionRemappingForbidden": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ConsoleOptionScene/RemappingInfotips": []
+      "/Values/ConsoleOptionScene/RemappingInfotips": [
+        "InfoTip"
+      ]
     }
   },
   "LongPressDurationTextSource": {
@@ -30280,21 +31417,33 @@
     }
   },
   "SaveLoadSettingsInfotipEmpty": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/AdvancedDifficultiesConsoleScene": []
+      "/Values/AdvancedDifficultiesConsoleScene": [
+        "InfoTip"
+      ]
     }
   },
   "SaveLoadSettingsInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/AdvancedDifficultiesConsoleScene": []
+      "/Values/AdvancedDifficultiesConsoleScene": [
+        "InfoTip"
+      ]
     }
   },
   "PreconfiguredSettingsInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/AdvancedDifficultiesConsoleScene": []
+      "/Values/AdvancedDifficultiesConsoleScene": [
+        "InfoTip"
+      ]
     }
   },
   "EmptyPresetText": {
@@ -31038,9 +32187,13 @@
     }
   },
   "ScenarioResetInfotip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ScenarioMetaInfo": []
+      "/Values/ScenarioMetaInfo": [
+        "InfoTip"
+      ]
     }
   },
   "LinkedScenarioAsset": {
@@ -31054,9 +32207,13 @@
     }
   },
   "ScenarioMarkerInfoTip": {
-    "templates": [],
+    "templates": [
+      "InfoTip"
+    ],
     "paths": {
-      "/Values/ScenarioSelectionMarker": []
+      "/Values/ScenarioSelectionMarker": [
+        "InfoTip"
+      ]
     }
   },
   "GrandGalleryPointsFirstWin": {

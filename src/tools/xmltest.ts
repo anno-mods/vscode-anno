@@ -80,7 +80,7 @@ function parseIssue(line: string): IIssue | undefined {
         return {
           error: false,
           time: parseInt(timeMatch[1]),
-          group: timeMatch[2] === 'Group',
+          modOpType: timeMatch[2] as 'ModOp' | 'Group' | 'Asset',
           message: match[2],
           file: match[3],
           line: Math.max(0, parseInt(match[4]) - 1)
@@ -107,7 +107,7 @@ export interface IIssue {
   file: string
   line: number
   time?: number
-  group?: boolean
+  modOpType?: 'ModOp' | 'Group' | 'Asset'
 }
 
 export function fetchIssues(vanillaXml: string, modPath: string, mainPatchFile: string,
@@ -151,7 +151,7 @@ export function fetchIssues(vanillaXml: string, modPath: string, mainPatchFile: 
 
     return [ {
       error: true,
-      group: true,
+      modOpType: 'Group',
       message: `Fetching issues for '${path.basename(patchFile)}' failed with exception`,
       file: patchFile,
       line: 0

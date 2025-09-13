@@ -5,7 +5,7 @@ import * as rda from '../../data/rda';
 import * as editorFormats from '../../editor/formats';
 import * as modContext from '../../editor/modContext';
 import * as xmltest from '../../tools/xmltest';
-import { ASSETS_FILENAME_PATTERN, guidWithName } from '../../other/assetsXml';
+import { ASSETS_FILENAME_PATTERN, guidWithName, IAsset } from '../../other/assetsXml';
 import { SymbolRegistry } from '../../data/symbols';
 
 const vanillaAssetContentProvider = new (class implements vscode.TextDocumentContentProvider {
@@ -31,6 +31,42 @@ const vanillaAssetContentProvider = new (class implements vscode.TextDocumentCon
   }
 })();
 
+const infotipContentProvider = new (class implements vscode.TextDocumentContentProvider {
+  provideTextDocumentContent(uri: vscode.Uri): string {
+    const version = uri.scheme === 'annoinfotip8' ? anno.GameVersion.Anno8 : anno.GameVersion.Anno7;
+    const vanillaPath = rda.getPatchTarget('data/infotips/export.bin', version);
+    if (!vanillaPath) {
+      const msg = `InfoTips file 'export.bin' not found`;
+      vscode.window.showErrorMessage(msg);
+      throw msg;
+    }
+
+    const match = /(\d+)/g.exec(uri.fsPath);
+    if (!match) {
+      const msg = `GUID not found in InfoTips file`;
+      vscode.window.showErrorMessage(msg);
+      throw msg;
+    }
+    const guid = match[0];
+
+    return xmltest.show(guid, vanillaPath);
+  }
+})();
+
+function getLocationFromSymbol(symbol: IAsset) {
+  if (symbol.location) {
+    return new vscode.Location(symbol.location.filePath, new vscode.Position(symbol.location.line, 0));
+  }
+  else if (symbol.template === 'InfoTip') {
+    const versionNumber = modContext.getVersion().toString();
+    return new vscode.Location(vscode.Uri.from({ scheme: "annoinfotip" + versionNumber, path: guidWithName(symbol) }), new vscode.Position(0, 0));
+  }
+  else {
+    const versionNumber = modContext.getVersion().toString();
+    return new vscode.Location(vscode.Uri.from({ scheme: "annoasset" + versionNumber, path: guidWithName(symbol) }), new vscode.Position(0, 0));
+  }
+}
+
 export class WorkspaceSymbolProvider implements vscode.WorkspaceSymbolProvider {
   public async provideWorkspaceSymbols(search: string, token: vscode.CancellationToken): Promise<vscode.SymbolInformation[]> {
     if (!modContext.getVersion()) {
@@ -40,13 +76,7 @@ export class WorkspaceSymbolProvider implements vscode.WorkspaceSymbolProvider {
     const matchingSymbols = SymbolRegistry.all();
     let result: vscode.SymbolInformation[] = [];
 
-    const versionNumber = modContext.getVersion().toString();
-
     for (const [_, symbol] of matchingSymbols) {
-      const location = !symbol.location ?
-        new vscode.Location(vscode.Uri.from({ scheme: "annoasset" + versionNumber, path: guidWithName(symbol) }), new vscode.Position(0, 0))
-        : new vscode.Location(symbol.location.filePath, new vscode.Position(symbol.location.line, 0));
-
       SymbolRegistry.resolveTemplate(symbol);
 
       result.push(
@@ -54,7 +84,7 @@ export class WorkspaceSymbolProvider implements vscode.WorkspaceSymbolProvider {
           (symbol.english ?? symbol.name ?? symbol.guid) + (symbol.template ? ` (${symbol.template})` : ''),
           vscode.SymbolKind.Class,
           symbol.modName ?? 'vanilla',
-          location)
+          getLocationFromSymbol(symbol))
       );
     }
 
@@ -82,10 +112,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
       return new vscode.Location(asset.location.filePath, new vscode.Position(asset.location.line, 0));
     }
     else if (asset) {
-      const versionNumber = modContext.getVersion().toString();
-
-      return new vscode.Location(
-        vscode.Uri.from({ scheme: "annoasset" + versionNumber, path: guidWithName(asset) }), new vscode.Position(0, 0));
+      return getLocationFromSymbol(asset);
     }
 
     return undefined;
@@ -95,7 +122,11 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
 export function activate(context: vscode.ExtensionContext) {
     const selector: vscode.DocumentSelector = [
       { language: 'anno-xml', scheme: 'file' },
-      { language: 'xml', scheme: 'file', pattern: ASSETS_FILENAME_PATTERN }
+      { language: 'xml', scheme: 'file', pattern: ASSETS_FILENAME_PATTERN },
+      { language: 'anno-xml', scheme: 'annoasset8' },
+      { language: 'anno-xml', scheme: 'annoasset7' },
+      { language: 'anno-xml', scheme: 'annodiff8' },
+      { language: 'anno-xml', scheme: 'annodiff7' },
     ];
 
   context.subscriptions.push(
@@ -110,6 +141,9 @@ export function activate(context: vscode.ExtensionContext) {
 
   vscode.workspace.registerTextDocumentContentProvider("annoasset7", vanillaAssetContentProvider);
   vscode.workspace.registerTextDocumentContentProvider("annoasset8", vanillaAssetContentProvider);
+
+  vscode.workspace.registerTextDocumentContentProvider("annoinfotip7", infotipContentProvider);
+  vscode.workspace.registerTextDocumentContentProvider("annoinfotip8", infotipContentProvider);
 
   modContext.onCheckTextEditorContext(editor => {
     if (editor.document.uri.scheme.startsWith('annoasset')) {

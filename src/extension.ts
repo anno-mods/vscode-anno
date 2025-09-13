@@ -10,6 +10,7 @@ import * as cfg from './languages/cfg';
 import * as cf7 from './languages/cf7';
 import * as ifo from './languages/ifo';
 import * as schemas from './languages/schemas';
+import * as wordSelector from './languages/wordSelector';
 import * as xml from './languages/xml';
 import * as statusBar from './features/statusBar';
 import * as rda from './data/rda';
@@ -41,6 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
 	ifo.activate(context);
 	xml.activate(context);
 	schemas.activate(context);
+	wordSelector.activate(context);
 	AssetsSymbolProvider.activate(context);
 
 	editor.activate(context);

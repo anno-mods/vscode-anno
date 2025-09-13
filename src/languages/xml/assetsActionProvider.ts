@@ -177,13 +177,13 @@ function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
         line.range.end.translate(0, -(line.text.length - line.text.trimRight().length))
       );
 
-      if (issue.time !== undefined) {
+      if (issue.time !== undefined && !(issue.modOpType === 'Asset' && issue.time === 0)) {
         const decoration: vscode.DecorationOptions = {
           range,
           renderOptions: {
             after: {
               contentText: ` ${issue.time}ms`,
-              color: (warningThreshold && issue?.time >= warningThreshold && !issue.group) ? colorWarning : color
+              color: (warningThreshold && issue?.time >= warningThreshold && issue.modOpType !== 'Group') ? colorWarning : color
             }
           }
         };

@@ -817,6 +817,10 @@
     "name": "OptimisationBuff2_New DLC10",
     "english": "Head Manager"
   },
+  "373": {
+    "template": "InfoTip",
+    "name": "UseAlternativeGrassColor_InfoTip"
+  },
   "374": {
     "template": "InfluenceTitleBuff",
     "name": "OptimisationBuff3_New DLC10",
@@ -1017,6 +1021,10 @@
     "template": "GamepadConfig",
     "name": "GamepadConfig"
   },
+  "469": {
+    "template": "InfoTip",
+    "name": "MallNeedsInMonument Infotip"
+  },
   "470": {
     "template": "Target",
     "name": "DowngradeFloor",
@@ -1029,6 +1037,10 @@
   "472": {
     "template": "PaMSy_Base",
     "name": "PaMSy_Narrative_Character_Vara"
+  },
+  "483": {
+    "template": "InfoTip",
+    "name": "HaciendaFertilizerActiveInfotip"
   },
   "484": {
     "template": "PaMSy_Base",
@@ -1509,6 +1521,10 @@
     "template": "Skin",
     "name": "Skin Residence T01_S03"
   },
+  "705": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event InfoTip"
+  },
   "709": {
     "template": "Skin",
     "name": "Skin Residence T02_S03"
@@ -1753,6 +1769,14 @@
     "name": "Water Drop",
     "english": "Water Drop"
   },
+  "854": {
+    "template": "InfoTip",
+    "name": "Resource replenish InfoTip"
+  },
+  "855": {
+    "template": "InfoTip",
+    "name": "ResourceReplenishDisabledInfoTip"
+  },
   "867": {
     "template": "RecipeList",
     "name": "RecipeList_Magazin_Colony01",
@@ -1793,6 +1817,10 @@
     "template": "OrnamentalBuilding",
     "name": "GGJ_2x2_Reward_Gold",
     "english": "Eden Burning Gold Reward Tree"
+  },
+  "897": {
+    "template": "InfoTip",
+    "name": "ScenarioCategoryInfoTip"
   },
   "905": {
     "template": "Multifactory",
@@ -1887,6 +1915,10 @@
     "name": "Multifactory_Magazin(DropGoods)_Moderate_Bombs",
     "english": "Bomb Factory"
   },
+  "928": {
+    "template": "InfoTip",
+    "name": "FarmModules_SelectMainBuilding_Infotip"
+  },
   "934": {
     "template": "Multifactory",
     "name": "Multifactory_Magazin(DropGoods)_Moderate_SeaMines",
@@ -1925,6 +1957,10 @@
     "template": "Monument",
     "name": "GGJDam_01_00",
     "english": "Dam Phase 1/3: Scaffolding"
+  },
+  "951": {
+    "template": "InfoTip",
+    "name": "EnableSetSailButton_InfoTip"
   },
   "953": {
     "template": "Recipe",
@@ -2081,6 +2117,10 @@
   "1252": {
     "template": "ScenarioWorkshopScene",
     "name": "GrandGalleryScene"
+  },
+  "1253": {
+    "template": "InfoTip",
+    "name": "AirportBuildModuleMain_Infotip"
   },
   "1277": {
     "template": "ScenarioWorkshopPackage",
@@ -2382,6 +2422,10 @@
     "template": "HeavyFreeAreaBuilding",
     "name": "heavy_04 (PalmOil) Colony01",
     "english": "Industrial Oil Press"
+  },
+  "1425": {
+    "template": "InfoTip",
+    "name": "PostboxInput_Infotip"
   },
   "1506": {
     "template": "UplayProductPromotion",
@@ -3157,6 +3201,10 @@
     "template": "VisualObject",
     "name": "ShotMuzzle_Airship"
   },
+  "2358": {
+    "template": "InfoTip",
+    "name": "Resi BonusNeeds InfoTip"
+  },
   "2377": {
     "template": "ScenarioWorkshopPackage",
     "name": "GG_OldNate_Workshop_Window"
@@ -3337,6 +3385,10 @@
   "2581": {
     "template": "VisualObject",
     "name": "ShotFlakCannon"
+  },
+  "2586": {
+    "template": "InfoTip",
+    "name": "DisableCombatMusic_InfoTip"
   },
   "2592": {
     "template": "TriggerCampaign",
@@ -3547,6 +3599,26 @@
     "template": "RewardPool",
     "name": "BigDLC11ItemsRewardPool"
   },
+  "3512": {
+    "template": "InfoTip",
+    "name": "PassiveTrade_NoTrade_Infotip"
+  },
+  "3513": {
+    "template": "InfoTip",
+    "name": "PassiveTrade_BuyAndSell_Infotip"
+  },
+  "3514": {
+    "template": "InfoTip",
+    "name": "PassiveTrade_Buy_Infotip"
+  },
+  "3515": {
+    "template": "InfoTip",
+    "name": "PassiveTrade_Sell_Infotip"
+  },
+  "3516": {
+    "template": "InfoTip",
+    "name": "PassiveTrade_MinimumStock_Infotip"
+  },
   "3661": {
     "template": "PostBoxBuildingWithDepot",
     "name": "post box colony01",
@@ -3598,6 +3670,10 @@
   "3714": {
     "template": "EffectExclusiveTag",
     "name": "AP_EffectExclusiveGroup_(Steel)"
+  },
+  "3718": {
+    "template": "InfoTip",
+    "name": "Call Paloma Infotip"
   },
   "3725": {
     "template": "Trigger",
@@ -3673,6 +3749,10 @@
     "template": "Icon",
     "name": "Badges Season Of Silver 3"
   },
+  "4100": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipCombatAirShips"
+  },
   "4117": {
     "template": "VehicleItem",
     "name": "AirshipDLC11 Technician",
@@ -3737,6 +3817,26 @@
   "4152": {
     "template": "Inhabitant",
     "name": "Post Office Worker"
+  },
+  "4154": {
+    "template": "InfoTip",
+    "name": "DropUI_DropButton_Info"
+  },
+  "4155": {
+    "template": "InfoTip",
+    "name": "DropUI_TargeButton_Info"
+  },
+  "4156": {
+    "template": "InfoTip",
+    "name": "DropUI_DistributeButton_Info"
+  },
+  "4157": {
+    "template": "InfoTip",
+    "name": "DropUI_FullStack_Info"
+  },
+  "4158": {
+    "template": "InfoTip",
+    "name": "DropUI_Shaft_Info"
   },
   "4171": {
     "template": "DropGoodPopup",
@@ -3858,6 +3958,10 @@
     "template": "Trigger",
     "name": "ItemUnlockDLC11andDLC6andDLC03"
   },
+  "4314": {
+    "template": "InfoTip",
+    "name": "MinimapRotationGameplayOption_InfoTip"
+  },
   "4317": {
     "template": "Trigger",
     "name": "intermediate colony01 Post and Alu (Unlock)"
@@ -3920,6 +4024,10 @@
     "name": "Paloma Item Trader",
     "english": "Paloma Valente"
   },
+  "4397": {
+    "template": "InfoTip",
+    "name": "GasFilterInfotip"
+  },
   "4403": {
     "template": "CustomizeModeScene",
     "name": "CustomizeModeScene"
@@ -3948,6 +4056,10 @@
   "4486": {
     "template": "OptionsConsoleScene",
     "name": "OptionsConsoleScene"
+  },
+  "4487": {
+    "template": "InfoTip",
+    "name": "Autopublish_SystemicArticle_Infotip"
   },
   "4513": {
     "template": "AirshipPostFreeModule",
@@ -4190,6 +4302,30 @@
     "template": "TriggerScenarioProjectStartupTrigger",
     "name": "S03_ScenarioRuinKontor5"
   },
+  "4637": {
+    "template": "InfoTip",
+    "name": "PlayerCharacterSubtitles_InfoTip"
+  },
+  "4638": {
+    "template": "InfoTip",
+    "name": "CameraDragSensitivity_InfoTip"
+  },
+  "4639": {
+    "template": "InfoTip",
+    "name": "CameraKeyboardSensitivity_InfoTip"
+  },
+  "4640": {
+    "template": "InfoTip",
+    "name": "CameraEdgeScrollSensitivity_InfoTip"
+  },
+  "4642": {
+    "template": "InfoTip",
+    "name": "OnlyUseRomanFont_InfoTip"
+  },
+  "4643": {
+    "template": "InfoTip",
+    "name": "OnlyUseSansSerifFont_InfoTip"
+  },
   "4663": {
     "template": "Notification",
     "name": "ShipTargetLost_Owner"
@@ -4240,6 +4376,14 @@
     "template": "ScenarioWorkshopPackage",
     "name": "GG_Queens_ModernAirship_Skin_Window"
   },
+  "4702": {
+    "template": "InfoTip",
+    "name": "DragMode_InfoTip"
+  },
+  "4707": {
+    "template": "InfoTip",
+    "name": "SwapAnalogSticks_InfoTip"
+  },
   "4709": {
     "template": "Skin",
     "name": "Scenario Reward Skin Silver",
@@ -4255,6 +4399,10 @@
     "name": "Scenario Reward Skin Bronze",
     "english": "Bronze Bearer"
   },
+  "4718": {
+    "template": "InfoTip",
+    "name": "RadialMenuNeutralSelection_InfoTip"
+  },
   "4723": {
     "template": "Skin",
     "name": "GG_Queens_ClassicShip_Skin"
@@ -4266,6 +4414,10 @@
   "4728": {
     "template": "ScenarioWorkshopPackage",
     "name": "GG_Queens_ClassicShip_Skin_Window"
+  },
+  "4734": {
+    "template": "InfoTip",
+    "name": "TypeSelectionMailRouteInfotip"
   },
   "4736": {
     "template": "ScenarioWorkshopPackage",
@@ -4316,6 +4468,18 @@
     "name": "GrandGallery Menu",
     "english": "Grand Gallery Ornaments"
   },
+  "4760": {
+    "template": "InfoTip",
+    "name": "Residence Tendency InfoTip"
+  },
+  "4761": {
+    "template": "InfoTip",
+    "name": "GG_GoldenTicket_Infotip"
+  },
+  "4762": {
+    "template": "InfoTip",
+    "name": "GG_Permits_Infotip"
+  },
   "4763": {
     "template": "Icon",
     "name": "GoldenTicket"
@@ -4360,6 +4524,10 @@
   "4775": {
     "template": "ScenarioWorkshopPackage",
     "name": "GG_Airship_SportsGondola_Window"
+  },
+  "4776": {
+    "template": "InfoTip",
+    "name": "GG_CallPaloma_Infotip"
   },
   "4777": {
     "template": "Icon",
@@ -4536,6 +4704,14 @@
     "template": "Icon",
     "name": "Scenario03 Main Icon"
   },
+  "5139": {
+    "template": "InfoTip",
+    "name": "GG_Badges_Infotip"
+  },
+  "5147": {
+    "template": "InfoTip",
+    "name": "AirportItemTransferLock"
+  },
   "5164": {
     "template": "PowerplantBuilding",
     "name": "Colony01 electricity_02 (Oil Power Plant)",
@@ -4646,6 +4822,14 @@
     "template": "Trigger",
     "name": "intermediate moderate 5.0.2 (FlamerMonitorPassage)Unhide"
   },
+  "5345": {
+    "template": "InfoTip",
+    "name": "GG_Medal_Infotip"
+  },
+  "5346": {
+    "template": "InfoTip",
+    "name": "GG_GoldenTicket_Claculation_Infotip"
+  },
   "5347": {
     "template": "ScenarioCurrencyFixer",
     "name": "ScenarioCurrencyFixer"
@@ -4665,6 +4849,10 @@
   "5356": {
     "template": "TextPool",
     "name": "Pool_enemy02_drop action Insulting the Player"
+  },
+  "5378": {
+    "template": "InfoTip",
+    "name": "GG_GoTo_GrandGallery_Infotip"
   },
   "5380": {
     "template": "Product",
@@ -5073,6 +5261,10 @@
     "name": "Samba School",
     "english": "Samba School"
   },
+  "5832": {
+    "template": "InfoTip",
+    "name": "AdvancedDifficulty_CustomPresetSave_InfoTip"
+  },
   "5835": {
     "template": "TutorialQuest",
     "name": "Moving In Campaign",
@@ -5082,6 +5274,10 @@
     "template": "TutorialQuest",
     "name": "Moving In Sandbox",
     "english": "Houses"
+  },
+  "5839": {
+    "template": "InfoTip",
+    "name": "AdvancedDifficulty_CustomPresetLoad_InfoTip"
   },
   "5840": {
     "template": "BuffFactory",
@@ -5681,6 +5877,86 @@
     "name": "ServiceChain Beach",
     "english": "Beach"
   },
+  "6304": {
+    "template": "InfoTip",
+    "name": "CameraPanSpeed_InfoTip"
+  },
+  "6305": {
+    "template": "InfoTip",
+    "name": "CameraFastPanSpeed_Infotip"
+  },
+  "6306": {
+    "template": "InfoTip",
+    "name": "CameraRotateSpeed_Infotip"
+  },
+  "6307": {
+    "template": "InfoTip",
+    "name": "CameraZoomSpeed_Infotip"
+  },
+  "6308": {
+    "template": "InfoTip",
+    "name": "TriggerSensitivity_Infotip"
+  },
+  "6309": {
+    "template": "InfoTip",
+    "name": "LongPressDuration_Infotip"
+  },
+  "6310": {
+    "template": "InfoTip",
+    "name": "ShortPressDuration_Infotip"
+  },
+  "6311": {
+    "template": "InfoTip",
+    "name": "InvertUINaviX_Infotip"
+  },
+  "6312": {
+    "template": "InfoTip",
+    "name": "InvertUINaviY_Infotip"
+  },
+  "6313": {
+    "template": "InfoTip",
+    "name": "InvertCameraX_Infotip"
+  },
+  "6314": {
+    "template": "InfoTip",
+    "name": "InvertCameraY_Infotip"
+  },
+  "6315": {
+    "template": "InfoTip",
+    "name": "InvertCameraRotation_Infotip"
+  },
+  "6316": {
+    "template": "InfoTip",
+    "name": "InvertCameraZoom_Infotip"
+  },
+  "6317": {
+    "template": "InfoTip",
+    "name": "InvertCameraTilt_Infotip"
+  },
+  "6318": {
+    "template": "InfoTip",
+    "name": "InvertCameraFPSX_Infotip"
+  },
+  "6319": {
+    "template": "InfoTip",
+    "name": "InvertCameraFPSY_Infotip"
+  },
+  "6320": {
+    "template": "InfoTip",
+    "name": "LeftStickInnerDeadzone_Infotip"
+  },
+  "6321": {
+    "template": "InfoTip",
+    "name": "LeftStickOuterDeadzone_Infotip"
+  },
+  "6322": {
+    "template": "InfoTip",
+    "name": "RightStickInnerDeadzone_Infotip"
+  },
+  "6323": {
+    "template": "InfoTip",
+    "name": "RightStickOuterDeadzone_Infotip"
+  },
   "6326": {
     "template": "Season",
     "name": "MarketSeason_P2_S1"
@@ -5816,6 +6092,46 @@
     "template": "ConstructionCategory",
     "name": "DLC - Preorder",
     "english": "Agricultural Ornaments"
+  },
+  "6476": {
+    "template": "InfoTip",
+    "name": "SwapShoulderAndTrigger_InfoTip"
+  },
+  "6477": {
+    "template": "InfoTip",
+    "name": "EnableAdvancedSwapping_InfoTip"
+  },
+  "6478": {
+    "template": "InfoTip",
+    "name": "CameraModifierToggle_InfoTip"
+  },
+  "6479": {
+    "template": "InfoTip",
+    "name": "ShipSelectionToggle_InfoTip"
+  },
+  "6480": {
+    "template": "InfoTip",
+    "name": "ButtonRemapping_InfoTip"
+  },
+  "6481": {
+    "template": "InfoTip",
+    "name": "ButtonRemappingLocked_InfoTip"
+  },
+  "6482": {
+    "template": "InfoTip",
+    "name": "ButtonSwapping_InfoTip"
+  },
+  "6483": {
+    "template": "InfoTip",
+    "name": "AutomaticFastMode_InfoTip"
+  },
+  "6484": {
+    "template": "InfoTip",
+    "name": "FastModeDelay_InfoTip"
+  },
+  "6485": {
+    "template": "InfoTip",
+    "name": "FastModeDuration_InfoTip"
   },
   "6486": {
     "template": "Icon",
@@ -6563,6 +6879,14 @@
     "template": "Island",
     "name": "scenario04_trader_02_paloma"
   },
+  "7065": {
+    "template": "InfoTip",
+    "name": "BeautificationMenu"
+  },
+  "7075": {
+    "template": "InfoTip",
+    "name": "S04_SeasonFluff"
+  },
   "7076": {
     "template": "WarShip",
     "name": "Siege Cruiser ",
@@ -6705,6 +7029,10 @@
     "template": "Trigger",
     "name": "Trigger_OverwriteSeason_FarmHandsStrike"
   },
+  "7144": {
+    "template": "InfoTip",
+    "name": "BeachOrnamentFakeBuffInfotip"
+  },
   "7151": {
     "template": "Season",
     "name": "MarketSeason_Overwrite_Inflation"
@@ -6802,6 +7130,10 @@
   "7188": {
     "template": "TriggerQuest",
     "name": "Outro_show_fireworks"
+  },
+  "7214": {
+    "template": "InfoTip",
+    "name": "StadiumFestivalRewardInfotip"
   },
   "7221": {
     "template": "AssetPool",
@@ -6955,6 +7287,10 @@
     "template": "ProductionChain",
     "name": "PoliceEquipment Chain",
     "english": "Police Headquarters"
+  },
+  "7302": {
+    "template": "InfoTip",
+    "name": "S04_PriceGroupInfotip"
   },
   "7303": {
     "template": "ProductionChain",
@@ -7149,6 +7485,14 @@
     "template": "Inhabitant",
     "name": "soccer_ball"
   },
+  "7394": {
+    "template": "InfoTip",
+    "name": "HapticFeedback_InfoTip"
+  },
+  "7395": {
+    "template": "InfoTip",
+    "name": "BusSkinInfotip"
+  },
   "7397": {
     "template": "ProductList",
     "name": "ArtistaUnlockGoods"
@@ -7175,10 +7519,18 @@
     "template": "AssetPool",
     "name": "FertilizerChain"
   },
+  "7420": {
+    "template": "InfoTip",
+    "name": "BuildingMenuCategory_Infotip"
+  },
   "7425": {
     "template": "ConstructionCategory",
     "name": "colony 01 orchard list",
     "english": "Orchard"
+  },
+  "7426": {
+    "template": "InfoTip",
+    "name": "TestInfotip"
   },
   "7427": {
     "template": "ConstructionCategory",
@@ -7221,6 +7573,10 @@
   "7731": {
     "template": "VisualObject",
     "name": "temple_statue"
+  },
+  "7733": {
+    "template": "InfoTip",
+    "name": "ProfileCustomization_InUse_InfoTip"
   },
   "7735": {
     "template": "Target",
@@ -7293,6 +7649,18 @@
   "7903": {
     "template": "Inhabitant",
     "name": "orchestra_violin"
+  },
+  "7904": {
+    "template": "InfoTip",
+    "name": "ShipStance_Aggressive_Infotip"
+  },
+  "7905": {
+    "template": "InfoTip",
+    "name": "ShipStance_Defensive_Infotip"
+  },
+  "7906": {
+    "template": "InfoTip",
+    "name": "ShipStance_StandGround_Infotip"
   },
   "7908": {
     "template": "TriggerQuest",
@@ -7434,10 +7802,22 @@
     "template": "Icon",
     "name": "Oil Route Console"
   },
+  "7993": {
+    "template": "InfoTip",
+    "name": "DecisionQuestInfotip"
+  },
   "7995": {
     "template": "TradeShip",
     "name": "paddle steamer (Trade)",
     "english": "Paddle Steamer"
+  },
+  "7998": {
+    "template": "InfoTip",
+    "name": "ShipStance_IndividualMove_Infotip"
+  },
+  "7999": {
+    "template": "InfoTip",
+    "name": "ShipStance_GroupedMove_Infotip"
   },
   "8002": {
     "template": "FactoryModuleElectric",
@@ -7522,6 +7902,14 @@
   "8138": {
     "template": "TrafficFeedbackUnit",
     "name": "SA T3 Resident Female 03"
+  },
+  "8140": {
+    "template": "InfoTip",
+    "name": "Production Input Pasture"
+  },
+  "8141": {
+    "template": "InfoTip",
+    "name": "Production Input Dam"
   },
   "8154": {
     "template": "GuildhouseItem",
@@ -7842,6 +8230,18 @@
     "template": "Inhabitant",
     "name": "beach_units"
   },
+  "8443": {
+    "template": "InfoTip",
+    "name": "S04_PriceGroupInfotip_StaticHelp"
+  },
+  "8444": {
+    "template": "InfoTip",
+    "name": "S04_NextSeason_StaticHelp"
+  },
+  "8446": {
+    "template": "InfoTip",
+    "name": "S04_SeasonFluff_StaticHelp"
+  },
   "8452": {
     "template": "MainQuest",
     "name": "CQ001_DynamiteFishingQuest_CONSOLE",
@@ -7879,6 +8279,10 @@
     "template": "RandomIsland",
     "name": "colony01_l_08"
   },
+  "8525": {
+    "template": "InfoTip",
+    "name": "S04_Season_StaticHelp_Goods"
+  },
   "8528": {
     "template": "ConstructionCategory",
     "name": "AirshipPlatformArticSet NEW",
@@ -7909,6 +8313,10 @@
     "name": "sa city posts & poles",
     "english": "Posts & Poles"
   },
+  "8538": {
+    "template": "InfoTip",
+    "name": "CameraPanSpeedBuildMode_InfoTip"
+  },
   "8546": {
     "template": "ScenarioWorkshopItem",
     "name": "GG_Item_Arborist_Permits"
@@ -7937,6 +8345,10 @@
     "template": "ScenarioWorkshopItem",
     "name": "GG_Item_CostumeDesigner_Permits"
   },
+  "8570": {
+    "template": "InfoTip",
+    "name": "OriginalPresets_InfoTip"
+  },
   "8572": {
     "template": "TrafficFeedbackUnit",
     "name": "BeachVisitorUnit_Colony01_Male_02"
@@ -7956,6 +8368,10 @@
   "8576": {
     "template": "TrafficFeedbackUnit",
     "name": "BeachVisitorUnit_Colony01_Female_03"
+  },
+  "8581": {
+    "template": "InfoTip",
+    "name": "CurrentCopyTool_Console_Infotip"
   },
   "8583": {
     "template": "ScenarioWorkshopItem",
@@ -8114,6 +8530,10 @@
     "template": "Icon",
     "name": "DiplomacyIcon_CancelAlliance"
   },
+  "8839": {
+    "template": "InfoTip",
+    "name": "EntriesInRadialMenu_InfoTip"
+  },
   "8903": {
     "template": "Trigger",
     "name": "DLC12_Dam_CancelQuestlineIfDamBuilt"
@@ -8180,9 +8600,21 @@
     "name": "All Charcoal Kilns",
     "english": "All Charcoal Kilns"
   },
+  "8933": {
+    "template": "InfoTip",
+    "name": "UpgradeCityInstitution"
+  },
+  "8934": {
+    "template": "InfoTip",
+    "name": "DowngradeCityInstitutions"
+  },
   "8943": {
     "template": "Transporter",
     "name": "FactoryTransporterScooter"
+  },
+  "8944": {
+    "template": "InfoTip",
+    "name": "MultiplayerPing_Infotip"
   },
   "8947": {
     "template": "FeedbackUnitClass",
@@ -8743,6 +9175,10 @@
     "name": "all weapon producing Multifactories",
     "english": "All arms producing Multifactor [..]"
   },
+  "11405": {
+    "template": "InfoTip",
+    "name": "SceanrioRewardInfoTip"
+  },
   "11428": {
     "template": "TrackingValue",
     "name": "BasicActionFlatter"
@@ -8831,6 +9267,14 @@
   "11478": {
     "template": "Projectile",
     "name": "Medium_Single_Shot_Ship"
+  },
+  "11564": {
+    "template": "InfoTip",
+    "name": "StampInfotip"
+  },
+  "11565": {
+    "template": "InfoTip",
+    "name": "StampFolderInfotip"
   },
   "11646": {
     "template": "RewardPool",
@@ -9768,6 +10212,10 @@
     "template": "Icon",
     "name": "StampTool"
   },
+  "12986": {
+    "template": "InfoTip",
+    "name": "StampMenuInfotip"
+  },
   "12998": {
     "template": "Trigger",
     "name": "ResearchFeatureUnlockTrigger"
@@ -10122,6 +10570,10 @@
   "14015": {
     "template": "UnlockableAsset",
     "name": "S03_StopTheTauntEngine"
+  },
+  "14048": {
+    "template": "InfoTip",
+    "name": "MinimapFullColorInfotip"
   },
   "14175": {
     "template": "OrnamentalBuilding",
@@ -10691,6 +11143,10 @@
   "16605": {
     "template": "OrnamentalBuilding",
     "name": "agriculture_colony02_09_field (Honeycomb Field)"
+  },
+  "16607": {
+    "template": "InfoTip",
+    "name": "Remove NPC"
   },
   "16608": {
     "template": "AssetPool",
@@ -11630,6 +12086,10 @@
     "name": "Angereb_TriggerIfPlayerBeatedAngerebbeforeParleycompleted",
     "english": "Angereb:<br/>Dies Irae Imperat [..]"
   },
+  "18252": {
+    "template": "InfoTip",
+    "name": "ModdingInfo"
+  },
   "18255": {
     "template": "TriggerQuest",
     "name": "Trigger Angereb End (if player beated them early, trigger visuals)"
@@ -11637,6 +12097,14 @@
   "18257": {
     "template": "TriggerQuest",
     "name": "Trigger Angereb HP"
+  },
+  "18258": {
+    "template": "InfoTip",
+    "name": "AutomatedProtectionInfotip"
+  },
+  "18262": {
+    "template": "InfoTip",
+    "name": "BlueprintTractorModuleButtonInfotip"
   },
   "18269": {
     "template": "Street",
@@ -11686,6 +12154,10 @@
     "template": "Icon",
     "name": "DefaultStampIcon_08"
   },
+  "19755": {
+    "template": "InfoTip",
+    "name": "ModdingList"
+  },
   "19756": {
     "template": "IncidentResolverUnit",
     "name": "Resolver Unit Fire Normal Advanced"
@@ -11729,6 +12201,10 @@
   "20644": {
     "template": "Notification",
     "name": "NoteNotification"
+  },
+  "20653": {
+    "template": "InfoTip",
+    "name": "StampFeatureOptionInfotip"
   },
   "20829": {
     "template": "Icon",
@@ -11855,6 +12331,10 @@
     "template": "TrackingValue",
     "name": "CenterByPhotoMarker"
   },
+  "21623": {
+    "template": "InfoTip",
+    "name": "Checksum mismatch preventing start"
+  },
   "22441": {
     "template": "Street",
     "name": "Quay System Base full corners Africa",
@@ -11913,6 +12393,22 @@
     "name": "Industrial Filter II",
     "english": "Advanced Industrial Toxin Filt [..]"
   },
+  "24024": {
+    "template": "InfoTip",
+    "name": "IslandHealth_InfoTip"
+  },
+  "24027": {
+    "template": "InfoTip",
+    "name": "WaterHealth_InfoTip"
+  },
+  "24028": {
+    "template": "InfoTip",
+    "name": "AirHealth_InfoTip"
+  },
+  "24029": {
+    "template": "InfoTip",
+    "name": "SoilHealth_InfoTip"
+  },
   "24033": {
     "template": "GuildhouseItem",
     "name": "Industrial Filter III",
@@ -11956,6 +12452,22 @@
   "24055": {
     "template": "FactoryBuilding7",
     "name": "Fish"
+  },
+  "24056": {
+    "template": "InfoTip",
+    "name": "WaterEvent_InfoTip"
+  },
+  "24057": {
+    "template": "InfoTip",
+    "name": "AirEvent_InfoTip"
+  },
+  "24058": {
+    "template": "InfoTip",
+    "name": "SoilEvent_InfoTip"
+  },
+  "24059": {
+    "template": "InfoTip",
+    "name": "GeneralWaterEvent_InfoTip"
   },
   "24061": {
     "template": "GuildhouseItem",
@@ -12283,6 +12795,14 @@
     "template": "PaMSy_Base",
     "name": "PaMSy_Narrative_Character_Fisherman"
   },
+  "24309": {
+    "template": "InfoTip",
+    "name": "TextSizeGameplayOption_InfoTip"
+  },
+  "24310": {
+    "template": "InfoTip",
+    "name": "SolidTextBackgroundGameplayOption_InfoTip"
+  },
   "24317": {
     "template": "Prop",
     "name": "barrel_pile_metal"
@@ -12356,6 +12876,14 @@
     "name": "Unlock Water Purifier account",
     "english": "Water Purifier Blueprint"
   },
+  "24376": {
+    "template": "InfoTip",
+    "name": "GeneralAirEvent_InfoTip"
+  },
+  "24377": {
+    "template": "InfoTip",
+    "name": "GeneralSoilEvent_InfoTip"
+  },
   "24378": {
     "template": "Icon",
     "name": "PositiveMonoCulture"
@@ -12412,6 +12940,10 @@
     "template": "UnlockableAsset",
     "name": "Local Garden II Received"
   },
+  "24418": {
+    "template": "InfoTip",
+    "name": "HighContrastOption_InfoTip"
+  },
   "24426": {
     "template": "Icon",
     "name": "Objective Green Game Jam Bronze"
@@ -12451,6 +12983,10 @@
   "24438": {
     "template": "UnlockableAsset",
     "name": "Publication Received"
+  },
+  "24442": {
+    "template": "InfoTip",
+    "name": "Ship-DestroyShipInfotip"
   },
   "24447": {
     "template": "Icon",
@@ -12539,6 +13075,14 @@
   "24563": {
     "template": "Icon",
     "name": "UpgradeMainBuilding"
+  },
+  "24565": {
+    "template": "InfoTip",
+    "name": "MonoCultureBuff_Infotip"
+  },
+  "24566": {
+    "template": "InfoTip",
+    "name": "EcoMaintenance_Infotip"
   },
   "24589": {
     "template": "OrnamentalBuilding",
@@ -12722,6 +13266,14 @@
     "template": "TextPool",
     "name": "GGJObrera_Building_constructed_Aquafarm"
   },
+  "24649": {
+    "template": "InfoTip",
+    "name": "ScenarioScreen_ResetButton_Info"
+  },
+  "24650": {
+    "template": "InfoTip",
+    "name": "Scenerio_FeatureDeactivated_Generic"
+  },
   "24652": {
     "template": "FactoryBuilding7_BuildPermit",
     "name": "Water Purifier",
@@ -12781,6 +13333,10 @@
     "template": "InfoLayerIcon",
     "name": "Water_working_Infolayer",
     "english": "Water Quality Impact"
+  },
+  "24696": {
+    "template": "InfoTip",
+    "name": "PaintTool_Infotip"
   },
   "24699": {
     "template": "GamepadCursor",
@@ -12903,6 +13459,14 @@
     "template": "InfoLayerIcon",
     "name": "NoHaciendaInfolayer",
     "english": "Outside Hacienda range"
+  },
+  "24785": {
+    "template": "InfoTip",
+    "name": "RadialShipMenu_Infotip"
+  },
+  "24786": {
+    "template": "InfoTip",
+    "name": "ScenarioSelectionMarkerInfoTip"
   },
   "24792": {
     "template": "ResidenceBuilding7_Colony",
@@ -13686,6 +14250,10 @@
     "template": "TriggerQuest",
     "name": "Trigger_Reaction_FirstGumFactory"
   },
+  "25239": {
+    "template": "InfoTip",
+    "name": "HaciendaBuildModuleMain_Infotip"
+  },
   "25240": {
     "template": "BuffFactoryModule",
     "name": "Farm Fertilizer Module Moderate",
@@ -13794,6 +14362,10 @@
     "template": "AssetPool",
     "name": "Sceanrio02_Gum"
   },
+  "25345": {
+    "template": "InfoTip",
+    "name": "AutosaveLimit_InfoTip"
+  },
   "25349": {
     "template": "Recipe",
     "name": "Recipe_08 Grain",
@@ -13812,6 +14384,38 @@
   "25353": {
     "template": "Prop",
     "name": "Cactus"
+  },
+  "25365": {
+    "template": "InfoTip",
+    "name": "QuickTools_Tools_Infotip"
+  },
+  "25366": {
+    "template": "InfoTip",
+    "name": "QuickTools_Rotate_Infotip"
+  },
+  "25367": {
+    "template": "InfoTip",
+    "name": "QuickTools_ChangeVariation_Infotip"
+  },
+  "25368": {
+    "template": "InfoTip",
+    "name": "QuickTools_ChangeGrassColor_Infotip"
+  },
+  "25369": {
+    "template": "InfoTip",
+    "name": "QuickTools_PauseProduction_Infotip"
+  },
+  "25370": {
+    "template": "InfoTip",
+    "name": "QuickTools_ResumeProduction_Infotip"
+  },
+  "25371": {
+    "template": "InfoTip",
+    "name": "QuickTools_TransferMenu_Infotip"
+  },
+  "25372": {
+    "template": "InfoTip",
+    "name": "QuickTools_ActiveTrade_Infotip"
   },
   "25375": {
     "template": "ProductionChain",
@@ -13837,6 +14441,14 @@
   "25437": {
     "template": "TriggerQuest",
     "name": "Trigger_Reaction_Hacienda"
+  },
+  "25443": {
+    "template": "InfoTip",
+    "name": "QuickTools_UpgradeContextual_Infotip"
+  },
+  "25444": {
+    "template": "InfoTip",
+    "name": "QuickTools_UnloadShipGoods_Infotip"
   },
   "25451": {
     "template": "TriggerQuest",
@@ -14368,6 +14980,10 @@
     "template": "TriggerQuest",
     "name": "s02_river01_lower"
   },
+  "25783": {
+    "template": "InfoTip",
+    "name": "CurrentDowngradePayback"
+  },
   "25788": {
     "template": "TriggerQuest",
     "name": "s02_river02_lower"
@@ -14435,6 +15051,14 @@
   "25805": {
     "template": "TriggerQuest",
     "name": "Trigger_SummerNotification_BaseSummer3"
+  },
+  "25806": {
+    "template": "InfoTip",
+    "name": "S02_SeasonTimer"
+  },
+  "25817": {
+    "template": "InfoTip",
+    "name": "HaciendaRadiusInfotip"
   },
   "25824": {
     "template": "QuestPool",
@@ -14652,6 +15276,10 @@
     "template": "UplayProduct",
     "name": "Anno 1800 - Refer-a-Friend"
   },
+  "25956": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipNewspaper"
+  },
   "25957": {
     "template": "Street",
     "name": "CDLC12 Lake System"
@@ -14709,6 +15337,10 @@
     "template": "Icon",
     "name": "WarPreparationBackground"
   },
+  "25978": {
+    "template": "InfoTip",
+    "name": "ArticleSelectionCategoryInfotip"
+  },
   "25979": {
     "template": "PlatformServicesConfig",
     "name": "PlatformServicesConfig"
@@ -14754,6 +15386,10 @@
     "template": "ItemEffectTargetPool",
     "name": "AllObreroResidences",
     "english": "All Obrera residences"
+  },
+  "26031": {
+    "template": "InfoTip",
+    "name": "S02_BasinOMTip"
   },
   "26059": {
     "template": "Street",
@@ -27055,6 +27691,10 @@
     "name": "Paloma Q3.1 bis hidden pick up",
     "english": "IS"
   },
+  "103803": {
+    "template": "InfoTip",
+    "name": "S03_ChallengeLocked"
+  },
   "103804": {
     "template": "A7_QuestPicturePuzzleObject",
     "name": "Paloma Q4.1_1.1.1 - PicturePuzzle1_HIDDEN",
@@ -33068,6 +33708,22 @@
     "template": "UplayAction",
     "name": "DM01 - Neither God nor Master"
   },
+  "111821": {
+    "template": "InfoTip",
+    "name": "Quest_Penalty_Fire_Infotip"
+  },
+  "111822": {
+    "template": "InfoTip",
+    "name": "Quest_Penalty_Riot_Infotip"
+  },
+  "111823": {
+    "template": "InfoTip",
+    "name": "Quest_Penalty_Illness_Infotip"
+  },
+  "111824": {
+    "template": "InfoTip",
+    "name": "Quest_Penalty_Explosion_Infotip"
+  },
   "111829": {
     "template": "OrnamentalBuilding",
     "name": "Moderate park_1x1_bush Mercier Unlocked",
@@ -33278,6 +33934,22 @@
     "name": "Diving Vessel",
     "english": "Salvager"
   },
+  "112085": {
+    "template": "InfoTip",
+    "name": "LobbyStartButtonInfotip"
+  },
+  "112086": {
+    "template": "InfoTip",
+    "name": "SecondPartySelectionInfotip"
+  },
+  "112089": {
+    "template": "InfoTip",
+    "name": "DlcDescription"
+  },
+  "112090": {
+    "template": "InfoTip",
+    "name": "FixSettingsDisabledInfotip"
+  },
   "112091": {
     "template": "ResidenceBuilding7_Arctic",
     "name": "residence_arctic_tier01",
@@ -33348,6 +34020,10 @@
     "template": "PublicServiceBuildingWithBus",
     "name": "service_05 (Cabaret) - Mercier"
   },
+  "112129": {
+    "template": "InfoTip",
+    "name": "DlcMissing"
+  },
   "112130": {
     "template": "Seamine",
     "name": "Sea Mine Big",
@@ -33405,6 +34081,10 @@
   "112201": {
     "template": "ExplodingProjectile",
     "name": "SeaMineProjectile_FakeInfo"
+  },
+  "112203": {
+    "template": "InfoTip",
+    "name": "DlcSavegame"
   },
   "112240": {
     "template": "QuestItem",
@@ -33524,6 +34204,10 @@
   "112286": {
     "template": "Flock",
     "name": "FishFlock Shark"
+  },
+  "112289": {
+    "template": "InfoTip",
+    "name": "ExtendedCameraDistance_InfoTip"
   },
   "112291": {
     "template": "VisualObject",
@@ -35495,6 +36179,14 @@
     "template": "Chat",
     "name": "ChatConfig"
   },
+  "113268": {
+    "template": "InfoTip",
+    "name": "DivingButton_InfoTip"
+  },
+  "113269": {
+    "template": "InfoTip",
+    "name": "CraftingButton_InfoTip"
+  },
   "113283": {
     "template": "AudioSpots",
     "name": "Blimp"
@@ -37378,6 +38070,10 @@
     "name": "Quest Old Nate Starter Gas B",
     "english": "All Out Of Gas"
   },
+  "114325": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeBotanicModules"
+  },
   "114327": {
     "template": "Region",
     "name": "Region Colony02",
@@ -38514,6 +39210,10 @@
     "name": "purple blue flower field - iris permit",
     "english": "Iris Garden"
   },
+  "114823": {
+    "template": "InfoTip",
+    "name": "Upscaling_InfoTip"
+  },
   "114826": {
     "template": "Street",
     "name": "Quay System Colony03 Base"
@@ -39132,6 +39832,14 @@
     "template": "TriggerQuest",
     "name": "Trigger Spawn Otzi Man"
   },
+  "115171": {
+    "template": "InfoTip",
+    "name": "LargeSubtitles_InfoTip"
+  },
+  "115172": {
+    "template": "InfoTip",
+    "name": "SubtitleBackgroundOpacity_InfoTip"
+  },
   "115177": {
     "template": "A7_QuestStatusQuo",
     "name": "RQ_Explorer_PenguinColony DISABLED NO ASSET",
@@ -39146,6 +39854,10 @@
     "template": "Quest",
     "name": "RQ_Artisans_IMadeThisSheet",
     "english": "Something Wot I Made"
+  },
+  "115183": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeAirShips"
   },
   "115190": {
     "template": "PositionMarker",
@@ -39723,6 +40435,10 @@
     "template": "VisualObject",
     "name": "LocalCoopPingMarker"
   },
+  "116020": {
+    "template": "InfoTip",
+    "name": "Residence TotalHeat Infotip"
+  },
   "116022": {
     "template": "FeatureUnlock",
     "name": "ThePassage AI Settle Unlock SP AI Condition"
@@ -40196,6 +40912,14 @@
     "template": "Icon",
     "name": "Arctic Illness Flat Icon"
   },
+  "116241": {
+    "template": "InfoTip",
+    "name": "Residence NotUpgrade ReasonArcticIllness Infotip"
+  },
+  "116243": {
+    "template": "InfoTip",
+    "name": "Incident Proximity ArcticIllness Buff Infotip"
+  },
   "116246": {
     "template": "Icon",
     "name": "Arctic Illness Healing Flat Icon"
@@ -40337,6 +41061,14 @@
   "116321": {
     "template": "ThirdpartyFeedback",
     "name": "colony03_3rdparty09_01_fb_09_sled"
+  },
+  "116331": {
+    "template": "InfoTip",
+    "name": "Arctic NoAttractiveness Infotip"
+  },
+  "116332": {
+    "template": "InfoTip",
+    "name": "Arctic NoWorkingConditions Infotip"
   },
   "116333": {
     "template": "RewardPool",
@@ -46043,6 +46775,10 @@
     "template": "FertilitySet",
     "name": "Set 12"
   },
+  "120340": {
+    "template": "InfoTip",
+    "name": "ResearchInfoTip"
+  },
   "120341": {
     "template": "TriggerQuest",
     "name": "Trigger LoLStory ArchibaldIslandState00"
@@ -46784,6 +47520,14 @@
   "122840": {
     "template": "VisualObject",
     "name": "fortress_pillars"
+  },
+  "122841": {
+    "template": "InfoTip",
+    "name": "UnlockDecision EnbesaHistory InfoTip"
+  },
+  "122843": {
+    "template": "InfoTip",
+    "name": "QuestBookInfoTip"
   },
   "122845": {
     "template": "VisualObject",
@@ -49370,6 +50114,10 @@
     "name": "spear of the salomonids",
     "english": "Spear of Selamawi"
   },
+  "124704": {
+    "template": "InfoTip",
+    "name": "Residence Research Infotip"
+  },
   "124715": {
     "template": "FeatureUnlock",
     "name": "LandOfLions SessionStorytelling AngerebFinalNegotiations Happy Alliance"
@@ -49866,6 +50614,14 @@
     "template": "TriggerQuest",
     "name": "Trigger LooseKontorORGoods FirstTime"
   },
+  "124999": {
+    "template": "InfoTip",
+    "name": "ItemResearchInfotip"
+  },
+  "125000": {
+    "template": "InfoTip",
+    "name": "ItemDonationInfotip"
+  },
   "125008": {
     "template": "VisualObject",
     "name": "fortress_nursery_torch"
@@ -50345,6 +51101,10 @@
     "template": "Inhabitant",
     "name": "AF | Musician"
   },
+  "125183": {
+    "template": "InfoTip",
+    "name": "Enbesa NoAttractiveness Infotip"
+  },
   "125186": {
     "template": "VisualObject",
     "name": "temple_carpet"
@@ -50468,6 +51228,10 @@
     "template": "TriggerQuest",
     "name": "Trigger LoLStory NOStory"
   },
+  "125258": {
+    "template": "InfoTip",
+    "name": "UnlockDecision BigEmpire InfoTip "
+  },
   "125264": {
     "template": "Prop",
     "name": "Grass green"
@@ -50483,6 +51247,34 @@
   "125270": {
     "template": "VisualObjectEditor",
     "name": "3rd_party_10_grass_patches_green"
+  },
+  "125272": {
+    "template": "InfoTip",
+    "name": "UnlockDecision TierIslandsAllied InfoTip "
+  },
+  "125273": {
+    "template": "InfoTip",
+    "name": "UnlockDecision EnbesanAnnals InfoTip "
+  },
+  "125274": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Supported Archibald InfoTip "
+  },
+  "125275": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Cartographer InfoTip "
+  },
+  "125276": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Attractiveness InfoTip "
+  },
+  "125277": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Population InfoTip "
+  },
+  "125278": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Military InfoTip "
   },
   "125295": {
     "template": "RandomIsland",
@@ -50515,6 +51307,18 @@
   "125319": {
     "template": "TriggerQuest",
     "name": "Trigger LoLStory CloseAccounts RevealingTheTruth"
+  },
+  "125323": {
+    "template": "InfoTip",
+    "name": "PierUpgradeInfotip"
+  },
+  "125333": {
+    "template": "InfoTip",
+    "name": "PierExclusiveSlotInfotip"
+  },
+  "125338": {
+    "template": "InfoTip",
+    "name": "WorkforceSliderInfotip"
   },
   "125340": {
     "template": "Godlike",
@@ -50690,6 +51494,10 @@
     "name": "KetemaIsland_01_TruthBiniamRevealed_TraditionalFarm",
     "english": "Angereb_MarketStalls01"
   },
+  "125475": {
+    "template": "InfoTip",
+    "name": "SwappableFertilityInfotip"
+  },
   "125477": {
     "template": "QuestPool",
     "name": "DEBUG_KetemaIsland_IS_All_Pool"
@@ -50702,9 +51510,37 @@
     "template": "TriggerQuest",
     "name": "Trigger LoLNoStory SessionSetup MP ONLY"
   },
+  "125485": {
+    "template": "InfoTip",
+    "name": "ChangeFertilityButtonInfotip"
+  },
+  "125486": {
+    "template": "InfoTip",
+    "name": "ChangeMineButtonConfirmInfotip"
+  },
+  "125487": {
+    "template": "InfoTip",
+    "name": "MoveClayPitButtonInfotip"
+  },
+  "125488": {
+    "template": "InfoTip",
+    "name": "MoveOilWellButtonInfotip"
+  },
+  "125489": {
+    "template": "InfoTip",
+    "name": "FilledExclusiveSlotInfotip"
+  },
+  "125492": {
+    "template": "InfoTip",
+    "name": "MissingFertileSoilBubbleInfotip"
+  },
   "125500": {
     "template": "Icon",
     "name": "Godlike Icon"
+  },
+  "125505": {
+    "template": "InfoTip",
+    "name": "ChangeMineButtonInfotip"
   },
   "125507": {
     "template": "ThirdpartyFeedback",
@@ -50790,6 +51626,10 @@
     "template": "Icon",
     "name": "ScholarResidenceBackground"
   },
+  "126942": {
+    "template": "InfoTip",
+    "name": "IrrigationModeInfotip"
+  },
   "126943": {
     "template": "VisualQuestSessionObject",
     "name": "Enclosure 5 (La)",
@@ -50829,6 +51669,14 @@
     "template": "VisualQuestSessionObject",
     "name": "Bath branches",
     "english": "Branches & Twigs"
+  },
+  "126956": {
+    "template": "InfoTip",
+    "name": "CraftingInProgressInfotip"
+  },
+  "126958": {
+    "template": "InfoTip",
+    "name": "CancelButtonInfotip"
   },
   "126962": {
     "template": "VisualQuestSessionObject",
@@ -50881,6 +51729,18 @@
   "127005": {
     "template": "TriggerQuest",
     "name": "Trigger LoLStory BathArea SelectBranches"
+  },
+  "127006": {
+    "template": "InfoTip",
+    "name": "ResearchKitInfotip"
+  },
+  "127009": {
+    "template": "InfoTip",
+    "name": "CraftInResearchCenterInfotip"
+  },
+  "127010": {
+    "template": "InfoTip",
+    "name": "WaterPumpInfotip"
   },
   "127011": {
     "template": "Inhabitant",
@@ -50952,6 +51812,10 @@
   "127069": {
     "template": "QuestPool",
     "name": "LoLStory_AVisitOfTheCapital_Towers_Pool"
+  },
+  "127071": {
+    "template": "InfoTip",
+    "name": "DonationOverLimitInfotip"
   },
   "127075": {
     "template": "Profile_Virtual_NeverOwnsObjects",
@@ -51026,6 +51890,10 @@
   "127136": {
     "template": "TriggerQuest",
     "name": "Trigger LoLStory StartVisitOfTheCapital"
+  },
+  "127137": {
+    "template": "InfoTip",
+    "name": "ImprovedByFertileSoilBubbleInfotip"
   },
   "127138": {
     "template": "TutorialQuest",
@@ -51307,6 +52175,10 @@
     "name": "OldLady2",
     "english": "Matriarch Yara"
   },
+  "127675": {
+    "template": "InfoTip",
+    "name": "GodlikeMoveButtonInfotip"
+  },
   "127677": {
     "template": "A7_QuestSelectObject",
     "name": "Angereb_027a_TheLostHeirTrack4_InvestigateHouse2",
@@ -51371,6 +52243,10 @@
   "127735": {
     "template": "PositionMarker",
     "name": "DoNotFosterDivision_Seifu_PositionMarker"
+  },
+  "127779": {
+    "template": "InfoTip",
+    "name": "GodlikeRelocateButtonInfotip"
   },
   "127785": {
     "template": "PositionMarker",
@@ -51535,6 +52411,10 @@
   "127897": {
     "template": "TriggerQuest",
     "name": "Trigger LoLStory GoatMilk Comment"
+  },
+  "127898": {
+    "template": "InfoTip",
+    "name": "LostShipMarker"
   },
   "127903": {
     "template": "A7_QuestStatusQuo",
@@ -52265,6 +53145,10 @@
     "name": "DeadTreesOrangeGroup5",
     "english": "Salt-saturated Trunks"
   },
+  "128472": {
+    "template": "InfoTip",
+    "name": "ItemRecipeOrCraftingInfotip"
+  },
   "128473": {
     "template": "A7_QuestDivingBellSonar",
     "name": "Hidden Diving Africa Scrap 1",
@@ -52299,6 +53183,22 @@
     "name": "Hidden Diving Africa Goods + scrap 5",
     "english": "Hidden Sonar Quest"
   },
+  "128486": {
+    "template": "InfoTip",
+    "name": "ElectricityMissingInfotip"
+  },
+  "128487": {
+    "template": "InfoTip",
+    "name": "ResearchPointsMissingInfotip"
+  },
+  "128488": {
+    "template": "InfoTip",
+    "name": "SelectToDevelopItemInfotip"
+  },
+  "128489": {
+    "template": "InfoTip",
+    "name": "SelectToInvestInfotip"
+  },
   "128493": {
     "template": "QuestPool",
     "name": "Sonar_AfricaWorld_Pool"
@@ -52307,6 +53207,10 @@
     "template": "A7_QuestStatusQuo",
     "name": "-- LoLStory_ResearchCenter",
     "english": "The Research Institute"
+  },
+  "128498": {
+    "template": "InfoTip",
+    "name": "SelectToDevelopGodlikeInfotip"
   },
   "128499": {
     "template": "RewardPool",
@@ -54551,6 +55455,14 @@
     "template": "UplayAction",
     "name": "DLC06 Achievement02 (GoatSong)"
   },
+  "129705": {
+    "template": "InfoTip",
+    "name": "SelectToIdentifyInfotip"
+  },
+  "129706": {
+    "template": "InfoTip",
+    "name": "MissingWorkforceInfotip"
+  },
   "129708": {
     "template": "LandSpy",
     "name": "Elephant cemetery Baby elephant",
@@ -54603,10 +55515,22 @@
     "template": "TextPool",
     "name": "pool_ShipTrade"
   },
+  "129822": {
+    "template": "InfoTip",
+    "name": "ResearchCenterOMButtonInfotip"
+  },
   "129825": {
     "template": "VisualQuestSessionObject",
     "name": "BabyElephant",
     "english": "Baby Elephant"
+  },
+  "129827": {
+    "template": "InfoTip",
+    "name": "ResearchPointsInstituteInfotip"
+  },
+  "129829": {
+    "template": "InfoTip",
+    "name": "EngineerWorkforceInstituteInfotip"
   },
   "129831": {
     "template": "QuestPool",
@@ -57013,6 +57937,14 @@
     "name": "Ketema's cousin",
     "english": "Ketema's Cousin"
   },
+  "131017": {
+    "template": "InfoTip",
+    "name": "IdentifyItemsButtonInfotip"
+  },
+  "131018": {
+    "template": "InfoTip",
+    "name": "InvestInSelectionButtonInfotip"
+  },
   "131048": {
     "template": "Matcher",
     "name": "Matcher Market belongs to player"
@@ -57540,6 +58472,14 @@
     "template": "MapTemplate",
     "name": "colony02_01_MP"
   },
+  "131360": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Joyoflife InfoTip "
+  },
+  "131363": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Prestige InfoTip "
+  },
   "131365": {
     "template": "AssetPool",
     "name": "Common Animals Africa"
@@ -57724,6 +58664,10 @@
     "template": "TutorialQuest",
     "name": "Kidusi_IS_01_Path01_HibiscusBags_01",
     "english": "Angereb_MarketStalls01"
+  },
+  "131441": {
+    "template": "InfoTip",
+    "name": "UnlockDecision FinalNegotiations InfoTip "
   },
   "131447": {
     "template": "A7_QuestSelectObject",
@@ -58032,6 +58976,18 @@
     "template": "InfoLayerIcon",
     "name": "SessionStorytelling_TalkTo",
     "english": "Talk to: [AssetData([RefGuid]) [..]"
+  },
+  "131591": {
+    "template": "InfoTip",
+    "name": "UnlockDecision ByTheRoad Teka Infotip"
+  },
+  "131592": {
+    "template": "InfoTip",
+    "name": "UnlockDecision ByTheRoad Temple Infotip"
+  },
+  "131594": {
+    "template": "InfoTip",
+    "name": "UnlockDecision ByTheRoad Ablutions Infotip"
   },
   "131602": {
     "template": "TriggerQuest",
@@ -58465,6 +59421,58 @@
     "template": "TriggerQuest",
     "name": "Trigger LoL MP Monastery"
   },
+  "132165": {
+    "template": "InfoTip",
+    "name": "BuildModuleMain_InfoTip"
+  },
+  "132167": {
+    "template": "InfoTip",
+    "name": "ModuleTypeButton_InfoTip"
+  },
+  "132168": {
+    "template": "InfoTip",
+    "name": "StorageOverview_InfoTip"
+  },
+  "132169": {
+    "template": "InfoTip",
+    "name": "LoadingSpeedOverview_InfoTip"
+  },
+  "132170": {
+    "template": "InfoTip",
+    "name": "AttractivityOverview_InfoTip"
+  },
+  "132171": {
+    "template": "InfoTip",
+    "name": "TraderTimerStatus_InfoTip"
+  },
+  "132172": {
+    "template": "InfoTip",
+    "name": "PyramidGoods_InfoTip"
+  },
+  "132173": {
+    "template": "InfoTip",
+    "name": "ExportGoods_InfoTip"
+  },
+  "132174": {
+    "template": "InfoTip",
+    "name": "ImportGoods_InfoTip"
+  },
+  "132175": {
+    "template": "InfoTip",
+    "name": "EmptySocket_InfoTip"
+  },
+  "132176": {
+    "template": "InfoTip",
+    "name": "RatioDetails_InfoTip"
+  },
+  "132177": {
+    "template": "InfoTip",
+    "name": "Warning_Module_InfoTip"
+  },
+  "132178": {
+    "template": "InfoTip",
+    "name": "ImportTraderFluff_InfoTip"
+  },
   "132194": {
     "template": "UplayAction",
     "name": "DLC07 Achievement01 (TradeContract)"
@@ -58864,6 +59872,10 @@
     "template": "TriggerQuest",
     "name": "Trigger Pre quest audio 4 - ADJUSTED FOR HOTFIX"
   },
+  "132396": {
+    "template": "InfoTip",
+    "name": "ImportTraderOffer_InfoTip"
+  },
   "132401": {
     "template": "QuestItem",
     "name": "Ship Blueprints",
@@ -58889,6 +59901,10 @@
   "132412": {
     "template": "TriggerQuest",
     "name": "TRIGGER VISUALS History Main Completed"
+  },
+  "132416": {
+    "template": "InfoTip",
+    "name": "Warning_ContractExport_InfoTip"
   },
   "132417": {
     "template": "QuestPool",
@@ -59126,6 +60142,10 @@
     "name": "SA_Docklands_Orna_Bridge_Closed",
     "english": "Bridge (Closed)"
   },
+  "132608": {
+    "template": "InfoTip",
+    "name": "ContractButton_InfoTip"
+  },
   "132615": {
     "template": "TutorialQuest",
     "name": "-- TutorialHint Docklands 17 Pyramid",
@@ -59161,6 +60181,14 @@
     "template": "Icon",
     "name": "Achievement - Docklands - Gold"
   },
+  "132658": {
+    "template": "InfoTip",
+    "name": "ContractExport_InfoTip"
+  },
+  "132703": {
+    "template": "InfoTip",
+    "name": "SearchField_Importer_InfoTip"
+  },
   "132706": {
     "template": "TradeShip",
     "name": "Great White (Trade)",
@@ -59187,6 +60215,14 @@
   "132726": {
     "template": "Matcher",
     "name": "Near Dockland - Main"
+  },
+  "132736": {
+    "template": "InfoTip",
+    "name": "Warning_ContractImport_InfoTip"
+  },
+  "132737": {
+    "template": "InfoTip",
+    "name": "Warning_InUse_InfoTip"
   },
   "132738": {
     "template": "Matcher",
@@ -59488,6 +60524,14 @@
     "template": "A7_QuestSelectObject",
     "name": "TouristQuestline_03_EquipHomard_DeliciousIdea03",
     "english": "Nouvelle Cuisine: Lobster Chem [..]"
+  },
+  "132887": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Venison InfoTip"
+  },
+  "132888": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Seafood InfoTip"
   },
   "132900": {
     "template": "Matcher",
@@ -59868,6 +60912,14 @@
     "name": "QueenQuestline_04_PicturePuzzle_SafetyFirst4",
     "english": "A Trifling Matter:<br />Anothe [..]"
   },
+  "133174": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Corrupt 10000 InfoTip"
+  },
+  "133175": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Corrupt 30000 InfoTip"
+  },
   "133179": {
     "template": "FeatureUnlock",
     "name": "Player has 10 000 Asset"
@@ -60008,6 +61060,26 @@
   "133295": {
     "template": "FeatureUnlock",
     "name": "QueenQuestline_Decision05_NoTriffel"
+  },
+  "133296": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Muscovy InfoTip"
+  },
+  "133297": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Montmartre InfoTip"
+  },
+  "133298": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Goulash InfoTip"
+  },
+  "133299": {
+    "template": "InfoTip",
+    "name": "UnlockDecision FishnChips InfoTip"
+  },
+  "133300": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Triffle InfoTip"
   },
   "133302": {
     "template": "QuestPool",
@@ -61458,6 +62530,10 @@
     "template": "FeatureUnlock",
     "name": "QueenQuestline_DecisionUnlock05_TriffleNOTSucceeded"
   },
+  "134443": {
+    "template": "InfoTip",
+    "name": "UnlockDecision NoTriffle InfoTip"
+  },
   "134445": {
     "template": "A7_QuestStatusQuo",
     "name": "RecipeQ_Tourist_MoulinRouge2_NightLife_BuildHotel",
@@ -61699,6 +62775,10 @@
     "name": "COLLECTABLE Others",
     "english": "Troublemaker"
   },
+  "134565": {
+    "template": "InfoTip",
+    "name": "Tourist BusStop Need InfoTip"
+  },
   "134569": {
     "template": "FeatureUnlock",
     "name": "Tourists Switch IsRecipeMenuOpened"
@@ -61795,6 +62875,22 @@
     "name": "Recipe_ToothPaste",
     "english": "Toothpaste"
   },
+  "134635": {
+    "template": "InfoTip",
+    "name": "NextPage"
+  },
+  "134636": {
+    "template": "InfoTip",
+    "name": "PreviousePage"
+  },
+  "134637": {
+    "template": "InfoTip",
+    "name": "ReturntoIndex"
+  },
+  "134638": {
+    "template": "InfoTip",
+    "name": "JumpToActiveRecipe"
+  },
   "134669": {
     "template": "TutorialQuest",
     "name": "-- TutorialHint Tourists SB25 TreePlantation SA Coconut",
@@ -61818,6 +62914,10 @@
     "template": "CollectablePicturePuzzle",
     "name": "FakePrerequisite_Monument",
     "english": "Preparation Quests for the Ina [..]"
+  },
+  "134701": {
+    "template": "InfoTip",
+    "name": "RecipeIngregientsInfoTip"
   },
   "134704": {
     "template": "Trigger",
@@ -62046,6 +63146,10 @@
     "name": "Docklands_Need",
     "english": "Docklands"
   },
+  "134783": {
+    "template": "InfoTip",
+    "name": "QueueLimitReachedInfotip"
+  },
   "134784": {
     "template": "A7_QuestSelectObject",
     "name": "TouristQuestline_04_Smuggle_DeliciousIdea04_Reward50Shades",
@@ -62161,6 +63265,10 @@
     "template": "Trigger",
     "name": "intermediate arctic 1.2 - trees (unhide)"
   },
+  "134893": {
+    "template": "InfoTip",
+    "name": "Tourist Workforce InfoTip"
+  },
   "134897": {
     "template": "FeatureUnlock",
     "name": "Player has 10 000 coins Unlock"
@@ -62172,6 +63280,14 @@
   "134900": {
     "template": "Inhabitant",
     "name": "Painter_black_white"
+  },
+  "134904": {
+    "template": "InfoTip",
+    "name": "Tourist TowerSlider InfoTip"
+  },
+  "134905": {
+    "template": "InfoTip",
+    "name": "Tourist LockedRecipe InfoTip"
   },
   "134908": {
     "template": "FeatureUnlock",
@@ -62223,6 +63339,10 @@
     "name": "-- TutorialHint Tourists SB20 ZooQuality",
     "english": "TutorialHint Tourists"
   },
+  "134939": {
+    "template": "InfoTip",
+    "name": "JumpToHoveredRecipe"
+  },
   "134970": {
     "template": "InfoLayerIcon",
     "name": "OptionalNoBusStop",
@@ -62273,6 +63393,34 @@
   "134985": {
     "template": "FeatureUnlock",
     "name": "Tower_01_Unlock_FallbackLaMeretlaForet_QuestLobsterman"
+  },
+  "134992": {
+    "template": "InfoTip",
+    "name": "JumpToActiveProduct"
+  },
+  "134993": {
+    "template": "InfoTip",
+    "name": "JumpToActiveFormula"
+  },
+  "134994": {
+    "template": "InfoTip",
+    "name": "JumpToHoveredProduct"
+  },
+  "134995": {
+    "template": "InfoTip",
+    "name": "JumpToHoveredFormula"
+  },
+  "134997": {
+    "template": "InfoTip",
+    "name": "SelectRecipe"
+  },
+  "134998": {
+    "template": "InfoTip",
+    "name": "SelectProduct"
+  },
+  "134999": {
+    "template": "InfoTip",
+    "name": "SelectFormula"
   },
   "135012": {
     "template": "TutorialQuest",
@@ -63448,6 +64596,14 @@
     "template": "Trigger",
     "name": "HighLife Trigger Newspaper FeatureUnlock"
   },
+  "135906": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Fridge Infotip"
+  },
+  "135907": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Bag InfoTip"
+  },
   "135908": {
     "template": "NewspaperSpecialEditionArticle",
     "name": "HighLife_SpecialEdition_FeatureUnlock"
@@ -64479,6 +65635,66 @@
     "name": "Hotel Manager",
     "english": "Mr. Bertram, Hotel Manager"
   },
+  "136682": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event2Answer1Priest"
+  },
+  "136683": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event2Answer3Caoutchouc"
+  },
+  "136684": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event3Answer2Doctor"
+  },
+  "136685": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event4Answer1Beams"
+  },
+  "136686": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event6Answer2BeerSausages"
+  },
+  "136687": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event6Answer3Coins"
+  },
+  "136688": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event7Answer1Coins"
+  },
+  "136689": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event8Answer1Wood"
+  },
+  "136690": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event9Answer1Cement"
+  },
+  "136691": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event9Answer2Coins"
+  },
+  "136692": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event10Answer1Cement"
+  },
+  "136693": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event10Answer2Coins"
+  },
+  "136694": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event12Answer1Coins"
+  },
+  "136695": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event11Answer1SidedwithJenny"
+  },
+  "136696": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event13Answer1CommisionnedWork"
+  },
   "136697": {
     "template": "TownhallItem",
     "name": "MaitreDeHotel",
@@ -64579,6 +65795,10 @@
     "template": "A7_QuestDecision",
     "name": "PorcelaineTower_06_DECISION_Accident",
     "english": "Skyline Tower: Accident At Wor [..]"
+  },
+  "136773": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event3Answer3Coins"
   },
   "136774": {
     "template": "TownhallBuff",
@@ -65025,6 +66245,10 @@
     "name": "Edicts - Tourism - Rare - Guild",
     "english": "-"
   },
+  "136961": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Event6Answer1Zoo"
+  },
   "136962": {
     "template": "RewardPool",
     "name": "Specialists - HighLife - Legendary - Guild",
@@ -65448,6 +66672,14 @@
     "template": "TriggerQuest",
     "name": "Trigger Start Quest Post Mortem"
   },
+  "137239": {
+    "template": "InfoTip",
+    "name": "SkyscraperLevel Infotip"
+  },
+  "137259": {
+    "template": "InfoTip",
+    "name": "PanoramaEffectNone Infotip"
+  },
   "137262": {
     "template": "TownhallBuff",
     "name": "SkylineBuff1_Attractiveness",
@@ -65575,6 +66807,10 @@
   "137484": {
     "template": "Matcher",
     "name": "Matcher Monument Workers"
+  },
+  "137488": {
+    "template": "InfoTip",
+    "name": "SkyscraperUpgrade Infotip"
   },
   "137533": {
     "template": "NewspaperSpecialEditionArticle",
@@ -66132,6 +67368,10 @@
     "template": "TriggerQuest",
     "name": "Trigger EmergencyAkhu Invalid End of WD"
   },
+  "137848": {
+    "template": "InfoTip",
+    "name": "MaintanenceDiffculty"
+  },
   "137850": {
     "template": "TriggerQuest",
     "name": "Remove Yara Quests Upon finding Rubble"
@@ -66508,6 +67748,10 @@
   "138223": {
     "template": "QuestPool",
     "name": "Events"
+  },
+  "138225": {
+    "template": "InfoTip",
+    "name": "Information UnlockDecision Event InfoTip"
   },
   "138239": {
     "template": "A7_QuestDecision",
@@ -68312,6 +69556,10 @@
   "139623": {
     "template": "QuestPool",
     "name": "RiddleQuest_Pool"
+  },
+  "139629": {
+    "template": "InfoTip",
+    "name": "UnlockDecision Riddle"
   },
   "139631": {
     "template": "FeatureUnlock",
@@ -76994,9 +78242,69 @@
     "name": "Steamer (Delivery Reward)",
     "english": "Confiscated Steamer"
   },
+  "143879": {
+    "template": "InfoTip",
+    "name": "S02_UnlockDecision_NoDebtsOwed"
+  },
+  "143880": {
+    "template": "InfoTip",
+    "name": "S02_UnlockDecision_NoDebtToCollect"
+  },
+  "143881": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_BasinDrain"
+  },
+  "143882": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_BasinDestroy"
+  },
+  "143883": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_GameOver"
+  },
+  "143884": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_StartsFollowUp"
+  },
+  "143885": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_CostsAllSilver"
+  },
+  "143896": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_MustBeRepaid"
+  },
+  "143897": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_MustBeCollected"
+  },
+  "143898": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_???"
+  },
+  "143899": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_IncidentMustClear"
+  },
+  "143902": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_DifficultyUp"
+  },
+  "143904": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_DifficultyMegaUp"
+  },
+  "143906": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_DifficultyDown"
+  },
   "143907": {
     "template": "FeatureUnlock",
     "name": "S02_BasinCheck"
+  },
+  "143909": {
+    "template": "InfoTip",
+    "name": "S02_EventInfo_VascoExplodes"
   },
   "143914": {
     "template": "Trigger",
@@ -101395,6 +102703,10 @@
     "name": "Palace_Module_05 (gate)",
     "english": "Palace Wing - Gate"
   },
+  "269087": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace Modules"
+  },
   "269110": {
     "template": "ForwardBuff",
     "name": "Public - Decree 2 Buff Forward",
@@ -101963,6 +103275,14 @@
     "template": "Notification",
     "name": "Noti Regained Overdrive"
   },
+  "269337": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace - Forward Buff"
+  },
+  "269338": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace/Local Dept - Decree"
+  },
   "269357": {
     "template": "OrnamentalBuilding",
     "name": "DEPRECATED_Palace Ornament02 Set02 end",
@@ -102461,6 +103781,10 @@
     "name": "Public - Decree 1 Buff Infotip Forward",
     "english": "Aspirational Finance Act"
   },
+  "269555": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace - Base Effect"
+  },
   "269556": {
     "template": "Trigger",
     "name": "Palace Trigger ReEnterObjectMenu"
@@ -102468,6 +103792,10 @@
   "269557": {
     "template": "Trigger",
     "name": "Palace Trigger Newspaper"
+  },
+  "269559": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace - Decree Empty"
   },
   "269564": {
     "template": "GuildhouseBuff",
@@ -102495,6 +103823,14 @@
   "269583": {
     "template": "Notification",
     "name": "Palace Unlock Banner"
+  },
+  "269595": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace Overview LockIcon"
+  },
+  "269598": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace Overview Prestige"
   },
   "269602": {
     "template": "PalaceMinistry",
@@ -102563,6 +103899,18 @@
   "269646": {
     "template": "Trigger",
     "name": "Relock PalaceMinistry"
+  },
+  "269648": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace CurrentAttractiveness"
+  },
+  "269649": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace - Ministry Empty"
+  },
+  "269650": {
+    "template": "InfoTip",
+    "name": "InfoTip Palace Overview AttractivenessBar"
   },
   "269652": {
     "template": "TownhallBuff",
@@ -103019,6 +104367,22 @@
     "name": "Ministry of Harbour Affairs - Paragon_25",
     "english": "Department of Transport"
   },
+  "269747": {
+    "template": "InfoTip",
+    "name": "InfoTip Overview Next Unlocks"
+  },
+  "269748": {
+    "template": "InfoTip",
+    "name": "InfoTip Local Dept - Department"
+  },
+  "269749": {
+    "template": "InfoTip",
+    "name": "InfoTip Local Dept/Palace - PolicySlot"
+  },
+  "269750": {
+    "template": "InfoTip",
+    "name": "InfoTip Local Dept - DepartmentSlot"
+  },
   "269751": {
     "template": "Product",
     "name": "fuel state",
@@ -103036,6 +104400,10 @@
   "269757": {
     "template": "Trigger",
     "name": "intermediate moderate 4.1 - DLC Bright Harvest"
+  },
+  "269764": {
+    "template": "InfoTip",
+    "name": "InfoTip Local Dept - Base Effect"
   },
   "269766": {
     "template": "TrafficFeedbackUnit",
@@ -103684,6 +105052,14 @@
     "template": "InfoLayerIcon",
     "name": "NoFuelStationInRange",
     "english": "No Fuel Station in Range"
+  },
+  "270057": {
+    "template": "InfoTip",
+    "name": "Tractor Productivity Farm InfoTip"
+  },
+  "270058": {
+    "template": "InfoTip",
+    "name": "Silo Productivity Farm InfoTip"
   },
   "270061": {
     "template": "Trigger",
@@ -105232,6 +106608,10 @@
     "name": "Anno 1800 CDLC 05 - Pedestrian Zone",
     "english": "Anno 1800 DLC - Pedestrian Zon [..]"
   },
+  "500000": {
+    "template": "InfoTip",
+    "name": "Visitor Status Infotip with AreaCurrent"
+  },
   "500001": {
     "template": "ConstructionCategory",
     "name": "moderate park vending stalls",
@@ -105376,6 +106756,54 @@
     "name": "advanced weapons chain",
     "english": "Advanced Weapons"
   },
+  "500031": {
+    "template": "InfoTip",
+    "name": "CategoryInfoTip"
+  },
+  "500032": {
+    "template": "InfoTip",
+    "name": "TabInfoTip"
+  },
+  "500033": {
+    "template": "InfoTip",
+    "name": "PublishButtonInfoTip"
+  },
+  "500034": {
+    "template": "InfoTip",
+    "name": "NewspaperButtonFullInfoTip"
+  },
+  "500035": {
+    "template": "InfoTip",
+    "name": "NewspaperBuffInfoTip"
+  },
+  "500036": {
+    "template": "InfoTip",
+    "name": "PauseResumeButtonInfotip"
+  },
+  "500037": {
+    "template": "InfoTip",
+    "name": "SpeedButtonInfotip"
+  },
+  "500038": {
+    "template": "InfoTip",
+    "name": "ProductionChainButtonInfoTip"
+  },
+  "500039": {
+    "template": "InfoTip",
+    "name": "EditButtonInfoTip"
+  },
+  "500040": {
+    "template": "InfoTip",
+    "name": "ResetButtonInfoTip"
+  },
+  "500041": {
+    "template": "InfoTip",
+    "name": "BackButtonInfoTip"
+  },
+  "500042": {
+    "template": "InfoTip",
+    "name": "PlayerLogoInfoTip"
+  },
   "500043": {
     "template": "ConstructionCategory",
     "name": "sa park vending stalls"
@@ -105409,10 +106837,22 @@
     "name": "SA Ornament Menu Park",
     "english": "Park"
   },
+  "500054": {
+    "template": "InfoTip",
+    "name": "PublishingTimerInfoTip"
+  },
   "500055": {
     "template": "ConstructionCategory",
     "name": "SA Ornament Menu City",
     "english": "City"
+  },
+  "500056": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipDetailed"
+  },
+  "500057": {
+    "template": "InfoTip",
+    "name": "ShipContructionButtonInfoTip"
   },
   "500058": {
     "template": "ConstructionCategory",
@@ -105427,6 +106867,30 @@
   "500060": {
     "template": "QuestTracker",
     "name": "QuestTrackerScene (ObjectiveHeadlineTexts)"
+  },
+  "500061": {
+    "template": "InfoTip",
+    "name": "ShipQueueButtonInfoTip"
+  },
+  "500062": {
+    "template": "InfoTip",
+    "name": "Ship-MaintenanceInfotip"
+  },
+  "500063": {
+    "template": "InfoTip",
+    "name": "DamageInfotip"
+  },
+  "500064": {
+    "template": "InfoTip",
+    "name": "HitpointsInfotip"
+  },
+  "500065": {
+    "template": "InfoTip",
+    "name": "RallyButtonInfoTip"
+  },
+  "500066": {
+    "template": "InfoTip",
+    "name": "WorkforcePrioButton InfoTip"
   },
   "500067": {
     "template": "ConstructionCategory",
@@ -105447,6 +106911,34 @@
     "template": "ConstructionCategory",
     "name": "Moderate Ornament Menu DLCs",
     "english": "Seasons"
+  },
+  "500071": {
+    "template": "InfoTip",
+    "name": "EmptySlotInfotip"
+  },
+  "500072": {
+    "template": "InfoTip",
+    "name": "Ship-TraderouteInfotip"
+  },
+  "500073": {
+    "template": "InfoTip",
+    "name": "Ship-TraderoutePausedInfotip"
+  },
+  "500074": {
+    "template": "InfoTip",
+    "name": "Ship-TraderouteRunningInfotip"
+  },
+  "500075": {
+    "template": "InfoTip",
+    "name": "Ship-TraderouteRemoveInfotip"
+  },
+  "500076": {
+    "template": "InfoTip",
+    "name": "Residence Downgrade Button InfoTip"
+  },
+  "500077": {
+    "template": "InfoTip",
+    "name": "Renovate Ruin Building InfoTip"
   },
   "500078": {
     "template": "ConstructionCategory",
@@ -105493,6 +106985,10 @@
   "500089": {
     "template": "Icon",
     "name": "Trade Limit Sell"
+  },
+  "500090": {
+    "template": "InfoTip",
+    "name": "Residence Upgrade Button InfoTip"
   },
   "500091": {
     "template": "ProductionChain",
@@ -105545,6 +107041,10 @@
     "template": "Icon",
     "name": "GameSpeed Fast"
   },
+  "500106": {
+    "template": "InfoTip",
+    "name": "QuestTracker_Reward_Infotip"
+  },
   "500107": {
     "template": "RightClickMenu",
     "name": "RightClickMenu"
@@ -105556,6 +107056,10 @@
   "500109": {
     "template": "Icon",
     "name": "Tick"
+  },
+  "500110": {
+    "template": "InfoTip",
+    "name": "QuestTracker_SpeechButton_InfoTip"
   },
   "500111": {
     "template": "ConstructionCategory",
@@ -105587,6 +107091,26 @@
     "template": "Icon",
     "name": "Unlock"
   },
+  "500119": {
+    "template": "InfoTip",
+    "name": "BuyBalanceSell"
+  },
+  "500120": {
+    "template": "InfoTip",
+    "name": "TargetStock"
+  },
+  "500121": {
+    "template": "InfoTip",
+    "name": "ShowHarborFees"
+  },
+  "500122": {
+    "template": "InfoTip",
+    "name": "ShowTradeHistory"
+  },
+  "500123": {
+    "template": "InfoTip",
+    "name": "HarborFeeHandler"
+  },
   "500125": {
     "template": "Notification",
     "name": "FirstVisitorsArrivalNotification"
@@ -105603,9 +107127,21 @@
     "template": "ActiveTradeScene",
     "name": "ActiveTradeScene"
   },
+  "500132": {
+    "template": "InfoTip",
+    "name": "BuildingRightclickMenu"
+  },
   "500133": {
     "template": "Notification",
     "name": "VisitorHarborMissingNotification"
+  },
+  "500135": {
+    "template": "InfoTip",
+    "name": "ShipIcon"
+  },
+  "500136": {
+    "template": "InfoTip",
+    "name": "Timer"
   },
   "500137": {
     "template": "ConstructionCategory",
@@ -105621,6 +107157,14 @@
     "template": "Icon",
     "name": "Upgrade"
   },
+  "500141": {
+    "template": "InfoTip",
+    "name": "Tooltip Ship"
+  },
+  "500142": {
+    "template": "InfoTip",
+    "name": "Residence Warning Upgradable InfoTip"
+  },
   "500143": {
     "template": "Icon",
     "name": "Renovate Ruin Icon"
@@ -105633,6 +107177,10 @@
     "template": "ProductionChain",
     "name": "weapon chain",
     "english": "Weapons"
+  },
+  "500146": {
+    "template": "InfoTip",
+    "name": "AverageSatisfaction"
   },
   "500147": {
     "template": "Icon",
@@ -105656,6 +107204,10 @@
     "template": "ConstructionCategory",
     "name": "SA Ornament Menu DLCs",
     "english": "Seasons"
+  },
+  "500152": {
+    "template": "InfoTip",
+    "name": "Monument ExhibitionAttractiveness InfoTip"
   },
   "500153": {
     "template": "ConstructionCategory",
@@ -105694,10 +107246,18 @@
     "template": "Icon",
     "name": "Happiness_Happy"
   },
+  "500163": {
+    "template": "InfoTip",
+    "name": "Resi Buff Working Conditions InfoTip"
+  },
   "500164": {
     "template": "ConstructionCategory",
     "name": "moderate & sa railway misc decorations",
     "english": "Railway Decorations"
+  },
+  "500165": {
+    "template": "InfoTip",
+    "name": "Resi Buff News InfoTip"
   },
   "500166": {
     "template": "ConstructionCategory",
@@ -105827,6 +107387,10 @@
     "template": "Icon",
     "name": "Shiplist Icon - Trade Route"
   },
+  "500215": {
+    "template": "InfoTip",
+    "name": "NewspaperbuffInfoTip"
+  },
   "500216": {
     "template": "Icon",
     "name": "Ship Stance - Passive Defensive"
@@ -105871,6 +107435,42 @@
     "template": "Icon",
     "name": "Minimap Filter Icon - WindDirection"
   },
+  "500230": {
+    "template": "InfoTip",
+    "name": "Ship-StancesInfotip"
+  },
+  "500231": {
+    "template": "InfoTip",
+    "name": "Ship-PatrolInfotip"
+  },
+  "500232": {
+    "template": "InfoTip",
+    "name": "Ship-ChangeSessionInfotip"
+  },
+  "500233": {
+    "template": "InfoTip",
+    "name": "Ship-SellShipInfotip"
+  },
+  "500234": {
+    "template": "InfoTip",
+    "name": "Ship-ListButtonInfotip"
+  },
+  "500235": {
+    "template": "InfoTip",
+    "name": "Ship-ClassInfotip"
+  },
+  "500236": {
+    "template": "InfoTip",
+    "name": "Ship-ActiveTradeButtonInfotip"
+  },
+  "500237": {
+    "template": "InfoTip",
+    "name": "Ship-PatrolRunningButtonInfotip"
+  },
+  "500238": {
+    "template": "InfoTip",
+    "name": "Ship-PatrolPausedButtonInfotip"
+  },
   "500239": {
     "template": "Icon",
     "name": "Minified"
@@ -105879,13 +107479,73 @@
     "template": "Icon",
     "name": "Maximized"
   },
+  "500246": {
+    "template": "InfoTip",
+    "name": "DiplomacyInfoTip"
+  },
+  "500247": {
+    "template": "InfoTip",
+    "name": "TradeRouteInfoTip"
+  },
+  "500248": {
+    "template": "InfoTip",
+    "name": "Ship-DeletePatrolButtonInfotip"
+  },
+  "500249": {
+    "template": "InfoTip",
+    "name": "Ship-ExpeditionMenuButtonInfotip"
+  },
+  "500250": {
+    "template": "InfoTip",
+    "name": "Ship-ExpeditionMenu-DeleteButtonInfotip"
+  },
   "500254": {
     "template": "Icon",
     "name": "Visitors"
   },
+  "500257": {
+    "template": "InfoTip",
+    "name": "CityStateBubbleInfoTip"
+  },
+  "500258": {
+    "template": "InfoTip",
+    "name": "Ship-ChangingSession-CancelButtonInfotip"
+  },
+  "500259": {
+    "template": "InfoTip",
+    "name": "Ship-ExpeditionMenu-MoraleBarInfotip"
+  },
+  "500260": {
+    "template": "InfoTip",
+    "name": "Production Input Mine InfoTip"
+  },
+  "500261": {
+    "template": "InfoTip",
+    "name": "Production Input Fertility InfoTip"
+  },
+  "500262": {
+    "template": "InfoTip",
+    "name": "Production Input Water InfoTip"
+  },
   "500263": {
     "template": "Icon",
     "name": "Ship Stance - Mixed"
+  },
+  "500264": {
+    "template": "InfoTip",
+    "name": "Fleet-IconInfotip"
+  },
+  "500265": {
+    "template": "InfoTip",
+    "name": "Reroll Button Active Trade"
+  },
+  "500266": {
+    "template": "InfoTip",
+    "name": "Transporter Processing Queue Slots"
+  },
+  "500267": {
+    "template": "InfoTip",
+    "name": "Transporter Waiting Queue Slots"
   },
   "500270": {
     "template": "Icon",
@@ -105903,9 +107563,81 @@
     "template": "Icon",
     "name": "Arrow Red"
   },
+  "500274": {
+    "template": "InfoTip",
+    "name": "Global Attractiveness"
+  },
+  "500276": {
+    "template": "InfoTip",
+    "name": "city_props_system_01 Infotip"
+  },
+  "500277": {
+    "template": "InfoTip",
+    "name": "city_props_system_02 Infotip"
+  },
+  "500278": {
+    "template": "InfoTip",
+    "name": "city_props_system_03 Infotip"
+  },
+  "500279": {
+    "template": "InfoTip",
+    "name": "city_props_system_04 Infotip"
+  },
+  "500280": {
+    "template": "InfoTip",
+    "name": "city_props_system_05 Infotip"
+  },
+  "500281": {
+    "template": "InfoTip",
+    "name": "park_system_01 Infotip"
+  },
+  "500282": {
+    "template": "InfoTip",
+    "name": "park_system_02 Infotip"
+  },
+  "500283": {
+    "template": "InfoTip",
+    "name": "park_system_03 Infotip"
+  },
+  "500284": {
+    "template": "InfoTip",
+    "name": "park_system_04 Infotip"
+  },
+  "500285": {
+    "template": "InfoTip",
+    "name": "park_system_05 Infotip"
+  },
+  "500286": {
+    "template": "InfoTip",
+    "name": "PublishingCostsInfoTip"
+  },
   "500287": {
     "template": "Icon",
     "name": "GlobalAttractiveness"
+  },
+  "500288": {
+    "template": "InfoTip",
+    "name": "EmptySocketInfotipNonModifiable"
+  },
+  "500289": {
+    "template": "InfoTip",
+    "name": "ExpeditionMoraleBarInfotip"
+  },
+  "500290": {
+    "template": "InfoTip",
+    "name": "ExpeditionDiscardInfotip"
+  },
+  "500291": {
+    "template": "InfoTip",
+    "name": "EmptySlotInfotipExpeditionMenu"
+  },
+  "500292": {
+    "template": "InfoTip",
+    "name": "Repaircrane InfoTip"
+  },
+  "500293": {
+    "template": "InfoTip",
+    "name": "ExpeditionThreatInfotip Highest Probability"
   },
   "500296": {
     "template": "NegotiationPopup",
@@ -106000,6 +107732,26 @@
     "template": "Icon",
     "name": "Incident - Illness"
   },
+  "500325": {
+    "template": "InfoTip",
+    "name": "Incident Fire Active Bubble InfoTip"
+  },
+  "500326": {
+    "template": "InfoTip",
+    "name": "Incident Illness Active Bubble InfoTip"
+  },
+  "500327": {
+    "template": "InfoTip",
+    "name": "Incident Proximity Fire Bubble InfoTip"
+  },
+  "500328": {
+    "template": "InfoTip",
+    "name": "Incident Proximity Riot Bubble InfoTip"
+  },
+  "500329": {
+    "template": "InfoTip",
+    "name": "Incident Proximity Illness Bubble InfoTip"
+  },
   "500330": {
     "template": "InfoLayerIcon",
     "name": "QuestRunning",
@@ -106024,6 +107776,18 @@
     "name": "QuestObject_Escort",
     "english": "Escort ship"
   },
+  "500337": {
+    "template": "InfoTip",
+    "name": "Incident Proximity Fire Buff InfoTip"
+  },
+  "500338": {
+    "template": "InfoTip",
+    "name": "Incident Proximity Riot Buff InfoTip"
+  },
+  "500339": {
+    "template": "InfoTip",
+    "name": "Incident Proximity Illness Buff InfoTip"
+  },
   "500343": {
     "template": "DiplomacyMenu",
     "name": "DiplomacyScene"
@@ -106035,6 +107799,14 @@
   "500347": {
     "template": "ObjectmenuCityInstitutionScene",
     "name": "ObjectmenuCityInstitutionScene"
+  },
+  "500348": {
+    "template": "InfoTip",
+    "name": "Upgrade Warehouse"
+  },
+  "500349": {
+    "template": "InfoTip",
+    "name": "Upgrade Kontor"
   },
   "500350": {
     "template": "Icon",
@@ -106084,9 +107856,61 @@
     "template": "ValueAssetMap",
     "name": "IncidentProbabilityText"
   },
+  "500362": {
+    "template": "InfoTip",
+    "name": "Institution Incident Dial InfoTip"
+  },
+  "500364": {
+    "template": "InfoTip",
+    "name": "Institution Special Action Cooldown InfoTip"
+  },
   "500365": {
     "template": "ObjectmenuProductionScene",
     "name": "ObjectmenuProductionScene"
+  },
+  "500370": {
+    "template": "InfoTip",
+    "name": "ThrowGoodsOverboardInfoTip"
+  },
+  "500371": {
+    "template": "InfoTip",
+    "name": "WaitUntilFullInfotip"
+  },
+  "500372": {
+    "template": "InfoTip",
+    "name": "BuildHarborButtonInfotip"
+  },
+  "500373": {
+    "template": "InfoTip",
+    "name": "InvokerightsInfotip"
+  },
+  "500374": {
+    "template": "InfoTip",
+    "name": "TakeOverIslandInfotip"
+  },
+  "500375": {
+    "template": "InfoTip",
+    "name": "ReserveIslandButtonInfotip"
+  },
+  "500376": {
+    "template": "InfoTip",
+    "name": "ExpeditionInfoCornerInfotip"
+  },
+  "500377": {
+    "template": "InfoTip",
+    "name": "ExpeditionExchangeShipInfotip"
+  },
+  "500378": {
+    "template": "InfoTip",
+    "name": "StorageInfotip"
+  },
+  "500379": {
+    "template": "InfoTip",
+    "name": "NegotiateSettlmentRightsButton"
+  },
+  "500383": {
+    "template": "InfoTip",
+    "name": "NpcOverview"
   },
   "500384": {
     "template": "Icon",
@@ -106096,9 +107920,77 @@
     "template": "Icon",
     "name": "Expedition"
   },
+  "500387": {
+    "template": "InfoTip",
+    "name": "RequestPeace"
+  },
+  "500388": {
+    "template": "InfoTip",
+    "name": "DeclareWar"
+  },
+  "500389": {
+    "template": "InfoTip",
+    "name": "RequestTradeRights"
+  },
+  "500390": {
+    "template": "InfoTip",
+    "name": "CancelTradeRights"
+  },
+  "500391": {
+    "template": "InfoTip",
+    "name": "Gift"
+  },
+  "500392": {
+    "template": "InfoTip",
+    "name": "RequestAlliance"
+  },
+  "500393": {
+    "template": "InfoTip",
+    "name": "Flatter"
+  },
+  "500394": {
+    "template": "InfoTip",
+    "name": "BreakAlliance"
+  },
+  "500395": {
+    "template": "InfoTip",
+    "name": "Insult"
+  },
+  "500396": {
+    "template": "InfoTip",
+    "name": "Negotiate"
+  },
+  "500397": {
+    "template": "InfoTip",
+    "name": "Threat"
+  },
   "500398": {
     "template": "FilteredSelectionPopup",
     "name": "FilteredSelectionPopup"
+  },
+  "500402": {
+    "template": "InfoTip",
+    "name": "ExpeditionPermitAmountInfotip"
+  },
+  "500403": {
+    "template": "InfoTip",
+    "name": "ExpeditionThreatInfotip Higher Probability"
+  },
+  "500404": {
+    "template": "InfoTip",
+    "name": "ExpeditionThreatInfotip High Probability"
+  },
+  "500408": {
+    "template": "InfoTip",
+    "name": "TransferRouteInfoTip"
+  },
+  "500411": {
+    "template": "InfoTip",
+    "name": "ExpeditionShiplistInfotip"
+  },
+  "500413": {
+    "template": "InfoTip",
+    "name": "AddShipInfotip"
   },
   "500414": {
     "template": "Icon",
@@ -106136,9 +108028,25 @@
     "template": "Icon",
     "name": "MonumentPhase0"
   },
+  "500423": {
+    "template": "InfoTip",
+    "name": "Support fleet"
+  },
   "500424": {
     "template": "ValueAssetMap",
     "name": "Good Storage Trend Text Mapping"
+  },
+  "500425": {
+    "template": "InfoTip",
+    "name": "ChangeKontorTypeInfotip"
+  },
+  "500429": {
+    "template": "InfoTip",
+    "name": "ShipLoadedWarningInfotip"
+  },
+  "500431": {
+    "template": "InfoTip",
+    "name": "Demand Quest"
   },
   "500433": {
     "template": "MinimapDot",
@@ -106148,6 +108056,42 @@
     "template": "ProductionChain",
     "name": "champagne chain",
     "english": "Champagne"
+  },
+  "500435": {
+    "template": "InfoTip",
+    "name": "ExpeditionDetailsInfoTip"
+  },
+  "500436": {
+    "template": "InfoTip",
+    "name": "TraderouteDetailsInfoTip"
+  },
+  "500437": {
+    "template": "InfoTip",
+    "name": "FleetDetailsInfoTip"
+  },
+  "500440": {
+    "template": "InfoTip",
+    "name": "ExpeditionDecisionInfotipFavorable"
+  },
+  "500442": {
+    "template": "InfoTip",
+    "name": "MonumentLockedEventInfotip"
+  },
+  "500443": {
+    "template": "InfoTip",
+    "name": "MonumentPreparationBarInfotip"
+  },
+  "500444": {
+    "template": "InfoTip",
+    "name": "MonumentEventBarInfotip"
+  },
+  "500445": {
+    "template": "InfoTip",
+    "name": "ExpeditionDecisionInfotipAttribute"
+  },
+  "500446": {
+    "template": "InfoTip",
+    "name": "ExpeditionDecisionInfotipAvoid"
   },
   "500447": {
     "template": "ConstructionCategory",
@@ -106172,10 +108116,30 @@
     "name": "CoalMineSlot",
     "english": "Coal Deposit"
   },
+  "500454": {
+    "template": "InfoTip",
+    "name": "Small Gift"
+  },
+  "500455": {
+    "template": "InfoTip",
+    "name": "Middle Gift"
+  },
+  "500456": {
+    "template": "InfoTip",
+    "name": "Big Gift"
+  },
   "500457": {
     "template": "InfoLayerIcon",
     "name": "Ruin",
     "english": "Destroyed Building"
+  },
+  "500459": {
+    "template": "InfoTip",
+    "name": "MonumentEventDeleteButtonInfotip"
+  },
+  "500460": {
+    "template": "InfoTip",
+    "name": "StrategicViewShip"
   },
   "500465": {
     "template": "Icon",
@@ -106290,9 +108254,21 @@
     "template": "Icon",
     "name": "UnderAttackBuff"
   },
+  "500499": {
+    "template": "InfoTip",
+    "name": "UnderAttackBuff Infotip"
+  },
   "500500": {
     "template": "Notification",
     "name": "AchievementUnlocked"
+  },
+  "500503": {
+    "template": "InfoTip",
+    "name": "ShipButtonInfoTip"
+  },
+  "500504": {
+    "template": "InfoTip",
+    "name": "ExpeditionDecisionInfotipRequirement"
   },
   "500505": {
     "template": "ProductionChain",
@@ -106303,6 +108279,26 @@
     "template": "ProductionChain",
     "name": "electricity oil chain",
     "english": "Electricity"
+  },
+  "500508": {
+    "template": "InfoTip",
+    "name": "Hostile Takeover Button InfoTip"
+  },
+  "500509": {
+    "template": "InfoTip",
+    "name": "Hostile Takeover Buy Share InfoTip"
+  },
+  "500510": {
+    "template": "InfoTip",
+    "name": "Hostile Takeover Sell Share InfoTip"
+  },
+  "500511": {
+    "template": "InfoTip",
+    "name": "Hostile Takeover Action InfoTip"
+  },
+  "500512": {
+    "template": "InfoTip",
+    "name": "Hostile Takeover InfoCorner InfoTip"
   },
   "500513": {
     "template": "SettingsMenu",
@@ -106360,6 +108356,50 @@
     "template": "Icon",
     "name": "Achievement - Quests - Gold"
   },
+  "500532": {
+    "template": "InfoTip",
+    "name": "Reroll Button Object Menu Trade"
+  },
+  "500535": {
+    "template": "InfoTip",
+    "name": "DeleteRouteInfotip"
+  },
+  "500536": {
+    "template": "InfoTip",
+    "name": "CharterCostsInfotip"
+  },
+  "500537": {
+    "template": "InfoTip",
+    "name": "ActiveShipsInfotip"
+  },
+  "500538": {
+    "template": "InfoTip",
+    "name": "PausedShipsInfotip"
+  },
+  "500539": {
+    "template": "InfoTip",
+    "name": "DeleteStationInfotip"
+  },
+  "500540": {
+    "template": "InfoTip",
+    "name": "MoveStationUpInfotip"
+  },
+  "500541": {
+    "template": "InfoTip",
+    "name": "MoveStationDownInfotip"
+  },
+  "500542": {
+    "template": "InfoTip",
+    "name": "LoadGoodInfotip"
+  },
+  "500543": {
+    "template": "InfoTip",
+    "name": "UnloadGoodInfotip"
+  },
+  "500544": {
+    "template": "InfoTip",
+    "name": "IslandInfotip"
+  },
   "500545": {
     "template": "Notification",
     "name": "MyShare_MyIsland_NoTakeover"
@@ -106371,6 +108411,26 @@
   "500547": {
     "template": "Notification",
     "name": "PlayerBuysShareFromOtherPlayer"
+  },
+  "500548": {
+    "template": "InfoTip",
+    "name": "Hostile Takeover Menu Header InfoTip"
+  },
+  "500549": {
+    "template": "InfoTip",
+    "name": "IslandInfotipCharter"
+  },
+  "500550": {
+    "template": "InfoTip",
+    "name": "NoTradeRightsWarningInfotip"
+  },
+  "500551": {
+    "template": "InfoTip",
+    "name": "CreateCharterButtonInfotip"
+  },
+  "500552": {
+    "template": "InfoTip",
+    "name": "ConfirmCharterCreationButtonInfotip"
   },
   "500553": {
     "template": "Notification",
@@ -106409,9 +108469,17 @@
     "name": "QuestCollectReward",
     "english": "Collect reward"
   },
+  "500563": {
+    "template": "InfoTip",
+    "name": "ShipTradeInfotip"
+  },
   "500564": {
     "template": "Icon",
     "name": "Hostile Takeover Icon"
+  },
+  "500565": {
+    "template": "InfoTip",
+    "name": "Not available"
   },
   "500568": {
     "template": "InfoLayerIcon",
@@ -106429,6 +108497,10 @@
   "500573": {
     "template": "AttractivenessPopup",
     "name": "AttractivenessPopup"
+  },
+  "500574": {
+    "template": "InfoTip",
+    "name": "Production Output Electricity InfoTip"
   },
   "500575": {
     "template": "Icon",
@@ -106738,13 +108810,33 @@
     "template": "NewspaperEffectIcon",
     "name": "InfluenceGenerationVeryPositiveIcon"
   },
+  "500653": {
+    "template": "InfoTip",
+    "name": "ArticleInfoTip"
+  },
+  "500654": {
+    "template": "InfoTip",
+    "name": "EnemyNearbyBuff Infotip"
+  },
   "500655": {
     "template": "Icon",
     "name": "EnemyNearbyBuff"
   },
+  "500658": {
+    "template": "InfoTip",
+    "name": "BuyShipCannotAffordInfoTip"
+  },
   "500659": {
     "template": "Target",
     "name": "Use Item In Area"
+  },
+  "500663": {
+    "template": "InfoTip",
+    "name": "BuyShipCancelInfoTip"
+  },
+  "500664": {
+    "template": "InfoTip",
+    "name": "SideNotificationInfoTip"
   },
   "500665": {
     "template": "Notification",
@@ -106753,6 +108845,22 @@
   "500666": {
     "template": "Notification",
     "name": "NotificationSavegameTransferError"
+  },
+  "500667": {
+    "template": "InfoTip",
+    "name": "NewspaperCategoryInfoTip"
+  },
+  "500668": {
+    "template": "InfoTip",
+    "name": "ExpeditionCategoryInfoTip"
+  },
+  "500669": {
+    "template": "InfoTip",
+    "name": "GeneralCategoryInfoTip"
+  },
+  "500670": {
+    "template": "InfoTip",
+    "name": "WarningCategoryInfoTip"
   },
   "500671": {
     "template": "InfoTipBalancing",
@@ -106770,6 +108878,14 @@
     "template": "ValueAssetMap",
     "name": "Satisfaction Icon Text Mapping"
   },
+  "500676": {
+    "template": "InfoTip",
+    "name": "Notification Filter Button InfoTip"
+  },
+  "500677": {
+    "template": "InfoTip",
+    "name": "NewspaperArchiveInfoTip"
+  },
   "500678": {
     "template": "ValueAssetMap",
     "name": "Productivity Icon Text Mapping"
@@ -106777,6 +108893,26 @@
   "500679": {
     "template": "DifficultySettingsScene",
     "name": "DifficultySettingsScene"
+  },
+  "500680": {
+    "template": "InfoTip",
+    "name": "ProductFilterInfotip"
+  },
+  "500681": {
+    "template": "InfoTip",
+    "name": "Production Working Conditions Buff InfoTip"
+  },
+  "500682": {
+    "template": "InfoTip",
+    "name": "Production Working Conditions Button InfoTip"
+  },
+  "500683": {
+    "template": "InfoTip",
+    "name": "Production Build Module InfoTip"
+  },
+  "500684": {
+    "template": "InfoTip",
+    "name": "MonumentStartEventButtonInfotip"
   },
   "500685": {
     "template": "Notification",
@@ -106824,6 +108960,10 @@
     "name": "QuestObject_UseDynamite",
     "english": "Use <b>[AssetData(102487) Text [..]"
   },
+  "500696": {
+    "template": "InfoTip",
+    "name": "DifficultySettingsRandomSeedInfoTip"
+  },
   "500697": {
     "template": "Icon",
     "name": "Achievement - Exploration - Bronze"
@@ -106848,6 +108988,18 @@
     "template": "Icon",
     "name": "Achievement - Online - Gold"
   },
+  "500703": {
+    "template": "InfoTip",
+    "name": "CurrentMoveCost"
+  },
+  "500704": {
+    "template": "InfoTip",
+    "name": "CurrentDestructionCost"
+  },
+  "500707": {
+    "template": "InfoTip",
+    "name": "OnlineForceUbiservicesInfoTip"
+  },
   "500710": {
     "template": "SessionTradeRouteOverviewScene",
     "name": "SessionTradeRouteOverviewScene"
@@ -106864,6 +109016,34 @@
     "template": "Icon",
     "name": "Oil Routes"
   },
+  "500749": {
+    "template": "InfoTip",
+    "name": "TypeSelectionTradeRouteInfotip"
+  },
+  "500750": {
+    "template": "InfoTip",
+    "name": "TypeSelectionCharterRouteInfotip"
+  },
+  "500751": {
+    "template": "InfoTip",
+    "name": "TypeSelectionCoalRouteInfotip"
+  },
+  "500752": {
+    "template": "InfoTip",
+    "name": "TypeSelectionOilRouteInfotip"
+  },
+  "500753": {
+    "template": "InfoTip",
+    "name": "WorkingConditionsSubSliderInfoTip"
+  },
+  "500755": {
+    "template": "InfoTip",
+    "name": "QuestGreyedOut"
+  },
+  "500759": {
+    "template": "InfoTip",
+    "name": "ThreatGreyedOut"
+  },
   "500769": {
     "template": "CreateGameScene",
     "name": "CreateGameScene"
@@ -106875,6 +109055,82 @@
   "500771": {
     "template": "Icon",
     "name": "Generic Warning Icon"
+  },
+  "500777": {
+    "template": "InfoTip",
+    "name": "ConstructionCostRefundInfoTip"
+  },
+  "500778": {
+    "template": "InfoTip",
+    "name": "DistributionWorkforceInfoTip"
+  },
+  "500779": {
+    "template": "InfoTip",
+    "name": "FertilityInfoTip"
+  },
+  "500780": {
+    "template": "InfoTip",
+    "name": "HostileTakeoverInfoTip"
+  },
+  "500781": {
+    "template": "InfoTip",
+    "name": "InactiveCostsInfoTip"
+  },
+  "500782": {
+    "template": "InfoTip",
+    "name": "IncidentsInfoTip"
+  },
+  "500783": {
+    "template": "InfoTip",
+    "name": "LossConditionsInfoTip"
+  },
+  "500784": {
+    "template": "InfoTip",
+    "name": "OptionalQuestFrequencyInfoTip"
+  },
+  "500788": {
+    "template": "InfoTip",
+    "name": "RawMaterialInfoTip"
+  },
+  "500789": {
+    "template": "InfoTip",
+    "name": "RelocateBuildingsInfoTip"
+  },
+  "500790": {
+    "template": "InfoTip",
+    "name": "RevealedMapInfoTip"
+  },
+  "500791": {
+    "template": "InfoTip",
+    "name": "RevenueInfoTip"
+  },
+  "500792": {
+    "template": "InfoTip",
+    "name": "StartCreditsInfoTip"
+  },
+  "500793": {
+    "template": "InfoTip",
+    "name": "StartSessionSizeInfoTip"
+  },
+  "500794": {
+    "template": "InfoTip",
+    "name": "StartSessionIslandDifficultyInfoTip"
+  },
+  "500795": {
+    "template": "InfoTip",
+    "name": "StartSessionIslandSizeInfoTip"
+  },
+  "500796": {
+    "template": "InfoTip",
+    "name": "StartShipsInfoTip"
+  },
+  "500797": {
+    "template": "InfoTip",
+    "name": "StartWithKontorInfoTip"
+  },
+  "500798": {
+    "template": "InfoTip",
+    "name": "TradeRefillRateInfoTip"
   },
   "500801": {
     "template": "Icon",
@@ -107168,6 +109424,14 @@
     "template": "Icon",
     "name": "ExpeditionCardBackgroundArcheologyRainforest"
   },
+  "500880": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipSimple"
+  },
+  "500881": {
+    "template": "InfoTip",
+    "name": "CompanyLevelInfoTip"
+  },
   "500883": {
     "template": "InfluencePopup",
     "name": "InfluencePopup"
@@ -107212,6 +109476,10 @@
   "500897": {
     "template": "Icon",
     "name": "ExpeditionCardBackgroundGenericPolar"
+  },
+  "500900": {
+    "template": "InfoTip",
+    "name": "Residence Income InfoTip"
   },
   "500901": {
     "template": "ProductionChain",
@@ -107278,6 +109546,10 @@
     "name": "colony01 cigars chain",
     "english": "Cigars"
   },
+  "500915": {
+    "template": "InfoTip",
+    "name": "ExpeditionPreparationJumpToShip"
+  },
   "500916": {
     "template": "ProductionChain",
     "name": "colony01 oil chain",
@@ -107291,6 +109563,10 @@
   "500919": {
     "template": "QuestBookScene",
     "name": "QuestBookScene (ObjectiveHeadlineTexts)"
+  },
+  "500920": {
+    "template": "InfoTip",
+    "name": "WaitUntilFullDisabledInfotip"
   },
   "500925": {
     "template": "Notification",
@@ -107313,6 +109589,22 @@
     "template": "InfoLayerIcon",
     "name": "WhiteFlag",
     "english": "Peace Mode"
+  },
+  "500931": {
+    "template": "InfoTip",
+    "name": "BlueprintUpgradeButtonInfoTip"
+  },
+  "500932": {
+    "template": "InfoTip",
+    "name": "HappinessExplanationInfotip"
+  },
+  "500933": {
+    "template": "InfoTip",
+    "name": "ExpeditionItemGoodsInfoTip"
+  },
+  "500934": {
+    "template": "InfoTip",
+    "name": "Upgrade Strategic Harbor"
   },
   "500935": {
     "template": "InfoLayerIcon",
@@ -107347,6 +109639,10 @@
     "template": "ConstructionCategory",
     "name": "OLD - sa construction menu city (category)",
     "english": "City"
+  },
+  "500947": {
+    "template": "InfoTip",
+    "name": "Resi Buff Pollution InfoTip"
   },
   "500949": {
     "template": "ConstructionCategory",
@@ -107511,6 +109807,10 @@
     "name": "QuestObject_Pickup_Proof",
     "english": "Pickup Proof"
   },
+  "501001": {
+    "template": "InfoTip",
+    "name": "SubCategoryButtonInfoTip"
+  },
   "501004": {
     "template": "ConstructionCategory",
     "name": "OLD - sa construction menu optimization (tier)",
@@ -107541,6 +109841,14 @@
     "name": "ResidentCollectObject",
     "english": "Pickup Quest Object"
   },
+  "501011": {
+    "template": "InfoTip",
+    "name": "BuildingMenuCategorySwitchTier"
+  },
+  "501012": {
+    "template": "InfoTip",
+    "name": "BuildingMenuBlueprintOn"
+  },
   "501016": {
     "template": "InfoLayerIcon",
     "name": "ResidentCollectObject_NoInfolayer",
@@ -107554,6 +109862,34 @@
   "501018": {
     "template": "MinimapDot",
     "name": "Steam Ships"
+  },
+  "501019": {
+    "template": "InfoTip",
+    "name": "BuildingMenuEmptySlot"
+  },
+  "501020": {
+    "template": "InfoTip",
+    "name": "BuildingMenu"
+  },
+  "501021": {
+    "template": "InfoTip",
+    "name": "MilitaryTakeoverMoraleBarDefend"
+  },
+  "501022": {
+    "template": "InfoTip",
+    "name": "MilitaryTakeoverOtherIsland"
+  },
+  "501023": {
+    "template": "InfoTip",
+    "name": "MilitaryTakeoverTimer"
+  },
+  "501024": {
+    "template": "InfoTip",
+    "name": "Fleet-GroupBehaviorInfotip"
+  },
+  "501025": {
+    "template": "InfoTip",
+    "name": "ExpeditionStartMoraleBarInfotip"
   },
   "501029": {
     "template": "Icon",
@@ -107571,6 +109907,10 @@
     "template": "Icon",
     "name": "Transporter Loading / Unloading"
   },
+  "501033": {
+    "template": "InfoTip",
+    "name": "ExpeditionDecisionInfotipTrade"
+  },
   "501034": {
     "template": "Icon",
     "name": "Transporter Unloading"
@@ -107587,6 +109927,18 @@
     "template": "Icon",
     "name": "Stress Icon"
   },
+  "501038": {
+    "template": "InfoTip",
+    "name": "NotHappyReasonWorkingConditions"
+  },
+  "501039": {
+    "template": "InfoTip",
+    "name": "NotHappyReasonPollution"
+  },
+  "501040": {
+    "template": "InfoTip",
+    "name": "NotHappyReasonNewspaper"
+  },
   "501041": {
     "template": "Icon",
     "name": "Fleet Stance - Together"
@@ -107598,6 +109950,22 @@
   "501043": {
     "template": "Icon",
     "name": "Fleet Stance - Mixed"
+  },
+  "501044": {
+    "template": "InfoTip",
+    "name": "Resi Buff Diplomacy InfoTip"
+  },
+  "501045": {
+    "template": "InfoTip",
+    "name": "Resi Buff Total Happiness InfoTip"
+  },
+  "501048": {
+    "template": "InfoTip",
+    "name": "Resi Buff Luxury InfoTip"
+  },
+  "501049": {
+    "template": "InfoTip",
+    "name": "MilitaryTakeoverMoraleBarAttack"
   },
   "501050": {
     "template": "Notification",
@@ -107653,6 +110021,14 @@
     "template": "ObjectmenuCommuterHarbourScene",
     "name": "ObjectmenuCommuterHarbourScene"
   },
+  "501066": {
+    "template": "InfoTip",
+    "name": "WorkforceTransferOverallBarInfotip"
+  },
+  "501067": {
+    "template": "InfoTip",
+    "name": "WorkforceTransferIslandEntryInfotip"
+  },
   "501072": {
     "template": "InfoLayerIcon",
     "name": "CQO_Rioters",
@@ -107666,6 +110042,30 @@
     "template": "InfoLayerIcon",
     "name": "QuestObject_NameOfObject",
     "english": "[Selection Picked Static Text]"
+  },
+  "501075": {
+    "template": "InfoTip",
+    "name": "Train Button InfoTip"
+  },
+  "501076": {
+    "template": "InfoTip",
+    "name": "ExpeditionStopInfoTip"
+  },
+  "501077": {
+    "template": "InfoTip",
+    "name": "NotUpgradeReasonFire"
+  },
+  "501078": {
+    "template": "InfoTip",
+    "name": "NotUpgradeReasonRiot"
+  },
+  "501079": {
+    "template": "InfoTip",
+    "name": "NotUpgradeReasonIllness"
+  },
+  "501081": {
+    "template": "InfoTip",
+    "name": "QuestbookCategoryInfoTip"
   },
   "501082": {
     "template": "Notification",
@@ -107682,6 +110082,18 @@
   "501085": {
     "template": "Notification",
     "name": "IncidentEndDestructionRiotIndustry"
+  },
+  "501086": {
+    "template": "InfoTip",
+    "name": "IslandPopulationHappinessInfoTip"
+  },
+  "501087": {
+    "template": "InfoTip",
+    "name": "MilitaryTakeoverDestroyButton"
+  },
+  "501088": {
+    "template": "InfoTip",
+    "name": "MilitaryTakeoverSpareButton"
   },
   "501089": {
     "template": "Icon",
@@ -107707,6 +110119,10 @@
     "template": "Icon",
     "name": "Buff_CultureItemSetResidence"
   },
+  "501098": {
+    "template": "InfoTip",
+    "name": "ExcessivePropagandaDebuffInfoTip"
+  },
   "501100": {
     "template": "ValueAssetMap",
     "name": "WarIndustryGlobalIconMap"
@@ -107731,6 +110147,10 @@
     "template": "ObjectmenuMilitary",
     "name": "ObjectmenuMilitaryScene"
   },
+  "501107": {
+    "template": "InfoTip",
+    "name": "ArmamentRepairRateInfoTip"
+  },
   "501109": {
     "template": "NewspaperEffectIcon",
     "name": "TaxIncomePositive"
@@ -107751,6 +110171,14 @@
     "template": "NewspaperEffectIcon",
     "name": "NoSurrenderPositive"
   },
+  "501115": {
+    "template": "InfoTip",
+    "name": "ArmamentProductionInfoTip"
+  },
+  "501116": {
+    "template": "InfoTip",
+    "name": "WarSpeechInfoTip"
+  },
   "501117": {
     "template": "Icon",
     "name": "MilitaryTakeoverSurrenderChance"
@@ -107766,6 +110194,22 @@
   "501120": {
     "template": "ValueAssetMap",
     "name": "NoSurrenderGlobalIconMap"
+  },
+  "501122": {
+    "template": "InfoTip",
+    "name": "ArchiveArticleInfoTip"
+  },
+  "501123": {
+    "template": "InfoTip",
+    "name": "SafetyInfoTip"
+  },
+  "501124": {
+    "template": "InfoTip",
+    "name": "RationalisationInfoTip"
+  },
+  "501125": {
+    "template": "InfoTip",
+    "name": "ConsumptionTaxInfoTip"
   },
   "501126": {
     "template": "Notification",
@@ -107802,6 +110246,14 @@
   "501134": {
     "template": "Notification",
     "name": "IncidentNewExplosionMob"
+  },
+  "501135": {
+    "template": "InfoTip",
+    "name": "Incident Chance InfoTip"
+  },
+  "501136": {
+    "template": "InfoTip",
+    "name": "Ship-CharterrouteDeleteInfotip"
   },
   "501137": {
     "template": "NewspaperEffectIcon",
@@ -107883,6 +110335,14 @@
     "template": "NewspaperEffectIcon",
     "name": "NoSurrenderVeryPositive"
   },
+  "501157": {
+    "template": "InfoTip",
+    "name": "Institution Standard Unit InfoTip"
+  },
+  "501158": {
+    "template": "InfoTip",
+    "name": "Institution Neighbourhood Watch Unit InfoTip"
+  },
   "501160": {
     "template": "Icon",
     "name": "Diplomacy Face Sad"
@@ -107894,6 +110354,26 @@
   "501162": {
     "template": "Icon",
     "name": "Diplomacy Face Happy"
+  },
+  "501163": {
+    "template": "InfoTip",
+    "name": "AllianceTreatyDescription"
+  },
+  "501164": {
+    "template": "InfoTip",
+    "name": "TradeRightsTreatyDescription"
+  },
+  "501165": {
+    "template": "InfoTip",
+    "name": "PeaceTreatyDescription"
+  },
+  "501166": {
+    "template": "InfoTip",
+    "name": "WarTreatyDescription"
+  },
+  "501168": {
+    "template": "InfoTip",
+    "name": "RequestCeasefire"
   },
   "501169": {
     "template": "Icon",
@@ -107911,6 +110391,22 @@
     "template": "Icon",
     "name": "Incident - Illness Healing"
   },
+  "501173": {
+    "template": "InfoTip",
+    "name": "TreatyButton"
+  },
+  "501174": {
+    "template": "InfoTip",
+    "name": "ActionButton"
+  },
+  "501177": {
+    "template": "InfoTip",
+    "name": "InfluenceGenerationInfoTip"
+  },
+  "501179": {
+    "template": "InfoTip",
+    "name": "MonumentStartPhaseButtonInfotip"
+  },
   "501180": {
     "template": "ValueAssetMap",
     "name": "IncidentProbabilityModifierText"
@@ -107923,6 +110419,22 @@
     "template": "Icon",
     "name": "Incident - Explosion Healing"
   },
+  "501183": {
+    "template": "InfoTip",
+    "name": "MilitaryComparison"
+  },
+  "501184": {
+    "template": "InfoTip",
+    "name": "EconomyComparison"
+  },
+  "501185": {
+    "template": "InfoTip",
+    "name": "Residence Influence InfoTip"
+  },
+  "501186": {
+    "template": "InfoTip",
+    "name": "RequestNonAggressionPact"
+  },
   "501189": {
     "template": "Notification",
     "name": "NotificationDiplomacy_CeasefireEndedInitiator"
@@ -107931,10 +110443,54 @@
     "template": "Notification",
     "name": "NotificationDiplomacy_NonAggressionPactEndedInitiator"
   },
+  "501191": {
+    "template": "InfoTip",
+    "name": "Institution Delayed Construction InfoTip"
+  },
+  "501192": {
+    "template": "InfoTip",
+    "name": "ShipPinButtonInfoTip"
+  },
+  "501193": {
+    "template": "InfoTip",
+    "name": "ShipMenu"
+  },
   "501194": {
     "template": "InfoLayerIcon",
     "name": "BuildableBluePrint",
     "english": "Blueprint building ready to be [..]"
+  },
+  "501195": {
+    "template": "InfoTip",
+    "name": "TradeRouteNotEnoughSlotsInfotip"
+  },
+  "501196": {
+    "template": "InfoTip",
+    "name": "TradeRouteNotEnoughStationsInfotip"
+  },
+  "501197": {
+    "template": "InfoTip",
+    "name": "TradeRouteInvalidStationInfotip"
+  },
+  "501198": {
+    "template": "InfoTip",
+    "name": "TradeRouteGoodWarningInfotip"
+  },
+  "501199": {
+    "template": "InfoTip",
+    "name": "TradeRouteNoGoodsInfotip"
+  },
+  "501200": {
+    "template": "InfoTip",
+    "name": "TradeRouteNoShipsInfotip"
+  },
+  "501201": {
+    "template": "InfoTip",
+    "name": "TradeRouteAllShipsPausedInfotip"
+  },
+  "501202": {
+    "template": "InfoTip",
+    "name": "TradeRouteLongWaitingTimeInfotip"
   },
   "501203": {
     "template": "Notification",
@@ -107943,6 +110499,14 @@
   "501204": {
     "template": "Notification",
     "name": "TradeRouteError"
+  },
+  "501205": {
+    "template": "InfoTip",
+    "name": "TradeRouteGeneralWarningInfotip"
+  },
+  "501206": {
+    "template": "InfoTip",
+    "name": "Cart Slot"
   },
   "501207": {
     "template": "MPLobbyScene",
@@ -107969,6 +110533,10 @@
     "name": "QuestObject_Pickup_Refugees",
     "english": "Rescue Refugees"
   },
+  "501213": {
+    "template": "InfoTip",
+    "name": "FestivalInfoTip"
+  },
   "501214": {
     "template": "Icon",
     "name": "Incident - Resolver Idle"
@@ -107981,6 +110549,42 @@
     "template": "Icon",
     "name": "Incident - Resolver Recruiting"
   },
+  "501220": {
+    "template": "InfoTip",
+    "name": "ExpeditionExchangeKontorInfotip"
+  },
+  "501221": {
+    "template": "InfoTip",
+    "name": "RequestAlliance_MP"
+  },
+  "501222": {
+    "template": "InfoTip",
+    "name": "RequestTradeRights_MP"
+  },
+  "501223": {
+    "template": "InfoTip",
+    "name": "RequestPeace_MP"
+  },
+  "501224": {
+    "template": "InfoTip",
+    "name": "RequestCeasefire_MP"
+  },
+  "501225": {
+    "template": "InfoTip",
+    "name": "RequestNonAggressionPact_MP"
+  },
+  "501226": {
+    "template": "InfoTip",
+    "name": "WaitUntilEmptyInfotip"
+  },
+  "501227": {
+    "template": "InfoTip",
+    "name": "WaitUntilEmptyDisabledInfotip"
+  },
+  "501228": {
+    "template": "InfoTip",
+    "name": "NpcOverview_MP"
+  },
   "501229": {
     "template": "Icon",
     "name": "Loading Slot Icon"
@@ -107992,6 +110596,10 @@
   "501232": {
     "template": "Target",
     "name": "Special Action Heal Incident"
+  },
+  "501233": {
+    "template": "InfoTip",
+    "name": "DiscoveredItemSetInfotip"
   },
   "501234": {
     "template": "Icon",
@@ -108078,6 +110686,10 @@
     "name": "colony01 sewing machines chain",
     "english": "Sewing Machines"
   },
+  "501255": {
+    "template": "InfoTip",
+    "name": "IslandPopulationInfoTip"
+  },
   "501259": {
     "template": "PlayerLogo",
     "name": "3rdPartyLogo_IsabelSarmento"
@@ -108107,6 +110719,66 @@
     "name": "Explode",
     "english": "Self-Destruct Active"
   },
+  "501269": {
+    "template": "InfoTip",
+    "name": "SpeedControlPauseInfotip"
+  },
+  "501270": {
+    "template": "InfoTip",
+    "name": "SpeedControlPlayNormalInfotip"
+  },
+  "501271": {
+    "template": "InfoTip",
+    "name": "SpeedControlPlayFastInfotip"
+  },
+  "501272": {
+    "template": "InfoTip",
+    "name": "SpeedControlPlayFastestInfotip"
+  },
+  "501273": {
+    "template": "InfoTip",
+    "name": "AchievementsCardInfotip"
+  },
+  "501274": {
+    "template": "InfoTip",
+    "name": "VictoryCondtionMonumentsInfoTip"
+  },
+  "501275": {
+    "template": "InfoTip",
+    "name": "VictoryConditionInvestorsInfoTip"
+  },
+  "501276": {
+    "template": "InfoTip",
+    "name": "VictoryConditionPopulationInfoTip"
+  },
+  "501277": {
+    "template": "InfoTip",
+    "name": "VictoryConditionWealthInfoTip"
+  },
+  "501278": {
+    "template": "InfoTip",
+    "name": "VictoryConditionIncomeInfoTip"
+  },
+  "501279": {
+    "template": "InfoTip",
+    "name": "VictoryConditionAllOrOneInfoTip"
+  },
+  "501280": {
+    "template": "InfoTip",
+    "name": "VictoryConditionSoleSurvivorInfoTip"
+  },
+  "501285": {
+    "template": "InfoTip",
+    "name": "CurrentUpgradeCost"
+  },
+  "501286": {
+    "template": "InfoTip",
+    "name": "Quest_Delete_InfoTip"
+  },
+  "501287": {
+    "template": "InfoTip",
+    "name": "Notification_Delete_InfoTip"
+  },
   "501288": {
     "template": "OnScreenTextScene",
     "name": "OnScreenTextScene"
@@ -108114,6 +110786,14 @@
   "501289": {
     "template": "Icon",
     "name": "No Civilization"
+  },
+  "501290": {
+    "template": "InfoTip",
+    "name": "CurrentRepairCost"
+  },
+  "501291": {
+    "template": "InfoTip",
+    "name": "CurrentBlueprintCost"
   },
   "501292": {
     "template": "InfoLayerIcon",
@@ -108140,10 +110820,30 @@
     "template": "PlayerLogo",
     "name": "3rdPartyLogo_OldNate"
   },
+  "501298": {
+    "template": "InfoTip",
+    "name": "VictoryConditionDiplomaticInfoTip"
+  },
   "501299": {
     "template": "InfoLayerIcon",
     "name": "QuestObject_DeliverGoods_PickedUp",
     "english": "Produce goods and deliver here"
+  },
+  "501300": {
+    "template": "InfoTip",
+    "name": "UndiscoveredItemSetInfotip"
+  },
+  "501301": {
+    "template": "InfoTip",
+    "name": "CompletedItemSetInfotip"
+  },
+  "501302": {
+    "template": "InfoTip",
+    "name": "DifficultySettingsLoadInfoTip"
+  },
+  "501303": {
+    "template": "InfoTip",
+    "name": "DifficultySettingsSaveInfoTip"
   },
   "501304": {
     "template": "InfoLayerIcon",
@@ -108392,6 +111092,10 @@
     "template": "Icon",
     "name": "Noti Unlock Icon"
   },
+  "501383": {
+    "template": "InfoTip",
+    "name": "MapTypeInfoTip"
+  },
   "501384": {
     "template": "Icon",
     "name": "ExpeditionCardBackgroundWildlifePolar"
@@ -108579,6 +111283,10 @@
     "name": "TutorialStarterObject",
     "english": "Tutorial Quest"
   },
+  "501458": {
+    "template": "InfoTip",
+    "name": "ExpeditionStartInfotip"
+  },
   "501462": {
     "template": "Notification",
     "name": "Attractiveness_05_old(Do not delete!)"
@@ -108634,6 +111342,10 @@
   "501475": {
     "template": "Notification",
     "name": "Attractiveness_18_old(Do not delete!)"
+  },
+  "501476": {
+    "template": "InfoTip",
+    "name": "ExpeditionDecisionInfotipNoAttribute"
   },
   "501477": {
     "template": "LoadingScene",
@@ -108764,6 +111476,22 @@
     "template": "PlayerLogo",
     "name": "player_logo_reward_to_the_moon"
   },
+  "501520": {
+    "template": "InfoTip",
+    "name": "PickupGoodsInfoTip"
+  },
+  "501521": {
+    "template": "InfoTip",
+    "name": "PortraitInfoTip"
+  },
+  "501522": {
+    "template": "InfoTip",
+    "name": "MonumentEventSizeInfotip"
+  },
+  "501523": {
+    "template": "InfoTip",
+    "name": "MonumentEventRewardsChestInfotip"
+  },
   "501524": {
     "template": "Icon",
     "name": "MineralInput"
@@ -108776,9 +111504,17 @@
     "template": "Icon",
     "name": "LandInput"
   },
+  "501527": {
+    "template": "InfoTip",
+    "name": "Quest_Reward_Reputation_Infotip"
+  },
   "501529": {
     "template": "Icon",
     "name": "Transporter Travelling"
+  },
+  "501530": {
+    "template": "InfoTip",
+    "name": "OpenHostileTakeoverButton"
   },
   "501531": {
     "template": "Notification",
@@ -108878,9 +111614,21 @@
     "template": "Icon",
     "name": "No Player"
   },
+  "501556": {
+    "template": "InfoTip",
+    "name": "BuildingMenuBlueprintOff"
+  },
+  "501557": {
+    "template": "InfoTip",
+    "name": "BuildingMenuCategorySwitchType"
+  },
   "501558": {
     "template": "MouseCursor",
     "name": "CursorWalkActive"
+  },
+  "501559": {
+    "template": "InfoTip",
+    "name": "LodesInfoTip"
   },
   "501560": {
     "template": "Icon",
@@ -108897,6 +111645,10 @@
   "501563": {
     "template": "PlayerLogo",
     "name": "player_logo_reward_anno_union.png"
+  },
+  "501564": {
+    "template": "InfoTip",
+    "name": "MilitaryTakeoverIslandImmunity"
   },
   "501565": {
     "template": "Icon",
@@ -109018,9 +111770,133 @@
     "template": "Icon",
     "name": "Transporter Travelling Empty"
   },
+  "501596": {
+    "template": "InfoTip",
+    "name": "Visitor Status Infotip with SelectionObjectArea"
+  },
   "501597": {
     "template": "Notification",
     "name": "MilitaryTakeoverStarted_Bystander"
+  },
+  "501598": {
+    "template": "InfoTip",
+    "name": "Resolution_InfoTip"
+  },
+  "501599": {
+    "template": "InfoTip",
+    "name": "GraphicAdapter_InfoTip"
+  },
+  "501600": {
+    "template": "InfoTip",
+    "name": "DirectX_InfoTip"
+  },
+  "501601": {
+    "template": "InfoTip",
+    "name": "Window_InfoTip"
+  },
+  "501602": {
+    "template": "InfoTip",
+    "name": "GraphicQuality_InfoTip"
+  },
+  "501603": {
+    "template": "InfoTip",
+    "name": "AdjustGamma_InfoTip"
+  },
+  "501604": {
+    "template": "InfoTip",
+    "name": "V-Sync_InfoTip"
+  },
+  "501605": {
+    "template": "InfoTip",
+    "name": "AntiAliasing_InfoTip"
+  },
+  "501606": {
+    "template": "InfoTip",
+    "name": "Texture_InfoTip"
+  },
+  "501607": {
+    "template": "InfoTip",
+    "name": "Shader_InfoTip"
+  },
+  "501608": {
+    "template": "InfoTip",
+    "name": "Lighting_InfoTip"
+  },
+  "501609": {
+    "template": "InfoTip",
+    "name": "Shadow_InfoTip"
+  },
+  "501610": {
+    "template": "InfoTip",
+    "name": "Water_InfoTip"
+  },
+  "501611": {
+    "template": "InfoTip",
+    "name": "PostProcessing_InfoTip"
+  },
+  "501612": {
+    "template": "InfoTip",
+    "name": "ObjectQuality_InfoTip"
+  },
+  "501613": {
+    "template": "InfoTip",
+    "name": "ViewDistance_InfoTip"
+  },
+  "501614": {
+    "template": "InfoTip",
+    "name": "TerrainQuality_InfoTip"
+  },
+  "501615": {
+    "template": "InfoTip",
+    "name": "FixSun_InfoTip"
+  },
+  "501616": {
+    "template": "InfoTip",
+    "name": "Crowds_InfoTip"
+  },
+  "501617": {
+    "template": "InfoTip",
+    "name": "Audios_InfoTip"
+  },
+  "501618": {
+    "template": "InfoTip",
+    "name": "Controls_Changable_InfoTip"
+  },
+  "501619": {
+    "template": "InfoTip",
+    "name": "TextLanguage_InfoTip"
+  },
+  "501620": {
+    "template": "InfoTip",
+    "name": "AudioLanguage_InfoTip"
+  },
+  "501621": {
+    "template": "InfoTip",
+    "name": "FreeCamera_InfoTip"
+  },
+  "501622": {
+    "template": "InfoTip",
+    "name": "ConstructionGrid_InfoTip"
+  },
+  "501623": {
+    "template": "InfoTip",
+    "name": "InfoOverlays_InfoTip"
+  },
+  "501624": {
+    "template": "InfoTip",
+    "name": "UpgradeInfoOverlay_InfoTip"
+  },
+  "501625": {
+    "template": "InfoTip",
+    "name": "ProductionChain_InfoTip"
+  },
+  "501626": {
+    "template": "InfoTip",
+    "name": "Autosave_InfoTip"
+  },
+  "501627": {
+    "template": "InfoTip",
+    "name": "AutoBlueprint_InfoTip"
   },
   "501628": {
     "template": "MouseCursor",
@@ -109029,6 +111905,14 @@
   "501629": {
     "template": "MouseCursor",
     "name": "CursorgGuardActive"
+  },
+  "501630": {
+    "template": "InfoTip",
+    "name": "Subtitle_InfoTip"
+  },
+  "501631": {
+    "template": "InfoTip",
+    "name": "Rightclick_InfoTip"
   },
   "501633": {
     "template": "Icon",
@@ -109103,6 +111987,50 @@
     "template": "Icon",
     "name": "Cargo Slot Icon"
   },
+  "501667": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeWarships"
+  },
+  "501668": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeDefenseTowers"
+  },
+  "501669": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeTradeShips"
+  },
+  "501670": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeCharterRoutes"
+  },
+  "501671": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeIslands"
+  },
+  "501672": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeCommuterPiers"
+  },
+  "501673": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeZooModules"
+  },
+  "501674": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeMuseumModules"
+  },
+  "501675": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeTradeUnions"
+  },
+  "501676": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeTownHalls"
+  },
+  "501677": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeHarbourmasterOffices"
+  },
   "501678": {
     "template": "Icon",
     "name": "Transfer Slot Icon"
@@ -109127,6 +112055,14 @@
     "template": "Icon",
     "name": "WorldMap Background"
   },
+  "501686": {
+    "template": "InfoTip",
+    "name": "EnableTutorial_InfoTip"
+  },
+  "501687": {
+    "template": "InfoTip",
+    "name": "InfluenceBuffInfotip"
+  },
   "501688": {
     "template": "Notification",
     "name": "MilitaryResultNotification"
@@ -109134,6 +112070,10 @@
   "501689": {
     "template": "Notification",
     "name": "NotificationInfluenceSpecializationGainedBanner"
+  },
+  "501690": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTipFreeShares"
   },
   "501692": {
     "template": "ConstructionCategory",
@@ -109168,6 +112108,10 @@
     "template": "Icon",
     "name": "Islandstorage Icon"
   },
+  "501704": {
+    "template": "InfoTip",
+    "name": "MonumentEventInvestmentInfotip"
+  },
   "501705": {
     "template": "Icon",
     "name": "Gear Icon"
@@ -109200,6 +112144,18 @@
     "template": "Icon",
     "name": "Accept all goods Icon"
   },
+  "501714": {
+    "template": "InfoTip",
+    "name": "SafetyInfoTipRegular"
+  },
+  "501715": {
+    "template": "InfoTip",
+    "name": "RationalisationInfoTipRegular"
+  },
+  "501716": {
+    "template": "InfoTip",
+    "name": "ConsumptionTaxInfoTipRegular"
+  },
   "501719": {
     "template": "Icon",
     "name": "Shares Buy"
@@ -109224,6 +112180,14 @@
     "template": "PlayerLogo",
     "name": "player_logo_se_04.png"
   },
+  "501726": {
+    "template": "InfoTip",
+    "name": "LoadSettingsInfoTip"
+  },
+  "501727": {
+    "template": "InfoTip",
+    "name": "SaveSettingsInfoTip"
+  },
   "501728": {
     "template": "PauseMenuScene",
     "name": "PauseMenuScene"
@@ -109231,6 +112195,10 @@
   "501729": {
     "template": "Notification",
     "name": "IslandSettledByOtherParticipant"
+  },
+  "501731": {
+    "template": "InfoTip",
+    "name": "TradeRouteMismatchingGoodInfotip"
   },
   "501732": {
     "template": "InfoLayerIcon",
@@ -109248,6 +112216,10 @@
   "501735": {
     "template": "Target",
     "name": "Guard"
+  },
+  "501736": {
+    "template": "InfoTip",
+    "name": "BuyEverythingCardInfotip"
   },
   "501737": {
     "template": "ValueAssetMap",
@@ -109293,6 +112265,10 @@
     "template": "Notification",
     "name": "Session discovered Sunken Treasure"
   },
+  "501749": {
+    "template": "InfoTip",
+    "name": "DLCInfoTip"
+  },
   "501750": {
     "template": "Icon",
     "name": "ExcavationSitePhase0"
@@ -109312,6 +112288,14 @@
   "501754": {
     "template": "Icon",
     "name": "ExcavationSitePhase2Completed"
+  },
+  "501755": {
+    "template": "InfoTip",
+    "name": "Controls_Unchangable_InfoTip"
+  },
+  "501759": {
+    "template": "InfoTip",
+    "name": "ChatSizes_InfoTip"
   },
   "501762": {
     "template": "Icon",
@@ -109343,6 +112327,26 @@
     "template": "Icon",
     "name": "SunkenTreasures Background"
   },
+  "501772": {
+    "template": "InfoTip",
+    "name": "MinimumStock"
+  },
+  "501773": {
+    "template": "InfoTip",
+    "name": "BuyOrTradeButton"
+  },
+  "501774": {
+    "template": "InfoTip",
+    "name": "SellButton"
+  },
+  "501775": {
+    "template": "InfoTip",
+    "name": "BuyButton"
+  },
+  "501776": {
+    "template": "InfoTip",
+    "name": "NoTradeButton"
+  },
   "501777": {
     "template": "Icon",
     "name": "Reserved Icon"
@@ -109364,6 +112368,18 @@
     "template": "InfoLayerIcon",
     "name": "Minelaying_Red",
     "english": "Deploying Mines"
+  },
+  "501783": {
+    "template": "InfoTip",
+    "name": "RoutesCancelFilter"
+  },
+  "501784": {
+    "template": "InfoTip",
+    "name": "RoutesMapFilter"
+  },
+  "501785": {
+    "template": "InfoTip",
+    "name": "RoutesMagnifier"
   },
   "501786": {
     "template": "Notification",
@@ -109402,6 +112418,14 @@
     "name": "PirateKontor",
     "english": "Repairing"
   },
+  "501796": {
+    "template": "InfoTip",
+    "name": "CharterRoutesIslandNotOwned"
+  },
+  "501797": {
+    "template": "InfoTip",
+    "name": "ShipTransmuteInfotip"
+  },
   "501798": {
     "template": "Notification",
     "name": "MyShare_OtherIsland_CanStartTakeover"
@@ -109434,6 +112458,30 @@
     "template": "Notification",
     "name": "OtherShare_IslandOwnedByShareBuyer -f"
   },
+  "501807": {
+    "template": "InfoTip",
+    "name": "NightDayPauseInfotip"
+  },
+  "501808": {
+    "template": "InfoTip",
+    "name": "NightDayButtonInfotip"
+  },
+  "501809": {
+    "template": "InfoTip",
+    "name": "NightDayDawnButtonInfotip"
+  },
+  "501810": {
+    "template": "InfoTip",
+    "name": "NightDayNoonButtonInfotip"
+  },
+  "501811": {
+    "template": "InfoTip",
+    "name": "NightDayNightButtonInfotip"
+  },
+  "501812": {
+    "template": "InfoTip",
+    "name": "NightDayTimeInfotip"
+  },
   "501813": {
     "template": "Icon",
     "name": "Daytime Dawn"
@@ -109454,6 +112502,10 @@
     "template": "InfoLayerIcon",
     "name": "VisitorCollectable",
     "english": "Visitor waiting"
+  },
+  "501818": {
+    "template": "InfoTip",
+    "name": "NightDayDuskButtonInfotip"
   },
   "501819": {
     "template": "Icon",
@@ -109552,9 +112604,17 @@
     "template": "Icon",
     "name": "Noti BuildPermit Icon"
   },
+  "501845": {
+    "template": "InfoTip",
+    "name": "Cultural Connectors InfoTip"
+  },
   "501847": {
     "template": "Icon",
     "name": "Pathways Icon"
+  },
+  "501849": {
+    "template": "InfoTip",
+    "name": "Music Pavilion Switch InfoTip"
   },
   "501850": {
     "template": "MouseCursor",
@@ -109564,13 +112624,49 @@
     "template": "MouseCursor",
     "name": "PatrolActive"
   },
+  "501852": {
+    "template": "InfoTip",
+    "name": "Music Pavilion Switch Stop InfoTip"
+  },
   "501853": {
     "template": "ValueAssetMap",
     "name": "Trade Chance Mapping"
   },
+  "501854": {
+    "template": "InfoTip",
+    "name": "ProductionGood_Infotip"
+  },
+  "501855": {
+    "template": "InfoTip",
+    "name": "WarehouseGood_Infotip"
+  },
   "501856": {
     "template": "ProductFilter",
     "name": "Filter by Good Type - Statistic Menu"
+  },
+  "501857": {
+    "template": "InfoTip",
+    "name": "Production Output Heat InfoTip"
+  },
+  "501858": {
+    "template": "InfoTip",
+    "name": "ProductionGraph_01_Infotip"
+  },
+  "501859": {
+    "template": "InfoTip",
+    "name": "PopulationGraph_01_Infotip"
+  },
+  "501860": {
+    "template": "InfoTip",
+    "name": "PopulationGraph_02_Infotip"
+  },
+  "501861": {
+    "template": "InfoTip",
+    "name": "StorageGraph_01_Infotip"
+  },
+  "501862": {
+    "template": "InfoTip",
+    "name": "FinanceGraph_01_Infotip"
   },
   "501863": {
     "template": "Target",
@@ -109612,6 +112708,162 @@
     "template": "Icon",
     "name": "Difficulty - Building Relocation"
   },
+  "501874": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_01_Infotip"
+  },
+  "501875": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_02_Infotip"
+  },
+  "501876": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_03_Infotip"
+  },
+  "501877": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_04_Infotip"
+  },
+  "501878": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_01_Infotip"
+  },
+  "501879": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_02_Infotip"
+  },
+  "501880": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_03_Infotip"
+  },
+  "501881": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_04_Infotip"
+  },
+  "501882": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_05_Infotip"
+  },
+  "501883": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_06_Infotip"
+  },
+  "501884": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_07_Infotip"
+  },
+  "501885": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_08_Infotip"
+  },
+  "501886": {
+    "template": "InfoTip",
+    "name": "PopulationFilter_01_Infotip"
+  },
+  "501887": {
+    "template": "InfoTip",
+    "name": "PopulationFilter_02_Infotip"
+  },
+  "501888": {
+    "template": "InfoTip",
+    "name": "PopulationFilter_03_Infotip"
+  },
+  "501889": {
+    "template": "InfoTip",
+    "name": "PopulationFilter_04_Infotip"
+  },
+  "501890": {
+    "template": "InfoTip",
+    "name": "StorageFilter_01_Infotip"
+  },
+  "501891": {
+    "template": "InfoTip",
+    "name": "StorageFilter_02_Infotip"
+  },
+  "501892": {
+    "template": "InfoTip",
+    "name": "StorageFilter_03_Infotip"
+  },
+  "501893": {
+    "template": "InfoTip",
+    "name": "StorageFilter_04_Infotip"
+  },
+  "501894": {
+    "template": "InfoTip",
+    "name": "StorageFilter_05_Infotip"
+  },
+  "501895": {
+    "template": "InfoTip",
+    "name": "Coop Menu Marker"
+  },
+  "501896": {
+    "template": "InfoTip",
+    "name": "Marker Button"
+  },
+  "501897": {
+    "template": "InfoTip",
+    "name": "Marker Notification Bubble"
+  },
+  "501898": {
+    "template": "InfoTip",
+    "name": "DLC Activation"
+  },
+  "501900": {
+    "template": "InfoTip",
+    "name": "Coop Name Field"
+  },
+  "501901": {
+    "template": "InfoTip",
+    "name": "Mute player button"
+  },
+  "501902": {
+    "template": "InfoTip",
+    "name": "Mute own audio"
+  },
+  "501903": {
+    "template": "InfoTip",
+    "name": "Mute own microphone"
+  },
+  "501904": {
+    "template": "InfoTip",
+    "name": "Options Button"
+  },
+  "501905": {
+    "template": "InfoTip",
+    "name": "Invite Player"
+  },
+  "501906": {
+    "template": "InfoTip",
+    "name": "Switch to Slot"
+  },
+  "501907": {
+    "template": "InfoTip",
+    "name": "Add AI"
+  },
+  "501908": {
+    "template": "InfoTip",
+    "name": "Request Slot Swap"
+  },
+  "501909": {
+    "template": "InfoTip",
+    "name": "Kick Player"
+  },
+  "501910": {
+    "template": "InfoTip",
+    "name": "Cancel Invite"
+  },
+  "501911": {
+    "template": "InfoTip",
+    "name": "Coop Players"
+  },
+  "501912": {
+    "template": "InfoTip",
+    "name": "ExpeditionDecisionInfotipBribe"
+  },
+  "501913": {
+    "template": "InfoTip",
+    "name": "ExpeditionDecisionInfotipOffering"
+  },
   "501914": {
     "template": "ChatNotificationScene",
     "name": "ChatNotificationScene"
@@ -109641,6 +112893,18 @@
     "template": "Icon",
     "name": "Incident - Ranger"
   },
+  "501923": {
+    "template": "InfoTip",
+    "name": "ShipFilter_01_Infotip"
+  },
+  "501924": {
+    "template": "InfoTip",
+    "name": "ShipFilter_02_Infotip"
+  },
+  "501925": {
+    "template": "InfoTip",
+    "name": "Chat Notifications Button"
+  },
   "501926": {
     "template": "MouseCursor",
     "name": "CoopPing"
@@ -109649,6 +112913,22 @@
     "template": "MouseCursor",
     "name": "CoopPingActive"
   },
+  "501928": {
+    "template": "InfoTip",
+    "name": "PaMSyFilterExpedition_InfoTip"
+  },
+  "501929": {
+    "template": "InfoTip",
+    "name": "PaMSyFilterNewspaper_InfoTip"
+  },
+  "501930": {
+    "template": "InfoTip",
+    "name": "PaMSyFilterDiplomacy_InfoTip"
+  },
+  "501932": {
+    "template": "InfoTip",
+    "name": "Access_Statistics_Infotip"
+  },
   "501933": {
     "template": "Icon",
     "name": "Statistic Icon"
@@ -109656,6 +112936,22 @@
   "501934": {
     "template": "Icon",
     "name": "All Goods Icon"
+  },
+  "501935": {
+    "template": "InfoTip",
+    "name": "Marker Notification Bubble Options"
+  },
+  "501936": {
+    "template": "InfoTip",
+    "name": "SessionswitchInfoTip"
+  },
+  "501937": {
+    "template": "InfoTip",
+    "name": "Monument Input Goods InfoTip"
+  },
+  "501938": {
+    "template": "InfoTip",
+    "name": "Not All Ready"
   },
   "501940": {
     "template": "Icon",
@@ -109673,6 +112969,26 @@
   "501943": {
     "template": "TextPopup",
     "name": "TextPopup"
+  },
+  "501944": {
+    "template": "InfoTip",
+    "name": "Invite Same"
+  },
+  "501945": {
+    "template": "InfoTip",
+    "name": "Invite Different"
+  },
+  "501946": {
+    "template": "InfoTip",
+    "name": "Blocked Slot"
+  },
+  "501947": {
+    "template": "InfoTip",
+    "name": "Defeated Slot"
+  },
+  "501949": {
+    "template": "InfoTip",
+    "name": "Public Game Info"
   },
   "501950": {
     "template": "LockableNotification",
@@ -109749,6 +113065,78 @@
   "501970": {
     "template": "Icon",
     "name": "DifficultyLight - Minerals"
+  },
+  "501972": {
+    "template": "InfoTip",
+    "name": "Island Bar Co-op Group"
+  },
+  "501973": {
+    "template": "InfoTip",
+    "name": "DLC preventing start"
+  },
+  "501975": {
+    "template": "InfoTip",
+    "name": "ProductionGraph_02_Infotip"
+  },
+  "501976": {
+    "template": "InfoTip",
+    "name": "DLCActivationExplanationInfoTip"
+  },
+  "501978": {
+    "template": "InfoTip",
+    "name": "PopulationFilter_05_Infotip"
+  },
+  "501979": {
+    "template": "InfoTip",
+    "name": "PopulationFilter_06_Infotip"
+  },
+  "501980": {
+    "template": "InfoTip",
+    "name": "PopulationFilter_07_Infotip"
+  },
+  "501981": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_09_Infotip"
+  },
+  "501982": {
+    "template": "InfoTip",
+    "name": "ProductionFilter_10_Infotip"
+  },
+  "501983": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_05_Infotip"
+  },
+  "501984": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_06_Infotip"
+  },
+  "501985": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_07_Infotip"
+  },
+  "501986": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_08_Infotip"
+  },
+  "501987": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_09_Infotip"
+  },
+  "501988": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_10_Infotip"
+  },
+  "501989": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_11_Infotip"
+  },
+  "501990": {
+    "template": "InfoTip",
+    "name": "FinanceFilter_12_Infotip"
+  },
+  "501991": {
+    "template": "InfoTip",
+    "name": "StorageFilter_06_Infotip"
   },
   "501992": {
     "template": "ProductList",
@@ -109986,6 +113374,46 @@
     "template": "ProductList",
     "name": "AllRawMaterials_ArcticSort"
   },
+  "502055": {
+    "template": "InfoTip",
+    "name": "DLC Load Disabled Locked"
+  },
+  "502056": {
+    "template": "InfoTip",
+    "name": "DLC Load Enabled Locked"
+  },
+  "502057": {
+    "template": "InfoTip",
+    "name": "DLC Load Disabled"
+  },
+  "502058": {
+    "template": "InfoTip",
+    "name": "CommuterPier"
+  },
+  "502059": {
+    "template": "InfoTip",
+    "name": "SearchField_Infotip"
+  },
+  "502060": {
+    "template": "InfoTip",
+    "name": "Cannot Confirm AI"
+  },
+  "502061": {
+    "template": "InfoTip",
+    "name": "Filter_General_on/off_Infotip"
+  },
+  "502062": {
+    "template": "InfoTip",
+    "name": "Filter_Demand_on/off_Infotip"
+  },
+  "502063": {
+    "template": "InfoTip",
+    "name": "Filter_Supply_on/off_Infotip"
+  },
+  "502064": {
+    "template": "InfoTip",
+    "name": "BlueprintUpgradeButtonMainOnlyInfoTip"
+  },
   "502065": {
     "template": "ProductList",
     "name": "AllGoodsUnlock_EuropeSort_WithoutOil"
@@ -110070,6 +113498,14 @@
     "template": "ProductFilter",
     "name": "Filter by Good Type - KontorAfrica"
   },
+  "502088": {
+    "template": "InfoTip",
+    "name": "Join Button"
+  },
+  "502089": {
+    "template": "InfoTip",
+    "name": "InfluenceInfoTip"
+  },
   "502090": {
     "template": "ObjectmenuPalace",
     "name": "ObjectmenuPalaceScene"
@@ -110082,14 +113518,30 @@
     "template": "Notification",
     "name": "Attractiveness_New"
   },
+  "502096": {
+    "template": "InfoTip",
+    "name": "QuestBook_CampaignFilter_InfoTip"
+  },
   "502097": {
     "template": "InfoLayerIcon",
     "name": "NoTrafficConnection",
     "english": "No Street Connection"
   },
+  "502102": {
+    "template": "InfoTip",
+    "name": "Attractiveness Infotip"
+  },
   "502103": {
     "template": "ItemKeywords",
     "name": "ItemKeywords"
+  },
+  "502104": {
+    "template": "InfoTip",
+    "name": "ShowElectricityPoles_InfoTip"
+  },
+  "502106": {
+    "template": "InfoTip",
+    "name": "OilHarbour-BlockedSegmentInfotip"
   },
   "502107": {
     "template": "ConstructionCategory",
@@ -110111,6 +113563,10 @@
   "502111": {
     "template": "Icon",
     "name": "Arctic Station Background"
+  },
+  "502113": {
+    "template": "InfoTip",
+    "name": "Ship-SelectSkinInfotip"
   },
   "502114": {
     "template": "Icon",
@@ -110147,6 +113603,10 @@
   "502122": {
     "template": "Icon",
     "name": "Productivity_Monument"
+  },
+  "502123": {
+    "template": "InfoTip",
+    "name": "Train-SelectSkinInfotip"
   },
   "502124": {
     "template": "Icon",
@@ -110193,6 +113653,14 @@
     "template": "ConstructionCategory",
     "name": "CDLC 02 - Amusement Park Menu",
     "english": "Amusements Pack"
+  },
+  "502139": {
+    "template": "InfoTip",
+    "name": "EdgeScrolling_InfoTip"
+  },
+  "502140": {
+    "template": "InfoTip",
+    "name": "ShipORTrain-SkinInfotip"
   },
   "502141": {
     "template": "Notification",
@@ -110246,6 +113714,18 @@
     "template": "Notification",
     "name": "BuyShipRequestNotification_Angereb"
   },
+  "502155": {
+    "template": "InfoTip",
+    "name": "AutoAcceptVisitors_InfoTip"
+  },
+  "502156": {
+    "template": "InfoTip",
+    "name": "AutomatedPublishEditInfotip"
+  },
+  "502157": {
+    "template": "InfoTip",
+    "name": "AutomatedPublishArchivesInfotip"
+  },
   "502158": {
     "template": "Notification",
     "name": "FleetEnteredSession"
@@ -110263,6 +113743,10 @@
     "name": "CDLC 03 - City Lights Menu",
     "english": "City Lights Pack"
   },
+  "502167": {
+    "template": "InfoTip",
+    "name": "ShipNoSessionsAvailable"
+  },
   "502168": {
     "template": "ProductList",
     "name": "ConstructionMaterials_AfricaSort"
@@ -110275,6 +113759,14 @@
     "template": "Icon",
     "name": "EmptyItemSlotIcon"
   },
+  "502171": {
+    "template": "InfoTip",
+    "name": "MaintenanceResearchCentre Infotip"
+  },
+  "502172": {
+    "template": "InfoTip",
+    "name": "Multiselect_Infotip"
+  },
   "502173": {
     "template": "InfoLayerIcon",
     "name": "ResidentSelectObject_NoInfolayer",
@@ -110284,9 +113776,65 @@
     "template": "ProductList",
     "name": "ScrapForInKontorFilter"
   },
+  "502176": {
+    "template": "InfoTip",
+    "name": "Ship-ChangingSession_SendtoSpecificSession"
+  },
+  "502177": {
+    "template": "InfoTip",
+    "name": "Ship-ChangingSession_ShowIslands"
+  },
+  "502178": {
+    "template": "InfoTip",
+    "name": "Ship-ChangingSession_SendtoSpecificIsland"
+  },
+  "502181": {
+    "template": "InfoTip",
+    "name": "Ship-SelectSkinVariationInfotip"
+  },
   "502182": {
     "template": "Notification",
     "name": "SellShipRequestNotification_Waha"
+  },
+  "502183": {
+    "template": "InfoTip",
+    "name": "SearchFieldItems_Infotip"
+  },
+  "502184": {
+    "template": "InfoTip",
+    "name": "ExpeditionTutorialInfotipMoral"
+  },
+  "502185": {
+    "template": "InfoTip",
+    "name": "ExpeditionTutorialInfotipRations"
+  },
+  "502186": {
+    "template": "InfoTip",
+    "name": "ExpeditionTutorialInfotipThreats"
+  },
+  "502187": {
+    "template": "InfoTip",
+    "name": "ExpeditionTutorialInfotipAttributes"
+  },
+  "502188": {
+    "template": "InfoTip",
+    "name": "ExpeditionTutorialInfotipGoodsAttributes"
+  },
+  "502189": {
+    "template": "InfoTip",
+    "name": "ExpeditionTutorialInfotipChoices"
+  },
+  "502190": {
+    "template": "InfoTip",
+    "name": "ExpeditionTutorialInfotipOutcomes"
+  },
+  "502191": {
+    "template": "InfoTip",
+    "name": "ExpeditionTutorialInfotipDifficulty"
+  },
+  "502192": {
+    "template": "InfoTip",
+    "name": "ExpeditionTutorialInfotipShipSelection"
   },
   "502193": {
     "template": "Target",
@@ -110304,6 +113852,14 @@
   "502196": {
     "template": "MouseCursor",
     "name": "CursorDowngradeDisabled"
+  },
+  "502197": {
+    "template": "InfoTip",
+    "name": "Inactive DLC Set Infotip"
+  },
+  "502198": {
+    "template": "InfoTip",
+    "name": "UpgradeToolInfotip"
   },
   "502199": {
     "template": "InfoLayerIcon",
@@ -110438,6 +113994,10 @@
     "template": "StaticHelpTopic",
     "name": "Help_Dockland_ImportExport_Topic"
   },
+  "502248": {
+    "template": "InfoTip",
+    "name": "Variations Infotip"
+  },
   "502249": {
     "template": "KeywordFilter",
     "name": "Keyword_Import_Filter"
@@ -110458,13 +114018,41 @@
     "template": "Icon",
     "name": "LoadingSpeed_3D"
   },
+  "502256": {
+    "template": "InfoTip",
+    "name": "LoadingSpeedInfoTip"
+  },
+  "502257": {
+    "template": "InfoTip",
+    "name": "LoadingSpeedBonusInfoTip"
+  },
   "502258": {
     "template": "MaintenanceBarConfig",
     "name": "MaintenanceBarConfig"
   },
+  "502260": {
+    "template": "InfoTip",
+    "name": "ExpeditionDiscardInfotipShort"
+  },
+  "502261": {
+    "template": "InfoTip",
+    "name": "ExpeditionOpenInfotipShort"
+  },
   "502262": {
     "template": "Icon",
     "name": "Health yellow"
+  },
+  "502263": {
+    "template": "InfoTip",
+    "name": "Expedition_Delete_InfoTip"
+  },
+  "502265": {
+    "template": "InfoTip",
+    "name": "EventCategoryInfoTip"
+  },
+  "502269": {
+    "template": "InfoTip",
+    "name": "EventCategoryInfoTip"
   },
   "502270": {
     "template": "Notification",
@@ -110493,6 +114081,10 @@
   "502285": {
     "template": "MonumentScene",
     "name": "MonumentScene"
+  },
+  "502286": {
+    "template": "InfoTip",
+    "name": "Gift_MPGreyedOut"
   },
   "502287": {
     "template": "ObjectMenuResidenceSceneHappinessConfig",
@@ -110530,6 +114122,34 @@
     "template": "Icon",
     "name": "Happiness_Debuff_Hotspot"
   },
+  "502298": {
+    "template": "InfoTip",
+    "name": "Resi Buff Attractivity InfoTip"
+  },
+  "502299": {
+    "template": "InfoTip",
+    "name": "Resi Buff Hotspots InfoTip"
+  },
+  "502300": {
+    "template": "InfoTip",
+    "name": "Resi Debuff Attractivity InfoTip"
+  },
+  "502301": {
+    "template": "InfoTip",
+    "name": "Resi Debuff Hotspots InfoTip"
+  },
+  "502302": {
+    "template": "InfoTip",
+    "name": "Resi Debuff Needs InfoTip"
+  },
+  "502303": {
+    "template": "InfoTip",
+    "name": "Resi Debuff War InfoTip"
+  },
+  "502304": {
+    "template": "InfoTip",
+    "name": "Resi Debuff Newspaper InfoTip"
+  },
   "502305": {
     "template": "Icon",
     "name": "Happiness_Hotspot"
@@ -110560,6 +114180,14 @@
     "name": "WorkforceTouristsCritical",
     "english": "No Customers"
   },
+  "502313": {
+    "template": "InfoTip",
+    "name": "Gift_MP"
+  },
+  "502330": {
+    "template": "InfoTip",
+    "name": "SpeedControlSlowDownInfotip"
+  },
   "502331": {
     "template": "Notification",
     "name": "ShipReachedTargetPosition"
@@ -110567,6 +114195,14 @@
   "502332": {
     "template": "Notification",
     "name": "FleetReachedTargetPosition"
+  },
+  "502333": {
+    "template": "InfoTip",
+    "name": "Ship-NotifyShipMovementInfotip"
+  },
+  "502334": {
+    "template": "InfoTip",
+    "name": "ActionButton_MP"
   },
   "502335": {
     "template": "ConstructionCategory",
@@ -110587,6 +114223,10 @@
     "template": "ConstructionCategory",
     "name": "sa natural trees",
     "english": "Tropical Forest"
+  },
+  "502340": {
+    "template": "InfoTip",
+    "name": "BuildingSkin Infotip"
   },
   "502343": {
     "template": "Icon",
@@ -110636,6 +114276,10 @@
     "template": "Icon",
     "name": "Hommard Lit de Terroir Icon"
   },
+  "502356": {
+    "template": "InfoTip",
+    "name": "NotHappyReasonAttractiveness"
+  },
   "502357": {
     "template": "Icon",
     "name": "VenisonTartare Icon"
@@ -110660,9 +114304,85 @@
     "template": "Icon",
     "name": "EnbesaSunrise Icon"
   },
+  "502374": {
+    "template": "InfoTip",
+    "name": "GenerateWorkforceInfotip"
+  },
+  "502379": {
+    "template": "InfoTip",
+    "name": "HiScGlobalProductionScoreInfotip"
+  },
+  "502380": {
+    "template": "InfoTip",
+    "name": "HiScStorageScoreInfotip"
+  },
+  "502381": {
+    "template": "InfoTip",
+    "name": "HiScMilitaryShipScoreInfotip"
+  },
+  "502382": {
+    "template": "InfoTip",
+    "name": "HiScTradeShipsScoreInfotip"
+  },
+  "502383": {
+    "template": "InfoTip",
+    "name": "HiScAirshipHighScoreInfotip"
+  },
+  "502384": {
+    "template": "InfoTip",
+    "name": "HiScItemCompletedSetScoreInfotip"
+  },
+  "502385": {
+    "template": "InfoTip",
+    "name": "CollapseCartView"
+  },
   "502386": {
     "template": "Icon",
     "name": "Upgrade_Skyscraper"
+  },
+  "502387": {
+    "template": "InfoTip",
+    "name": "HiScGlobalCostScoreInfotip"
+  },
+  "502388": {
+    "template": "InfoTip",
+    "name": "HiScItemSocketedScoreInfotip"
+  },
+  "502389": {
+    "template": "InfoTip",
+    "name": "HiScItemDiscoveredScoreInfotip"
+  },
+  "502390": {
+    "template": "InfoTip",
+    "name": "HiScTotalAttractivnessScoreInfotip"
+  },
+  "502391": {
+    "template": "InfoTip",
+    "name": "HiScTotalMostAttractivIslandScoreInfotip"
+  },
+  "502392": {
+    "template": "InfoTip",
+    "name": "HiScUrbanizationScoreInfotip"
+  },
+  "502393": {
+    "template": "InfoTip",
+    "name": "HiScPopulationInfotip"
+  },
+  "502394": {
+    "template": "InfoTip",
+    "name": "HiScSessionBalanceInfotip"
+  },
+  "502395": {
+    "template": "InfoTip",
+    "name": "HiScTopStoredGoodInfotip"
+  },
+  "502396": {
+    "template": "InfoTip",
+    "name": "HiScTopProducedGoodInfotip"
+  },
+  "502397": {
+    "template": "InfoTip",
+    "name": "HiScScreenshotInfotip"
   },
   "502398": {
     "template": "Icon",
@@ -110676,6 +114396,10 @@
   "502400": {
     "template": "ConstructionCategory",
     "name": "sa PedestrianZone menu"
+  },
+  "502401": {
+    "template": "InfoTip",
+    "name": "DisableIncidentMusic_InfoTip"
   },
   "502402": {
     "template": "InfoLayerIcon",
@@ -110699,9 +114423,33 @@
     "template": "MouseCursor",
     "name": "SkyscraperCursorUpgradeDisabled"
   },
+  "502408": {
+    "template": "InfoTip",
+    "name": "Resi Population InfoTip"
+  },
   "502409": {
     "template": "Icon",
     "name": "Population_3D"
+  },
+  "502410": {
+    "template": "InfoTip",
+    "name": "HiScScreensDLCIconInfo"
+  },
+  "502411": {
+    "template": "InfoTip",
+    "name": "HiScScreensHighScoreAmount"
+  },
+  "502412": {
+    "template": "InfoTip",
+    "name": "HiScScreensHighMultiplier"
+  },
+  "502413": {
+    "template": "InfoTip",
+    "name": "HiScScreensHighTotal"
+  },
+  "502415": {
+    "template": "InfoTip",
+    "name": "DisableProductionFlyouts_InfoTip"
   },
   "502417": {
     "template": "Icon",
@@ -110710,6 +114458,10 @@
   "502418": {
     "template": "Icon",
     "name": "GGJQuestCategory"
+  },
+  "502419": {
+    "template": "InfoTip",
+    "name": "Ship-StatsOnlyInfotip"
   },
   "600069": {
     "template": "Profile_1stParty Human",
@@ -116325,6 +120077,14 @@
     "template": "TutorialUiElement",
     "name": "TutorialRefGuid_QuickNavigationNextSession"
   },
+  "10000117": {
+    "template": "InfoTip",
+    "name": "BuildingButton_Console_Infotip"
+  },
+  "10000118": {
+    "template": "InfoTip",
+    "name": "CurrentBuildCost_Console_Infotip"
+  },
   "10000119": {
     "template": "TutorialUiElement",
     "name": "TutorialRefGuid_IslandResourcesTab"
@@ -116466,6 +120226,10 @@
     "template": "Notification",
     "name": "VisitorSpecialistNotification"
   },
+  "25000020": {
+    "template": "InfoTip",
+    "name": "BuildingButtonInfoTip"
+  },
   "25000035": {
     "template": "ConstructionMenu",
     "name": "ConstructionMenu"
@@ -116474,14 +120238,122 @@
     "template": "NotificationConfiguration",
     "name": "NotificationConfiguration"
   },
+  "25000042": {
+    "template": "InfoTip",
+    "name": "MaintenanceInfotip"
+  },
+  "25000043": {
+    "template": "InfoTip",
+    "name": "MonumentTargetInfotip"
+  },
+  "25000044": {
+    "template": "InfoTip",
+    "name": "MonumentInterruptedButtonInfotip"
+  },
+  "25000045": {
+    "template": "InfoTip",
+    "name": "MonumentWaitingForOrdersButtonInfotip"
+  },
+  "25000046": {
+    "template": "InfoTip",
+    "name": "MonumentProcessingButtonInfotip"
+  },
+  "25000052": {
+    "template": "InfoTip",
+    "name": "BuildingCategoryInfoTip"
+  },
+  "25000053": {
+    "template": "InfoTip",
+    "name": "BuildingActionInfoTip"
+  },
+  "25000056": {
+    "template": "InfoTip",
+    "name": "BankAccountInfoTip"
+  },
+  "25000057": {
+    "template": "InfoTip",
+    "name": "BalanceInfoTip"
+  },
+  "25000058": {
+    "template": "InfoTip",
+    "name": "PopulationInfoTip"
+  },
+  "25000059": {
+    "template": "InfoTip",
+    "name": "WorkforceInfoTip"
+  },
+  "25000060": {
+    "template": "InfoTip",
+    "name": "BuildingMaterialsInfoTip"
+  },
+  "25000061": {
+    "template": "InfoTip",
+    "name": "FertilitiesInfoTip"
+  },
+  "25000062": {
+    "template": "InfoTip",
+    "name": "CityAttractivenessInfoTip"
+  },
+  "25000063": {
+    "template": "InfoTip",
+    "name": "CityRenameInfoTip"
+  },
+  "25000064": {
+    "template": "InfoTip",
+    "name": "WorkingConditionsSatisfactionInfoTip"
+  },
+  "25000065": {
+    "template": "InfoTip",
+    "name": "WorkingConditionsProductivityInfoTip"
+  },
+  "25000067": {
+    "template": "InfoTip",
+    "name": "CloseInfoTip"
+  },
+  "25000083": {
+    "template": "InfoTip",
+    "name": "ItemStorageInfotip"
+  },
+  "25000084": {
+    "template": "InfoTip",
+    "name": "ItemSocketInfotip"
+  },
   "25000087": {
     "template": "WorkforceMenu",
     "name": "WorkforceMenu"
+  },
+  "25000090": {
+    "template": "InfoTip",
+    "name": "EmptySocketInfotip"
   },
   "25000101": {
     "template": "InfoLayerIcon",
     "name": "Riot - Active",
     "english": "Riot!"
+  },
+  "25000102": {
+    "template": "InfoTip",
+    "name": "BuffInfotip"
+  },
+  "25000103": {
+    "template": "InfoTip",
+    "name": "EnterSessionInfoTip"
+  },
+  "25000104": {
+    "template": "InfoTip",
+    "name": "MinimapInfoTip"
+  },
+  "25000105": {
+    "template": "InfoTip",
+    "name": "StorageInfoTip"
+  },
+  "25000107": {
+    "template": "InfoTip",
+    "name": "WorldmapInfoTip"
+  },
+  "25000108": {
+    "template": "InfoTip",
+    "name": "OptionsInfoTip"
   },
   "25000118": {
     "template": "ObjectmenuResidenceScene",
@@ -116505,13 +120377,81 @@
     "name": "ResidentsUnhappy",
     "english": "Residents Leaving!"
   },
+  "25000125": {
+    "template": "InfoTip",
+    "name": "CurrentBuildCost"
+  },
+  "25000128": {
+    "template": "InfoTip",
+    "name": "MonumentTimeInfotip"
+  },
+  "25000129": {
+    "template": "InfoTip",
+    "name": "MonumentInputProgressInfotip"
+  },
+  "25000131": {
+    "template": "InfoTip",
+    "name": "InfoCornerInfoTip"
+  },
   "25000136": {
     "template": "IslandStorage",
     "name": "IslandStorage"
   },
+  "25000141": {
+    "template": "InfoTip",
+    "name": "QuitInfoTip"
+  },
+  "25000142": {
+    "template": "InfoTip",
+    "name": "NotUpgradeReason Missing Good"
+  },
+  "25000143": {
+    "template": "InfoTip",
+    "name": "NotUpgradeReason Missing Population"
+  },
+  "25000144": {
+    "template": "InfoTip",
+    "name": "NotUpgradeReason Missing Unlock"
+  },
+  "25000145": {
+    "template": "InfoTip",
+    "name": "Incident Riot Active Bubble InfoTip"
+  },
+  "25000146": {
+    "template": "InfoTip",
+    "name": "MonumentJumptoInfotip"
+  },
+  "25000148": {
+    "template": "InfoTip",
+    "name": "OpenInfoTip"
+  },
+  "25000149": {
+    "template": "InfoTip",
+    "name": "OnlineStatusInfoTip"
+  },
+  "25000150": {
+    "template": "InfoTip",
+    "name": "QuestTracker_InfoCorner_InfoTip"
+  },
+  "25000151": {
+    "template": "InfoTip",
+    "name": "StorageGoodsInfoTip"
+  },
   "25000160": {
     "template": "Notification",
     "name": "GenericOnScreenNotification"
+  },
+  "25000161": {
+    "template": "InfoTip",
+    "name": "OnlineChatInfoTip"
+  },
+  "25000162": {
+    "template": "InfoTip",
+    "name": "ProfileInfoCorner"
+  },
+  "25000164": {
+    "template": "InfoTip",
+    "name": "Institution Special Action Button InfoTip"
   },
   "25000168": {
     "template": "ValueAssetMap",
@@ -116521,6 +120461,18 @@
     "template": "InfoLayerIcon",
     "name": "Fertility Missing",
     "english": "Missing Fertility"
+  },
+  "25000176": {
+    "template": "InfoTip",
+    "name": "MonumentBeforePhaseStartWorkforceInfotip"
+  },
+  "25000180": {
+    "template": "InfoTip",
+    "name": "InvokeSettlementRightsButtonInfotip"
+  },
+  "25000181": {
+    "template": "InfoTip",
+    "name": "ClaimIslandButtonInfotip"
   },
   "25000187": {
     "template": "ValueAssetMap",
@@ -116574,6 +120526,34 @@
     "template": "InfoLayerIcon",
     "name": "NewResidence",
     "english": "New Building"
+  },
+  "25000202": {
+    "template": "InfoTip",
+    "name": "Residence Warning InfoTip"
+  },
+  "25000204": {
+    "template": "InfoTip",
+    "name": "Residence Need Tab InfoTip"
+  },
+  "25000205": {
+    "template": "InfoTip",
+    "name": "Residence Need Element InfoTip"
+  },
+  "25000206": {
+    "template": "InfoTip",
+    "name": "Production Input Goods InfoTip"
+  },
+  "25000207": {
+    "template": "InfoTip",
+    "name": "Production Productivity InfoTip"
+  },
+  "25000208": {
+    "template": "InfoTip",
+    "name": "Production Output Goods InfoTip"
+  },
+  "25000209": {
+    "template": "InfoTip",
+    "name": "Production Maintenance InfoTip"
   },
   "25000220": {
     "template": "ProductionChain",

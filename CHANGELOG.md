@@ -1,6 +1,21 @@
 # Change Log
 
-## 2.1.0
+## 2.2
+
+- Changed word selection behavior to treat mod IDs with hyphens as one word
+- Added modloader reference. Accessible with right click in XML files.
+- Fixed `Go to Definition` in vanilla assets
+- Anno 117 only: Improved Anno ModOps XML format
+  - Less strict auto formatting
+  - Auto complete for top-level ModOps
+  - Updated coloring to reflect latest features
+- Anno 117 only: Added auto update for `assets.xml` etc. read from RDA files
+
+## 2.1
+
+### 2.1.3
+
+- Update for public demo
 
 ### New
 

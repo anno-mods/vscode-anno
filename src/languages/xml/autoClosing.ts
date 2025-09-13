@@ -16,9 +16,55 @@ export function registerAutoClosing(context: vscode.ExtensionContext) {
     else if (change.text === '/') {
       selfClose(editor, change);
     }
+    // else if ((change.text.startsWith('\n') || change.text.startsWith('\r')) && change.text.trim().length === 0) {
+    //   hangingAttribute(editor, change);
+    // }
   });
 
   return disposable;
+}
+
+function hangingAttribute(editor: vscode.TextEditor, change: vscode.TextDocumentContentChangeEvent) {
+  const prev = editor.document.lineAt(change.range.start.line).text;
+
+  // Match: optional indent, then `<TagName` ... and ensure we haven't closed `>`
+  // Examples matched:
+  //   <ModOp
+  //   <My-Tag   attr="x"
+  // but NOT:
+  //   <ModOp>           (already closed)
+  //   <ModOp/>          (self-closed)
+  const m = prev.match(/^(?<indent>\s*)<(?<name>[^\s/>]+)(?![^>]*>)/);
+  if (!m || !m.groups) return;
+
+  const baseIndent = m.groups.indent ?? '';
+  const tagName = m.groups.name ?? '';
+
+  const spacesCount = Math.max(0, 1 + tagName.length + 1);
+  const spaces = ' '.repeat(spacesCount);
+
+  editor.edit(editBuilder => {
+    editBuilder.insert(new vscode.Position(change.range.start.line + 1, 0), spaces);
+  }).then(() => {
+    const pos = new vscode.Position(change.range.start.line + 1, spaces.length);
+    editor.selection = new vscode.Selection(pos, pos);
+  });
+}
+
+function isInOpenQuotation(line: string) {
+  var singleQuote = false;
+  var doubleQuote = false;
+
+  for (var char of line) {
+    if (char === '\'') {
+      singleQuote = !singleQuote;
+    }
+    else if (char === '\"') {
+      doubleQuote = !doubleQuote;
+    }
+  }
+
+  return singleQuote || doubleQuote;
 }
 
 function autoClose(editor: vscode.TextEditor, change: vscode.TextDocumentContentChangeEvent) {
@@ -28,8 +74,18 @@ function autoClose(editor: vscode.TextEditor, change: vscode.TextDocumentContent
   const cursorPos = change.range.start.character;
 
   const beforeCursor = lineText.substring(0, cursorPos);
-  const tagMatch = beforeCursor.match(/<([A-Za-z0-9_:.-]+)$/);
-  if (!tagMatch) return;
+  if (beforeCursor.endsWith('/')) {
+    return;
+  }
+
+  if (isInOpenQuotation(beforeCursor)) {
+    return;
+  }
+
+  const tagMatch = beforeCursor.match(/<([A-Za-z0-9_:.-]+)[^>]*$/);
+  if (!tagMatch) {
+    return;
+  }
 
   const tagName = tagMatch[1];
 
