@@ -128,10 +128,16 @@ function _findLastKeywordInLine(line: string, position?: number): any {
   return undefined;
 }
 
+export interface OpenClosePosition {
+  position: vscode.Position;
+  type: "<" | ">";
+}
+
 class XmlPosition {
   public tagName?: string;
   public path?: string;
   public type?: 'other' | 'afterClose' | 'freshOpen' | 'freshTagName' | 'attribute';
+  public nextOpenClose?: OpenClosePosition;
 }
 
 function findPreviousCharacter(document: vscode.TextDocument, position: vscode.Position, character: string) {
@@ -153,6 +159,28 @@ function findPreviousCharacter(document: vscode.TextDocument, position: vscode.P
   return undefined;
 }
 
+function findOpenClose(document: vscode.TextDocument, position: vscode.Position): OpenClosePosition | undefined {
+  // TODO check quotes
+
+  let lineNumber = position.line;
+  while (lineNumber < document.lineCount) {
+    const line = document.lineAt(lineNumber).text;
+    const lineStart = lineNumber === position.line ? position.character : line.length;
+
+    for (var i = lineStart; i < line.length; i++) {
+      if (line.charAt(i) === '<') {
+        return { position: new vscode.Position(lineNumber, i), type: '<' };
+      }
+      else if (line.charAt(i) === '>') {
+        return { position: new vscode.Position(lineNumber, i), type: '>' };
+      }
+    }
+    lineNumber++;
+  }
+
+  return undefined;
+}
+
 export function getAutoCompletePath(document: vscode.TextDocument, position: vscode.Position): XmlPosition {
   let line = document.lineAt(position.line).text.substring(0, position.character);
 
@@ -165,6 +193,8 @@ export function getAutoCompletePath(document: vscode.TextDocument, position: vsc
   const isInTag = previewsOpen ? previewsClose?.isBefore(previewsOpen) ?? true : false;
 
   if (isInTag) {
+    result.nextOpenClose = findOpenClose(document, position);
+
     if (quoteStart > 0) {
       result.type = "attribute";
 

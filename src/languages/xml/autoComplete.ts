@@ -4,16 +4,20 @@ import { GuidCounter } from '../../features/guidCounter';
 import * as text from '../../editor/text';
 import { SymbolRegistry } from '../../data/symbols';
 
-function getModOpCompletion(skipOpenBracket: boolean) {
+function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenClosePosition) {
   const startingBracket = skipOpenBracket ? '' : '<';
+  const close = nextOpenClose?.type === '<' || nextOpenClose === undefined;
+
+  if (!close) {
+    return [];
+  }
 
   // TODO // getAutoComplete should know if it's tag, attribute, value, XPath, ...
-
   const add = new vscode.CompletionItem({
     label: `ModOp Add`,
     description: `Adds the content at the end insider of the selection.`,
   }, vscode.CompletionItemKind.Snippet);
-  add.insertText = new vscode.SnippetString(`${startingBracket}ModOp Add="@$0">\n</ModOp>`);
+  add.insertText = new vscode.SnippetString(`${startingBracket}ModOp Add="@$0">\n</ModOp>}`);
   add.sortText = `12`;
   const remove = new vscode.CompletionItem({
     label: `ModOp Remove`,
@@ -102,12 +106,13 @@ export function activate() {
           return [];
         }
 
-        vscode.window.showErrorMessage(`name: ${nodeInfo.tagName} path: ${nodeInfo.path} type: ${nodeInfo.type}`);
+        // vscode.window.showErrorMessage(`name: ${nodeInfo.tagName} path: ${nodeInfo.path} type: ${nodeInfo.type} next: ${nodeInfo.nextOpenClose?.type}`);
 
         if ((nodeInfo.tagName === 'ModOps' && !nodeInfo.path)
           || (nodeInfo.tagName === 'Group' && (!nodeInfo.path || nodeInfo.path.endsWith('Group')))) {
           if (nodeInfo.type !== 'attribute') {
-            return getModOpCompletion(nodeInfo.type === 'freshOpen' || nodeInfo.type === 'freshTagName');
+            return getModOpCompletion(nodeInfo.type === 'freshOpen' || nodeInfo.type === 'freshTagName',
+              nodeInfo.nextOpenClose);
           }
         }
 
