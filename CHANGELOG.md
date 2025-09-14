@@ -3,7 +3,7 @@
 ## 2.2
 
 - Changed word selection behavior to treat mod IDs with hyphens as one word
-- Added modloader reference. Accessible with right click in XML files.
+- Added modloader reference. Accessible with right click in XML and modinfo files.
 - Fixed `Go to Definition` in vanilla assets
 - Anno 117 only: Improved Anno ModOps XML format
   - Less strict auto formatting

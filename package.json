@@ -2,7 +2,7 @@
 	"name": "anno-modding-tools",
 	"displayName": "Anno Modding Tools",
 	"description": "Tools to create mods for Anno 1800 and Anno 117: Pax Romana.",
-	"version": "2.2.0-alpha1",
+	"version": "2.2.0",
 	"publisher": "JakobHarder",
 	"repository": {
 		"type": "git",
@@ -233,6 +233,10 @@
 			{
 				"command": "anno-modding-tools.openModloaderReference",
 				"title": "Anno: Modloader Reference"
+			},
+			{
+				"command": "anno-modding-tools.openModinfoReference",
+				"title": "Anno: Modinfo Reference"
 			}
 		],
 		"menus": {
@@ -381,12 +385,12 @@
 					"group": "anno@1"
 				},
 				{
-					"when": "resourceFilename == modinfo.json",
+					"when": "resourceFilename =~ /^modinfo.jsonc?$/",
 					"command": "anno-modding-tools.showModDiff",
 					"group": "anno@1"
 				},
 				{
-					"when": "resourceFilename == modinfo.json",
+					"when": "resourceFilename =~ /^modinfo.jsonc?$/",
 					"command": "anno-modding-tools.buildMod",
 					"group": "anno@3"
 				},
@@ -410,6 +414,11 @@
 				{
 					"when": "resourceFilename =~ /.+\\.xml$/ && anno-modding-tools.openPatchFile",
 					"command": "anno-modding-tools.openModloaderReference",
+					"group": "zz_anno@1"
+				},
+				{
+					"when": "resourceFilename =~ /^modinfo.jsonc?$/",
+					"command": "anno-modding-tools.openModinfoReference",
 					"group": "zz_anno@1"
 				},
 				{
