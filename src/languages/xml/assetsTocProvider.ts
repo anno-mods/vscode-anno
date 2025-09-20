@@ -36,12 +36,12 @@ export class AssetsTocProvider {
     this._doc = doc;
   }
 
-  public getToc(): TocEntry[] {
+  public getToc(): TocEntry[] | undefined {
     if (!this.toc) {
       try {
         this.toc = this._buildToc();
       } catch (e) {
-        this.toc = [];
+        this.toc = undefined;
       }
     }
     return this.toc;
@@ -62,6 +62,24 @@ export class AssetsTocProvider {
   // returns 'ModOp' or template name
   private _getName(element: xmldoc.XmlElement, name?: string): string {
     if (element.name === 'ModOp') {
+      if (element.attr['Add']) {
+        return 'Add';
+      }
+      else if (element.attr['Remove']) {
+        return 'Remove';
+      }
+      else if (element.attr['Replace']) {
+        return 'Replace';
+      }
+      else if (element.attr['Merge']) {
+        return 'Merge';
+      }
+      else if (element.attr['Append']) {
+        return 'Append';
+      }
+      else if (element.attr['Prepend']) {
+        return 'Prepend';
+      }
       return element.attr['Type'] || 'ModOp';
     }
     else if (element.name === 'Group' && name) {
@@ -145,9 +163,9 @@ export class AssetsTocProvider {
     return line;
   }
 
-  private _buildToc(): TocEntry[] {
+  private _buildToc(): TocEntry[] | undefined {
     if (!this._doc.xml) {
-      return [];
+      return undefined;
     }
 
     let toc: TocEntry[] = [];
