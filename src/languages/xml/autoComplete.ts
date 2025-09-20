@@ -6,7 +6,7 @@ import { SymbolRegistry } from '../../data/symbols';
 
 function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenClosePosition) {
   const startingBracket = skipOpenBracket ? '' : '<';
-  const close = nextOpenClose?.type === '<' || nextOpenClose === undefined;
+  const close = nextOpenClose?.character === '<' || nextOpenClose === undefined;
 
   if (!close) {
     return [];
@@ -102,26 +102,37 @@ export function activate() {
       provideCompletionItems(document, position, token, context) {
         const nodeInfo = text.getAutoCompletePath(document, position);
 
-        if (!nodeInfo.path && !nodeInfo.tagName && nodeInfo.type !== 'freshOpen') {
+        if (!nodeInfo.path && !nodeInfo.tag && nodeInfo.type !== 'freshOpen') {
           return [];
         }
 
-        // vscode.window.showErrorMessage(`name: ${nodeInfo.tagName} path: ${nodeInfo.path} type: ${nodeInfo.type} next: ${nodeInfo.nextOpenClose?.type}`);
-
-        if ((nodeInfo.tagName === 'ModOps' && !nodeInfo.path)
-          || (nodeInfo.tagName === 'Group' && (!nodeInfo.path || nodeInfo.path.endsWith('Group')))) {
-          if (nodeInfo.type !== 'attribute') {
+        if (nodeInfo.isModOpLevel) {
+          if (nodeInfo.type === 'freshOpen' || nodeInfo.type === 'freshTagName' || nodeInfo.type === undefined) {
             return getModOpCompletion(nodeInfo.type === 'freshOpen' || nodeInfo.type === 'freshTagName',
               nodeInfo.nextOpenClose);
           }
         }
 
-        const xpath = nodeInfo.path?.startsWith('XPath');
-        if (xpath && !(
-          nodeInfo.tagName === 'GUID'
-          || nodeInfo.tagName === 'Path' || nodeInfo.tagName === 'Content'
-          || nodeInfo.tagName === 'Add' || nodeInfo.tagName === 'Remove'
-          || nodeInfo.tagName === 'Append' || nodeInfo.tagName === 'Prepand')) {
+        var acceptGuids = false;
+        if (nodeInfo.type === 'value') {
+          if (nodeInfo.attribute === 'GUID') {
+            acceptGuids = true;
+          }
+
+          if (nodeInfo.attribute === 'Path' || nodeInfo.attribute === 'Content'
+            || nodeInfo.attribute === 'Add' || nodeInfo.attribute === 'Remove'
+            || nodeInfo.attribute === 'Append' || nodeInfo.attribute === 'Prepand'
+            || nodeInfo.attribute === 'Insert' || nodeInfo.attribute === 'Merge'
+            || nodeInfo.attribute === 'Replace') {
+            if (nodeInfo.lastSpecialCharacter === '@' || nodeInfo.lastSpecialCharacter === '='
+              || nodeInfo.lastSpecialCharacter === '\"' || nodeInfo.lastSpecialCharacter === '\''
+            ) {
+              acceptGuids = true;
+            }
+          }
+        }
+
+        if (!acceptGuids) {
           return [];
         }
 
@@ -134,9 +145,7 @@ export function activate() {
 
         const items: vscode.CompletionItem[] = [];
 
-        if (!xpath) {
-          items.push(...GuidCounter.getCompletionItems());
-        }
+        items.push(...GuidCounter.getCompletionItems());
 
         const symbols = SymbolRegistry.all();
         for (const symbol of symbols.values()) {

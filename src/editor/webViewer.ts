@@ -1,6 +1,9 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
 
+import * as text from './text';
+import { toUnicode } from 'punycode';
+
 export function activate(context: vscode.ExtensionContext) {
   return [
     vscode.commands.registerCommand('anno-modding-tools.openModloaderReference',
@@ -11,20 +14,22 @@ export function activate(context: vscode.ExtensionContext) {
 
 let currentPanel: vscode.WebviewPanel | undefined;
 
-function getCurrentWord(): string | undefined {
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-        return undefined;
-    }
+function getCurrentNodeInfoLower() {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+      return undefined;
+  }
 
-    const position = editor.selection.active; // current cursor position
-    const wordRange = editor.document.getWordRangeAtPosition(position);
+  const position = editor.selection.active;
+  var info = text.getAutoCompletePath(editor.document, position);
+  if (info) {
+    info.path = info.path?.toLowerCase();
+    info.tag = info.tag?.toLowerCase();
+    info.word = info.word?.toLowerCase();
+    info.attribute = info.attribute?.toLowerCase();
+  }
 
-    if (wordRange) {
-        return editor.document.getText(wordRange);
-    }
-
-    return undefined;
+  return info;
 }
 
 function openReference(context: vscode.ExtensionContext, fileUri: vscode.Uri) {
@@ -47,37 +52,73 @@ function openReference(context: vscode.ExtensionContext, fileUri: vscode.Uri) {
   }
 
   const basename = fileUri ? path.basename(fileUri.path).toLowerCase() : undefined;
-  const word = getCurrentWord()?.toLowerCase();
 
   var url = 'https://jakobharder.github.io/anno-mod-loader/';
   if (basename === 'modinfo.json' || basename === 'modinfo.jsonc') {
     url += "modinfo/";
   }
   else {
-    if (word === 'modop') {
-      url += "modops/basics/";
+    const nodeInfo = getCurrentNodeInfoLower();
+
+    // 5. what's the type for being within the attribute?. so after = inside the string
+
+    if (nodeInfo?.attribute === 'condition' && (nodeInfo?.tag === 'modop'
+        || nodeInfo?.tag === 'group' || nodeInfo?.tag === 'include'
+        || (nodeInfo?.tag === 'asset' && nodeInfo?.path?.endsWith('/modops')))) {
+      url += "modops/control/#condition";
     }
-    else if (word === 'add' || word === 'replace' || word === 'merge'
-        || word === 'append' || word === 'prepend' || word === 'remove') {
-      url += "modops/basics/#" + word;
+    else if (nodeInfo?.tag === 'modop') {
+      if (nodeInfo.word === 'modop') {
+        url += "modops/basics/";
+      }
+      else if (nodeInfo.word === 'add' || nodeInfo.word === 'replace' || nodeInfo.word === 'merge' || nodeInfo.word === 'remove') {
+        url += "modops/basics/#" + nodeInfo.word;
+      }
+      else if (nodeInfo.word === 'addnextsibling' || nodeInfo.word === 'append') {
+          url += "modops/basics/#append-addnextsibling";
+      }
+      else if (nodeInfo.word === 'addprevsibling' || nodeInfo.word === 'prepend') {
+          url += "modops/basics/#prepend-addprevsibling";
+      }
+      else if (nodeInfo.word === 'content') {
+        url += "modops/content/";
+      }
+      else if (nodeInfo.attribute === 'type') {
+        url += "modops/basics/";
+      }
+      else if (nodeInfo.attribute === 'guid') {
+        url += "modops/";
+      }
     }
-    else if (word === 'addnextsibling') {
-        url += "modops/basics/#append";
+    else if (nodeInfo?.tag === 'group' && nodeInfo.isModOpLevel) {
+      if (nodeInfo.attribute === 'maxrepeat') {
+        url += "modops/control/#loop";
+      }
+      else if (nodeInfo.type === 'attribute') {
+        url += "modops/control/#group";
+      }
     }
-    else if (word === 'addprevsibling') {
-        url += "modops/basics/#previous";
+    else if (nodeInfo?.tag === 'include') {
+      url += "modops/control/#include";
     }
-    else if (word === 'group') {
-      url += "modops/grouping/#groups";
+    else if (nodeInfo?.tag === 'asset' && nodeInfo.isModOpLevel) {
+      url += "modops/basics/#asset";
     }
-    else if (word === 'include') {
-      url += "modops/grouping/#include-files";
+    else if (nodeInfo?.tag === 'moditem') {
+      url += "modops/lists/#moditem-merge"
     }
-    else if (word === 'maxrepeat') {
-      url += "modops/grouping/#loops";
-    }
-    else if (word === 'condition') {
-      url += "modops/conditions/";
+    else if ((nodeInfo?.tag === 'modvalue' && nodeInfo?.word === 'modvalue')
+             || (nodeInfo?.tag === 'modopcontent' && nodeInfo.word === 'modopcontent')
+             || (nodeInfo?.tag === 'modvaluecontent' && nodeInfo.word === 'modvaluecontent')) {
+      if (nodeInfo?.tag === 'modvalue' && (nodeInfo?.attribute === 'merge' || nodeInfo?.attribute === 'remove')) {
+        url += "modops/content/#merge-flags";
+      }
+      else if (nodeInfo?.tag === 'modvaluecontent' && nodeInfo?.attribute === 'skipparent') {
+        url += "modops/lists/#skipparent";
+      }
+      else {
+        url += "modops/content/";
+      }
     }
   }
 
