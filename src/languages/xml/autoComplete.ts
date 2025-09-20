@@ -12,6 +12,8 @@ interface IAutoCompleteAttributeInfo {
   conflicts?: string[]
   insert?: string
   sort?: string
+  values?: string[]
+  autoSuggest?: boolean
 }
 interface IAutoCompleteTagInfo {
   attributes: (string | IAutoCompleteAttributeInfo)[]
@@ -106,14 +108,7 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
   </Values>
 </Asset>`);
 
-  const legacy = new vscode.CompletionItem({
-    label: `ModOp Type`,
-    description: `Legacy ModOp`,
-  }, vscode.CompletionItemKind.Property);
-  legacy.insertText = new vscode.SnippetString(`${startingBracket}ModOp Type="$0">\n</ModOp>`);
-  legacy.sortText = `20`;
-
-  return [ add, append, prepend, replace, merge, remove, include, group, asset, baseAsset, legacy ];
+  return [ add, append, prepend, replace, merge, remove, include, group, asset, baseAsset ];
 }
 
 function getModOpAttributeCompletion(nodeInfo: text.XmlPosition) {
@@ -174,6 +169,12 @@ function getModOpAttributeCompletion(nodeInfo: text.XmlPosition) {
         }, vscode.CompletionItemKind.Enum);
         item.insertText = complex.insert ?? new vscode.SnippetString(`${complex.name}="$0"`);
         item.sortText = complex.sort;
+        if (complex.autoSuggest) {
+          item.command = {
+            command: 'editor.action.triggerSuggest',
+            title: 'Trigger Suggest'
+          };
+        }
         items.push(item);
       }
     }
@@ -181,6 +182,32 @@ function getModOpAttributeCompletion(nodeInfo: text.XmlPosition) {
   }
 
   return [];
+}
+
+function getModOpAttributeValueCompletion(nodeInfo: text.XmlPosition, document: vscode.TextDocument, position: vscode.Position) {
+  const dict = assets7 as Record<string, IAutoCompleteTagInfo>;
+  const tagInfo = nodeInfo?.tag as string ? dict[nodeInfo.tag as string] : undefined;
+  if (!tagInfo) {
+    return [];
+  }
+
+  const items: vscode.CompletionItem[] = [];
+
+  for (const attribute of tagInfo.attributes) {
+    if (typeof attribute === 'object' && attribute as IAutoCompleteAttributeInfo) {
+      if (attribute.name === nodeInfo.attribute && attribute.values) {
+        for (const val of attribute.values) {
+          const item = new vscode.CompletionItem({
+            label: val
+          }, vscode.CompletionItemKind.Enum);
+          item.insertText = val;
+          items.push(item);
+        }
+      }
+    }
+  }
+
+  return items;
 }
 
 export function activate() {
@@ -206,6 +233,10 @@ export function activate() {
 
         var acceptGuids = false;
         if (nodeInfo.type === 'value') {
+          if (nodeInfo.attribute === 'Type' || nodeInfo.attribute === 'MaxRepeat') {
+            return getModOpAttributeValueCompletion(nodeInfo, document, position);
+          }
+
           if (nodeInfo.attribute === 'GUID') {
             acceptGuids = true;
           }

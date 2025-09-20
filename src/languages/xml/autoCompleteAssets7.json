@@ -2,7 +2,10 @@
   "Group": {
     "attributes": [
       "Condition",
-      "MaxRepeat"
+      {
+        "name": "MaxRepeat",
+        "values": [ "10", "20", "30" ]
+      }
     ]
   },
   "Include": {
@@ -21,7 +24,8 @@
       {
         "name": "GUID",
         "conflicts": [ "Property" ],
-        "sort": "01"
+        "sort": "01",
+        "autoSuggest": true
       },
       {
         "name": "Property",
@@ -59,8 +63,15 @@
         "sort": "14"
       },
       {
+        "name": "Type",
+        "conflicts": [ "Add", "Remove", "Replace", "Merge", "Append", "Prepend" ],
+        "sort": "04",
+        "values": [ "add", "remove", "replace", "merge", "addNextSibling", "addPrevSibling" ],
+        "autoSuggest": true
+      },
+      {
         "name": "Path",
-        "conflicts": [ "Add", "Remove", "Replace", "Merge" ],
+        "conflicts": [ "Add", "Remove", "Replace", "Merge", "Append", "Prepend" ],
         "requires": [ "Type" ],
         "sort": "04"
       },
