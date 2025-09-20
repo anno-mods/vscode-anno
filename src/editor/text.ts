@@ -137,7 +137,7 @@ export class XmlPosition {
   public attribute?: string;
   public path?: string;
   public word?: string;
-  public type?: 'other' | 'afterClose' | 'freshOpen' | 'freshTagName' | 'attribute' | 'value';
+  public type?: 'other' | 'afterClose' | 'freshOpen' | 'freshTagName' | 'attribute' | 'value' | 'kindaAttribute';
   public nextOpenClose?: OpenClosePosition;
   public isModOpLevel: boolean = false;
   public lastSpecialCharacter?: string;
@@ -262,13 +262,17 @@ export function getAutoCompletePath(document: vscode.TextDocument, position: vsc
             // `<Tag `
             // `<Tag Attribute="Value" `
             result.type = 'attribute';
+          }
+          else if (result.word) {
+            // `<Tag Attribute`
+            result.type = 'attribute';
             result.attribute = result.word;
           }
           else {
-            // `<Tag Attribute`
             // `<Tag Attribute=`
             // `<Tag Attribute="Value"`
             // `<Tag Attribute= `
+            result.type = 'kindaAttribute';
           }
         }
         else {

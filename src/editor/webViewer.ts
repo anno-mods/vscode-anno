@@ -92,7 +92,7 @@ function openReference(context: vscode.ExtensionContext, fileUri: vscode.Uri) {
     }
     else if (nodeInfo?.tag === 'group' && nodeInfo.isModOpLevel) {
       if (nodeInfo.attribute === 'maxrepeat') {
-        url += "modops/control/#loop";
+        url += "modops/control/#loop-condition";
       }
       else if (nodeInfo.type === 'attribute') {
         url += "modops/control/#group";
