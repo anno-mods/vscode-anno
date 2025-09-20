@@ -411,3 +411,54 @@ function findPreviousTag(document: vscode.TextDocument, position: vscode.Positio
   // no more tags to be found
   return undefined;
 }
+
+
+type ValueAtCursor =
+  | { attrName: string; valuePrefix: string; valueRange: vscode.Range; dirPrefix: string }
+  | undefined;
+
+/**
+ * If the cursor is inside an attribute value like File="/path/|something",
+ * returns:
+ *  - attrName: e.g. "File"
+ *  - valuePrefix: text from quote to cursor, e.g. "/path/"
+ *  - valueRange: range of the whole value between quotes (no quotes)
+ *  - dirPrefix: valuePrefix truncated to last slash, e.g. "/path/"
+ */
+export function getAttributeValuePrefixAtCursor(
+  document: vscode.TextDocument,
+  position: vscode.Position
+): ValueAtCursor {
+  const lineText = document.lineAt(position.line).text;
+  const i = position.character;
+
+  // Find the nearest quote to the left (either " or ')
+  const leftDouble = lineText.lastIndexOf('"', i - 1);
+  const leftSingle = lineText.lastIndexOf("'", i - 1);
+  const leftQuote = Math.max(leftDouble, leftSingle);
+  if (leftQuote < 0) return;
+
+  const quoteCh = lineText[leftQuote]; // " or '
+  const rightQuote = lineText.indexOf(quoteCh, i); // must match same quote type
+  if (rightQuote < 0 || rightQuote <= leftQuote) return;
+
+  // Ensure this is an attribute value (… name = " | " …)
+  const before = lineText.slice(0, leftQuote);
+  const m = /([A-Za-z_][\w:.-]*)\s*=\s*$/.exec(before);
+  if (!m) return;
+  const attrName = m[1];
+
+  // Range of the value between quotes (exclusive)
+  const valueRange = new vscode.Range(
+    new vscode.Position(position.line, leftQuote + 1),
+    new vscode.Position(position.line, rightQuote)
+  );
+
+  // Text from start of value up to the cursor
+  const valuePrefix = lineText.slice(leftQuote + 1, i);
+
+  // Directory-like prefix (keep up to last / or \)
+  const dirPrefix = valuePrefix.replace(/[^\\/]*$/, "");
+
+  return { attrName, valuePrefix, valueRange, dirPrefix };
+}

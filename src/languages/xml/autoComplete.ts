@@ -1,5 +1,8 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import * as vscode from 'vscode';
 
+import * as utils from '../../other/utils';
 import { GuidCounter } from '../../features/guidCounter';
 import * as text from '../../editor/text';
 import { SymbolRegistry } from '../../data/symbols';
@@ -30,59 +33,59 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
   // TODO // getAutoComplete should know if it's tag, attribute, value, XPath, ...
   const add = new vscode.CompletionItem({
     label: `ModOp Add`,
-    description: `Adds the content at the end insider of the selection.`,
+    description: `Adds the content at the end insider of the selection`,
   }, vscode.CompletionItemKind.Property);
   add.insertText = new vscode.SnippetString(`${startingBracket}ModOp Add="$0">\n</ModOp>`);
   add.sortText = `12`;
   const remove = new vscode.CompletionItem({
     label: `ModOp Remove`,
-    description: `Removes the selected elements.`,
+    description: `Removes the selected elements`,
   }, vscode.CompletionItemKind.Property);
   remove.sortText = `15`;
   remove.insertText = new vscode.SnippetString(`${startingBracket}ModOp Remove="$0" />`);
   const append = new vscode.CompletionItem({
     label: `ModOp Append`,
     detail: ` aka addNextSibling`,
-    description: `Adds the content after the selection.`,
+    description: `Adds the content after the selection`,
   }, vscode.CompletionItemKind.Property);
   append.insertText = new vscode.SnippetString(`${startingBracket}ModOp Append="$0">\n</ModOp>`);
   const prepend = new vscode.CompletionItem({
     label: `ModOp Prepend`,
     detail: ` aka addPrevSibling`,
-    description: `Adds the content before the selection.`,
+    description: `Adds the content before the selection`,
   }, vscode.CompletionItemKind.Property);
   append.sortText = `13`;
   prepend.insertText = new vscode.SnippetString(`${startingBracket}ModOp Prepend="$0">\n</ModOp>`);
   const replace = new vscode.CompletionItem({
     label: `ModOp Replace`,
-    description: `Replaces the selected element.`,
+    description: `Replaces the selected element`,
   }, vscode.CompletionItemKind.Property);
   prepend.sortText = `14`;
   replace.insertText = new vscode.SnippetString(`${startingBracket}ModOp Replace="$0">\n</ModOp>`);
   replace.sortText = `10`;
   const merge = new vscode.CompletionItem({
     label: `ModOp Merge`,
-    description: `Adds the content, or replaces it if it already exists.`,
+    description: `Adds the content, or replaces it if it already exists`,
   }, vscode.CompletionItemKind.Property);
   merge.insertText = new vscode.SnippetString(`${startingBracket}ModOp Merge="$0">\n</ModOp>`);
   merge.sortText = `11`;
 
   const include = new vscode.CompletionItem({
     label: `Include`,
-    description: `Includes ModOps from another XML file.`
+    description: `Includes ModOps from another XML file`
   }, vscode.CompletionItemKind.Property);
   include.insertText = new vscode.SnippetString(`${startingBracket}Include File="$0" />`);
 
   const group = new vscode.CompletionItem({
     label: `Group`,
-    description: `Groups multiple ModOps.`
+    description: `Groups multiple ModOps`
   }, vscode.CompletionItemKind.Property);
   group.insertText = new vscode.SnippetString(`${startingBracket}Group>\n  $0\n</Group>`);
 
   const asset = new vscode.CompletionItem({
     label: `Asset`,
     detail: ` template`,
-    description: `Adds an asset using \`Template\`.`
+    description: `Adds an asset using \`Template\``
   }, vscode.CompletionItemKind.Property);
   asset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
   <Template>$0</Template>
@@ -96,7 +99,7 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
   const baseAsset = new vscode.CompletionItem({
     label: `Asset`,
     detail: ` base asset`,
-    description: `Adds an asset using \`BaseAssetGUID\`.`
+    description: `Adds an asset using \`BaseAssetGUID\``
   }, vscode.CompletionItemKind.Property);
   baseAsset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
   <BaseAssetGUID>$0</BaseAssetGUID>
@@ -210,6 +213,100 @@ function getModOpAttributeValueCompletion(nodeInfo: text.XmlPosition, document: 
   return items;
 }
 
+export function findFoldersAndIncludes(dir: string) {
+  const folders: string[] = [];
+  const includes: string[] = [];
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      folders.push(full);
+    } else if (entry.isFile() && entry.name.endsWith(".include.xml")) {
+      includes.push(full);
+    }
+  }
+
+  return { folders, includes };
+}
+
+function getIncludeCompletion(nodeInfo: text.XmlPosition, document: vscode.TextDocument, position: vscode.Position) {
+
+  const items: vscode.CompletionItem[] = [];
+
+  var currentPath = path.dirname(document.fileName);
+  const modRoot = utils.findModRoot(currentPath);
+
+  const pathLeftOfCursor = text.getAttributeValuePrefixAtCursor(document, position);
+  if (pathLeftOfCursor?.valuePrefix.startsWith('/')) {
+    currentPath = path.join(modRoot, pathLeftOfCursor?.valuePrefix.substring(1));
+  }
+  else if (pathLeftOfCursor?.valuePrefix && pathLeftOfCursor?.valuePrefix.length > 0) {
+    currentPath = path.join(currentPath, pathLeftOfCursor?.valuePrefix)
+  }
+
+  const oneUp = path.basename(path.dirname(currentPath));
+  const root = path.basename(modRoot);
+
+  const onlyUpSoFar = !pathLeftOfCursor?.valuePrefix || /^(\.\.\/)*$/.test(pathLeftOfCursor?.valuePrefix);
+  const canGoUp = path.dirname(currentPath).length >= modRoot.length;
+
+  if (onlyUpSoFar && canGoUp) { // relative path
+    const item = new vscode.CompletionItem({
+      label: '../',
+      detail: ` ${oneUp}`,
+      description: 'Go one folder up'
+    }, vscode.CompletionItemKind.Enum);
+    item.insertText = '../';
+    item.command = {
+      command: 'editor.action.triggerSuggest',
+      title: 'Trigger Suggest'
+    };
+    items.push(item);
+  }
+  if (!pathLeftOfCursor?.valuePrefix || pathLeftOfCursor?.valuePrefix.length === 0) { // mod absolute path
+    const item = new vscode.CompletionItem({
+      label: '/',
+      detail: ` ${root}`,
+      description: 'Start at mod folder'
+    }, vscode.CompletionItemKind.Enum);
+    item.insertText = '/';
+    item.command = {
+      command: 'editor.action.triggerSuggest',
+      title: 'Trigger Suggest'
+    };
+    items.push(item);
+  }
+
+  const folderAndFiles = findFoldersAndIncludes(currentPath);
+  for (const folder of folderAndFiles.folders) {
+    const basename = path.basename(folder);
+
+    const item = new vscode.CompletionItem({
+      label: basename
+    }, vscode.CompletionItemKind.Enum);
+    item.insertText = basename + '/';
+    item.command = {
+      command: 'editor.action.triggerSuggest',
+      title: 'Trigger Suggest'
+    };
+    items.push(item);
+  }
+
+  for (const file of folderAndFiles.includes) {
+    const basename = path.basename(file);
+
+    const item = new vscode.CompletionItem({
+      label: basename,
+    }, vscode.CompletionItemKind.Enum);
+    item.insertText = basename;
+    items.push(item);
+  }
+
+  return items;
+}
+
 export function activate() {
   const provider = vscode.languages.registerCompletionItemProvider(
     { language: 'anno-xml', scheme: 'file' },
@@ -236,8 +333,10 @@ export function activate() {
           if (nodeInfo.attribute === 'Type' || nodeInfo.attribute === 'MaxRepeat') {
             return getModOpAttributeValueCompletion(nodeInfo, document, position);
           }
-
-          if (nodeInfo.attribute === 'GUID') {
+          else if (nodeInfo.tag === 'Include' && nodeInfo.attribute === 'File') {
+            return getIncludeCompletion(nodeInfo, document, position);
+          }
+          else if (nodeInfo.attribute === 'GUID') {
             acceptGuids = true;
           }
 
@@ -314,7 +413,7 @@ export function activate() {
     },
     // TODO disable > trigger until we have proper patch matching.
     // For now just allow it anywhere.
-    '@', '\"', '=', ',', ' ' // trigger characters
+    '@', '\"', '=', ',', ' ', '/' // trigger characters
   );
 
   return provider;
