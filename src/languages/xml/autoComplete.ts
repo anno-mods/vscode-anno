@@ -4,6 +4,19 @@ import { GuidCounter } from '../../features/guidCounter';
 import * as text from '../../editor/text';
 import { SymbolRegistry } from '../../data/symbols';
 
+import * as assets7 from './autoCompleteAssets7.json';
+
+interface IAutoCompleteAttributeInfo {
+  name: string
+  requires?: string[]
+  conflicts?: string[]
+  insert?: string
+  sort?: string
+}
+interface IAutoCompleteTagInfo {
+  attributes: (string | IAutoCompleteAttributeInfo)[]
+}
+
 function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenClosePosition) {
   const startingBracket = skipOpenBracket ? '' : '<';
   const close = nextOpenClose?.character === '<' || nextOpenClose === undefined;
@@ -16,59 +29,59 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
   const add = new vscode.CompletionItem({
     label: `ModOp Add`,
     description: `Adds the content at the end insider of the selection.`,
-  }, vscode.CompletionItemKind.Snippet);
-  add.insertText = new vscode.SnippetString(`${startingBracket}ModOp Add="@$0">\n</ModOp>}`);
+  }, vscode.CompletionItemKind.Property);
+  add.insertText = new vscode.SnippetString(`${startingBracket}ModOp Add="$0">\n</ModOp>`);
   add.sortText = `12`;
   const remove = new vscode.CompletionItem({
     label: `ModOp Remove`,
     description: `Removes the selected elements.`,
-  }, vscode.CompletionItemKind.Snippet);
+  }, vscode.CompletionItemKind.Property);
   remove.sortText = `15`;
-  remove.insertText = new vscode.SnippetString(`${startingBracket}ModOp Remove="@$0" />`);
+  remove.insertText = new vscode.SnippetString(`${startingBracket}ModOp Remove="$0" />`);
   const append = new vscode.CompletionItem({
     label: `ModOp Append`,
     detail: ` aka addNextSibling`,
     description: `Adds the content after the selection.`,
-  }, vscode.CompletionItemKind.Snippet);
-  append.insertText = new vscode.SnippetString(`${startingBracket}ModOp Append="@$0">\n</ModOp>`);
+  }, vscode.CompletionItemKind.Property);
+  append.insertText = new vscode.SnippetString(`${startingBracket}ModOp Append="$0">\n</ModOp>`);
   const prepend = new vscode.CompletionItem({
     label: `ModOp Prepend`,
-    detail: ` aka addPreviousSibling`,
+    detail: ` aka addPrevSibling`,
     description: `Adds the content before the selection.`,
-  }, vscode.CompletionItemKind.Snippet);
+  }, vscode.CompletionItemKind.Property);
   append.sortText = `13`;
-  prepend.insertText = new vscode.SnippetString(`${startingBracket}ModOp Prepend="@$0">\n</ModOp>`);
+  prepend.insertText = new vscode.SnippetString(`${startingBracket}ModOp Prepend="$0">\n</ModOp>`);
   const replace = new vscode.CompletionItem({
     label: `ModOp Replace`,
     description: `Replaces the selected element.`,
-  }, vscode.CompletionItemKind.Snippet);
+  }, vscode.CompletionItemKind.Property);
   prepend.sortText = `14`;
-  replace.insertText = new vscode.SnippetString(`${startingBracket}ModOp Replace="@$0">\n</ModOp>`);
+  replace.insertText = new vscode.SnippetString(`${startingBracket}ModOp Replace="$0">\n</ModOp>`);
   replace.sortText = `10`;
   const merge = new vscode.CompletionItem({
     label: `ModOp Merge`,
     description: `Adds the content, or replaces it if it already exists.`,
-  }, vscode.CompletionItemKind.Snippet);
-  merge.insertText = new vscode.SnippetString(`${startingBracket}ModOp Merge="@$0">\n</ModOp>`);
+  }, vscode.CompletionItemKind.Property);
+  merge.insertText = new vscode.SnippetString(`${startingBracket}ModOp Merge="$0">\n</ModOp>`);
   merge.sortText = `11`;
 
   const include = new vscode.CompletionItem({
     label: `Include`,
     description: `Includes ModOps from another XML file.`
-  }, vscode.CompletionItemKind.Snippet);
+  }, vscode.CompletionItemKind.Property);
   include.insertText = new vscode.SnippetString(`${startingBracket}Include File="$0" />`);
 
   const group = new vscode.CompletionItem({
     label: `Group`,
     description: `Groups multiple ModOps.`
-  }, vscode.CompletionItemKind.Snippet);
+  }, vscode.CompletionItemKind.Property);
   group.insertText = new vscode.SnippetString(`${startingBracket}Group>\n  $0\n</Group>`);
 
   const asset = new vscode.CompletionItem({
     label: `Asset`,
     detail: ` template`,
     description: `Adds an asset using \`Template\`.`
-  }, vscode.CompletionItemKind.Snippet);
+  }, vscode.CompletionItemKind.Property);
   asset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
   <Template>$0</Template>
   <Values>
@@ -82,7 +95,7 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
     label: `Asset`,
     detail: ` base asset`,
     description: `Adds an asset using \`BaseAssetGUID\`.`
-  }, vscode.CompletionItemKind.Snippet);
+  }, vscode.CompletionItemKind.Property);
   baseAsset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
   <BaseAssetGUID>$0</BaseAssetGUID>
   <Values>
@@ -92,7 +105,82 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
     </Standard>
   </Values>
 </Asset>`);
-  return [ add, append, prepend, replace, merge, remove, include, group, asset, baseAsset ];
+
+  const legacy = new vscode.CompletionItem({
+    label: `ModOp Type`,
+    description: `Legacy ModOp`,
+  }, vscode.CompletionItemKind.Property);
+  legacy.insertText = new vscode.SnippetString(`${startingBracket}ModOp Type="$0">\n</ModOp>`);
+  legacy.sortText = `20`;
+
+  return [ add, append, prepend, replace, merge, remove, include, group, asset, baseAsset, legacy ];
+}
+
+function getModOpAttributeCompletion(nodeInfo: text.XmlPosition) {
+  const dict = assets7 as Record<string, IAutoCompleteTagInfo>;
+  const tagInfo = nodeInfo?.tag as string ? dict[nodeInfo.tag as string] : undefined;
+
+  if (tagInfo) {
+    var items = [];
+    for (var attribute of tagInfo.attributes) {
+      if (typeof attribute === 'string') {
+        if (nodeInfo.attributes && nodeInfo.attributes.find(x => x === attribute)) {
+          // do not allow duplicate attributes
+          continue;
+        }
+
+        const item = new vscode.CompletionItem({
+          label: attribute
+        }, vscode.CompletionItemKind.Enum);
+        item.insertText = new vscode.SnippetString(`${attribute}="$0"`);
+        items.push(item);
+      }
+      else if (typeof attribute === 'object' && attribute as IAutoCompleteAttributeInfo) {
+        const complex = attribute as IAutoCompleteAttributeInfo;
+
+        if (nodeInfo.attributes && nodeInfo.attributes.find(x => x === complex.name)) {
+          // do not allow duplicate attributes
+          continue;
+        }
+
+        if (complex.requires) {
+          if (!nodeInfo.attributes) {
+            continue;
+          }
+          var cont = true;
+          for (const require of complex.requires) {
+            if (nodeInfo.attributes.find(x => x === require)) {
+              // hide attributes when their required counterpart is not defined yet
+              cont = false;
+            }
+          }
+          if (cont) { continue; }
+        }
+
+        if (complex.conflicts) {
+          var cont = false;
+          for (const conflict of complex.conflicts) {
+            if (nodeInfo.attributes?.find(x => x === conflict)) {
+              // hide when the attribute conflicts with an already defined one
+              cont = true;
+              continue;
+            }
+          }
+          if (cont) { continue; }
+        }
+
+        const item = new vscode.CompletionItem({
+          label: complex.name
+        }, vscode.CompletionItemKind.Enum);
+        item.insertText = complex.insert ?? new vscode.SnippetString(`${complex.name}="$0"`);
+        item.sortText = complex.sort;
+        items.push(item);
+      }
+    }
+    return items;
+  }
+
+  return [];
 }
 
 export function activate() {
@@ -111,6 +199,9 @@ export function activate() {
             return getModOpCompletion(nodeInfo.type === 'freshOpen' || nodeInfo.type === 'freshTagName',
               nodeInfo.nextOpenClose);
           }
+          else if (nodeInfo.type === 'attribute') {
+            return getModOpAttributeCompletion(nodeInfo);
+          }
         }
 
         var acceptGuids = false;
@@ -123,13 +214,16 @@ export function activate() {
             || nodeInfo.attribute === 'Add' || nodeInfo.attribute === 'Remove'
             || nodeInfo.attribute === 'Append' || nodeInfo.attribute === 'Prepand'
             || nodeInfo.attribute === 'Insert' || nodeInfo.attribute === 'Merge'
-            || nodeInfo.attribute === 'Replace') {
+            || nodeInfo.attribute === 'Replace' || nodeInfo.attribute === 'Condition') {
             if (nodeInfo.lastSpecialCharacter === '@' || nodeInfo.lastSpecialCharacter === '='
               || nodeInfo.lastSpecialCharacter === '\"' || nodeInfo.lastSpecialCharacter === '\''
             ) {
               acceptGuids = true;
             }
           }
+        }
+        else if (nodeInfo.type === 'afterClose') {
+          acceptGuids = true;
         }
 
         if (!acceptGuids) {
@@ -189,7 +283,7 @@ export function activate() {
     },
     // TODO disable > trigger until we have proper patch matching.
     // For now just allow it anywhere.
-    // '>' // trigger characters
+    '@', '\"', '=', ',', ' ' // trigger characters
   );
 
   return provider;

@@ -132,7 +132,7 @@ export interface OpenClosePosition {
   character: string;
 }
 
-class XmlPosition {
+export class XmlPosition {
   public tag?: string;
   public attribute?: string;
   public path?: string;
@@ -141,6 +141,7 @@ class XmlPosition {
   public nextOpenClose?: OpenClosePosition;
   public isModOpLevel: boolean = false;
   public lastSpecialCharacter?: string;
+  public attributes?: string[];
 }
 
 function findPreviousCharacter(document: vscode.TextDocument, position: vscode.Position, character: string) {
@@ -198,6 +199,18 @@ function getWordAt(document: vscode.TextDocument, position?: vscode.Position) {
   return undefined;
 }
 
+function getAttributes(tag: string): string[] {
+  // Matches: <tag attr="..." attr2='...'>
+  // Captures only the attribute name (supports :, -, . in names)
+  const re = /([A-Za-z_][\w:.-]*)\s*=\s*(?:"[^"]*"|'[^']*')/g;
+
+  const names: string[] = [];
+  for (const m of tag.matchAll(re)) {
+    names.push(m[1]);
+  }
+  return names;
+}
+
 export function getAutoCompletePath(document: vscode.TextDocument, position: vscode.Position): XmlPosition {
   let line = document.lineAt(position.line).text.substring(0, position.character);
 
@@ -215,6 +228,12 @@ export function getAutoCompletePath(document: vscode.TextDocument, position: vsc
   if (isInTag) {
     result.tag = previewsOpen ? getWordAt(document, new vscode.Position(previewsOpen.line, previewsOpen.character + 1)) : undefined;
     result.nextOpenClose = findFirstOf(document, "<>", position);
+
+    const fullTag = document.getText(new vscode.Range(
+      previewsOpen ?? new vscode.Position(0, 0),
+      result.nextOpenClose?.position ?? document.lineAt(document.lineCount - 1).range.end)) + ">";
+
+      result.attributes = getAttributes(fullTag);
 
     if (quoteStart >= 0) {
       result.type = "value";
@@ -239,12 +258,21 @@ export function getAutoCompletePath(document: vscode.TextDocument, position: vsc
       else {
         const space = findPreviousCharacter(document, position, ' ');
         if (space?.isAfter(previewsOpen!)) {
-          // somewhere in attributes, e.g. "<Name " or "<Name bla=''"
-          result.type = 'attribute';
-          result.attribute = result.word;
+          if (line.endsWith(' ') && !line.endsWith('= ')) {
+            // `<Tag `
+            // `<Tag Attribute="Value" `
+            result.type = 'attribute';
+            result.attribute = result.word;
+          }
+          else {
+            // `<Tag Attribute`
+            // `<Tag Attribute=`
+            // `<Tag Attribute="Value"`
+            // `<Tag Attribute= `
+          }
         }
         else {
-          // Directly after name "<Name"
+          // `<Tag`
           result.type = 'freshTagName';
         }
       }

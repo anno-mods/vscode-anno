@@ -169,7 +169,7 @@
 			]
 		},
 		"modopElementSelfClosing": {
-			"begin": "(<)(ModOp|Inlude|Group|Asset)(?=[\\s>][^/>]*/>)",
+			"begin": "(<)(ModOp|Include|Group|Asset)(?=[\\s>][^/>]*/>)",
 			"beginCaptures": {
 				"1": { "name": "punctuation.definition.tag.xml" },
 				"2": { "name": "keyword.control" },
