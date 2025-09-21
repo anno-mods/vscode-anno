@@ -9,10 +9,6 @@
          <lastmod>2025-09-21</lastmod>
     </url>
     <url>
-         <loc>https://anno-mods.github.io/vscode-anno/intellisense/</loc>
-         <lastmod>2025-09-21</lastmod>
-    </url>
-    <url>
          <loc>https://anno-mods.github.io/vscode-anno/model-texture-utils/</loc>
          <lastmod>2025-09-21</lastmod>
     </url>
@@ -22,6 +18,18 @@
     </url>
     <url>
          <loc>https://anno-mods.github.io/vscode-anno/utilities/</loc>
+         <lastmod>2025-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://anno-mods.github.io/vscode-anno/intellisense/annotations/</loc>
+         <lastmod>2025-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://anno-mods.github.io/vscode-anno/intellisense/auto-complete/</loc>
+         <lastmod>2025-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://anno-mods.github.io/vscode-anno/intellisense/navigation/</loc>
          <lastmod>2025-09-21</lastmod>
     </url>
 </urlset>

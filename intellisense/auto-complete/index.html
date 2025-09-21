@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://anno-mods.github.io/vscode-anno/utilities/">
+        <link rel="canonical" href="https://anno-mods.github.io/vscode-anno/intellisense/auto-complete/">
       
       
-        <link rel="prev" href="../error-checking/">
+        <link rel="prev" href="../annotations/">
       
       
-        <link rel="next" href="../model-texture-utils/">
+        <link rel="next" href="../../error-checking/">
       
       
-      <link rel="icon" href="../images/logo.png">
+      <link rel="icon" href="../../images/logo.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
-        <title>Utilities - Anno Modding Tools</title>
+        <title>Auto Complete - Anno Modding Tools</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#utilities" class="md-skip">
+        <a href="#auto-complete" class="md-skip">
           Skip to content
         </a>
       
@@ -90,9 +90,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Anno Modding Tools" class="md-header__button md-logo" aria-label="Anno Modding Tools" data-md-component="logo">
+    <a href="../.." title="Anno Modding Tools" class="md-header__button md-logo" aria-label="Anno Modding Tools" data-md-component="logo">
       
-  <img src="../images/logo.svg" alt="logo">
+  <img src="../../images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Utilities
+              Auto Complete
             
           </span>
         </div>
@@ -223,9 +223,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Anno Modding Tools" class="md-nav__button md-logo" aria-label="Anno Modding Tools" data-md-component="logo">
+    <a href="../.." title="Anno Modding Tools" class="md-nav__button md-logo" aria-label="Anno Modding Tools" data-md-component="logo">
       
-  <img src="../images/logo.svg" alt="logo">
+  <img src="../../images/logo.svg" alt="logo">
 
     </a>
     Anno Modding Tools
@@ -240,7 +240,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -262,7 +262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/" class="md-nav__link">
+      <a href="../../setup/" class="md-nav__link">
         
   
   
@@ -281,8 +281,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -293,11 +295,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -313,7 +315,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             IntelliSense
@@ -327,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../intellisense/navigation/" class="md-nav__link">
+      <a href="../navigation/" class="md-nav__link">
         
   
   
@@ -350,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../intellisense/annotations/" class="md-nav__link">
+      <a href="../annotations/" class="md-nav__link">
         
   
   
@@ -370,58 +372,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../intellisense/auto-complete/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Auto Complete
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../error-checking/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Syntax and Error Checking
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -439,7 +389,7 @@
   
   
   <span class="md-ellipsis">
-    Utilities
+    Auto Complete
     
   </span>
   
@@ -452,7 +402,7 @@
   
   
   <span class="md-ellipsis">
-    Utilities
+    Auto Complete
     
   </span>
   
@@ -475,63 +425,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#templates" class="md-nav__link">
+  <a href="#guid-conversion" class="md-nav__link">
     <span class="md-ellipsis">
-      Templates
+      GUID Conversion
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#show-diff" class="md-nav__link">
+  <a href="#auto-completion" class="md-nav__link">
     <span class="md-ellipsis">
-      Show Diff
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build-and-deploy-mods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build and Deploy Mods
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-call" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to call
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#download-sub-mods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Download Sub-Mods
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#change-output-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change Output Path
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conversions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conversions
+      Auto Completion
     </span>
   </a>
   
@@ -544,6 +449,14 @@
     </li>
   
 
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
@@ -552,7 +465,51 @@
   
   
     <li class="md-nav__item">
-      <a href="../model-texture-utils/" class="md-nav__link">
+      <a href="../../error-checking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Syntax and Error Checking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-texture-utils/" class="md-nav__link">
         
   
   
@@ -594,63 +551,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#templates" class="md-nav__link">
+  <a href="#guid-conversion" class="md-nav__link">
     <span class="md-ellipsis">
-      Templates
+      GUID Conversion
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#show-diff" class="md-nav__link">
+  <a href="#auto-completion" class="md-nav__link">
     <span class="md-ellipsis">
-      Show Diff
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build-and-deploy-mods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build and Deploy Mods
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-call" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to call
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#download-sub-mods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Download Sub-Mods
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#change-output-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change Output Path
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conversions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conversions
+      Auto Completion
     </span>
   </a>
   
@@ -672,139 +584,18 @@
 
 
 
-<h1 id="utilities">Utilities<a class="headerlink" href="#utilities" title="Permanent link">&para;</a></h1>
-<h2 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h2>
-<p>You can create mods from templates with a structure of common mod files:
- - either globally with <code>F1</code> &gt; <code>Anno: Create Mod from Template</code>,
- - or at a specific location by right clicking on a folder in the Explorer view &gt; <code>Anno: Create Mod from Template</code></p>
-<p>The command creates a folder with the Mod ID (asked by input box) and the following files in their correct path:
-- modinfo.json with mandatory entries
-- README.md
-- assets.xml
-- texts_english.xml
-- common folders</p>
-<h2 id="show-diff">Show Diff<a class="headerlink" href="#show-diff" title="Permanent link">&para;</a></h2>
-<p><img alt="" src="../images/xmltest-compare.gif" /></p>
-<p>You can check th results of one or more <code>ModOp</code>s by selecting them and then right click &gt; <code>Anno: Compare Results with Vanilla</code>.</p>
-<p>Alternatively, you can compare full files and mods by right clicking on <code>assets.xml</code>, <code>templates.xml</code> and <code>*.include.xml</code>.</p>
-<h2 id="build-and-deploy-mods">Build and Deploy Mods<a class="headerlink" href="#build-and-deploy-mods" title="Permanent link">&para;</a></h2>
-<p>Requirement: you need to configure your <code>modsFolder</code> as described in <a href="../setup/">Setup</a>.</p>
-<p>Automatically convert and copy mod files using a json description.</p>
-<p>Features:
-- automatically convert files like <code>.png</code> or <code>.gltf</code> to their Anno formats
-- copy only wanted files into a separate mod folder (keeps mod output clean)
-- create skins of <code>.cfg</code> files without duplicating them</p>
-<p>Examples: <a href="https://github.com/jakobharder/anno-1800-jakobs-mods/">Sources on GitHub</a>, <a href="https://github.com/jakobharder/anno-1800-jakobs-mods/releases">Compiled Mods</a></p>
-<h2 id="how-to-call">How to call<a class="headerlink" href="#how-to-call" title="Permanent link">&para;</a></h2>
-<h3 id="from-visual-studio-code">From Visual Studio Code<a class="headerlink" href="#from-visual-studio-code" title="Permanent link">&para;</a></h3>
-<ul>
-<li>The status bar shows a button with Anno version and mod ID.
-  Click that to deploy the mod to your configured <code>mods/</code> folder.</li>
-<li>Alternatively, press <code>F1</code> to select a mod from your workspace.</li>
-</ul>
-<h3 id="from-terminal-or-github-actions">From Terminal or GitHub actions<a class="headerlink" href="#from-terminal-or-github-actions" title="Permanent link">&para;</a></h3>
-<p>You can use the build command also in command line.</p>
-<p>Have a look at <a href="https://github.com/jakobharder/anno1800-jakobs-mods/blob/main/.github/workflows/publish.yml">Jakob's Collection's GitHub publish pipeline</a> to get some hints how to do it.</p>
-<h2 id="download-sub-mods">Download Sub-Mods<a class="headerlink" href="#download-sub-mods" title="Permanent link">&para;</a></h2>
-<p>You can automatically bundle sub-mods and shared files using URLs in <code>ModDependencies</code> and <code>Development.Bundle</code>. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="c1">// ... the usual modinfocontent</span>
-<span class="w">  </span><span class="nt">&quot;ModDependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;https://github.com/anno-mods/shared-resources/releases/download/v10.10/shared-pools-and-definitions.zip&quot;</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;Development&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;Bundle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="s2">&quot;https://github.com/anno-mods/shared-jakob/releases/download/v4.9.4/decals-city-jakob.zip&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;https://github.com/anno-mods/shared-jakob/releases/download/v4.9.4/decals-industry-jakob.zip&quot;</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Both options download the file and extract the content into your mod.</p>
-<p><code>Development.Bundle</code> does not add a dependency.</p>
-<p>URLs in <code>ModDependencies</code> are a shotcut for the following where the URL is bundled and the zip file name is used as a dependency:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="c1">// ... the usual modinfocontent</span>
-<span class="w">  </span><span class="nt">&quot;ModDependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;shared-pools-and-definitions&quot;</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;Development&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;Bundle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="s2">&quot;https://github.com/anno-mods/shared-resources/releases/download/v10.10/shared-pools-and-definitions.zip&quot;</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="change-output-path">Change Output Path<a class="headerlink" href="#change-output-path" title="Permanent link">&para;</a></h2>
-<p>The default folder name is <code>[Category] Name</code>, saved to your <code>mods/</code> folder.</p>
-<p>You can change that in the <code>modinfo.json</code>:</p>
-<div class="highlight"><pre><span></span><code>{
-  // ... the usual modinfocontent
-  &quot;Development&quot;: {
-    &quot;DeployPath&quot;: &quot;${annoMods}/${modName}&quot;
-  }
-}
-</code></pre></div>
-<p>Use <code>${modName}</code> to get <code>[Category] Name</code> created from <code>modinfo.Category.English</code> and <code>modinfo.ModName.English</code>.</p>
-<p>Use <code>${annoMods}</code> to get your local Anno <code>mods/</code> directory set in the Extension configuration.</p>
-<h2 id="conversions">Conversions<a class="headerlink" href="#conversions" title="Permanent link">&para;</a></h2>
-<p>The following are the default conversion if you use a normal <code>modinfo.json</code> file:</p>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Pattern</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Texture</td>
-<td><code>_diff.png</code>, <code>_metal.png</code>, <code>_norm.png</code>, <code>_height.png</code>, <code>_rga.png</code></td>
-<td>Create DDS textures with 3 LODs.</td>
-</tr>
-<tr>
-<td>Icon</td>
-<td><code>icon*.png</code></td>
-<td>Copy PNG and create DDS textures LODs as needed.</td>
-</tr>
-<tr>
-<td>Feedback</td>
-<td><code>.cf7</code></td>
-<td>Convert to <code>.fc</code>.</td>
-</tr>
-<tr>
-<td>Models</td>
-<td><code>.gltf</code></td>
-<td>Extract and convert models with the name <code>_lod0</code> etc. to individual <code>.rdm</code> files.</td>
-</tr>
-<tr>
-<td>Skin</td>
-<td><code>.cfg.yaml</code></td>
-<td>Generate <code>.cfg</code>, <code>.ifo</code>, <code>.fc</code>.</td>
-</tr>
-<tr>
-<td>Other</td>
-<td><code>.cfg</code>, <code>.ifo</code>, <code>.prp</code>, <code>.fc</code>, <code>.rdm</code>, <code>.dds</code>, <code>.rdp</code>, <code>.fx</code></td>
-<td>Copy.</td>
-</tr>
-<tr>
-<td>Config</td>
-<td><code>data/config/*</code></td>
-<td>Copy.</td>
-</tr>
-<tr>
-<td>Readme</td>
-<td><code>README.md</code></td>
-<td>Insert text into <code>Description.English</code> in the modinfo.json.</td>
-</tr>
-<tr>
-<td>Banner</td>
-<td><code>banner.png</code>, <code>banner.jpg</code></td>
-<td>Copy.</td>
-</tr>
-</tbody>
-</table>
+<h1 id="auto-complete">Auto Complete<a class="headerlink" href="#auto-complete" title="Permanent link">&para;</a></h1>
+<h2 id="guid-conversion">GUID Conversion<a class="headerlink" href="#guid-conversion" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../images/guid-utils.gif" /></p>
+<p>You get a list of possible GUID matches to replace to.
+The list is shown automatically in XML tags that expect a GUID, or after typing <code>GUID="</code> in ModOps.</p>
+<p>Otherwise, trigger the list manually with <code>Ctrl</code> + <code>Space</code>.</p>
+<p>Not all GUIDs can be converted automatically due to performance. Most notable exclusions are <code>Test</code> and <code>Audio</code>.</p>
+<h2 id="auto-completion">Auto Completion<a class="headerlink" href="#auto-completion" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../images/autocompletion.gif" /></p>
+<p>Check <a href="../../setup/">Setup</a> to activate this feature.</p>
+<p>Now your code gets validated and you can press <code>Ctrl</code> + <code>Space</code> anywhere in the document and get a list of possible tags, enums or GUIDs.</p>
+<p>Note: If you want to force updates for auto-completion delete <code>C:\Users\&lt;user&gt;\.lemminx</code> and re-open VSCode.</p>
 
 
 
@@ -834,7 +625,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../error-checking/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Syntax and Error Checking">
+          <a href="../annotations/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Annotations">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -844,20 +635,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Syntax and Error Checking
+                Annotations
               </div>
             </div>
           </a>
         
         
           
-          <a href="../model-texture-utils/" class="md-footer__link md-footer__link--next" aria-label="Next: Model and Texture Utils">
+          <a href="../../error-checking/" class="md-footer__link md-footer__link--next" aria-label="Next: Syntax and Error Checking">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Model and Texture Utils
+                Syntax and Error Checking
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -893,10 +684,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tooltips", "header.autohide", "navigation.footer", "navigation.sections"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tooltips", "header.autohide", "navigation.footer", "navigation.sections"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>
