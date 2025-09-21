@@ -394,7 +394,7 @@
     },
     "DevTargetPath": {
       "description": "Development: Target path for mod deployment.\nDefault is `${annoMods}/${modName}`.",
-      "markdownDescription": "*Development*: Target path for mod deployment.\n\nDefault is `${annoMods}/${modName}`.\n\n[More about Deploy](https://github.com/anno-mods/vscode-anno-modding-tools/blob/main/doc/annomod.md#build-and-deploy-mods)",
+      "markdownDescription": "*Development*: Target path for mod deployment.\n\nDefault is `${annoMods}/${modName}`.\n\n[More about Deploy](https://github.com/anno-mods/vscode-anno/blob/main/doc/annomod.md#build-and-deploy-mods)",
       "type": "string"
     },
     "DevDependencies": {
@@ -407,7 +407,7 @@
     },
     "DevBundle": {
       "description": "Development: List of mods that should be included as a sub mod.",
-      "markdownDescription": "*Development:* List of mods that should be included as a sub mod.\n\n[More about Deploy](https://github.com/anno-mods/vscode-anno-modding-tools/blob/main/doc/annomod.md#build-and-deploy-mods)",
+      "markdownDescription": "*Development:* List of mods that should be included as a sub mod.\n\n[More about Deploy](https://github.com/anno-mods/vscode-anno/blob/main/doc/annomod.md#build-and-deploy-mods)",
       "type": "array",
       "items": {
         "$ref": "#/definitions/FolderOrUrl"

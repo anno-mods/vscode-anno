@@ -7,6 +7,7 @@ plugins:
 
 nav:
   - Home: index.md
+  - Get Started: get-started.md
   - Setup: setup.md
   - IntelliSense:
     - Navigation: intellisense/navigation.md

@@ -1,11 +1,5 @@
 # Detailed Setup
 
-## How to open files
-
-Most features only activate if you a open folder (e.g. `File` > `Open Folder...`) that includes one or more full mods (detected by `modinfo.json`).
-
-You can also work with parent folders, or your complete `mods/` folder.
-
 ## Configure Path
 
 Go into `File` > `Preferences` > `Settings` and search for `anno` to configure the following:
@@ -16,12 +10,12 @@ Go into `File` > `Preferences` > `Settings` and search for `anno` to configure t
 
   This can be either your normal game installation, with 'bin\win64\Anno117.exe'.
 
-  E.g. *'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games\\Anno 117'*.
+  E.g. *'C:\Program Files (x86)\Ubisoft\Ubisoft Game Launcher\games\Anno 117'*.
 
   Alternatively, it can be where you extracted all RDA files using the [RDAExplorer](https://github.com/lysannschlegel/RDAExplorer).
 
-  E.g. *'C:\\anno\\all-rda'* if you have
-  *'c:\\anno\\all-rda\\data\\base\\config\\export\\assets.xml'* in that location.
+  E.g. *`c:\anno\all-rda`* if you have
+  *`c:\anno\all-rda\data\base\config\export\assets.xml`* in that location.
 
 - `Anno.117: Mods Folder`: Path to your `mods/` folder to deploy and resolve dependencies.
 
@@ -33,8 +27,8 @@ Go into `File` > `Preferences` > `Settings` and search for `anno` to configure t
 
   Set it to where you extracted all RDA files using the [RDAExplorer](https://github.com/lysannschlegel/RDAExplorer).
 
-  E.g. *'C:\\anno\\all-rda'* if you have
-  *'c:\anno\all-rda\data\config\export\main\asset\assets.xml'* in that location.
+  E.g. *`c:\anno\all-rda`* if you have
+  *`c:\anno\all-rda\data\config\export\main\asset\assets.xml`* in that location.
 
 - `Anno: Mods Folder`: Path to your `mods/` folder to deploy and resolve dependencies.
 
@@ -58,7 +52,7 @@ By default, it has the following content:
     "fileMatch": [
       "/modinfo.json"
     ],
-    "url": "https://raw.githubusercontent.com/anno-mods/vscode-anno-modding-tools/main/languages/modinfo-schema.json"
+    "url": "https://raw.githubusercontent.com/anno-mods/vscode-anno/main/languages/modinfo-schema.json"
   }
 ]
 ```
@@ -75,7 +69,7 @@ By default, it has the following content:
 "xml.fileAssociations": [
   {
     "pattern": "{assets*,*.include}.xml",
-    "systemId": "https://raw.githubusercontent.com/anno-mods/vscode-anno-modding-tools/main/generated/assets.xsd"
+    "systemId": "https://raw.githubusercontent.com/anno-mods/vscode-anno/main/generated/assets.xsd"
   }
 ]
 ```

@@ -108,7 +108,7 @@ async function writeWorkspaceSettings(languageMode: boolean, modopSchema: boolea
     }
 
     if (modopSchema) {
-      const schemaUrl = "https://raw.githubusercontent.com/anno-mods/vscode-anno-modding-tools/main/generated/assets.xsd";
+      const schemaUrl = "https://raw.githubusercontent.com/anno-mods/vscode-anno/main/generated/assets.xsd";
 
       settings['xml.fileAssociations'] ??= [];
 
@@ -142,7 +142,7 @@ async function writeWorkspaceSettings(languageMode: boolean, modopSchema: boolea
       if (updateModinfoSchema) {
         (settings['json.schemas'] as any[]).push({
           "fileMatch": [ '/modinfo.json' ],
-          "url": "https://raw.githubusercontent.com/anno-mods/vscode-anno-modding-tools/main/languages/modinfo-schema.json"
+          "url": "https://raw.githubusercontent.com/anno-mods/vscode-anno/main/languages/modinfo-schema.json"
         });
       }
     }
