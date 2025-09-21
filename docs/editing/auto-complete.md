@@ -1,5 +1,8 @@
 # Auto Complete
 
+??? info "Requires game path configuration."
+    --8<-- "snippets/game-path-required.md"
+
 ## GUID Conversion
 
 ![](./images/guid-utils.gif)
@@ -15,8 +18,6 @@ Not all GUIDs can be converted automatically due to performance. Most notable ex
 
 ![](./images/autocompletion.gif)
 
-Check [Setup](../setup.md) to activate this feature.
-
 Now your code gets validated and you can press `Ctrl` + `Space` anywhere in the document and get a list of possible tags, enums or GUIDs.
 
-Note: If you want to force updates for auto-completion delete `C:\Users\<user>\.lemminx` and re-open VSCode.
+!!! note "If you want to force updates for auto-completion delete `C:\Users\<user>\.lemminx` and re-open VSCode."

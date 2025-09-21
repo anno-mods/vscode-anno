@@ -8,10 +8,20 @@ Right click on any GUID and select `Go to Definition` or press ++f12++ to jump t
 
 The plugin searches in the following locations for assets:
 
-- Vanilla assets ([configure path](../setup.md#configure-path))
+<div class="annotate" markdown>
+- Vanilla assets (1)
 - Current mod
-- Dependencies found in the workspace or in the mods folder ([configure path](../setup.md#configure-path))
+- Dependencies found in the workspace or in the mods folder (2)
 - Any XML patch opened once during current session
+</div>
+
+1.  Requires game path configuration.
+
+    --8<-- "snippets/game-path-required.md"
+
+2.  Requires mods folder configuration.
+
+    --8<-- "snippets/mods-folder-required.md"
 
 !!! tip "Press ++ctrl++ + ++t++ to search and quickly jump to an asset."
 

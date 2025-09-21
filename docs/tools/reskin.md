@@ -1,5 +1,8 @@
 # Quickly Reskin Existing Models
 
+??? info "Requires game path configuration."
+    --8<-- "snippets/game-path-required.md"
+
 Write a yaml file like below and name it `.cfg.yaml`.
 IFO, FC/CF7 and CFG files will be generated accordingly.
 Files are copied if they have the same name as the source.

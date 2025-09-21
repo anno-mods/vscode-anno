@@ -1,5 +1,8 @@
 # Syntax and Error Checking
 
+??? info "Requires game path configuration."
+    --8<-- "snippets/game-path-required.md"
+
 ![screenshot of vscode with basic overview](./images/overview.png)
 
 ## GUID Annotation

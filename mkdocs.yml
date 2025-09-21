@@ -4,7 +4,9 @@ site_url: https://anno-mods.github.io/vscode-anno
 plugins:
   - search
   - macros
-
+  - exclude:
+      glob:
+        - snippets/*
 nav:
   - Home: index.md
   - Get Started: get-started.md

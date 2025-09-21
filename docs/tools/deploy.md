@@ -1,6 +1,7 @@
 # Deploy Mods
 
-Requirement: you need to configure your `modsFolder` as described in [Setup](../setup.md).
+??? info "Requires mods folder configuration."
+    --8<-- "snippets/mods-folder-required.md"
 
 Automatically convert and copy mod files using a json description.
 
