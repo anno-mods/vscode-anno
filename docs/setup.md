@@ -6,7 +6,7 @@ Most features only activate if you a open folder (e.g. `File` > `Open Folder...`
 
 You can also work with parent folders, or your complete `mods/` folder.
 
-## Path configurations
+## Configure Path
 
 Go into `File` > `Preferences` > `Settings` and search for `anno` to configure the following:
 

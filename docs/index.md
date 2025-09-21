@@ -1,6 +1,6 @@
 # Anno Modding Tools
 
-## [Navigation and IntelliSense](./intellisense.md)
+## Navigation and IntelliSense
 
   - Outline: Navigate with Anno-specific outlines.<br/>
     _Secondary Side Bar or `Ctrl+Shift+O`_

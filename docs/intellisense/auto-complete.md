@@ -1,22 +1,4 @@
-# Navigation and IntelliSense
-
-## Navigation
-
-![](./images/navigation.gif)
-
-## Go to Asset
-
-Right click on any GUID and select `Go to Definition` or press `F12` to jump to the related Mod or vanilla asset.
-
-You can press `Ctrl+T` and type the asset name to jump to assets as well.
-
-## GUID Annotation
-
-Displays name and template name of GUIDs.
-
-This feature will also consider Mod GUIDs, if they are either:
-- part of your own mod
-- part of a dependency mentioned in `modinfo.json` and installed into the game's `mods/` folder
+# Auto Complete
 
 ## GUID Conversion
 
@@ -33,7 +15,7 @@ Not all GUIDs can be converted automatically due to performance. Most notable ex
 
 ![](./images/autocompletion.gif)
 
-Check [Setup](./setup.md) to activate this feature.
+Check [Setup](../setup.md) to activate this feature.
 
 Now your code gets validated and you can press `Ctrl` + `Space` anywhere in the document and get a list of possible tags, enums or GUIDs.
 
