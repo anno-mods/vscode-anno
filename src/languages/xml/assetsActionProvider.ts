@@ -226,21 +226,12 @@ export class AssetsCodeActionProvider implements vscode.CodeActionProvider {
 
   provideCodeActions(document: vscode.TextDocument, range: vscode.Range | vscode.Selection, context: vscode.CodeActionContext, token: vscode.CancellationToken): vscode.CodeAction[] {
     return context.diagnostics
-      .filter(diagnostic => diagnostic.code === DEPRECATED_ALL_CODE || diagnostic.code === GAME_PATH_117)
-      .map(diagnostic => this.createCommandCodeAction(diagnostic, document.uri))
+      .map(diagnostic => this.createCommandCodeAction(diagnostic, document))
       .filter(utils.removeNulls);
   }
 
-  private createCommandCodeAction(diagnostic: vscode.Diagnostic, uri: vscode.Uri): vscode.CodeAction | undefined {
-    if (diagnostic.code === DEPRECATED_ALL_CODE) {
-      const action = new vscode.CodeAction('Fix it', vscode.CodeActionKind.QuickFix);
-      action.edit = new vscode.WorkspaceEdit();
-      action.edit.replace(uri, diagnostic.range, DEPRECATED_ALL_FIX);
-      action.diagnostics = [diagnostic];
-      action.isPreferred = true;
-      return action;
-    }
-    else if (diagnostic.code === GAME_PATH_117) {
+  private createCommandCodeAction(diagnostic: vscode.Diagnostic, document: vscode.TextDocument): vscode.CodeAction | undefined {
+    if (diagnostic.code === GAME_PATH_117) {
       const action = new vscode.CodeAction(`Open settings for \`${GAME_PATH_117}\``, vscode.CodeActionKind.QuickFix);
       action.command = {
         title: action.title,
@@ -251,5 +242,34 @@ export class AssetsCodeActionProvider implements vscode.CodeActionProvider {
       action.isPreferred = true;
       return action;
     }
+    else {
+      for (var issue of issues7) {
+        if (issue.fix && diagnostic.code === issue.code) {
+          const action = new vscode.CodeAction(issue.fixMessage || 'Fix it', vscode.CodeActionKind.QuickFix);
+          action.edit = new vscode.WorkspaceEdit();
+
+          if (issue.matchRegex && issue.fix.indexOf('\\1') >= 0) {
+            // regex use detected
+            var newText = issue.fix;
+            const issueText = document.getText(diagnostic.range);
+            const match = issueText.match(new RegExp(issue.matchRegex));
+            if (match) {
+              for (var i = 1; i < (match?.length ?? 0); i++) {
+                newText = newText.replace('\\' + i, match[i]);
+              }
+            }
+            action.edit.replace(document.uri, diagnostic.range, newText);
+          }
+          else {
+            action.edit.replace(document.uri, diagnostic.range, issue.fix);
+          }
+          action.diagnostics = [diagnostic];
+          action.isPreferred = true;
+          return action;
+        }
+      }
+    }
+
+    return undefined;
   }
 }

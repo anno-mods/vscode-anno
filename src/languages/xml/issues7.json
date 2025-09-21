@@ -1,24 +1,30 @@
 [
   {
     "matchWord": "190611",
+    "message": "`190611` is deprecated and won't work with 'Captain of Industry' properly. Use `368` instead.",
+    "code": "game_buildings_with_maintenance",
     "fix": "368",
-    "code": "all_buildings_with_maintenance_DONTUSE",
-    "message": "`190611` is deprecated and won't work with Captain of Industry properly. Use `368` instead."
+    "fixMessage": "Replace with `368`"
   },
   {
     "matchWord": "193879",
+    "code": "game_buildings_with_maintenance",
+    "message": "`190611` is deprecated and won't work with 'Captain of Industry' properly. Use `368` instead.",
     "fix": "368",
-    "code": "all_buildings_with_maintenance_DONTUSE",
-    "message": "`190611` is deprecated and won't work with Captain of Industry properly. Use `368` instead."
+    "fixMessage": "Replace with `368`"
   },
   {
     "matchRegex": "@(\\d+)/Values",
+    "message": "`/Values` is already part of @GUID. Remove it.",
     "code": "xpath_@_values",
-    "message": "`/Values` is already part of @GUID notation. Remove it."
+    "fix": "@\\1",
+    "fixMessage": "Remove `/Values`"
   },
   {
-    "matchRegex": "(?:Merge|Replace|Add|Remove|Append|Prepend)=\"/Values",
+    "matchRegex": "(Merge|Replace|Add|Remove|Append|Prepend)=\"/Values",
+    "message": "`/Values` is already part of the path when using short ModOps. Remove it.",
     "code": "xpath_short_values",
-    "message": "`/Values` is already part of the path when using short ModOps. Remove it."
+    "fix": "\\1=\"",
+    "fixMessage": "Remove `/Values`"
   }
 ]
