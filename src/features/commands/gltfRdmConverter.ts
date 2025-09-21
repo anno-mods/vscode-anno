@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 import * as channel from '../channel';
-import * as fsutils from '../../generic/fsutils';
+import * as fsutils from '../../utils/fsutils';
 import { GltfConverter } from '../../builder/converter/gltf';
 
 /*

@@ -17,7 +17,7 @@ import * as curltar from '../tools/curltar';
 import * as rdp from '../tools/rdp';
 import * as dds from '../tools/dds';
 import * as xmltest from '../tools/xmltest';
-import * as fsutils from '../generic/fsutils';
+import * as fsutils from '../utils/fsutils';
 import { AssetsConverter } from './converter/assets';
 
 export class ModBuilder {

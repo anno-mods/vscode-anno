@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as minimatch from 'minimatch';
 import * as vscode from 'vscode';
-import { ASSETS_FILENAME_PATTERN, ASSETS_FILENAME_PATTERN_STRICT } from '../generic/assetsXml';
+import { ASSETS_FILENAME_PATTERN, ASSETS_FILENAME_PATTERN_STRICT } from '../utils/assetsXml';
 
 const PATCH_FILENAME_PATTERN_STRICT = '**/{assets*,*.include,game/asset/**/*,export.bin,*.fc,*.cfg}.xml';
 

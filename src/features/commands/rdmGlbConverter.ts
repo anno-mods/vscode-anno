@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as child from 'child_process';
 
 import * as channel from '../channel';
-import * as fsutils from '../../generic/fsutils';
+import * as fsutils from '../../utils/fsutils';
 
 /*
 uses rdm4-bin from https://github.com/lukts30/rdm4

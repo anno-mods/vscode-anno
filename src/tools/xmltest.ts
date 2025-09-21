@@ -6,7 +6,7 @@ import * as vscode from 'vscode';
 
 import * as anno from '../anno';
 import { ModRegistry } from '../data/modRegistry';
-import * as logger from '../generic/logger';
+import * as logger from '../utils/logger';
 
 const XMLTEST_PATH = "./external/xmltest.exe";
 const XMLTEST2_PATH = "./external/xmltest2.exe";

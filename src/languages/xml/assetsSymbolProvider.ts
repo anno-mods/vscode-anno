@@ -5,7 +5,7 @@ import * as rda from '../../data/rda';
 import * as editorFormats from '../../editor/formats';
 import * as modContext from '../../editor/modContext';
 import * as xmltest from '../../tools/xmltest';
-import { ASSETS_FILENAME_PATTERN, guidWithName, IAsset } from '../../generic/assetsXml';
+import { ASSETS_FILENAME_PATTERN, guidWithName, IAsset } from '../../utils/assetsXml';
 import { SymbolRegistry } from '../../data/symbols';
 
 const vanillaAssetContentProvider = new (class implements vscode.TextDocumentContentProvider {

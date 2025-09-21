@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import * as anno from '../anno';
-import * as logger from '../generic/logger';
+import * as logger from '../utils/logger';
 
 export class ModContext {
   public document?: vscode.TextDocument;

@@ -9,8 +9,8 @@ import * as path from 'path';
 import * as child from 'child_process';
 import * as xml2js from 'xml2js';
 
-import * as fsutils from '../generic/fsutils';
-import * as logger from '../generic/logger';
+import * as fsutils from '../utils/fsutils';
+import * as logger from '../utils/logger';
 
 let _converterPath: string | undefined;
 let _interpreterPath: string | undefined;

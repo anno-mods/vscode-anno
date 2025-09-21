@@ -2,7 +2,7 @@ import { glob } from 'glob';
 import * as path from 'path';
 
 import { ModInfo, searchModPath } from '../anno';
-import * as logger from '../generic/logger';
+import * as logger from '../utils/logger';
 
 export namespace ModRegistry {
   let mods_: { [index: string]: ModInfo } = {};

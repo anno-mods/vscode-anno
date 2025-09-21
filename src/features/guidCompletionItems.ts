@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import { IAsset } from '../generic/assetsXml';
+import { IAsset } from '../utils/assetsXml';
 import { SymbolRegistry } from '../data/symbols';
 
 interface ITagJson

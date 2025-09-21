@@ -6,7 +6,8 @@ import * as versionChecks from './versionChecks';
 import * as anno from '../../anno';
 import * as rda from '../../data/rda';
 import * as editor from '../../editor';
-import { ASSETS_FILENAME_PATTERN } from '../../generic/assetsXml';
+import * as utils from '../../utils';
+import { ASSETS_FILENAME_PATTERN } from '../../utils/assetsXml';
 import * as xmltest from '../../tools/xmltest';
 import * as editorFormats from '../../editor/formats';
 
@@ -35,21 +36,6 @@ export class AssetsActionProvider {
       })
     ];
   }
-}
-
-function includesAsWord(line: string, text: string)
-{
-  const pos = line.indexOf(text);
-  if (pos <= 0) {
-    return false;
-  }
-
-  const charBefore = line.charAt(pos - 1);
-  const charAfter = line.charAt(pos + text.length);
-
-  return (charBefore === '\'' || charAfter === '\'' ||
-    charBefore === '"' || charAfter === '"' ||
-    charBefore === ',' && charAfter === ',');
 }
 
 function checkFileName(modPaths: string[], line: vscode.TextLine, annoRda?: string) {
@@ -103,10 +89,10 @@ export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode
 
   for (let lineIndex = 0; lineIndex < doc.lineCount; lineIndex++) {
     const lineOfText = doc.lineAt(lineIndex);
-    if (includesAsWord(lineOfText.text, DEPRECATED_ALL)) {
+    if (utils.findWord(lineOfText.text, DEPRECATED_ALL)) {
       diagnostics.push(createDiagnostic(doc, lineOfText, lineIndex));
     }
-    else if (includesAsWord(lineOfText.text, DEPRECATED_ALL2)) {
+    else if (utils.findWord(lineOfText.text, DEPRECATED_ALL2)) {
       diagnostics.push(createDiagnostic2(doc, lineOfText, lineIndex));
     }
 

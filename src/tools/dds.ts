@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as child from 'child_process';
 
-import * as logger from '../generic/logger';
+import * as logger from '../utils/logger';
 
 export enum TextureFormat {
   unknown = 0,

@@ -3,7 +3,7 @@ import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import * as fsutils from '../generic/fsutils';
+import * as fsutils from '../utils/fsutils';
 
 interface ICachedFile {
   sha: string,

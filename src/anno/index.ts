@@ -5,7 +5,7 @@ import glob = require('glob');
 import { ModInfo } from './modInfo';
 import { GameVersion, gameVersionName } from './gameVersion';
 import { ModRegistry } from '../data/modRegistry';
-import * as utils from '../generic/utils';
+import * as utils from '../utils/utils';
 
 export { ModInfo, GameVersion, gameVersionName };
 

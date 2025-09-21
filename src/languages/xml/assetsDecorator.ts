@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 import * as anno from '../../anno';
 import { SymbolRegistry } from '../../data/symbols';
 import * as editorFormats from '../../editor/formats';
-import { assetNameWithOrigin } from '../../generic/assetsXml';
+import { assetNameWithOrigin } from '../../utils/assetsXml';
 
 import { clearDiagnostics, diagnostics, refreshDiagnostics } from './assetsActionProvider';
 

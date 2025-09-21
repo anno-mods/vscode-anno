@@ -9,7 +9,7 @@ import * as editorDocument from '../editor/assetsDocument';
 import * as editorFormats from '../editor/formats';
 import * as text from '../editor/text';
 import { AssetsTocProvider } from '../languages/xml/assetsTocProvider';
-import { AssetsDocument, ASSETS_FILENAME_PATTERN, IAsset } from '../generic/assetsXml';
+import { AssetsDocument, ASSETS_FILENAME_PATTERN, IAsset } from '../utils/assetsXml';
 import { AllGuidCompletionItems, GuidCompletionItems } from './guidCompletionItems';
 
 let assetsDocument: AssetsDocument | undefined;

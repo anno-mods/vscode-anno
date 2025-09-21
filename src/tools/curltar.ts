@@ -1,7 +1,7 @@
 import * as child from 'child_process';
 import * as path from 'path';
 
-import * as fsutils from '../generic/fsutils';
+import * as fsutils from '../utils/fsutils';
 
 export interface ILogger {
   log: (text: string) => void;

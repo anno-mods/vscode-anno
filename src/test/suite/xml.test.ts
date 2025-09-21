@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import AnnoXml, { AnnoXmlElement } from '../../generic/annoXml';
+import AnnoXml, { AnnoXmlElement } from '../../utils/annoXml';
 
 
 suite('xml tests', () => {

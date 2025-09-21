@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 import * as dds from '../../tools/dds';
-import * as fsutils from '../../generic/fsutils';
+import * as fsutils from '../../utils/fsutils';
 
 export class DdsConverter {
 	public static register(context: vscode.ExtensionContext): vscode.Disposable[] {

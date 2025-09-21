@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as vscode from 'vscode';
 
-import * as fsutils from '../../generic/fsutils';
+import * as fsutils from '../../utils/fsutils';
 
 suite('file conversion tests', () => {
   test('check localization commands', async () => {
