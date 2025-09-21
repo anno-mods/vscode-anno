@@ -30,7 +30,7 @@ This feature will also consider Mod GUIDs, if they are either:
 
 ## GUID Conversion
 
-![](./guid-utils.gif)
+![](./images/guid-utils.gif)
 
 You get a list of possible GUID matches to replace to.
 The list is shown automatically in XML tags that expect a GUID, or after typing `GUID="` in ModOps.
