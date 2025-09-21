@@ -2,8 +2,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 import * as anno from '../anno';
-import { Version } from '../other/version';
-import * as utils from '../other/utils';
+import { Version } from '../generic/version';
+import * as utils from '../generic/utils';
 
 const MODINFO_JSON = 'modinfo.json'
 

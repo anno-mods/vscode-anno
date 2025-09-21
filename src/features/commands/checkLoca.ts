@@ -3,7 +3,7 @@ import * as channel from '../channel';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as xmldoc from 'xmldoc';
-import { Loca } from '../../other/loca';
+import { Loca } from '../../generic/loca';
 
 export class CheckLoca {
 	public static register(context: vscode.ExtensionContext): vscode.Disposable[] {

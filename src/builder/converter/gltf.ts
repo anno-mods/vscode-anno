@@ -4,7 +4,7 @@ import { ConvertToGLB } from 'gltf-import-export';
 import * as child from 'child_process';
 
 import { Converter } from '../Converter';
-import * as fsutils from '../../other/fsutils';
+import * as fsutils from '../../generic/fsutils';
 
 interface IAnimation {
   name: string,

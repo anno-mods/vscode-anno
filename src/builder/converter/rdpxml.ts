@@ -1,7 +1,7 @@
 import * as path from 'path';
 
 import { Converter } from '../Converter';
-import * as fsutils from '../../other/fsutils';
+import * as fsutils from '../../generic/fsutils';
 import * as rdp from '../../tools/rdp';
 
 export class RdpxmlConverter extends Converter {

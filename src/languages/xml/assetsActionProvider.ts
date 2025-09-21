@@ -6,7 +6,7 @@ import * as versionChecks from './versionChecks';
 import * as anno from '../../anno';
 import * as rda from '../../data/rda';
 import * as editor from '../../editor';
-import { ASSETS_FILENAME_PATTERN } from '../../other/assetsXml';
+import { ASSETS_FILENAME_PATTERN } from '../../generic/assetsXml';
 import * as xmltest from '../../tools/xmltest';
 import * as editorFormats from '../../editor/formats';
 

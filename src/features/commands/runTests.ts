@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import * as anno from '../../anno';
-import * as fsutils from '../../other/fsutils';
+import * as fsutils from '../../generic/fsutils';
 import * as xmltest from '../../tools/xmltest';
 
 export class RunTests {

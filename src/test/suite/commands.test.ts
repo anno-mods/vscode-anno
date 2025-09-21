@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as xml2js from 'xml2js';
 import * as vscode from 'vscode';
 
-import * as fsutils from '../../other/fsutils';
+import * as fsutils from '../../generic/fsutils';
 
 suite('file conversion tests', () => {
   // clear to avoid old files leading to wrong results

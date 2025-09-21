@@ -4,7 +4,7 @@ import * as path from 'path';
 import { Converter } from '../Converter';
 import { ModCache } from '../ModCache';
 import * as dds from '../../tools/dds';
-import * as fsutils from '../../other/fsutils';
+import * as fsutils from '../../generic/fsutils';
 
 export class TextureConverter extends Converter {
   public getName() {

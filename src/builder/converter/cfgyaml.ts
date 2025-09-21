@@ -5,8 +5,8 @@ import * as child from 'child_process';
 
 import { Converter } from '../Converter';
 import { ModCache } from '../ModCache';
-import AnnoXml from '../../other/annoXml';
-import * as fsutils from '../../other/fsutils';
+import AnnoXml from '../../generic/annoXml';
+import * as fsutils from '../../generic/fsutils';
 
 export class CfgYamlConverter extends Converter {
   _variables: { [index: string]: string } = {};

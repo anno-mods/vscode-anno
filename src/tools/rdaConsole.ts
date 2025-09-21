@@ -1,7 +1,7 @@
 import * as child from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as logger from '../other/logger';
+import * as logger from '../generic/logger';
 
 const RDA_CONSOLE_PATH = "./external/build/RdaConsole.exe";
 

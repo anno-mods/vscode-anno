@@ -6,7 +6,7 @@ import * as xml2js from 'xml2js';
 import { PropImporter } from '../../features/commands/propImporter';
 import { InfoImporter } from '../../features/commands/infoImporter';
 import { FcImporter } from '../../features/commands/fcImporter';
-import * as fsutils from '../../other/fsutils';
+import * as fsutils from '../../generic/fsutils';
 
 suite('import tests', () => {
   // clear to avoid old files leading to wrong results

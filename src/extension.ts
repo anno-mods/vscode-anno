@@ -17,7 +17,7 @@ import * as rda from './data/rda';
 import * as editor from './editor';
 import * as xmltest from './tools/xmltest';
 
-import * as logger from './other/logger';
+import * as logger from './generic/logger';
 import * as channel from './features/channel';
 import { SymbolRegistry } from './data/symbols';
 

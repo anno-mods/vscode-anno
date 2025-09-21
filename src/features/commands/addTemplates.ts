@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 
 import * as anno from '../../anno';
 import * as schemas from '../../languages/schemas';
-import * as fsutils from '../../other/fsutils';
+import * as fsutils from '../../generic/fsutils';
 
 export class AddTemplateCommands {
   static _templatesPath: string;

@@ -2,8 +2,8 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import * as xmldoc from 'xmldoc';
 
-import { uniqueAssetName} from '../../other/assetsXml';
-import * as xpath from '../../other/xpath';
+import { uniqueAssetName} from '../../generic/assetsXml';
+import * as xpath from '../../generic/xpath';
 import { SymbolRegistry } from '../../data/symbols';
 import { AssetsDocument } from '../../editor/assetsDocument';
 

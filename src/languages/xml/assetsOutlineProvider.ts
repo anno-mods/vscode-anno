@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { SkinnyTextDocument, AssetsTocProvider, TocEntry } from './assetsTocProvider';
 import { AssetsDocument } from '../../editor/assetsDocument';
-import { ASSETS_FILENAME_PATTERN } from '../../other/assetsXml';
+import { ASSETS_FILENAME_PATTERN } from '../../generic/assetsXml';
 
 interface MarkdownSymbol {
 	readonly level: number;

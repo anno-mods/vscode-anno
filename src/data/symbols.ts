@@ -7,8 +7,8 @@ import * as rda from './rda';
 import * as anno from '../anno';
 import * as editor from '../editor';
 import * as modContext from '../editor/modContext';
-import { AssetsDocument, ASSETS_FILENAME_PATTERN_STRICT, IAsset } from '../other/assetsXml';
-import * as logger from '../other/logger';
+import { AssetsDocument, ASSETS_FILENAME_PATTERN_STRICT, IAsset } from '../generic/assetsXml';
+import * as logger from '../generic/logger';
 
 type GuidCache = Map<string, IAsset>;
 

@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as child from 'child_process';
 
 import * as channel from '../channel';
-import * as fsutils from '../../other/fsutils';
+import * as fsutils from '../../generic/fsutils';
 
 /*
 uses AnnoFCConverter from https://github.com/taubenangriff/AnnoFCConverter/
