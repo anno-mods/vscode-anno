@@ -116,7 +116,6 @@ function _findLastKeywordInLine(line: string, position?: number): any {
   }
 
   const propertyMatch = linePrefix.substring(0, equalSign).match(/\s*(\w+)\s*$/);
-  vscode.window.showErrorMessage(linePrefix.substring(0, equalSign));
   if (propertyMatch) {
     return {
       name: propertyMatch[1],
@@ -130,14 +129,19 @@ function _findLastKeywordInLine(line: string, position?: number): any {
 
 export interface OpenClosePosition {
   position: vscode.Position;
-  type: "<" | ">";
+  character: string;
 }
 
-class XmlPosition {
-  public tagName?: string;
+export class XmlPosition {
+  public tag?: string;
+  public attribute?: string;
   public path?: string;
-  public type?: 'other' | 'afterClose' | 'freshOpen' | 'freshTagName' | 'attribute';
+  public word?: string;
+  public type?: 'other' | 'afterClose' | 'freshOpen' | 'freshTagName' | 'attribute' | 'value' | 'kindaAttribute';
   public nextOpenClose?: OpenClosePosition;
+  public isModOpLevel: boolean = false;
+  public lastSpecialCharacter?: string;
+  public attributes?: string[];
 }
 
 function findPreviousCharacter(document: vscode.TextDocument, position: vscode.Position, character: string) {
@@ -159,20 +163,23 @@ function findPreviousCharacter(document: vscode.TextDocument, position: vscode.P
   return undefined;
 }
 
-function findOpenClose(document: vscode.TextDocument, position: vscode.Position): OpenClosePosition | undefined {
+function findFirstOf(document: vscode.TextDocument,
+  characters: string,
+  position: vscode.Position,
+  endPosition: vscode.Position|undefined = undefined): OpenClosePosition | undefined {
   // TODO check quotes
 
   let lineNumber = position.line;
-  while (lineNumber < document.lineCount) {
+  while (lineNumber < document.lineCount && (!endPosition || lineNumber <= endPosition.line)) {
     const line = document.lineAt(lineNumber).text;
-    const lineStart = lineNumber === position.line ? position.character : line.length;
+    const lineStart = lineNumber === position.line ? position.character : 0;
+    const lineEnd = endPosition && lineNumber === endPosition.line ? endPosition.character : line.length;
 
-    for (var i = lineStart; i < line.length; i++) {
-      if (line.charAt(i) === '<') {
-        return { position: new vscode.Position(lineNumber, i), type: '<' };
-      }
-      else if (line.charAt(i) === '>') {
-        return { position: new vscode.Position(lineNumber, i), type: '>' };
+    for (var i = lineStart; i < lineEnd; i++) {
+      for (var character of characters) {
+        if (line.charAt(i) === character) {
+          return { position: new vscode.Position(lineNumber, i), character };
+        }
       }
     }
     lineNumber++;
@@ -181,10 +188,33 @@ function findOpenClose(document: vscode.TextDocument, position: vscode.Position)
   return undefined;
 }
 
+function getWordAt(document: vscode.TextDocument, position?: vscode.Position) {
+  if (position) {
+    const wordRange = document.getWordRangeAtPosition(position);
+    if (wordRange) {
+      return document.getText(wordRange);
+    }
+  }
+
+  return undefined;
+}
+
+function getAttributes(tag: string): string[] {
+  // Matches: <tag attr="..." attr2='...'>
+  // Captures only the attribute name (supports :, -, . in names)
+  const re = /([A-Za-z_][\w:.-]*)\s*=\s*(?:"[^"]*"|'[^']*')/g;
+
+  const names: string[] = [];
+  for (const m of tag.matchAll(re)) {
+    names.push(m[1]);
+  }
+  return names;
+}
+
 export function getAutoCompletePath(document: vscode.TextDocument, position: vscode.Position): XmlPosition {
   let line = document.lineAt(position.line).text.substring(0, position.character);
 
-  var result: XmlPosition = { };
+  var result: XmlPosition = { isModOpLevel: false };
 
   const quoteStart = endsWithUnclosedString(line);
 
@@ -192,63 +222,76 @@ export function getAutoCompletePath(document: vscode.TextDocument, position: vsc
   const previewsClose = findPreviousCharacter(document, position, '>');
   const isInTag = previewsOpen ? previewsClose?.isBefore(previewsOpen) ?? true : false;
 
+  result.path = getNodePath(document, position);
+  result.word = getWordAt(document, position);
+
   if (isInTag) {
-    result.nextOpenClose = findOpenClose(document, position);
+    result.tag = previewsOpen ? getWordAt(document, new vscode.Position(previewsOpen.line, previewsOpen.character + 1)) : undefined;
+    result.nextOpenClose = findFirstOf(document, "<>", position);
 
-    if (quoteStart > 0) {
-      result.type = "attribute";
+    const fullTag = document.getText(new vscode.Range(
+      previewsOpen ?? new vscode.Position(0, 0),
+      result.nextOpenClose?.position ?? document.lineAt(document.lineCount - 1).range.end)) + ">";
 
-      if (line.endsWith('@') || line.endsWith('=') || line.endsWith('\'') || line.endsWith('\"') || line.endsWith(' ') || line.endsWith(',')) {
-        if (quoteStart >= 0) {
-          // TODO, rework this
+      result.attributes = getAttributes(fullTag);
 
-          const keyword = _findLastKeywordInLine(line, quoteStart);
-          if (keyword?.type === 'xpath' && keyword.name) {
-            result.tagName = keyword.name;
-          }
-          result.path = 'XPath';
+    if (quoteStart >= 0) {
+      result.type = "value";
+
+      // remember last in-value special character
+      if (quoteStart != position.character - 1) {
+        if (line.endsWith('@') || line.endsWith('=') || line.endsWith('\'') || line.endsWith('\"') || line.endsWith(' ') || line.endsWith(',')) {
+          result.lastSpecialCharacter = line.charAt(line.length - 1);
         }
       }
+
+      const keyword = _findLastKeywordInLine(line, quoteStart);
+      if (keyword?.type === 'xpath' && keyword.name) {
+        result.attribute = keyword.name;
+      }
+      // }
     }
     else {
       if (line.endsWith('<')) {
-        const path = getNodePath(document, position); // xml tag
-        result.tagName = path[0];
-        result.path = path[1];
         result.type = 'freshOpen';
       }
       else {
         const space = findPreviousCharacter(document, position, ' ');
         if (space?.isAfter(previewsOpen!)) {
-          // somewhere in attributes, e.g. "<Name " or "<Name bla=''"
-          const path = getNodePath(document, position); // xml tag
-          result.tagName = path[0];
-          result.path = path[1];
-          result.type = 'attribute';
+          if (line.endsWith(' ') && !line.endsWith('= ')) {
+            // `<Tag `
+            // `<Tag Attribute="Value" `
+            result.type = 'attribute';
+          }
+          else if (result.word) {
+            // `<Tag Attribute`
+            result.type = 'attribute';
+            result.attribute = result.word;
+          }
+          else {
+            // `<Tag Attribute=`
+            // `<Tag Attribute="Value"`
+            // `<Tag Attribute= `
+            result.type = 'kindaAttribute';
+          }
         }
         else {
-          // Directly after name "<Name"
-          const path = getNodePath(document, position); // xml tag
-          result.tagName = path[0];
-          result.path = path[1];
+          // `<Tag`
           result.type = 'freshTagName';
         }
       }
     }
-
-    return result;
   }
   else if (line.endsWith('>')) {
     result.type = 'afterClose';
-    const path = getNodePath(document, position); // xml tag
-    result.tagName = path[0];
-    result.path = path[1];
-    return result;
   }
 
-  const path = getNodePath(document, position);
-  result.tagName = path[0];
-  result.path = path[1];
+  if (result.path) {
+    result.isModOpLevel = result.path?.endsWith('/ModOps')
+      || result.path?.endsWith('/ModOps/Group')
+      || result.path?.endsWith('/ModOps/Group/Group');
+  }
+
   return result;
 }
 
@@ -262,10 +305,10 @@ function endsWithUnclosedString(line: string): number {
     const char = line[i];
 
     if (char === '"' && inSingle === end) {
-      inDouble = i;
+      inDouble = inDouble === end ? i : end;
     }
     else if (char === "'" && inDouble === end) {
-      inSingle = i;
+      inSingle = inSingle === end ? i : end;
     }
   }
 
@@ -274,7 +317,7 @@ function endsWithUnclosedString(line: string): number {
 }
 
 // duplicate: guidUtilsProvider:findKeywordAtPosition
-export function getNodePath(document: vscode.TextDocument, position: vscode.Position): [string?, string?] {
+export function getNodePath(document: vscode.TextDocument, position: vscode.Position): string|undefined {
   let tags: string[] = [];
   let pos: vscode.Position | undefined = findPreviousTag(document, position, tags);
 
@@ -283,14 +326,10 @@ export function getNodePath(document: vscode.TextDocument, position: vscode.Posi
   }
 
   if (tags.length === 0) {
-    return [ undefined, undefined ];
+    return undefined;
   }
 
-  const keyword = tags[0];
-  // const root = tags.length > 1 ? tags[tags.length - 1] : undefined;
-  const path = tags.slice(1, -1).reverse().join('.');
-
-  return [ keyword, path ];
+  return '/' + tags.reverse().join('/');
 }
 
 function matchTagHistory(tagHistory: string[], stopPaths: (string|string[])[]): boolean {
@@ -375,4 +414,55 @@ function findPreviousTag(document: vscode.TextDocument, position: vscode.Positio
 
   // no more tags to be found
   return undefined;
+}
+
+
+type ValueAtCursor =
+  | { attrName: string; valuePrefix: string; valueRange: vscode.Range; dirPrefix: string }
+  | undefined;
+
+/**
+ * If the cursor is inside an attribute value like File="/path/|something",
+ * returns:
+ *  - attrName: e.g. "File"
+ *  - valuePrefix: text from quote to cursor, e.g. "/path/"
+ *  - valueRange: range of the whole value between quotes (no quotes)
+ *  - dirPrefix: valuePrefix truncated to last slash, e.g. "/path/"
+ */
+export function getAttributeValuePrefixAtCursor(
+  document: vscode.TextDocument,
+  position: vscode.Position
+): ValueAtCursor {
+  const lineText = document.lineAt(position.line).text;
+  const i = position.character;
+
+  // Find the nearest quote to the left (either " or ')
+  const leftDouble = lineText.lastIndexOf('"', i - 1);
+  const leftSingle = lineText.lastIndexOf("'", i - 1);
+  const leftQuote = Math.max(leftDouble, leftSingle);
+  if (leftQuote < 0) return;
+
+  const quoteCh = lineText[leftQuote]; // " or '
+  const rightQuote = lineText.indexOf(quoteCh, i); // must match same quote type
+  if (rightQuote < 0 || rightQuote <= leftQuote) return;
+
+  // Ensure this is an attribute value (… name = " | " …)
+  const before = lineText.slice(0, leftQuote);
+  const m = /([A-Za-z_][\w:.-]*)\s*=\s*$/.exec(before);
+  if (!m) return;
+  const attrName = m[1];
+
+  // Range of the value between quotes (exclusive)
+  const valueRange = new vscode.Range(
+    new vscode.Position(position.line, leftQuote + 1),
+    new vscode.Position(position.line, rightQuote)
+  );
+
+  // Text from start of value up to the cursor
+  const valuePrefix = lineText.slice(leftQuote + 1, i);
+
+  // Directory-like prefix (keep up to last / or \)
+  const dirPrefix = valuePrefix.replace(/[^\\/]*$/, "");
+
+  return { attrName, valuePrefix, valueRange, dirPrefix };
 }

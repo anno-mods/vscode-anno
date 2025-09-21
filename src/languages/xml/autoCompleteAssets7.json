@@ -1,0 +1,98 @@
+{
+  "Group": {
+    "attributes": [
+      "Condition",
+      {
+        "name": "MaxRepeat",
+        "values": [ "10", "20", "30" ],
+        "autoSuggest": true
+      }
+    ]
+  },
+  "Include": {
+    "attributes": [
+      "File",
+      "Condition"
+    ]
+  },
+  "Asset": {
+    "attributes": [
+      "Condition"
+    ]
+  },
+  "ModOp": {
+    "attributes": [
+      {
+        "name": "GUID",
+        "conflicts": [ "Property" ],
+        "sort": "01",
+        "autoSuggest": true
+      },
+      {
+        "name": "Property",
+        "conflicts": [ "GUID" ],
+        "sort": "02"
+      },
+      {
+        "name": "Add",
+        "conflicts": [ "Type", "Path", "Replace", "Merge", "Remove", "Append", "Prepend" ],
+        "sort": "12"
+      },
+      {
+        "name": "Remove",
+        "conflicts": [ "Type", "Path", "Add", "Replace", "Merge", "Append", "Prepend", "Content" ],
+        "sort": "15"
+      },
+      {
+        "name": "Replace",
+        "conflicts": [ "Type", "Path", "Add", "Remove", "Merge", "Append", "Prepend" ],
+        "sort": "10"
+      },
+      {
+        "name": "Merge",
+        "conflicts": [ "Type", "Path", "Add", "Remove", "Replace", "Append", "Prepend" ],
+        "sort": "11"
+      },
+      {
+        "name": "Append",
+        "conflicts": [ "Type", "Path", "Add", "Remove", "Replace", "Merge", "Prepend" ],
+        "sort": "13"
+      },
+      {
+        "name": "Prepend",
+        "conflicts": [ "Type", "Path", "Add", "Remove", "Replace", "Merge", "Append" ],
+        "sort": "14"
+      },
+      {
+        "name": "Type",
+        "conflicts": [ "Add", "Remove", "Replace", "Merge", "Append", "Prepend" ],
+        "sort": "04",
+        "values": [ "add", "remove", "replace", "merge", "addNextSibling", "addPrevSibling" ],
+        "autoSuggest": true
+      },
+      {
+        "name": "Path",
+        "conflicts": [ "Add", "Remove", "Replace", "Merge", "Append", "Prepend" ],
+        "requires": [ "Type" ],
+        "sort": "04"
+      },
+      {
+        "name": "Content",
+        "conflicts": [ "Remove" ],
+        "requires": [ "Path", "Add", "Replace", "Merge", "Append", "Prepend" ],
+        "sort": "30"
+      },
+      {
+        "name": "Condition",
+        "sort": "05"
+      },
+      {
+        "name": "AllowNoMatch",
+        "requires": [ "Path", "Add", "Replace", "Merge", "Append", "Prepend" ],
+        "conflicts": [ "Condition" ],
+        "insert": "AllowNowMatch=\"1\"",
+        "sort": "31"
+      }
+    ]
+  }
+}

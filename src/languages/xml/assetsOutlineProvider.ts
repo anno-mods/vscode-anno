@@ -23,17 +23,22 @@ export class AssetsSymbolProvider {
     ];
   }
 
+	private static lastSymbols: vscode.DocumentSymbol[] = [];
   public async provideDocumentSymbols(document: SkinnyTextDocument): Promise<vscode.DocumentSymbol[]> {
 		const patchDocument = new AssetsDocument(document);
 
 		const toc = new AssetsTocProvider(patchDocument).getToc();
-		const root: MarkdownSymbol = {
-			level: -Infinity,
-			children: [],
-			parent: undefined
-		};
-		this.buildTree(root, toc);
-		return root.children;
+		if (toc) {
+			const root: MarkdownSymbol = {
+				level: -Infinity,
+				children: [],
+				parent: undefined
+			};
+			this.buildTree(root, toc);
+			AssetsSymbolProvider.lastSymbols = root.children;
+		}
+
+		return AssetsSymbolProvider.lastSymbols;
 	}
 
 	private buildTree(parent: MarkdownSymbol, entries: TocEntry[]) {

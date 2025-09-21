@@ -1,9 +1,15 @@
 # Change Log
 
+## 2.3
+
+- Improved outline to focus more on content, less on ModOp type
+- Improved anno-xml auto-complete (Anno 117 only for now)
+- Fixed some anno-xml highlighting issues
+
 ## 2.2
 
 - Changed word selection behavior to treat mod IDs with hyphens as one word
-- Added modloader reference. Accessible with right click in XML files.
+- Added modloader reference. Accessible with right click in XML and modinfo files.
 - Fixed `Go to Definition` in vanilla assets
 - Anno 117 only: Improved Anno ModOps XML format
   - Less strict auto formatting

@@ -36,9 +36,9 @@ suite('outline tests', () => {
     const provider = new AssetsTocProvider(new AssetsDocument(textDocument));
     const toc = provider.getToc();
 
-    assert.strictEqual(toc[1].text, "add");
-    assert.strictEqual(toc[2].text, "Template1");
-    assert.strictEqual(toc[2].guid, "123");
+    assert.strictEqual(toc ? toc[1].text : undefined, "add");
+    assert.strictEqual(toc ? toc[2].text : undefined, "Template1");
+    assert.strictEqual(toc ? toc[2].guid : undefined, "123");
   });
 
   test('section comments', async () => {
@@ -66,11 +66,11 @@ suite('outline tests', () => {
     const provider = new AssetsTocProvider(new AssetsDocument(textDocument));
     const toc = provider.getToc();
 
-    assert.strictEqual(toc[0].text, "Section 1");
-    assert.strictEqual(toc[1].text, "add");
-    assert.strictEqual(toc[2].text, "Section 2");
-    assert.strictEqual(toc[3].text, "Section 3");
-    assert.strictEqual(toc[4].text, "Include");
+    assert.strictEqual(toc ? toc[0].text : undefined, "Section 1");
+    assert.strictEqual(toc ? toc[1].text : undefined, "add");
+    assert.strictEqual(toc ? toc[2].text : undefined, "Section 2");
+    assert.strictEqual(toc ? toc[3].text : undefined, "Section 3");
+    assert.strictEqual(toc ? toc[4].text : undefined, "Include");
   });
 
   test('sub-section comments', async () => {
@@ -99,8 +99,8 @@ suite('outline tests', () => {
     const provider = new AssetsTocProvider(new AssetsDocument(textDocument));
     const toc = provider.getToc();
 
-    assert.strictEqual(toc[0].text, "Lists");
-    assert.strictEqual(toc[1].text, "After Coats");
-    assert.strictEqual(toc[2].text, "After Furs");
+    assert.strictEqual(toc ? toc[0].text : undefined, "Lists");
+    assert.strictEqual(toc ? toc[1].text : undefined, "After Coats");
+    assert.strictEqual(toc ? toc[2].text : undefined, "After Furs");
   });
 });

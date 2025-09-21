@@ -1,6 +1,9 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
 import * as xmldoc from 'xmldoc';
+
 import { uniqueAssetName} from '../../other/assetsXml';
+import * as xpath from '../../other/xpath';
 import { SymbolRegistry } from '../../data/symbols';
 import { AssetsDocument } from '../../editor/assetsDocument';
 
@@ -28,6 +31,17 @@ export interface SkinnyTextDocument {
   getText(): string;
 }
 
+/** falls back to parent if there's no such child */
+function _firstElement(parent: xmldoc.XmlElement) {
+  for (const child of parent.children) {
+    if (child.type === 'element') {
+      return child;
+    }
+  }
+
+  return parent;
+}
+
 export class AssetsTocProvider {
   private toc?: TocEntry[];
   private _doc: AssetsDocument;
@@ -36,12 +50,12 @@ export class AssetsTocProvider {
     this._doc = doc;
   }
 
-  public getToc(): TocEntry[] {
+  public getToc(): TocEntry[] | undefined {
     if (!this.toc) {
       try {
         this.toc = this._buildToc();
       } catch (e) {
-        this.toc = [];
+        this.toc = undefined;
       }
     }
     return this.toc;
@@ -62,10 +76,69 @@ export class AssetsTocProvider {
   // returns 'ModOp' or template name
   private _getName(element: xmldoc.XmlElement, name?: string): string {
     if (element.name === 'ModOp') {
-      return element.attr['Type'] || 'ModOp';
+      const index = 0;
+
+      const guids = element.attr['GUID'];
+      if (guids) {
+        const guid = guids.split(',')[index].trim();
+        const asset = SymbolRegistry.resolve(guid);
+        name = uniqueAssetName(asset);
+      }
+
+      const path = xpath.basename(element.attr['Path'], true, true);
+      if (path && path.length > 0) {
+        name = (!name || name.length === 0) ? path : `${path} (${name})`;
+      }
+
+      return name ?? element.name;
     }
-    else if (element.name === 'Group' && name) {
-      return name;
+    else if (element.name === 'Group') {
+      if (name) {
+        return name;
+      }
+      else if (element.attr['MaxRepeat']) {
+        return 'Loop';
+      }
+    }
+    else if (element.name === 'Asset') {
+      const name = element.valueWithPath('Values.Standard.Name') ?? element.valueWithPath('Values.Standard.GUID');
+      return name ?? element.name;
+    }
+    else if (element.name === 'Template') {
+      return element.valueWithPath('Name') ?? element.name;
+    }
+    else if (element.name === 'Include') {
+      const basename = path.basename(element.attr['File'] ?? '').split('.')[0];
+      return (basename?.length > 0) ? basename : '<file>';
+    }
+    return element.name;
+  }
+
+  private _getMultiModOpCount(element: xmldoc.XmlElement) : number {
+    return (element.name === 'ModOp' ? element.attr['GUID']?.split(',').length : 0);
+  }
+
+  private _getDetail(element: xmldoc.XmlElement, index: number = 0) {
+    if (element.name === 'ModOp') {
+      if (element.attr['Add']) {
+        return 'Add';
+      }
+      else if (element.attr['Remove']) {
+        return 'Remove';
+      }
+      else if (element.attr['Replace']) {
+        return 'Replace';
+      }
+      else if (element.attr['Merge']) {
+        return 'Merge';
+      }
+      else if (element.attr['Append']) {
+        return 'Append';
+      }
+      else if (element.attr['Prepend']) {
+        return 'Prepend';
+      }
+      return element.attr['Type'] || 'ModOp';
     }
     else if (element.name === 'Asset') {
       const template = element.valueWithPath('Template');
@@ -83,38 +156,14 @@ export class AssetsTocProvider {
         }
       }
     }
-    else if (element.name === 'Template') {
-      return element.valueWithPath('Name') ?? element.name;
-    }
-    return element.name;
-  }
-
-  private _getMultiModOpCount(element: xmldoc.XmlElement) : number {
-    return (element.name === 'ModOp' ? element.attr['GUID']?.split(',').length : 0);
-  }
-
-  private _getDetail(element: xmldoc.XmlElement, index: number = 0) {
-    if (element.name === 'ModOp') {
-      const guids = element.attr['GUID'];
-      if (guids) {
-        // return guids.split(',').map(guid => {
-        //     const asset = SymbolRegistry.resolve(guid.trim());
-        //     return asset?.english ?? asset?.name ?? guid.trim();
-        // }).join(', ');
-        const guid = guids.split(',')[index].trim();
-        const asset = SymbolRegistry.resolve(guid);
-        return uniqueAssetName(asset);
+    else if (element.name === 'Group') {
+      const maxRepeat = element.attr['MaxRepeat'];
+      if (maxRepeat) {
+        return `MaxRepeat=${maxRepeat}`;
       }
-
-      return element.attr['Path'];
-    }
-    else if (element.name === 'Asset') {
-      const name = element.valueWithPath('Values.Standard.Name');
-      const guid = element.valueWithPath('Values.Standard.GUID');
-      return [name, guid].filter((e) => e).join(', ');
     }
     else if (element.name === 'Include') {
-      return element.attr['File'];
+      return element.name;
     }
     return '';
   }
@@ -145,27 +194,27 @@ export class AssetsTocProvider {
     return line;
   }
 
-  private _buildToc(): TocEntry[] {
+  private _buildToc(): TocEntry[] | undefined {
     if (!this._doc.xml) {
-      return [];
+      return undefined;
     }
 
     let toc: TocEntry[] = [];
 
     const relevantSections: { [index: string]: any } = {
       /* eslint-disable @typescript-eslint/naming-convention */
-      'ModOp': { minChildren: 0, symbol: vscode.SymbolKind.Property },
+      'ModOp': { minChildren: 0, symbol: vscode.SymbolKind.Class },
       'Group': { minChildren: 0, symbol: vscode.SymbolKind.Module },
-      'Asset': { minChildren: 1, symbol: vscode.SymbolKind.Class },
-      'Template': { minChildren: 1, symbol: vscode.SymbolKind.Class },
-      'Include': { minChildren: 0, symbol: vscode.SymbolKind.Module }
+      'Asset': { minChildren: 1, symbol: vscode.SymbolKind.Function },
+      'Template': { minChildren: 1, symbol: vscode.SymbolKind.TypeParameter },
+      'Include': { minChildren: 0, symbol: vscode.SymbolKind.File }
       /* eslint-enable @typescript-eslint/naming-convention */
     };
 
     let sectionComment: string | undefined = 'ModOps';
     let groupComment: string | undefined;
 
-    const nodeStack: { depth: number, element: xmldoc.XmlNode }[] = [{ depth: 0, element: this._doc.xml }];
+    const nodeStack: { depth: number, element: xmldoc.XmlNode, property: boolean }[] = [{ depth: 0, element: this._doc.xml, property: false }];
     for (let top = nodeStack.pop(); top; top = nodeStack.pop()) {
       if (top.element.type === 'comment') {
         let comment = top.element.comment.trim();
@@ -191,14 +240,16 @@ export class AssetsTocProvider {
             line,
             location: new vscode.Location(this._doc.uri,
               new vscode.Range(line, 0, line, 1)),
-            symbol: vscode.SymbolKind.Package
+            symbol: vscode.SymbolKind.Number
           });
           sectionComment = undefined;
         }
 
+        const isProperty = top.element.name === 'ModOp';
+
         const depth = top.depth;
         const children = (top.element.children ? top.element.children.filter((e) => e.type === 'element' || e.type === 'comment') : []).map((e) => (
-          { depth: depth + 1, element: e }
+          { depth: depth + 1, element: e, property: isProperty }
         ));
         if (children.length > 0) {
           // has tag children
@@ -207,34 +258,72 @@ export class AssetsTocProvider {
 
         // check if relevant, also ignore simple items
         const tocRelevant = relevantSections[top.element.name];
-        if (tocRelevant && children.length >= tocRelevant.minChildren) {
+        if (tocRelevant && children.length >= tocRelevant.minChildren || top.property) {
           // TODO tagStartColumn is 0 for multiline tags, not correct but ...
           const tagStartColumn = Math.max(0, top.element.column - top.element.position + top.element.startTagPosition - 1);
           const line = (groupComment && top.element.name === 'Group') ? this._findCommentUp(this._doc.document, top.element.line, groupComment) : top.element.line;
 
-          const multiModOpCount = this._getMultiModOpCount(top.element);
-          toc.push({
-            text: this._getName(top.element, groupComment),
-            detail: this._getDetail(top.element),
-            level: top.depth,
-            line,
-            guid: this._getSymbol(top.element),
-            location: new vscode.Location(this._doc.uri,
-              new vscode.Range(line, tagStartColumn, line, top.element.column)),
-            symbol: relevantSections[top.element.name]?.symbol ?? vscode.SymbolKind.String
-          });
+          var symbol = relevantSections[top.element.name]?.symbol ?? vscode.SymbolKind.String;
+          const location = new vscode.Location(this._doc.uri,
+              new vscode.Range(line, tagStartColumn, line, top.element.column));
 
-          for (let index = 1; index < multiModOpCount; index++) {
+          // properties below ModOp
+          if (top.property && top.element && top.element.name !== 'Asset') {
+            // try to get name from Item/ModItem first
+            var name: string | undefined = undefined;
+            if (top.element.name === 'Item' || top.element.name === 'ModItem') {
+              const item = _firstElement(top.element);
+              const asset = SymbolRegistry.resolve(item.val);
+              name = (asset ? uniqueAssetName(asset) : item.val);
+            }
+            toc.push({
+              text: (name && name.length > 0) ? name : top.element.name,
+              detail: top.element.name,
+              level: top.depth, line, guid: undefined, location,
+              symbol: vscode.SymbolKind.Field
+            });
+          }
+          // ModOp
+          else if (top.element.name === 'ModOp') {
             toc.push({
               text: this._getName(top.element, groupComment),
-              detail: this._getDetail(top.element, index),
-              level: top.depth,
-              line,
-              guid: this._getSymbol(top.element, index),
-              location: new vscode.Location(this._doc.uri,
-                new vscode.Range(line, tagStartColumn, line, top.element.column)),
-              symbol: relevantSections[top.element.name]?.symbol ?? vscode.SymbolKind.String
+              detail: this._getDetail(top.element),
+              level: top.depth, line, guid: undefined, location, symbol
             });
+          }
+          // anything else
+          else {
+            if (top.element.name === 'Asset') {
+              const template = top.element.valueWithPath('Template');
+              if (template === 'FeatureUnlock' || template === 'Unlock' || template === 'Trigger') {
+                symbol = vscode.SymbolKind.Event;
+              }
+              else if (template === 'Text') {
+                symbol = vscode.SymbolKind.Key;
+              }
+            }
+
+            // const multiModOpCount = this._getMultiModOpCount(top.element);
+            toc.push({
+              text: this._getName(top.element, groupComment),
+              detail: this._getDetail(top.element),
+              level: top.depth, line,
+              guid: this._getSymbol(top.element),
+              location, symbol
+            });
+
+            // for (let index = 1; index < multiModOpCount; index++) {
+            //   toc.push({
+            //     text: this._getName(top.element, groupComment),
+            //     detail: this._getDetail(top.element, index),
+            //     level: top.depth,
+            //     line,
+            //     guid: this._getSymbol(top.element, index),
+            //     location: new vscode.Location(this._doc.uri,
+            //       new vscode.Range(line, tagStartColumn, line, top.element.column)),
+            //     symbol: relevantSections[top.element.name]?.symbol ?? vscode.SymbolKind.String
+            //   });
+            // }
           }
         }
         groupComment = undefined;

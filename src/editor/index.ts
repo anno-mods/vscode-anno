@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import { GamePaths } from './gamePaths';
 import * as modContext from './modContext';
 import * as anno from '../anno';
-import * as apiDocViewer from './apiDocViewer';
+import * as webViewer from './webViewer';
 
 export const getModsFolder = GamePaths.getModsFolder;
 export const ensureModsFolder = GamePaths.ensureModsFolder;
@@ -15,7 +15,7 @@ export const getGamePathSetting = GamePaths.getGamePathSetting;
 export const onDidChangeGamePath = GamePaths.onDidChangeGamePath;
 
 export function activate(context: vscode.ExtensionContext): vscode.Disposable[] {
-  return [ ...GamePaths.activate(context), apiDocViewer.activate(context)];
+  return [ ...GamePaths.activate(context), ...webViewer.activate(context)];
 }
 
 export function isActive(): boolean {
