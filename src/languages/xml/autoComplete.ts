@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 
-import * as utils from '../../other/utils';
+import * as anno from '../../anno';
 import { GuidCounter } from '../../features/guidCounter';
 import * as text from '../../editor/text';
 import { SymbolRegistry } from '../../data/symbols';
@@ -236,7 +236,7 @@ function getIncludeCompletion(nodeInfo: text.XmlPosition, document: vscode.TextD
   const items: vscode.CompletionItem[] = [];
 
   var currentPath = path.dirname(document.fileName);
-  const modRoot = utils.findModRoot(currentPath);
+  const modRoot = anno.findModRoot(currentPath);
 
   const pathLeftOfCursor = text.getAttributeValuePrefixAtCursor(document, position);
   if (pathLeftOfCursor?.valuePrefix.startsWith('/')) {

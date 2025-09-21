@@ -7,7 +7,6 @@ import * as anno from '../../anno';
 import * as rda from '../../data/rda';
 import * as editor from '../../editor';
 import { ASSETS_FILENAME_PATTERN } from '../../other/assetsXml';
-import * as utils from '../../other/utils';
 import * as xmltest from '../../tools/xmltest';
 import * as editorFormats from '../../editor/formats';
 
@@ -57,7 +56,7 @@ function checkFileName(modPaths: string[], line: vscode.TextLine, annoRda?: stri
   const regEx = /<(Filename|FileName|IconFilename|RecipeImage|RecipeListMoodImage)>([^<]+)<\/\1>/g;
   let match = regEx.exec(line.text);
   let checked;
-  if (match && (checked = utils.hasGraphicsFile(modPaths, match[2], annoRda)).length > 0) {
+  if (match && (checked = anno.hasGraphicsFile(modPaths, match[2], annoRda)).length > 0) {
     const index = line.text.indexOf(match[2]);
     const range = new vscode.Range(line.lineNumber, index, line.lineNumber, index + match[2].length);
 
@@ -92,13 +91,13 @@ export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode
 
   const diagnostics: vscode.Diagnostic[] = [];
 
-  const modPaths = utils.searchModPaths(doc.uri.fsPath, modsFolder);
+  const modPaths = anno.searchModPaths(doc.uri.fsPath, modsFolder);
 
   if (!editor.isActive()) {
     return;
   }
 
-  const modPath = utils.findModRoot(doc.fileName);
+  const modPath = anno.findModRoot(doc.fileName);
   const version = anno.ModInfo.readVersion(modPath);
   diagnostics.push(...versionChecks.checkCorrectVersion(doc, version));
 
@@ -132,7 +131,7 @@ function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
 
   const decorations: vscode.DecorationOptions[] = [];
 
-  let modPath = utils.findModRoot(doc.fileName);
+  let modPath = anno.findModRoot(doc.fileName);
   let mainAssetsXml = editorFormats.isAssetsXml(doc) ? anno.getAssetsXmlPath(modPath) : doc.fileName;
   if (!mainAssetsXml || !modPath) {
     modPath = path.dirname(doc.fileName);

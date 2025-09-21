@@ -1,9 +1,8 @@
 import { glob } from 'glob';
 import * as path from 'path';
 
-import { ModInfo } from '../anno';
+import { ModInfo, searchModPath } from '../anno';
 import * as logger from '../other/logger';
-import * as utils from '../other/utils';
 
 export namespace ModRegistry {
   let mods_: { [index: string]: ModInfo } = {};
@@ -69,7 +68,7 @@ export namespace ModRegistry {
   }
 
   export function findMod(filePath: string) : ModInfo | undefined {
-    const modFolder = utils.searchModPath(filePath);
+    const modFolder = searchModPath(filePath);
     const modMetaInfo = ModInfo.read(modFolder);
 
     if (modMetaInfo === undefined) {

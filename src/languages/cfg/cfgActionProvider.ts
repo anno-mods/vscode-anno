@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as minimatch from 'minimatch';
-import * as utils from '../../other/utils';
+
+import * as anno from '../../anno';
 
 export function activate(context: vscode.ExtensionContext) {
   const diagnostics = vscode.languages.createDiagnosticCollection("anno-cfg");
@@ -26,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     let checked;
     const tagContentSame = (tagName == filePathValue);
-    const fileExists = (checked = utils.hasGraphicsFile(modPaths, filePathValue, annoRda)).length == 0;
+    const fileExists = (checked = anno.hasGraphicsFile(modPaths, filePathValue, annoRda)).length == 0;
 
     if (!tagContentSame && !fileExists) {
       const index = line.text.indexOf(filePathValue);
@@ -56,7 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const diagnostics: vscode.Diagnostic[] = [];
 
-    const modPaths = utils.searchModPaths(doc.uri.fsPath, modsFolder);
+    const modPaths = anno.searchModPaths(doc.uri.fsPath, modsFolder);
 
     for (let lineIndex = 0; lineIndex < doc.lineCount; lineIndex++) {
       const lineOfText = doc.lineAt(lineIndex);

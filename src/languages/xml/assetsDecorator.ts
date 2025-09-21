@@ -2,9 +2,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 
+import * as anno from '../../anno';
 import { SymbolRegistry } from '../../data/symbols';
 import * as editorFormats from '../../editor/formats';
-import * as utils from '../../other/utils';
 import { assetNameWithOrigin } from '../../other/assetsXml';
 
 import { clearDiagnostics, diagnostics, refreshDiagnostics } from './assetsActionProvider';
@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    const modName = path.basename(utils.searchModPath(activeEditor.document.uri.fsPath));
+    const modName = path.basename(anno.searchModPath(activeEditor.document.uri.fsPath));
 
     const traverse = (activeEditor: vscode.TextEditor, color: string,
       regex: RegExp, onMatch: (match: RegExpExecArray) => string,

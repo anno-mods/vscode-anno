@@ -7,7 +7,6 @@ import * as vscode from 'vscode';
 import * as anno from '../anno';
 import { ModRegistry } from '../data/modRegistry';
 import * as logger from '../other/logger';
-import * as utils from '../other/utils';
 
 const XMLTEST_PATH = "./external/xmltest.exe";
 const XMLTEST2_PATH = "./external/xmltest2.exe";
@@ -29,7 +28,7 @@ export function test(testFolder: string, modFolder: string, patchFile: string, t
     let testerOutput;
     const maxBuffer = 20;
     try {
-      const roots = utils.findModRoots(patchFile).map(e => ['-m', e]);
+      const roots = anno.findModRoots(patchFile).map(e => ['-m', e]);
 
       testerOutput = child.execFileSync(tester, [
         '-o', path.join(tempFolder, 'patched.xml'),
@@ -118,8 +117,8 @@ export function fetchIssues(vanillaXml: string, modPath: string, mainPatchFile: 
 
   let testerOutput;
   try {
-    const roots = utils.findModRoots(mainPatchFile).map(e => ['-m', e]);
-    const annomod = utils.readModinfo(modPath);
+    const roots = anno.findModRoots(mainPatchFile).map(e => ['-m', e]);
+    const annomod = anno.readModinfo(modPath);
     const modInfo = anno.ModInfo.read(modPath);
     const version = modInfo?.game || anno.GameVersion.Auto;
     const tester = _asAbsolutePath(version === anno.GameVersion.Anno8 ? XMLTEST2_PATH : XMLTEST_PATH);
@@ -191,7 +190,7 @@ export function diff(originalPath: string, patchContent: string, patchFilePath: 
   ModRegistry.use(modsFolder);
   patchFilePath = patchFilePath.replace(/\\/g, '/');
   // TODO modInfo is usually already available, pass as argument
-  const annomod = utils.readModinfo(modPath);
+  const annomod = anno.readModinfo(modPath);
   const modInfo = anno.ModInfo.read(modPath);
   const version = modInfo?.game || anno.GameVersion.Auto;
   const differ = _asAbsolutePath(version === anno.GameVersion.Anno8 ? XMLTEST2_PATH : XMLTEST_PATH);

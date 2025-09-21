@@ -12,12 +12,12 @@ import { RdpxmlConverter } from './converter/rdpxml';
 import { CfgYamlConverter } from './converter/cfgyaml';
 
 import { ModCache } from './ModCache';
+import * as anno from '../anno';
 import * as curltar from '../tools/curltar';
 import * as rdp from '../tools/rdp';
 import * as dds from '../tools/dds';
 import * as xmltest from '../tools/xmltest';
 import * as fsutils from '../other/fsutils';
-import * as utils from '../other/utils';
 import { AssetsConverter } from './converter/assets';
 
 export class ModBuilder {
@@ -51,7 +51,7 @@ export class ModBuilder {
 
   public async build(filePath: string, targetFolder?: string): Promise<boolean> {
     this._logger.log('Build ' + filePath);
-    const modJson = utils.readModinfo(path.dirname(filePath));
+    const modJson = anno.readModinfo(path.dirname(filePath));
     if (!modJson) {
       this._logger.error('Errors in modinfo.json: ' + path.dirname(filePath));
       return false;
@@ -208,7 +208,7 @@ export class ModBuilder {
       return;
     }
 
-    const modinfo = utils.readModinfo(path.dirname(modinfoPath));
+    const modinfo = anno.readModinfo(path.dirname(modinfoPath));
     if (!modinfo) {
       this._logger.error(`  cannot bundle ${bundle}`);
       return;
@@ -241,7 +241,7 @@ export class ModBuilder {
     const modinfoPaths = glob.sync("*/modinfo.json", { cwd: modsPath, nodir: true });
     for (var modinfoPath of modinfoPaths) {
       const namedModPath = path.join(modsPath, path.dirname(modinfoPath));
-      const modinfo = utils.readModinfo(namedModPath);
+      const modinfo = anno.readModinfo(namedModPath);
       if (!modinfo) {
         continue;
       }

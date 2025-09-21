@@ -5,14 +5,13 @@ import * as path from 'path';
 
 import * as anno from '../../anno';
 import * as fsutils from '../../other/fsutils';
-import * as utils from '../../other/utils';
 import * as xmltest from '../../tools/xmltest';
 
 export class RunTests {
 	public static register(context: vscode.ExtensionContext): vscode.Disposable[] {
     const disposable = [
       vscode.commands.registerCommand('anno-modding-tools.runTests', async (fileUri) => {
-        const sourcePath = utils.findModRoot(fileUri.fsPath);
+        const sourcePath = anno.findModRoot(fileUri.fsPath);
         const cachePath = path.join(sourcePath, '.modcache');
         fsutils.ensureDir(cachePath);
 

@@ -3,7 +3,6 @@ import * as vscode from 'vscode';
 
 import * as anno from '../anno';
 import * as logger from '../other/logger';
-import * as utils from '../other/utils';
 
 export class ModContext {
   public document?: vscode.TextDocument;
@@ -24,7 +23,7 @@ export class ModContext {
       this.version = version;
     }
     else if (document?.uri.scheme === 'file' &&  document?.uri.fsPath) {
-      this.modinfo = anno.ModInfo.read(utils.findModRoot(document?.uri.fsPath), true);
+      this.modinfo = anno.ModInfo.read(anno.findModRoot(document?.uri.fsPath), true);
       if (this.modinfo?.game) {
         this.version = this.modinfo.game;
       }
