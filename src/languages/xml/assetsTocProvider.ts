@@ -51,6 +51,14 @@ function _firstElement(parent: xmldoc.XmlElement) {
   return undefined;
 }
 
+/** shorten text to fit into length */
+function _ellipse(text: string | undefined, length: number) {
+  if (!text || length < 6 || text.length <= length - 5) {
+    return text;
+  }
+  return text.substring(0, length - 5) + ' [..]';
+}
+
 export class AssetsTocProvider {
   private toc?: TocEntry[];
   private _doc: AssetsDocument;
@@ -99,7 +107,7 @@ export class AssetsTocProvider {
         name = (!name || name.length === 0) ? path : `${path} (${name})`;
       }
 
-      return name ?? element.name;
+      return name || element.attr['Template'] || element.name;
     }
     else if (element.name === 'Group') {
       if (name) {
@@ -276,8 +284,50 @@ export class AssetsTocProvider {
           const location = new vscode.Location(this._doc.uri,
               new vscode.Range(line, tagStartColumn, line, top.element.column));
 
-          // properties below ModOp
-          if (top.property && top.element && top.element.name !== 'Asset') {
+          // Text below ModOp
+          if (top.element.name === 'Text' && top.property && top.element.childNamed('Text')) {
+            const text = _ellipse(top.element.childNamed('Text')?.val, 35);
+
+            toc.push({
+              text: text || 'Text',
+              detail: '',
+              level: top.depth, line,
+              guid: undefined,
+              location,
+              symbol: vscode.SymbolKind.Key
+            });
+          }
+          // Template
+          else if (top.element.name === 'Template' && top.element.childNamed('Name')) {
+            toc.push({
+              text: top.element.childNamed('Name')?.val || '<template>',
+              detail: 'Template',
+              level: top.depth, line,
+              guid: undefined,
+              location,
+              symbol: vscode.SymbolKind.TypeParameter
+            });
+          }
+          // Asset
+          else if (top.element.name === 'Asset' && top.element.childNamed('Values')) {
+            const template = top.element.valueWithPath('Template');
+            if (template === 'FeatureUnlock' || template === 'Unlock' || template === 'Trigger') {
+              symbol = vscode.SymbolKind.Event;
+            }
+            else if (template === 'Text') {
+              symbol = vscode.SymbolKind.Key;
+            }
+
+            toc.push({
+              text: this._getName(top.element, groupComment),
+              detail: this._getDetail(top.element),
+              level: top.depth, line,
+              guid: this._getSymbol(top.element),
+              location, symbol
+            });
+          }
+          // Non-Asset below ModOp
+          else if (top.property && top.element && top.element.name !== 'Asset') {
             // try to get name from Item/ModItem first
             var name: string | undefined = undefined;
             if (top.element.name === 'Item' || top.element.name === 'ModItem') {
@@ -287,9 +337,10 @@ export class AssetsTocProvider {
                 name = (asset ? uniqueAssetName(asset) : item.val);
               }
             }
+
             toc.push({
-              text: (name && name.length > 0) ? name : top.element.name,
-              detail: top.element.name,
+              text: name || top.element.name,
+              detail: name ? top.element.name : '',
               level: top.depth, line, guid: undefined, location,
               symbol: vscode.SymbolKind.Field
             });
@@ -302,22 +353,8 @@ export class AssetsTocProvider {
               level: top.depth, line, guid: undefined, location, symbol
             });
           }
-          // skip Assets that are not in ModOp or top-level
-          else if (top.element.name === 'Asset' && isProperty && !top.element.childNamed('Values')) {
-            // skip
-          }
           // anything else
           else {
-            if (top.element.name === 'Asset') {
-              const template = top.element.valueWithPath('Template');
-              if (template === 'FeatureUnlock' || template === 'Unlock' || template === 'Trigger') {
-                symbol = vscode.SymbolKind.Event;
-              }
-              else if (template === 'Text') {
-                symbol = vscode.SymbolKind.Key;
-              }
-            }
-
             // const multiModOpCount = this._getMultiModOpCount(top.element);
             toc.push({
               text: this._getName(top.element, groupComment),
