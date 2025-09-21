@@ -233,7 +233,7 @@ export class AssetsCodeActionProvider implements vscode.CodeActionProvider {
     else {
       const issues = diagnostics.issues();
       for (var issue of issues) {
-        if (issue.fix && diagnostic.code === issue.code) {
+        if (issue.fix !== undefined && diagnostic.code === issue.code) {
           const action = new vscode.CodeAction(issue.fixMessage || 'Fix it', vscode.CodeActionKind.QuickFix);
           action.edit = new vscode.WorkspaceEdit();
 
