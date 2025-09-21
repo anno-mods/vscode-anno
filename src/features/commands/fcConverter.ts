@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as child from 'child_process';
 
 import * as channel from '../channel';
-import * as utils from '../../other/utils';
+import * as fsutils from '../../other/fsutils';
 
 /*
 uses AnnoFCConverter from https://github.com/taubenangriff/AnnoFCConverter/
@@ -16,8 +16,8 @@ export class FcConverter {
       vscode.commands.registerCommand('anno-modding-tools.convertFcCf7', (fileUri) => {
         if (fileUri) {
           const res = child.execFileSync(converterPath, [
-            '-r', fileUri.fsPath, 
-            '-o', utils.dontOverwrite(utils.swapExtension(fileUri.fsPath, '.cf7'), '.cf7')
+            '-r', fileUri.fsPath,
+            '-o', fsutils.dontOverwrite(fsutils.swapExtension(fileUri.fsPath, '.cf7'), '.cf7')
           ]);
           channel.log(res.toString());
         }
@@ -26,7 +26,7 @@ export class FcConverter {
         if (fileUri) {
           const res = child.execFileSync(converterPath, [
             '-w', fileUri.fsPath,
-            '-o', utils.dontOverwrite(utils.swapExtension(fileUri.fsPath, '.fc'), '.fc')
+            '-o', fsutils.dontOverwrite(fsutils.swapExtension(fileUri.fsPath, '.fc'), '.fc')
           ]);
           channel.log(res.toString());
         }

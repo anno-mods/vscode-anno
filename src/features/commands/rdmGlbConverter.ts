@@ -1,9 +1,8 @@
 import * as vscode from 'vscode';
 import * as child from 'child_process';
-import * as path from 'path';
 
 import * as channel from '../channel';
-import * as utils from '../../other/utils';
+import * as fsutils from '../../other/fsutils';
 
 /*
 uses rdm4-bin from https://github.com/lukts30/rdm4
@@ -18,8 +17,8 @@ export class RdmGlbConverter {
           try {
             const sourceFile = fileUri.fsPath;
             const res = child.execFileSync(rdmPath, [
-              '-i', sourceFile,       
-              '-o', utils.dontOverwrite(utils.swapExtension(sourceFile, '.glb'), '.glb')
+              '-i', sourceFile,
+              '-o', fsutils.dontOverwrite(fsutils.swapExtension(sourceFile, '.glb'), '.glb')
             ]);
           }
           catch (exception: any)

@@ -1,12 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Converter } from '../Converter';
 import { ConvertToGLB } from 'gltf-import-export';
 import * as child from 'child_process';
-import * as glob from 'glob';
 
-import * as utils from '../../other/utils';
-import { chdir } from 'process';
+import { Converter } from '../Converter';
+import * as fsutils from '../../other/fsutils';
 
 interface IAnimation {
   name: string,
@@ -33,7 +31,7 @@ export class GltfConverter extends Converter {
   }
 
   public async run(files: string[], sourceFolder: string, outFolder: string, options: { 
-    cache: string, 
+    cache: string,
     converterOptions: any }) {
 
     const fakePngPath = this._asAbsolutePath("./images/fake.png");
@@ -41,15 +39,15 @@ export class GltfConverter extends Converter {
     const changePath = options.converterOptions.changePath || '';
     const animPath = options.converterOptions.animPath || '';
     const plantPattern = options.converterOptions.plantPattern || '';
-    
+
     for (const file of files) {
       this._logger.log(`  => ${file}`);
       try {
         const dirname = path.dirname(file);
         const basename = path.basename(file, '.gltf');
 
-        utils.ensureDir(path.join(outFolder, dirname, changePath));
-        utils.ensureDir(path.join(options.cache, dirname));
+        fsutils.ensureDir(path.join(outFolder, dirname, changePath));
+        fsutils.ensureDir(path.join(options.cache, dirname));
 
         const lodLevels = Math.max(1, Math.min(9, options.converterOptions.lods === undefined ? 4 : options.converterOptions.lods));
         const lodDisabled = options.converterOptions.lods === 0;
@@ -115,7 +113,7 @@ export class GltfConverter extends Converter {
 
             let alreadyExportedModel;
             if (useAnimation && !variantName) { // don't support animation and multiple variants
-              utils.ensureDir(path.join(outFolder, dirname, animPath));
+              fsutils.ensureDir(path.join(outFolder, dirname, animPath));
               for (let anim of anims) {
                 const tempAnimFile = path.join(options.cache, dirname, `${basename}_${anim.name}_anim_0.rdm`);
                 const tempRdmFile = path.join(options.cache, dirname, `${basename}_${anim.name}.rdm`);
@@ -128,7 +126,7 @@ export class GltfConverter extends Converter {
                 this._replaceImages(gltfForAnim, fakePngPath);
 
                 this._makeUniqueBoneNames(gltfForAnim, anims, anim.name);
-                await this._writeRdmFile(gltfForAnim, tempAnimFile, tempGlbFile, resourceDirectory, rdmPath, meshIdx, useAnimation, 
+                await this._writeRdmFile(gltfForAnim, tempAnimFile, tempGlbFile, resourceDirectory, rdmPath, meshIdx, useAnimation,
                   useSkeleton ? VertexFormat.Skeleton : VertexFormat.Normal);
                 // move only anim rdm to target location
                 fs.rmSync(tempGlbFile);

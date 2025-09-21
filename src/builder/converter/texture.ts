@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Converter } from '../Converter';
 
-import * as dds from '../../tools/dds';
-import * as utils from '../../other/utils';
+import { Converter } from '../Converter';
 import { ModCache } from '../ModCache';
+import * as dds from '../../tools/dds';
+import * as fsutils from '../../other/fsutils';
 
 export class TextureConverter extends Converter {
   public getName() {
@@ -53,8 +53,8 @@ export class TextureConverter extends Converter {
           continue;
         }
 
-        utils.ensureDir(path.join(outFolder, mapsPath));
-        utils.ensureDir(path.join(options.cache, dirname));
+        fsutils.ensureDir(path.join(outFolder, mapsPath));
+        fsutils.ensureDir(path.join(options.cache, dirname));
 
         let textures = dds.convertToTexture(sourceFile, targetFolder, dds.TextureFormat.unknown, iconHandling ? 1 : lodLevels);
         if (!textures) {

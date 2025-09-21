@@ -3,8 +3,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 import * as channel from '../channel';
+import * as fsutils from '../../other/fsutils';
 import { GltfConverter } from '../../builder/converter/gltf';
-import * as utils from '../../other/utils';
 
 /*
 uses rdm4-bin from https://github.com/lukts30/rdm4
@@ -22,7 +22,7 @@ export class GltfRdmConverter {
           await converter.run([ path.basename(fileUri.fsPath) ], path.dirname(fileUri.fsPath), path.dirname(fileUri.fsPath), {
             cache,
             converterOptions: {
-              animPath: utils.swapExtension(path.basename(fileUri.fsPath), '') + '-anim/'
+              animPath: fsutils.swapExtension(path.basename(fileUri.fsPath), '') + '-anim/'
             }
           });
 

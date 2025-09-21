@@ -2,7 +2,9 @@ import * as vscode from 'vscode';
 import * as channel from '../channel';
 import * as fs from 'fs';
 import * as path from 'path';
+
 import * as anno from '../../anno';
+import * as fsutils from '../../other/fsutils';
 import * as utils from '../../other/utils';
 import * as xmltest from '../../tools/xmltest';
 
@@ -12,7 +14,7 @@ export class RunTests {
       vscode.commands.registerCommand('anno-modding-tools.runTests', async (fileUri) => {
         const sourcePath = utils.findModRoot(fileUri.fsPath);
         const cachePath = path.join(sourcePath, '.modcache');
-        utils.ensureDir(cachePath);
+        fsutils.ensureDir(cachePath);
 
         const testInputPath = path.join(sourcePath, 'tests');
         channel.show();

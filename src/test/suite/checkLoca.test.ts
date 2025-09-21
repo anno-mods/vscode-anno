@@ -1,16 +1,16 @@
 import * as assert from 'assert';
 import * as path from 'path';
 import * as fs from 'fs';
-import * as utils from '../../other/utils';
-import * as xml2js from 'xml2js';
 import * as vscode from 'vscode';
+
+import * as fsutils from '../../other/fsutils';
 
 suite('file conversion tests', () => {
   test('check localization commands', async () => {
     const relTestPath = 'test/suite/data/loca';
     const tempTestPath = path.resolve('../../out/' + relTestPath);
 
-    utils.ensureDir(tempTestPath);
+    fsutils.ensureDir(tempTestPath);
     fs.copyFileSync(path.join('../../src/', relTestPath, 'texts_english.xml'), path.join(tempTestPath, 'texts_english.xml'));
     fs.copyFileSync(path.join('../../src/', relTestPath, 'texts_chinese.xml'), path.join(tempTestPath, 'texts_chinese.xml'));
 

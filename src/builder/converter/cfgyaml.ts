@@ -2,11 +2,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as yaml from 'js-yaml';
 import * as child from 'child_process';
-import { Converter } from '../Converter';
 
-import * as utils from '../../other/utils';
-import AnnoXml from '../../other/annoXml';
+import { Converter } from '../Converter';
 import { ModCache } from '../ModCache';
+import AnnoXml from '../../other/annoXml';
+import * as fsutils from '../../other/fsutils';
 
 export class CfgYamlConverter extends Converter {
   _variables: { [index: string]: string } = {};
@@ -17,7 +17,7 @@ export class CfgYamlConverter extends Converter {
 
   public async run(files: string[], sourceFolder: string, outFolder: string, options: { variables?: { [index: string]: string }, dontOverwrite?: boolean, modCache: ModCache }) {
     const converterPath = this._asAbsolutePath("./external/AnnoFCConverter.exe");
-    const _dontOverwrite = options.dontOverwrite ? utils.dontOverwrite : (fp: string) => fp;
+    const _dontOverwrite = options.dontOverwrite ? fsutils.dontOverwrite : (fp: string) => fp;
     this._variables = options.variables || {};
 
     const cache = options.modCache;
@@ -27,12 +27,12 @@ export class CfgYamlConverter extends Converter {
       const targetFile = path.join(outFolder, file);
       const sourceFile = path.join(sourceFolder, file);
       cache.use(sourceFile);
-      
+
       try {
         const sourceDirname = path.dirname(sourceFile);
         const targetDirname = path.dirname(targetFile);
         const basename = path.basename(targetFile, '.cfg.yaml');
-        utils.ensureDir(targetDirname);
+        fsutils.ensureDir(targetDirname);
 
         const content = yaml.load(fs.readFileSync(sourceFile, 'utf8')) as any;
 
@@ -43,7 +43,7 @@ export class CfgYamlConverter extends Converter {
             const sourcePathWithoutExt = path.join(path.dirname(sourceCfgPath), path.basename(sourceCfgPath, '.cfg'));
             const targetPathWithoutExt = path.join(targetDirname, basename);
             const variantPathWithoutExt = path.join(sourceDirname, basename);
-      
+
             // read and modify cfg
             cache.include(sourceCfgPath);
             const cfgContent = AnnoXml.fromFile(sourcePathWithoutExt + '.cfg');

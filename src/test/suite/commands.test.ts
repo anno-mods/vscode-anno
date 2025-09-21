@@ -1,9 +1,10 @@
 import * as assert from 'assert';
 import * as path from 'path';
 import * as fs from 'fs';
-import * as utils from '../../other/utils';
 import * as xml2js from 'xml2js';
 import * as vscode from 'vscode';
+
+import * as fsutils from '../../other/fsutils';
 
 suite('file conversion tests', () => {
   // clear to avoid old files leading to wrong results
@@ -29,15 +30,15 @@ suite('file conversion tests', () => {
 
   test('.dds commands', async () => {
     const fakePng = path.resolve('../../out/test/suite/data/fake.png');
-    utils.ensureDir(path.dirname(fakePng));
+    fsutils.ensureDir(path.dirname(fakePng));
     fs.copyFileSync('../../src/test/suite/data/fake.png', fakePng);
     await vscode.commands.executeCommand('anno-modding-tools.pngToDds', vscode.Uri.file(fakePng));
     assert(fs.existsSync(fakePng));
 
-    const fakePng_ = utils.swapExtension(fakePng, '_.dds');
-    fs.renameSync(utils.swapExtension(fakePng, '.dds'), fakePng_);
+    const fakePng_ = fsutils.swapExtension(fakePng, '_.dds');
+    fs.renameSync(fsutils.swapExtension(fakePng, '.dds'), fakePng_);
     await vscode.commands.executeCommand('anno-modding-tools.ddsToPng', vscode.Uri.file(fakePng_));
-    assert(fs.existsSync(utils.swapExtension(fakePng, '_.png')));
+    assert(fs.existsSync(fsutils.swapExtension(fakePng, '_.png')));
   });
 
   test('.cfg.yaml commands', async () => {
@@ -46,7 +47,7 @@ suite('file conversion tests', () => {
 
     const modifier = 'in-modified.cfg.yaml';
 
-    utils.ensureDir(tempTestPath);
+    fsutils.ensureDir(tempTestPath);
     fs.copyFileSync(path.join('../../src/', relTestPath, modifier), path.join(tempTestPath, modifier));
     fs.copyFileSync(path.join('../../src/', relTestPath, 'in-config.cfg'), path.join(tempTestPath, 'in-config.cfg'));
 
@@ -70,12 +71,12 @@ suite('file conversion tests', () => {
     test('fetch test XML', async () => {
       const originalRdp = path.resolve('../../src/test/suite/data/sparks.rdp.xml');
       const convertingRdp = path.resolve('../../out/test/suite/data/sparks.rdp.xml');
-  
-      utils.ensureDir(path.dirname(convertingRdp));
+
+      fsutils.ensureDir(path.dirname(convertingRdp));
       fs.copyFileSync(originalRdp, convertingRdp);
-  
+
       const originalBuffer = fs.readFileSync(originalRdp, 'utf8');
-      
+
       // cross check
       assert(fs.existsSync(convertingRdp));
       assert.strictEqual(originalBuffer, fs.readFileSync(convertingRdp, 'utf8'));
@@ -84,10 +85,10 @@ suite('file conversion tests', () => {
     test('convert to native RDP, const must differ', async () => {
       const originalRdp = path.resolve('../../src/test/suite/data/sparks.rdp.xml');
       const convertingRdp = path.resolve('../../out/test/suite/data/sparks.rdp.xml');
-      const targetRdp = utils.swapExtension(convertingRdp, '.rdp', true);
+      const targetRdp = fsutils.swapExtension(convertingRdp, '.rdp', true);
 
       const originalBuffer = fs.readFileSync(originalRdp, 'utf8');
-  
+
       // convert to native RDP, filename doesn't change
       await vscode.commands.executeCommand('anno-modding-tools.xmlToRdp', vscode.Uri.file(convertingRdp));
       assert(fs.existsSync(targetRdp));
@@ -96,8 +97,8 @@ suite('file conversion tests', () => {
 
     test('convert back, content must be equal', async () => {
       const convertingRdp = path.resolve('../../out/test/suite/data/sparks.rdp.xml');
-      const targetRdp = utils.swapExtension(convertingRdp, '.rdp', true);
-  
+      const targetRdp = fsutils.swapExtension(convertingRdp, '.rdp', true);
+
       // convert back, content must be equal
       await vscode.commands.executeCommand('anno-modding-tools.rdpToSimplified', vscode.Uri.file(targetRdp));
       assert(fs.existsSync(convertingRdp));
@@ -106,13 +107,13 @@ suite('file conversion tests', () => {
     test('compare original with roundtrip', async () => {
       const originalRdp = path.resolve('../../src/test/suite/data/sparks.rdp.xml');
       const convertingRdp = path.resolve('../../out/test/suite/data/sparks.rdp.xml');
-  
+
       const originalBuffer = fs.readFileSync(originalRdp, 'utf8');
-  
+
       // parse as json to avoid errors on formatting differences we don't care about (e.g. newlines)
       const resultContent = await xml2js.parseStringPromise(fs.readFileSync(convertingRdp, 'utf8'));
       const expectedContent = await xml2js.parseStringPromise(originalBuffer);
-  
+
       assert.deepStrictEqual(resultContent, expectedContent);
     });
 
@@ -120,36 +121,36 @@ suite('file conversion tests', () => {
     //   const originalRdp = path.resolve('../../src/test/suite/data/sparks.rdp.xml');
     //   const convertingRdp = path.resolve('../../out/test/suite/data/sparks.rdp.xml');
     //   const targetRdp = utils.swapExtension(convertingRdp, '.rdp', true);
-  
+
     //   utils.ensureDir(path.dirname(convertingRdp));
     //   fs.copyFileSync(originalRdp, convertingRdp);
-  
+
     //   const originalBuffer = fs.readFileSync(originalRdp, 'utf8');
-      
+
     //   // cross check
     //   assert(fs.existsSync(convertingRdp));
     //   assert.strictEqual(originalBuffer, fs.readFileSync(convertingRdp, 'utf8'));
-  
+
     //   // convert to native RDP, filename doesn't change
     //   console.log("xml to rdp");
     //   await vscode.commands.executeCommand('anno-modding-tools.xmlToRdp', vscode.Uri.file(convertingRdp));
     //   assert(fs.existsSync(targetRdp));
     //   assert.notStrictEqual(originalBuffer, fs.readFileSync(targetRdp));
-  
+
     //   // remove for roundtrip
     //   fs.rmSync(convertingRdp);
     //   assert(!fs.existsSync(convertingRdp));
-  
+
     //   // convert back, content must be equal
     //   console.log("rdp to xml");
     //   await vscode.commands.executeCommand('anno-modding-tools.rdpToSimplified', vscode.Uri.file(targetRdp));
     //   assert(fs.existsSync(convertingRdp));
-  
+
     //   // parse as json to avoid errors on formatting differences we don't care about (e.g. newlines)
     //   console.log("roundtrip compare");
     //   const resultContent = await xml2js.parseStringPromise(fs.readFileSync(convertingRdp, 'utf8'));
     //   const expectedContent = await xml2js.parseStringPromise(originalBuffer);
-  
+
     //   assert.deepStrictEqual(resultContent, expectedContent);
     // });
   });

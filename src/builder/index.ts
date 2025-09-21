@@ -11,11 +11,12 @@ import { ModinfoConverter } from './converter/modinfo';
 import { RdpxmlConverter } from './converter/rdpxml';
 import { CfgYamlConverter } from './converter/cfgyaml';
 
+import { ModCache } from './ModCache';
+import * as curltar from '../tools/curltar';
 import * as rdp from '../tools/rdp';
 import * as dds from '../tools/dds';
-
 import * as xmltest from '../tools/xmltest';
-import { ModCache } from './ModCache';
+import * as fsutils from '../other/fsutils';
 import * as utils from '../other/utils';
 import { AssetsConverter } from './converter/assets';
 
@@ -72,7 +73,7 @@ export class ModBuilder {
     const outFolder = targetFolder ?? this._getOutFolder(filePath, modJson);
     const cache = path.join(path.dirname(filePath), '.modcache');
     this._logger.log('Target folder: ' + outFolder);
-    utils.ensureDir(outFolder);
+    fsutils.ensureDir(outFolder);
 
     const modCache = new ModCache(path.dirname(filePath), this._variables['annoRda']);
     modCache.load();
@@ -224,16 +225,16 @@ export class ModBuilder {
   private _downloadBundle(bundle: string, cache: string, outFolder: string) {
     const fileName = path.basename(bundle);
     const version = path.basename(path.dirname(bundle)).replace(/[^\w\-\.]/g, '');
-    const targetPath = path.join(cache, 'downloads', utils.insertEnding(fileName, '-' + version));
+    const targetPath = path.join(cache, 'downloads', fsutils.insertEnding(fileName, '-' + version));
     if (!fs.existsSync(targetPath)) {
       this._logger.log(`   * download ${version}/${fileName}`);
-      utils.downloadFile(bundle, targetPath, this._logger);
+      curltar.downloadFile(bundle, targetPath, this._logger);
     }
     else {
       this._logger.log(`   * skip download of ${version}/${fileName}`);
     }
     this._logger.log(`  <= extract content`);
-    utils.extractZip(targetPath, outFolder, this._logger);
+    curltar.extractZip(targetPath, outFolder, this._logger);
   }
 
   private _renameModFolders(modsPath: string) {

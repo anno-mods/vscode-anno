@@ -7,9 +7,10 @@ uses https://github.com/anno-mods/FileDBReader
 import * as fs from 'fs';
 import * as path from 'path';
 import * as child from 'child_process';
-import * as logger from '../other/logger';
 import * as xml2js from 'xml2js';
-import * as utils from '../other/utils';
+
+import * as fsutils from '../other/fsutils';
+import * as logger from '../other/logger';
 
 let _converterPath: string | undefined;
 let _interpreterPath: string | undefined;
@@ -190,14 +191,14 @@ export class Rdp {
       const dirname = path.dirname(targetFile);
 
       // FileDBReader takes the the first dot and replaces everything after with xml
-      let tempname = utils.swapExtension(targetFile, '-temp.xml', true);
+      let tempname = fsutils.swapExtension(targetFile, '-temp.xml', true);
 
-      utils.ensureDir(dirname);
+      fsutils.ensureDir(dirname);
       this.writeXml(tempname);
-  
+
       const res = child.execFileSync(_converterPath, [
         'hextofc',
-        '-f', tempname, 
+        '-f', tempname,
         '-i', _interpreterPath as string,
       ], {
         cwd: path.dirname(tempname)
@@ -205,10 +206,10 @@ export class Rdp {
       if (res.toString()) {
         logger.log(res.toString());
       }
-  
+
       fs.rmSync(tempname);
       // FileDBReader adds _fcexport if input filename ends with .xml?
-      tempname = utils.swapExtension(targetFile, '-temp.fc', true);
+      tempname = fsutils.swapExtension(targetFile, '-temp.fc', true);
       fs.renameSync(tempname, targetFile);
     }
     catch (exception: any) {
@@ -239,7 +240,7 @@ export async function rdpToXml(sourceFile: string, targetFolder: string, options
 
   let targetFile = path.join(targetFolder, path.basename(sourceFile)) + '.xml';
   if (options?.dontOverwrite) {
-    targetFile = utils.dontOverwrite(targetFile, '.rdp.xml');
+    targetFile = fsutils.dontOverwrite(targetFile, '.rdp.xml');
   }
   rdp.writeXml(targetFile);
 }
@@ -255,7 +256,7 @@ export async function xmlToRdp(sourceFile: string, targetFolder: string, options
 
   let targetFile = path.join(targetFolder, path.basename(sourceFile, '.xml'));
   if (options?.dontOverwrite) {
-    targetFile = utils.dontOverwrite(targetFile, '.rdp');
+    targetFile = fsutils.dontOverwrite(targetFile, '.rdp');
   }
   return await rdp.writeRdp(targetFile);
 }
@@ -292,21 +293,21 @@ function _toSimplifiedTicks(tickData: any, offset: number, count: number) {
 
 function _toComplicatedTicks(particles: IParticle[]) {
   const _reduce = (particles: IParticle[], attribute: string, conversion: (e: string) => string) => {
-    return particles?.reduce((array: string[], e: IParticle) => 
+    return particles?.reduce((array: string[], e: IParticle) =>
       array.concat(e.Ticks.Tick.map((tick: ITick) => conversion(tick[attribute as keyof ITick])).join(' ')), []);
   };
 
   return {
-    T_Positions: _arrayToCdata(_reduce(particles, 'PositionXYZ', (val: string) => 
+    T_Positions: _arrayToCdata(_reduce(particles, 'PositionXYZ', (val: string) =>
       val.split(' ').map((e: string) => _scaleToInt(parseFloat(e), -32767, 32767, 32767).toString()).join(' ')
     )),
-    T_Rotations: _arrayToCdata(_reduce(particles, 'RotationXYZ', (val: string) => 
+    T_Rotations: _arrayToCdata(_reduce(particles, 'RotationXYZ', (val: string) =>
       val.split(' ').map((e: string) => _scaleToInt(parseFloat(e), 0, 255, 1 / 360.0 * 256.0).toString()).join(' ')
     )),
-    T_Scales: _arrayToCdata(_reduce(particles, 'ScaleXYZ', (val: string) => 
+    T_Scales: _arrayToCdata(_reduce(particles, 'ScaleXYZ', (val: string) =>
       val.split(' ').map((e: string) => _scaleToInt(parseFloat(e), 0, 255, 255).toString()).join(' ')
     )),
-    T_Colors: _arrayToCdata(_reduce(particles, 'ColorARGB', (val: string) => 
+    T_Colors: _arrayToCdata(_reduce(particles, 'ColorARGB', (val: string) =>
     val.split(' ').reverse().join(' ')
     ))
   };

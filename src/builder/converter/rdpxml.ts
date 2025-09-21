@@ -1,7 +1,7 @@
 import * as path from 'path';
-import { Converter } from '../Converter';
 
-import * as utils from '../../other/utils';
+import { Converter } from '../Converter';
+import * as fsutils from '../../other/fsutils';
 import * as rdp from '../../tools/rdp';
 
 export class RdpxmlConverter extends Converter {
@@ -18,7 +18,7 @@ export class RdpxmlConverter extends Converter {
         const dirname = path.dirname(file);
         const basename = path.basename(file, '.rdp.xml');
 
-        utils.ensureDir(path.join(outFolder, dirname));
+        fsutils.ensureDir(path.join(outFolder, dirname));
 
         const sourceFile = path.join(sourceFolder, file);
         const targetFile = path.join(outFolder, dirname, basename + '.rdp');

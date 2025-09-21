@@ -1,12 +1,12 @@
 import * as assert from 'assert';
 import * as path from 'path';
 import * as fs from 'fs';
-import * as utils from '../../other/utils';
 import * as xml2js from 'xml2js';
 
 import { PropImporter } from '../../features/commands/propImporter';
 import { InfoImporter } from '../../features/commands/infoImporter';
 import { FcImporter } from '../../features/commands/fcImporter';
+import * as fsutils from '../../other/fsutils';
 
 suite('import tests', () => {
   // clear to avoid old files leading to wrong results
@@ -17,7 +17,7 @@ suite('import tests', () => {
   test('simple prop import', async () => {
     const propsGltf = path.resolve('../../src/test/suite/data/props.gltf');
     const simpleCfg = path.resolve('../../out/test/suite/data/simple.cfg');
-    utils.ensureDir(path.dirname(simpleCfg));
+    fsutils.ensureDir(path.dirname(simpleCfg));
     fs.copyFileSync('../../src/test/suite/data/simple.cfg', simpleCfg);
 
     PropImporter.commandImportProps(simpleCfg, propsGltf);
@@ -31,7 +31,7 @@ suite('import tests', () => {
   test('IFO import', async () => {
     const propsGltf = path.resolve('../../src/test/suite/data/props.gltf');
     const ifo = path.resolve('../../out/test/suite/data/hitbox.ifo');
-    utils.ensureDir(path.dirname(ifo));
+    fsutils.ensureDir(path.dirname(ifo));
     fs.copyFileSync('../../src/test/suite/data/hitbox.ifo', ifo);
 
     InfoImporter.commandImportInfo(ifo, propsGltf);
@@ -41,11 +41,11 @@ suite('import tests', () => {
 
     assert.deepStrictEqual(imported, expected);
   });
-  
+
   test('empty IFO import', async () => {
     const propsGltf = path.resolve('../../src/test/suite/data/empty.gltf');
     const ifo = path.resolve('../../out/test/suite/data/empty.ifo');
-    utils.ensureDir(path.dirname(ifo));
+    fsutils.ensureDir(path.dirname(ifo));
     fs.copyFileSync('../../src/test/suite/data/hitbox.ifo', ifo);
 
     InfoImporter.commandImportInfo(ifo, propsGltf);
@@ -55,11 +55,11 @@ suite('import tests', () => {
 
     assert.deepStrictEqual(imported, expected);
   });
-  
+
   test('fc feedback import', async () => {
     const fcGltf = path.resolve('../../src/test/suite/data/fc.gltf');
     const fc = path.resolve('../../out/test/suite/data/fc.cf7');
-    utils.ensureDir(path.dirname(fc));
+    fsutils.ensureDir(path.dirname(fc));
     fs.copyFileSync('../../src/test/suite/data/fc.cf7', fc);
 
     FcImporter.commandImportFeedback(fc, fcGltf);
