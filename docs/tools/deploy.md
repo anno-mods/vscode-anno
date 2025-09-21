@@ -5,12 +5,9 @@
 
 Automatically convert and copy mod files using a json description.
 
-Features:
 - automatically convert files like `.png` or `.gltf` to their Anno formats
 - copy only wanted files into a separate mod folder (keeps mod output clean)
 - create skins of `.cfg` files without duplicating them
-
-Examples: [Sources on GitHub](https://github.com/jakobharder/anno-1800-jakobs-mods/), [Compiled Mods](https://github.com/jakobharder/anno-1800-jakobs-mods/releases)
 
 ## How to call
 
@@ -18,32 +15,50 @@ Examples: [Sources on GitHub](https://github.com/jakobharder/anno-1800-jakobs-mo
 
 - The status bar shows a button with Anno version and mod ID.
   Click that to deploy the mod to your configured `mods/` folder.
-- Alternatively, press `F1` to select a mod from your workspace.
+- Alternatively, press ++f1++ to select a mod from your workspace.
 
 ### From Terminal or GitHub actions
 
 You can use the build command also in command line.
 
-Have a look at [Jakob's Collection's GitHub publish pipeline](https://github.com/jakobharder/anno1800-jakobs-mods/blob/main/.github/workflows/publish.yml) to get some hints how to do it.
+Have a look at [New World Cities' GitHub publish pipeline](https://github.com/anno-mods/new-world-cities/blob/main/.github/workflows/publish.yml) to get some hints how to do it.
 
 ## Download Sub-Mods
 
 You can automatically bundle sub-mods and shared files using URLs in `ModDependencies` and `Development.Bundle`. For example:
 
-```json
-{
-  // ... the usual modinfocontent
-  "ModDependencies": [
-    "https://github.com/anno-mods/shared-resources/releases/download/v10.10/shared-pools-and-definitions.zip"
-  ],
-  "Development": {
-    "Bundle": [
-      "https://github.com/anno-mods/shared-jakob/releases/download/v4.9.4/decals-city-jakob.zip",
-      "https://github.com/anno-mods/shared-jakob/releases/download/v4.9.4/decals-industry-jakob.zip"
-    ]
-  }
-}
-```
+=== ":material-pillar: 117"
+    ```json title="modinfo.json"
+    {
+      // ..
+      "Dependencies": {
+        "Require": [
+          "https://github.com/anno-mods/shared-resources/releases/download/v10.10/shared-pools-and-definitions.zip"
+        ],
+      },
+      "Development": {
+        "Bundle": [
+          "https://github.com/anno-mods/shared-jakob/releases/download/v4.9.4/decals-city-jakob.zip",
+          "https://github.com/anno-mods/shared-jakob/releases/download/v4.9.4/decals-industry-jakob.zip"
+        ]
+      }
+    }
+    ```
+=== ":material-factory: 1800"
+    ```json title="modinfo.json"
+    {
+      // ..
+      "ModDependencies": [
+        "https://github.com/anno-mods/shared-resources/releases/download/v10.10/shared-pools-and-definitions.zip"
+      ],
+      "Development": {
+        "Bundle": [
+          "https://github.com/anno-mods/shared-jakob/releases/download/v4.9.4/decals-city-jakob.zip",
+          "https://github.com/anno-mods/shared-jakob/releases/download/v4.9.4/decals-industry-jakob.zip"
+        ]
+      }
+    }
+    ```
 
 Both options download the file and extract the content into your mod.
 
@@ -51,19 +66,36 @@ Both options download the file and extract the content into your mod.
 
 URLs in `ModDependencies` are a shotcut for the following where the URL is bundled and the zip file name is used as a dependency:
 
-```json
-{
-  // ... the usual modinfocontent
-  "ModDependencies": [
-    "shared-pools-and-definitions"
-  ],
-  "Development": {
-    "Bundle": [
-      "https://github.com/anno-mods/shared-resources/releases/download/v10.10/shared-pools-and-definitions.zip"
-    ]
-  }
-}
-```
+=== ":material-pillar: 117"
+    ```json title="modinfo.json"
+    {
+      // ..
+      "Dependencies": {
+        "Require": [
+          "shared-pools-and-definitions"
+        ],
+      },
+      "Development": {
+        "Bundle": [
+          "https://github.com/anno-mods/shared-resources/releases/download/v10.10/shared-pools-and-definitions.zip"
+        ]
+      }
+    }
+    ```
+=== ":material-factory: 1800"
+    ```json title="modinfo.json"
+    {
+      // ..
+      "ModDependencies": [
+        "shared-pools-and-definitions"
+      ],
+      "Development": {
+        "Bundle": [
+          "https://github.com/anno-mods/shared-resources/releases/download/v10.10/shared-pools-and-definitions.zip"
+        ]
+      }
+    }
+    ```
 
 ## Change Output Path
 
