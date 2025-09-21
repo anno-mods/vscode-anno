@@ -8,7 +8,9 @@ plugins:
 nav:
   - Home: index.md
   - Setup: setup.md
-  - Navigation and IntelliSense: intellisense.md
+  - Navigation:
+    - Outline: outline.md
+    - IntelliSense: intellisense.md
   - Syntax and Error Checking: error-checking.md
   - Utilities: utilities.md
   - Model and Texture Utils: model-texture-utils.md

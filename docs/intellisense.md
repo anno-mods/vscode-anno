@@ -4,17 +4,7 @@
 
 ![](./images/navigation.gif)
 
-### Navigate via Outline
-
-You can click on any outline entry to directly jump to that section in the code.
-
-The outline shows `ModOp`s, `Assets` and where possible names instead of GUIDs.
-
-Top-level sections can be created with `<!-- # your text -->` comments.
-The `Group` keyword can also be used for further grouping.
-Write normal XML comments above groups to name them.
-
-### Go to Asset
+## Go to Asset
 
 Right click on any GUID and select `Go to Definition` or press `F12` to jump to the related Mod or vanilla asset.
 
@@ -43,7 +33,7 @@ Not all GUIDs can be converted automatically due to performance. Most notable ex
 
 ![](./images/autocompletion.gif)
 
-Check [Setup](#setup) to activate this feature.
+Check [Setup](./setup.md) to activate this feature.
 
 Now your code gets validated and you can press `Ctrl` + `Space` anywhere in the document and get a list of possible tags, enums or GUIDs.
 
