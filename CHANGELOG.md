@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.3
+
+- Improved outline to focus more on content, less on ModOp type
+- Improved anno-xml auto-complete (Anno 117 only for now)
+- Fixed some anno-xml highlighting issues
+
 ## 2.2
 
 - Changed word selection behavior to treat mod IDs with hyphens as one word

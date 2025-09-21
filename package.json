@@ -2,7 +2,7 @@
 	"name": "anno-modding-tools",
 	"displayName": "Anno Modding Tools",
 	"description": "Tools to create mods for Anno 1800 and Anno 117: Pax Romana.",
-	"version": "2.2.3-alpha1",
+	"version": "2.3.0",
 	"publisher": "JakobHarder",
 	"repository": {
 		"type": "git",
