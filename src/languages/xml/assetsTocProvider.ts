@@ -297,7 +297,7 @@ export class AssetsTocProvider {
           // ModOp
           else if (top.element.name === 'ModOp') {
             toc.push({
-              text: this._getName(top.element, groupComment),
+              text: this._getName(top.element),
               detail: this._getDetail(top.element),
               level: top.depth, line, guid: undefined, location, symbol
             });
