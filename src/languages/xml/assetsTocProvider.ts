@@ -137,22 +137,22 @@ export class AssetsTocProvider {
 
   private _getDetail(element: xmldoc.XmlElement, index: number = 0) {
     if (element.name === 'ModOp') {
-      if (element.attr['Add']) {
+      if (element.attr['Add'] !== undefined) {
         return 'Add';
       }
-      else if (element.attr['Remove']) {
+      else if (element.attr['Remove'] !== undefined) {
         return 'Remove';
       }
-      else if (element.attr['Replace']) {
+      else if (element.attr['Replace'] !== undefined) {
         return 'Replace';
       }
-      else if (element.attr['Merge']) {
+      else if (element.attr['Merge'] !== undefined) {
         return 'Merge';
       }
-      else if (element.attr['Append']) {
+      else if (element.attr['Append'] !== undefined) {
         return 'Append';
       }
-      else if (element.attr['Prepend']) {
+      else if (element.attr['Prepend'] !== undefined) {
         return 'Prepend';
       }
       return element.attr['Type'] || 'ModOp';
