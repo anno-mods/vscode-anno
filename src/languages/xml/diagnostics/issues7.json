@@ -19,12 +19,5 @@
     "code": "xpath_@_values",
     "fix": "@\\1",
     "fixMessage": "Remove `/Values`"
-  },
-  {
-    "matchRegex": "(Merge|Replace|Add|Remove|Append|Prepend)=\"/Values",
-    "message": "`/Values` is already part of the path when using short ModOps. Remove it.",
-    "code": "xpath_short_values",
-    "fix": "\\1=\"",
-    "fixMessage": "Remove `/Values`"
   }
 ]

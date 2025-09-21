@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 
+import * as diagnostics from './diagnostics';
 import * as versionChecks from './versionChecks';
 import * as anno from '../../anno';
 import * as rda from '../../data/rda';
@@ -11,24 +12,9 @@ import { ASSETS_FILENAME_PATTERN } from '../../utils/assetsXml';
 import * as xmltest from '../../tools/xmltest';
 import * as editorFormats from '../../editor/formats';
 
-import * as issues7 from './issues7.json';
-
-interface IIssueDescription {
-  matchWord?: string
-  matchRegex?: string
-  fix?: string
-  code: string
-  message: string
-}
-
-const DEPRECATED_ALL = '190611';
-const DEPRECATED_ALL2 = '193879';
-const DEPRECATED_ALL_FIX = '368';
-const DEPRECATED_ALL_CODE = 'all_buildings_with_maintenance_DONTUSE';
-
 const GAME_PATH_117 = 'anno.117.gamePath';
 
-export const diagnostics = vscode.languages.createDiagnosticCollection("assets-xml");
+export const diagnosticsCollection = vscode.languages.createDiagnosticCollection("assets-xml");
 const performanceDecorationType = vscode.window.createTextEditorDecorationType({});
 
 export class AssetsActionProvider {
@@ -40,7 +26,7 @@ export class AssetsActionProvider {
       { language: 'xml', scheme: 'file', pattern: ASSETS_FILENAME_PATTERN }
     ];
     return [
-      diagnostics,
+      diagnosticsCollection,
       vscode.languages.registerCodeActionsProvider(selector, new AssetsCodeActionProvider(), {
         providedCodeActionKinds: AssetsCodeActionProvider.providedCodeActionKinds
       })
@@ -67,17 +53,23 @@ function checkFileName(modPaths: string[], line: vscode.TextLine, annoRda?: stri
   return undefined;
 };
 
-export function clearDiagnostics(context: vscode.ExtensionContext, doc: vscode.TextDocument, collection: vscode.DiagnosticCollection) {
+export function clearDiagnostics(doc: vscode.TextDocument, performanceOnly: boolean = false) {
   vscode.window.activeTextEditor?.setDecorations(performanceDecorationType, []);
-  diagnostics.delete(doc.uri)
+
+  if (!performanceOnly) {
+    diagnosticsCollection.delete(doc.uri)
+  }
 }
 
-export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
+export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode.TextDocument, performanceDiagnostics: boolean = true): void {
+  if (!editor.isActive()) {
+    return;
+  }
+
   if (!editorFormats.isPatchXml(doc)) {
     vscode.commands.executeCommand('setContext', 'anno-modding-tools.openPatchFile', false);
     return;
   }
-
   vscode.commands.executeCommand('setContext', 'anno-modding-tools.openPatchFile', true);
 
   const config = vscode.workspace.getConfiguration('anno');
@@ -85,42 +77,38 @@ export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode
   const annoRda: string | undefined = config.get('rdaFolder'); // TODO
   const modsFolder: string | undefined = config.get('modsFolder'); // TODO
 
-  const diagnostics: vscode.Diagnostic[] = [];
-
   const modPaths = anno.searchModPaths(doc.uri.fsPath, modsFolder);
-
-  if (!editor.isActive()) {
-    return;
-  }
-
   const modPath = anno.findModRoot(doc.fileName);
   const version = anno.ModInfo.readVersion(modPath);
-  diagnostics.push(...versionChecks.checkCorrectVersion(doc, version));
 
+  const result: vscode.Diagnostic[] = [];
+  result.push(...versionChecks.checkCorrectVersion(doc, version));
+
+  const issues = diagnostics.issues();
   for (let lineIndex = 0; lineIndex < doc.lineCount; lineIndex++) {
     const lineOfText = doc.lineAt(lineIndex);
 
-    for (var issue of issues7) {
+    for (var issue of issues) {
       const detected = checkDiagnosticIssue(lineOfText.text, lineIndex, issue);
       if (detected) {
-        diagnostics.push(detected);
+        result.push(detected);
       }
     }
 
     if (checkFileNames) {
       const fileAction = checkFileName(modPaths, lineOfText, annoRda);
       if (fileAction) {
-        diagnostics.push(fileAction);
+        result.push(fileAction);
       }
     }
   }
 
-  if (editorFormats.allowLiveValidation(doc)) {
-    const performance = runXmlTest(context, doc, diagnostics);
+  if (performanceDiagnostics && editorFormats.allowLiveValidation(doc)) {
+    const performance = runXmlTest(context, doc, result);
     vscode.window.activeTextEditor?.setDecorations(performanceDecorationType, performance);
   }
 
-  collection.set(doc.uri, diagnostics);
+  diagnosticsCollection.set(doc.uri, result);
 }
 
 function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
@@ -196,7 +184,7 @@ function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
   return decorations;
 }
 
-function checkDiagnosticIssue(textLine: string, lineIndex: number, issue: IIssueDescription) {
+function checkDiagnosticIssue(textLine: string, lineIndex: number, issue: diagnostics.IIssueDescription) {
 
   if (issue.matchWord && utils.findWord(textLine, issue.matchWord)) {
     const index = textLine.indexOf(issue.matchWord);
@@ -243,7 +231,8 @@ export class AssetsCodeActionProvider implements vscode.CodeActionProvider {
       return action;
     }
     else {
-      for (var issue of issues7) {
+      const issues = diagnostics.issues();
+      for (var issue of issues) {
         if (issue.fix && diagnostic.code === issue.code) {
           const action = new vscode.CodeAction(issue.fixMessage || 'Fix it', vscode.CodeActionKind.QuickFix);
           action.edit = new vscode.WorkspaceEdit();

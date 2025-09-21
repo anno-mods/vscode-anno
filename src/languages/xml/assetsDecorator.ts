@@ -7,7 +7,7 @@ import { SymbolRegistry } from '../../data/symbols';
 import * as editorFormats from '../../editor/formats';
 import { assetNameWithOrigin } from '../../utils/assetsXml';
 
-import { clearDiagnostics, diagnostics, refreshDiagnostics } from './assetsActionProvider';
+import { clearDiagnostics, refreshDiagnostics } from './assetsActionProvider';
 
 // this method is called when vs code is activated
 export function activate(context: vscode.ExtensionContext) {
@@ -125,20 +125,29 @@ export function activate(context: vscode.ExtensionContext) {
     }, assetDecorationType);
   }
 
+  function updateAssetDecorations() {
+    if (!activeEditor) {
+      return;
+    }
+
+    updateDecorations();
+    refreshDiagnostics(context, activeEditor.document, false);
+  }
+
   function updateAssetAndPerformanceDecorations() {
     if (!activeEditor) {
       return;
     }
 
     updateDecorations();
-    refreshDiagnostics(context, activeEditor.document, diagnostics);
+    refreshDiagnostics(context, activeEditor.document);
   }
 
   function clearPerformanceDecorations() {
     if (!activeEditor) {
       return;
     }
-    clearDiagnostics(context, activeEditor.document, diagnostics);
+    clearDiagnostics(activeEditor.document, true);
   }
 
   function triggerUpdateDecorations(throttle = false, performance = false) {
@@ -147,14 +156,14 @@ export function activate(context: vscode.ExtensionContext) {
       timeout = undefined;
     }
     if (throttle) {
-      timeout = setTimeout(performance ? updateAssetAndPerformanceDecorations : updateDecorations,
+      timeout = setTimeout(performance ? updateAssetAndPerformanceDecorations : updateAssetDecorations,
         2000 /* ms */);
     } else if (performance) {
       timeout = setTimeout(updateAssetAndPerformanceDecorations,
         100 /* ms */);
     }
     else {
-      updateDecorations();
+      updateAssetDecorations();
     }
   }
 

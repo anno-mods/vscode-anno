@@ -21,3 +21,5 @@ export function activate(context: vscode.ExtensionContext): vscode.Disposable[] 
 export function isActive(): boolean {
   return modContext.get()?.version !== undefined && modContext.get()?.version !== anno.GameVersion.Auto;
 }
+
+export const ModContext = modContext;
