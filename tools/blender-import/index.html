@@ -8,22 +8,28 @@
       
       
       
+        <link rel="canonical" href="https://anno-mods.github.io/vscode-anno/tools/blender-import/">
       
       
+        <link rel="prev" href="../deploy/">
       
-      <link rel="icon" href="/vscode-anno/images/logo.png">
+      
+        <link rel="next" href="../reskin/">
+      
+      
+      <link rel="icon" href="../../images/logo.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
-        <title>Anno Modding Tools</title>
+        <title>Blender Import - Anno Modding Tools</title>
       
     
     
-      <link rel="stylesheet" href="/vscode-anno/assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
       
         
-        <link rel="stylesheet" href="/vscode-anno/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("/vscode-anno/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#import-from-blender-or-gltf" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,9 +90,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/vscode-anno/." title="Anno Modding Tools" class="md-header__button md-logo" aria-label="Anno Modding Tools" data-md-component="logo">
+    <a href="../.." title="Anno Modding Tools" class="md-header__button md-logo" aria-label="Anno Modding Tools" data-md-component="logo">
       
-  <img src="/vscode-anno/images/logo.svg" alt="logo">
+  <img src="../../images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -98,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Blender Import
             
           </span>
         </div>
@@ -212,9 +223,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/vscode-anno/." title="Anno Modding Tools" class="md-nav__button md-logo" aria-label="Anno Modding Tools" data-md-component="logo">
+    <a href="../.." title="Anno Modding Tools" class="md-nav__button md-logo" aria-label="Anno Modding Tools" data-md-component="logo">
       
-  <img src="/vscode-anno/images/logo.svg" alt="logo">
+  <img src="../../images/logo.svg" alt="logo">
 
     </a>
     Anno Modding Tools
@@ -229,7 +240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/vscode-anno/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -251,7 +262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/vscode-anno/get-started/" class="md-nav__link">
+      <a href="../../get-started/" class="md-nav__link">
         
   
   
@@ -273,7 +284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/vscode-anno/setup/" class="md-nav__link">
+      <a href="../../setup/" class="md-nav__link">
         
   
   
@@ -338,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/vscode-anno/editing/navigation/" class="md-nav__link">
+      <a href="../../editing/navigation/" class="md-nav__link">
         
   
   
@@ -361,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/vscode-anno/editing/auto-complete/" class="md-nav__link">
+      <a href="../../editing/auto-complete/" class="md-nav__link">
         
   
   
@@ -384,7 +395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/vscode-anno/editing/analysis/" class="md-nav__link">
+      <a href="../../editing/analysis/" class="md-nav__link">
         
   
   
@@ -407,7 +418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/vscode-anno/editing/templates/" class="md-nav__link">
+      <a href="../../editing/templates/" class="md-nav__link">
         
   
   
@@ -434,8 +445,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -446,11 +459,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
@@ -466,7 +479,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Tools
@@ -480,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/vscode-anno/tools/deploy/" class="md-nav__link">
+      <a href="../deploy/" class="md-nav__link">
         
   
   
@@ -500,10 +513,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/vscode-anno/tools/blender-import/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -514,6 +536,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -526,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/vscode-anno/tools/reskin/" class="md-nav__link">
+      <a href="../reskin/" class="md-nav__link">
         
   
   
@@ -662,6 +685,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -673,8 +698,98 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="import-from-blender-or-gltf">Import from Blender or glTF<a class="headerlink" href="#import-from-blender-or-gltf" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">It's recommended to use the Blender plugin instead.</p>
+<p>The import functionality predates the Blender plugin.
+Use that instead:</p>
+<ul>
+<li><a href="https://github.com/anno-mods/Blender-Anno-117">Blender Plugin for Anno 117</a></li>
+<li><a href="https://github.com/anno-mods/Blender-Anno-1800">Blender Plugin for Anno 1800</a></li>
+</ul>
+</div>
+<p>Steps:</p>
+<ol>
+<li>Follow naming conventions below</li>
+<li>Export to glTF</li>
+<li>Right-click on target <code>.cfg</code> and select <code>Import from glTF</code>.</li>
+</ol>
+<p>Import an glTF file from one of the below examples into Blender to see how a project should look like:</p>
+<ul>
+<li><a href="https://github.com/jakobharder/anno1800-city-variations/tree/main/sub/skin-townhall">Town Hall Buildings</a> (multiple models in one .cfg)</li>
+<li><a href="https://github.com/jakobharder/anno1800-jakobs-mods/tree/main/sub/jakob-power-plants">Small Power Plants</a> (with animations)</li>
+</ul>
+<p>⚠ Make sure to not edit the mesh of the objects, but the object position, scale and rotation only.</p>
+<p>CFG file imports:</p>
+<ul>
+<li><code>PROP</code>s with prefix <code>prop_</code> <em>(e.g. boxes, barrels)</em></li>
+<li>Position, Rotation, Scale</li>
+<li>mesh name as <code>FileName</code> if it ends with <code>.prp</code>.
+    Don't worry about Blender-style <code>.001</code>, <code>.002</code>, ... endings. They will be ignored.</li>
+<li>Will be added if they don't exist.</li>
+<li><code>PARTICLE</code>s with prefix <code>particle_</code> <em>(e.g. smoke)</em></li>
+<li>Position, Rotation, Scale</li>
+<li><code>FILE</code>s with prefix <code>file_</code> <em>(included external cfg files)</em></li>
+<li>Position, Rotation, Scale</li>
+<li>mesh name as <code>FileName</code> if it ends with <code>.cfg</code>.</li>
+<li>Will be added if they don't exist.</li>
+<li><code>DECAL</code> with name <code>ground</code> <em>(ground texture)</em></li>
+<li>Extents is calculated from all vertices of that object (e.g. plane).
+    This modifies the ground texture. The building tile size is <code>&lt;BuildBlocker&gt;</code> in the IFO file.</li>
+</ul>
+<p>Entries not existing in the model will be marked as <code>_removed</code> and not removed automatically.</p>
+<p>CF7 file imports:</p>
+<ul>
+<li><code>&lt;Dummies&gt;&lt;i&gt;</code>: people, FireDummy, feedback_door, ...</li>
+<li>Imported from multiple objects with prefix <code>fc_</code>.</li>
+<li><code>Position</code> and <code>Orientation</code> are taken from the object.
+    <code>RotationY</code> is calculated from the orientation.</li>
+<li><code>&lt;Name&gt;</code> of the entry will be matched against what comes after <code>fc_</code>.
+    E.g. <code>fc_Dummy0</code> will be matched against <code>&lt;Name&gt;Dummy0&lt;/Name&gt;</code>.</li>
+<li>Entries not existing in the model will not be removed.</li>
+</ul>
+<p>IFO file imports:</p>
+<ul>
+<li><code>&lt;IntersectBox&gt;</code>: clickable 3D area (aka hitbox) of the building</li>
+<li>Imported from multiple mesh object (e.g. cube) with prefix <code>hitbox</code></li>
+<li><code>Position</code>, <code>Rotation</code> and <code>Extents</code> are calculated from the boundaries of the objects.
+    1 box per object.</li>
+<li><code>&lt;Dummy&gt;</code>: transporter spawn, fire locations, ...</li>
+<li>Imported from multiple objects with prefix <code>dummy_</code>.</li>
+<li><code>Position</code>, <code>Rotation</code> and <code>Extents</code> are taken from the object.</li>
+<li><code>&lt;Name&gt;</code> of the entry will be matched against what comes after <code>dummy_</code>.
+    E.g. <code>dummy_transporter_spawn</code> will be matched against <code>&lt;Name&gt;transporter_spawn&lt;/Name&gt;</code>.</li>
+<li>Entries not existing in the model will not be removed.</li>
+<li><code>&lt;FeedbackBlocker&gt;</code>: area people can walk through</li>
+<li>Imported from multiple mesh objects (e.g. plane) with prefix <code>FeedbackBlocker</code></li>
+<li><code>Position</code>s are taken from mesh vertices.
+    Rounded to .25</li>
+<li><code>&lt;BuildBlocker&gt;</code>: tile size of the building</li>
+<li>Imported from one mesh object (e.g. plane) with name <code>ground</code></li>
+<li><code>Position</code>s are taken from mesh vertices.
+    Rounded to .5</li>
+<li><code>&lt;UnevenBlocker&gt;</code>: area to always keep above ground</li>
+<li>Imported from one mesh object (e.g. plane) with name <code>UnevenBlocker</code></li>
+<li><code>Position</code>s are taken from mesh vertices.
+    Rounded <strong>up</strong> in .25 steps</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -686,6 +801,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../deploy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deploy Mods">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Deploy Mods
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../reskin/" class="md-footer__link md-footer__link--next" aria-label="Next: Reskin Models">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Reskin Models
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -712,10 +865,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/vscode-anno/", "features": ["content.code.annotate", "content.code.copy", "content.tooltips", "header.autohide", "navigation.footer", "navigation.sections"], "search": "/vscode-anno/assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tooltips", "header.autohide", "navigation.footer", "navigation.sections"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/vscode-anno/assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>
