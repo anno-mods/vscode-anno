@@ -31,15 +31,24 @@ export interface SkinnyTextDocument {
   getText(): string;
 }
 
-/** falls back to parent if there's no such child */
+/** return first simple element (without element children) */
 function _firstElement(parent: xmldoc.XmlElement) {
-  for (const child of parent.children) {
-    if (child.type === 'element') {
-      return child;
+  for (const element of parent.children) {
+    if (element.type === 'element') {
+      var hasElementChildren = false;
+      for (const child of element.children) {
+        if (child.type === 'element') {
+          hasElementChildren = true;
+        }
+      }
+
+      if (!hasElementChildren) {
+        return element;
+      }
     }
   }
 
-  return parent;
+  return undefined;
 }
 
 export class AssetsTocProvider {
@@ -238,8 +247,7 @@ export class AssetsTocProvider {
             detail: '',
             level: top.depth - 1,
             line,
-            location: new vscode.Location(this._doc.uri,
-              new vscode.Range(line, 0, line, 1)),
+            location: new vscode.Location(this._doc.uri, new vscode.Range(line, 0, line, 1)),
             symbol: vscode.SymbolKind.Number
           });
           sectionComment = undefined;
@@ -251,8 +259,9 @@ export class AssetsTocProvider {
         const children = (top.element.children ? top.element.children.filter((e) => e.type === 'element' || e.type === 'comment') : []).map((e) => (
           { depth: depth + 1, element: e, property: isProperty }
         ));
-        if (children.length > 0) {
-          // has tag children
+
+        // stop going deeper after parent was ModOp (aka this is property)
+        if (children.length > 0 && !top.property) {
           nodeStack.push(...children.reverse());
         }
 
@@ -273,8 +282,10 @@ export class AssetsTocProvider {
             var name: string | undefined = undefined;
             if (top.element.name === 'Item' || top.element.name === 'ModItem') {
               const item = _firstElement(top.element);
-              const asset = SymbolRegistry.resolve(item.val);
-              name = (asset ? uniqueAssetName(asset) : item.val);
+              if (item) {
+                const asset = SymbolRegistry.resolve(item.val);
+                name = (asset ? uniqueAssetName(asset) : item.val);
+              }
             }
             toc.push({
               text: (name && name.length > 0) ? name : top.element.name,
@@ -290,6 +301,10 @@ export class AssetsTocProvider {
               detail: this._getDetail(top.element),
               level: top.depth, line, guid: undefined, location, symbol
             });
+          }
+          // skip Assets that are not in ModOp or top-level
+          else if (top.element.name === 'Asset' && isProperty && !top.element.childNamed('Values')) {
+            // skip
           }
           // anything else
           else {
