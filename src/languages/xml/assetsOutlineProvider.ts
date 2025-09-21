@@ -24,6 +24,8 @@ export class AssetsSymbolProvider {
   }
 
 	private static lastSymbols: vscode.DocumentSymbol[] = [];
+	private static lastFile: string | undefined;
+
   public async provideDocumentSymbols(document: SkinnyTextDocument): Promise<vscode.DocumentSymbol[]> {
 		const patchDocument = new AssetsDocument(document);
 
@@ -35,7 +37,14 @@ export class AssetsSymbolProvider {
 				parent: undefined
 			};
 			this.buildTree(root, toc);
+
 			AssetsSymbolProvider.lastSymbols = root.children;
+			AssetsSymbolProvider.lastFile = document.uri.fsPath;
+		}
+		else if (AssetsSymbolProvider.lastFile !== document.uri.fsPath) {
+			// clear outline symbols when the file changed
+			AssetsSymbolProvider.lastSymbols = [];
+			AssetsSymbolProvider.lastFile = document.uri.fsPath;
 		}
 
 		return AssetsSymbolProvider.lastSymbols;
