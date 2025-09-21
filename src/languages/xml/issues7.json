@@ -1,0 +1,24 @@
+[
+  {
+    "matchWord": "190611",
+    "fix": "368",
+    "code": "all_buildings_with_maintenance_DONTUSE",
+    "message": "`190611` is deprecated and won't work with Captain of Industry properly. Use `368` instead."
+  },
+  {
+    "matchWord": "193879",
+    "fix": "368",
+    "code": "all_buildings_with_maintenance_DONTUSE",
+    "message": "`190611` is deprecated and won't work with Captain of Industry properly. Use `368` instead."
+  },
+  {
+    "matchRegex": "@(\\d+)/Values",
+    "code": "xpath_@_values",
+    "message": "`/Values` is already part of @GUID notation. Remove it."
+  },
+  {
+    "matchRegex": "(?:Merge|Replace|Add|Remove|Append|Prepend)=\"/Values",
+    "code": "xpath_short_values",
+    "message": "`/Values` is already part of the path when using short ModOps. Remove it."
+  }
+]

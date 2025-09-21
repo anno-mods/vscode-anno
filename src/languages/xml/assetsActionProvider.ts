@@ -11,6 +11,16 @@ import { ASSETS_FILENAME_PATTERN } from '../../utils/assetsXml';
 import * as xmltest from '../../tools/xmltest';
 import * as editorFormats from '../../editor/formats';
 
+import * as issues7 from './issues7.json';
+
+interface IIssueDescription {
+  matchWord?: string
+  matchRegex?: string
+  fix?: string
+  code: string
+  message: string
+}
+
 const DEPRECATED_ALL = '190611';
 const DEPRECATED_ALL2 = '193879';
 const DEPRECATED_ALL_FIX = '368';
@@ -89,11 +99,12 @@ export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode
 
   for (let lineIndex = 0; lineIndex < doc.lineCount; lineIndex++) {
     const lineOfText = doc.lineAt(lineIndex);
-    if (utils.findWord(lineOfText.text, DEPRECATED_ALL)) {
-      diagnostics.push(createDiagnostic(doc, lineOfText, lineIndex));
-    }
-    else if (utils.findWord(lineOfText.text, DEPRECATED_ALL2)) {
-      diagnostics.push(createDiagnostic2(doc, lineOfText, lineIndex));
+
+    for (var issue of issues7) {
+      const detected = checkDiagnosticIssue(lineOfText.text, lineIndex, issue);
+      if (detected) {
+        diagnostics.push(detected);
+      }
     }
 
     if (checkFileNames) {
@@ -185,30 +196,28 @@ function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
   return decorations;
 }
 
-function createDiagnostic(doc: vscode.TextDocument, lineOfText: vscode.TextLine, lineIndex: number): vscode.Diagnostic {
-  const index = lineOfText.text.indexOf(`${DEPRECATED_ALL}`);
-  const range = new vscode.Range(lineIndex, index, lineIndex, index + DEPRECATED_ALL.length);
+function checkDiagnosticIssue(textLine: string, lineIndex: number, issue: IIssueDescription) {
 
-  const diagnostic = new vscode.Diagnostic(range,
-    `\`${DEPRECATED_ALL}\` is deprecated and won't work with Captain of Industry properly. Use \`${DEPRECATED_ALL_FIX}\` instead.`,
-    vscode.DiagnosticSeverity.Error);
-  diagnostic.code = DEPRECATED_ALL_CODE;
-  return diagnostic;
+  if (issue.matchWord && utils.findWord(textLine, issue.matchWord)) {
+    const index = textLine.indexOf(issue.matchWord);
+    const range = new vscode.Range(lineIndex, index, lineIndex, index + issue.matchWord.length);
+    const diagnostic = new vscode.Diagnostic(range, issue.message, vscode.DiagnosticSeverity.Error);
+    diagnostic.code = issue.code;
+    return diagnostic;
+  }
+  else if (issue.matchRegex) {
+    const match = textLine.match(new RegExp(issue.matchRegex));
+    if (match && match.index) {
+      const index = match.index;
+      const range = new vscode.Range(lineIndex, index, lineIndex, index + match[0].length);
+      const diagnostic = new vscode.Diagnostic(range, issue.message, vscode.DiagnosticSeverity.Error);
+      diagnostic.code = issue.code;
+      return diagnostic;
+    }
+  }
+
+  return undefined;
 }
-
-// TODO this is not how you do things 😆
-function createDiagnostic2(doc: vscode.TextDocument, lineOfText: vscode.TextLine, lineIndex: number): vscode.Diagnostic {
-  const index = lineOfText.text.indexOf(`${DEPRECATED_ALL2}`);
-  const range = new vscode.Range(lineIndex, index, lineIndex, index + DEPRECATED_ALL2.length);
-
-  const diagnostic = new vscode.Diagnostic(range,
-    `\`${DEPRECATED_ALL2}\` is deprecated and won't work with Captain of Industry properly. Use \`${DEPRECATED_ALL_FIX}\` instead.`,
-    vscode.DiagnosticSeverity.Error);
-  diagnostic.code = DEPRECATED_ALL_CODE;
-  return diagnostic;
-}
-
-const removeNulls = <S>(value: S | null | undefined): value is S => value !== null && value !== undefined;
 
 export class AssetsCodeActionProvider implements vscode.CodeActionProvider {
   public static readonly providedCodeActionKinds = [
@@ -219,7 +228,7 @@ export class AssetsCodeActionProvider implements vscode.CodeActionProvider {
     return context.diagnostics
       .filter(diagnostic => diagnostic.code === DEPRECATED_ALL_CODE || diagnostic.code === GAME_PATH_117)
       .map(diagnostic => this.createCommandCodeAction(diagnostic, document.uri))
-      .filter(removeNulls);
+      .filter(utils.removeNulls);
   }
 
   private createCommandCodeAction(diagnostic: vscode.Diagnostic, uri: vscode.Uri): vscode.CodeAction | undefined {
