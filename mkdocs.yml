@@ -9,13 +9,18 @@ nav:
   - Home: index.md
   - Get Started: get-started.md
   - Setup: setup.md
-  - IntelliSense:
-    - Navigation: intellisense/navigation.md
-    - Annotations: intellisense/annotations.md
-    - Auto Complete: intellisense/auto-complete.md
-  - Syntax and Error Checking: error-checking.md
-  - Utilities: utilities.md
-  - Model and Texture Utils: model-texture-utils.md
+  - Editing:
+    - Navigation: editing/navigation.md
+    - Auto Complete: editing/auto-complete.md
+    - Issue Analysis: editing/analysis.md
+    - Templates: editing/templates.md
+  - Tools:
+    - Deploy Mods: tools/deploy.md
+    - Blender Import: tools/blender-import.md
+    - Reskin Models: tools/reskin.md
+  - Download:
+    - Plugin: https://marketplace.visualstudio.com/items?itemName=JakobHarder.anno-modding-tools
+    - Node Package: https://github.com/anno-mods/vscode-anno/releases/latest/
 
 theme:
   name: material

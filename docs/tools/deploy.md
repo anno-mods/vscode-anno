@@ -1,29 +1,6 @@
-# Utilities
+# Deploy Mods
 
-## Templates
-
-You can create mods from templates with a structure of common mod files:
- - either globally with `F1` > `Anno: Create Mod from Template`,
- - or at a specific location by right clicking on a folder in the Explorer view > `Anno: Create Mod from Template`
-
-The command creates a folder with the Mod ID (asked by input box) and the following files in their correct path:
-- modinfo.json with mandatory entries
-- README.md
-- assets.xml
-- texts_english.xml
-- common folders
-
-## Show Diff
-
-![](./images/xmltest-compare.gif)
-
-You can check th results of one or more `ModOp`s by selecting them and then right click > `Anno: Compare Results with Vanilla`.
-
-Alternatively, you can compare full files and mods by right clicking on `assets.xml`, `templates.xml` and `*.include.xml`.
-
-## Build and Deploy Mods
-
-Requirement: you need to configure your `modsFolder` as described in [Setup](./setup.md).
+Requirement: you need to configure your `modsFolder` as described in [Setup](../setup.md).
 
 Automatically convert and copy mod files using a json description.
 
