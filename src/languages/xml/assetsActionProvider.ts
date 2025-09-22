@@ -53,11 +53,11 @@ function checkFileName(modPaths: string[], line: vscode.TextLine, annoRda?: stri
   return undefined;
 };
 
-export function clearDiagnostics(doc: vscode.TextDocument, performanceOnly: boolean = false) {
+export function clearDiagnostics(fileUri: vscode.Uri, performanceOnly: boolean = false) {
   vscode.window.activeTextEditor?.setDecorations(performanceDecorationType, []);
 
   if (!performanceOnly) {
-    diagnosticsCollection.delete(doc.uri)
+    diagnosticsCollection.delete(fileUri)
   }
 }
 
@@ -82,7 +82,7 @@ export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode
   const version = anno.ModInfo.readVersion(modPath);
 
   const result: vscode.Diagnostic[] = [];
-  result.push(...versionChecks.checkCorrectVersion(doc, version));
+  result.push(...versionChecks.checkFilePaths(doc, version));
 
   const issues = diagnostics.issues();
   for (let lineIndex = 0; lineIndex < doc.lineCount; lineIndex++) {
@@ -174,8 +174,11 @@ function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
         decorations.push(decoration);
       }
       if (issue.time === undefined) {
+        var warning: boolean = issue.message.startsWith('No matching node');
+        warning ||= issue.message.startsWith('Content \"');
+
         const diagnostic = new vscode.Diagnostic(range, issue.message,
-          issue.time ? vscode.DiagnosticSeverity.Warning : vscode.DiagnosticSeverity.Error);
+          warning ? vscode.DiagnosticSeverity.Warning : vscode.DiagnosticSeverity.Error);
         result.push(diagnostic);
       }
     }

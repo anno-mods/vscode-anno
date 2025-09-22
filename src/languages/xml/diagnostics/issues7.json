@@ -15,7 +15,7 @@
   },
   {
     "matchRegex": "(?<=(@\\d+))/Values",
-    "message": "`/Values` is already part of @GUID. Remove it.",
+    "message": "`/Values` is already part of @GUID.",
     "code": "xpath_at_values",
     "fix": "",
     "fixMessage": "Remove `/Values`"

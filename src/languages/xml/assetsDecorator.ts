@@ -147,7 +147,7 @@ export function activate(context: vscode.ExtensionContext) {
     if (!activeEditor) {
       return;
     }
-    clearDiagnostics(activeEditor.document, true);
+    clearDiagnostics(activeEditor.document.uri, true);
   }
 
   function triggerUpdateDecorations(throttle = false, performance = false) {
@@ -191,4 +191,16 @@ export function activate(context: vscode.ExtensionContext) {
       triggerUpdateDecorations(false, true);
     }
   }, null, context.subscriptions);
+
+  vscode.workspace.onDidRenameFiles(async (event) => {
+    for (const { oldUri, newUri } of event.files) {
+      clearDiagnostics(oldUri, false);
+    }
+  }, null, context.subscriptions);
+
+  vscode.workspace.onDidDeleteFiles(async (event) => {
+    for (const uri of event.files) {
+      clearDiagnostics(uri, false);
+    }
+  })
 }

@@ -197,7 +197,8 @@
               "description": "Lua script files to be loaded.",
               "type": "array",
               "items": {
-                "description": "Path to Lua file. Use lower case, numbers, `-`, `_`, and `/` as separator.",
+                "description": "Path to Lua file. Use lower case, numbers, `-`, `_`, and `/` as separator. Use your own folder to avoid collection: `<creator-name>/name.lua`",
+                "markdownDescription": "Path to Lua file.\nUse lower case, numbers, `-`, `_`, and `/` as separator.\n\nUse your own folder to avoid collection: `<creator-name>/name.lua`",
                 "type": "string",
                 "pattern": "^([a-z0-9\\-_]+\\/)?[a-z0-9\\-_]+\\.lua$"
               }
