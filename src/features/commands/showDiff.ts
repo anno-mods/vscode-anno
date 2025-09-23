@@ -128,7 +128,7 @@ export class ShowDiffCommand {
     }
 
     let patchFilePath = fileUri.fsPath;
-    if (path.basename(patchFilePath) === 'modinfo.json') {
+    if (anno.isModinfoFile(patchFilePath)) {
       patchFilePath = anno.getAssetsXmlPath(path.dirname(patchFilePath), request.modInfo?.game ?? anno.GameVersion.Anno7);
     }
 

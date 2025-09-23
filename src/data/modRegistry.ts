@@ -25,7 +25,7 @@ export namespace ModRegistry {
   }
 
   function scan(folder: string, prioritize: boolean) {
-    const modinfos = glob.sync('{,*/,*/*/,*/*/*/}modinfo.json', { cwd: folder, nodir: true });
+    const modinfos = glob.sync('{,*/,*/*/,*/*/*/}modinfo.{json,jsonc}', { cwd: folder, nodir: true });
 
     for (const modinfoPath of modinfos) {
       const metaInfo = ModInfo.read(path.join(folder, modinfoPath));

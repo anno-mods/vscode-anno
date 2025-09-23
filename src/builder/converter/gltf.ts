@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as jsonc from 'jsonc-parser';
 import * as path from 'path';
 import { ConvertToGLB } from 'gltf-import-export';
 import * as child from 'child_process';
@@ -52,7 +53,7 @@ export class GltfConverter extends Converter {
         const lodLevels = Math.max(1, Math.min(9, options.converterOptions.lods === undefined ? 4 : options.converterOptions.lods));
         const lodDisabled = options.converterOptions.lods === 0;
 
-        let variantNames = !lodDisabled ? this._findVariantNames(JSON.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'))) : [];
+        let variantNames = !lodDisabled ? this._findVariantNames(jsonc.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'))) : [];
         if (variantNames.length > 1) {
           this._logger.log(`     has named variants: ${variantNames.map((e:string) => `'${e}'`).join(', ')}`);
         }
@@ -60,7 +61,7 @@ export class GltfConverter extends Converter {
         for (let lodNameIdx = 0; lodNameIdx < Math.max(1, variantNames.length); lodNameIdx++) {
           for (let lodLevel = 0; lodLevel < lodLevels; lodLevel++) {
             const variantName = variantNames.length > 1 ? variantNames[lodNameIdx] : undefined;
-            const gltf = JSON.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'));
+            const gltf = jsonc.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'));
 
             // replace images to avoid errors with missing ones (we don't need them anyways)
             this._replaceImages(gltf, fakePngPath);
@@ -122,7 +123,7 @@ export class GltfConverter extends Converter {
 
                 // we need a separate copy of gltf because we're modifying it
                 // reading is easier than to do a deep copy
-                const gltfForAnim = JSON.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'));
+                const gltfForAnim = jsonc.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'));
                 this._replaceImages(gltfForAnim, fakePngPath);
 
                 this._makeUniqueBoneNames(gltfForAnim, anims, anim.name);

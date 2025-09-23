@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as jsonc from 'jsonc-parser';
 import * as path from 'path';
 import { getBuffer } from 'gltf-import-export';
 import { Box, Quaternion, Vector, Vector2, sortVectorsByOutline } from './math';
@@ -182,7 +183,7 @@ export default class ProppedModel {
   private readonly resourceFolder: string;
 
   public static fromFile(filePath: string) {
-    const gltf = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const gltf = jsonc.parse(fs.readFileSync(filePath, 'utf8'));
     const props: IPropMap = { };
     const particles: IParticleMap = { };
     const feedbacks: IFeedbackMap = { };

@@ -1,11 +1,18 @@
 import * as path from 'path';
 import * as fs from 'fs';
+import * as jsonc from 'jsonc-parser';
 
 import * as anno from '../anno';
 import * as utils from '../utils';
 import { Version } from '../utils/version';
 
-const MODINFO_JSON = 'modinfo.json'
+const MODINFO_JSON = 'modinfo.json';
+const MODINFO_JSONC = 'modinfo.jsonc';
+
+export function isModinfoFile(filePath: string) {
+  const basename = path.basename(filePath).toLowerCase();
+  return basename === MODINFO_JSONC || basename === MODINFO_JSON;
+}
 
 export class ModInfo {
   private modInfo_: any;
@@ -14,6 +21,7 @@ export class ModInfo {
   readonly version: Version;
   readonly path: string;
   readonly game: anno.GameVersion;
+  readonly filename: string | undefined;
 
   /** filePath: modinfo.json or folder containing one */
   static readVersion(filePath: string) : anno.GameVersion {
@@ -39,12 +47,16 @@ export class ModInfo {
       return undefined;
     }
 
-    const modinfoPath = path.join(modPath, MODINFO_JSON);
+    var modinfoPath = path.join(modPath, MODINFO_JSON);
+
+    if (!fs.existsSync(modinfoPath)) {
+      modinfoPath = path.join(modPath, MODINFO_JSONC);
+    }
 
     if (fs.existsSync(modinfoPath))
     {
       try {
-        modInfo = JSON.parse(fs.readFileSync(modinfoPath, 'utf8'));
+        modInfo = jsonc.parse(fs.readFileSync(modinfoPath, 'utf8'));
         id = modInfo?.ModID;
         if (modInfo && modInfo.Anno === undefined && fs.existsSync(path.join(modPath, "data/base/config"))) {
           // try to detect Anno8 if the file is valid but doesn't contain a version yet
@@ -65,14 +77,15 @@ export class ModInfo {
       id = path.basename(modPath);
     }
 
-    return new ModInfo(id, modPath, modInfo, game);
+    return new ModInfo(id, modPath, modInfo, game, path.basename(modinfoPath));
   }
 
-  private constructor(id: string, path: string, modInfo: any, game: anno.GameVersion) {
+  private constructor(id: string, path: string, modInfo: any, game: anno.GameVersion, filename: string) {
     this.id = id;
     this.path = path;
     this.modInfo_ = modInfo;
     this.game = game;
+    this.filename = filename;
 
     this.version = new Version(this.modInfo_?.Version);
   }
@@ -86,5 +99,13 @@ export class ModInfo {
 
     // remove duplicates
     return [...deps];
+  }
+
+  /** return: modinfo.jsonc or modinfo.json, based on what exists and is supported */
+  public getModinfoPath(): string {
+    if (this.filename === undefined) {
+      return this.path;
+    }
+    return path.join(this.path, this.filename);
   }
 }

@@ -72,8 +72,8 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   vscode.workspace.onDidSaveTextDocument(document => {
-    if ((document.languageId === 'json' && path.basename(document.fileName) === 'modinfo.json')
-      || (document.languageId === 'jsonc' && path.basename(document.fileName) === 'modinfo.jsonc')) {
+    if ((document.languageId === 'json' || document.languageId === 'jsonc')
+        && anno.isModinfoFile(document.fileName)) {
       _current = new ModContext(document);
       for (let listener of _onDidChangeActiveTextEditor) {
         listener(_current);

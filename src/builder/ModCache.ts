@@ -1,6 +1,7 @@
 
 import * as crypto from 'crypto';
 import * as fs from 'fs';
+import * as jsonc from 'jsonc-parser';
 import * as path from 'path';
 
 import * as fsutils from '../utils/fsutils';
@@ -98,7 +99,7 @@ export class ModCache {
   public load() {
     const filesJson = path.join(this._cache, 'files.json');
     if (fs.existsSync(filesJson)) {
-      this.old = JSON.parse(fs.readFileSync(filesJson, 'utf8'));
+      this.old = jsonc.parse(fs.readFileSync(filesJson, 'utf8'));
     }
   }
 

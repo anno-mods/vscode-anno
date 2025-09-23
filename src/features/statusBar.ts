@@ -33,7 +33,7 @@ function updateStatusBarItem(context: vscode.ExtensionContext,
     statusBarItem.command = {
       command: 'anno-modding-tools.buildMod',
       title: statusBarItem.tooltip,
-      arguments: [vscode.Uri.file(path.join(modinfo?.path, 'modinfo.json'))]
+      arguments: [ vscode.Uri.file(modinfo.getModinfoPath()) ]
     };
     statusBarItem.text = `${versionName}: ${modinfo.id}`;
   }

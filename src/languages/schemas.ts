@@ -3,10 +3,12 @@ import * as jsonc from 'jsonc-parser';
 import * as path from 'path';
 import * as vscode from 'vscode';
 
+import * as anno from '../anno';
+
 export function activate(context: vscode.ExtensionContext) {
   vscode.workspace.onDidCreateFiles((e) => {
     for (const file of e.files) {
-      if (path.basename(file.fsPath) === 'modinfo.json') {
+      if (anno.isModinfoFile(file.fsPath)) {
         refreshFolderSchemas(file);
         break;
       }
@@ -15,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   vscode.workspace.onDidRenameFiles((e) => {
     for (const file of e.files) {
-      if (path.basename(file.newUri.fsPath) === 'modinfo.json') {
+      if (anno.isModinfoFile(file.newUri.fsPath)) {
         refreshFolderSchemas(file.newUri);
         break;
       }
@@ -65,7 +67,7 @@ async function writeWorkspaceSettings(languageMode: boolean, modopSchema: boolea
   }
 
   const modinfoFiles = await vscode.workspace.findFiles(
-    new vscode.RelativePattern(workspaceFolder, '**/modinfo.json'),
+    new vscode.RelativePattern(workspaceFolder, '**/modinfo.{json,jsonc}'),
     new vscode.RelativePattern(workspaceFolder, '**/node_modules/**'),
     1);
   if (modinfoFiles.length === 0) {
@@ -91,6 +93,7 @@ async function writeWorkspaceSettings(languageMode: boolean, modopSchema: boolea
     let updateLanguage = true;
     let updateModopSchema = true;
     let updateModinfoSchema = true;
+    let addModinfoSchema = true;
 
     if (languageMode) {
       settings['files.associations'] ??= {};
@@ -132,25 +135,38 @@ async function writeWorkspaceSettings(languageMode: boolean, modopSchema: boolea
     if (modinfoSchema) {
       settings['json.schemas'] ??= [];
 
+      var modinfoEntry: IJsonSchema | undefined;
+
       for (const entry of settings['json.schemas']) {
         if ((entry as IJsonSchema).fileMatch.includes('/modinfo.json')) {
-          updateModinfoSchema = false;
+          addModinfoSchema = false;
+          modinfoEntry = entry;
           break;
         }
       }
 
-      if (updateModinfoSchema) {
+      // add new modinfo.jsonc to existing entries
+      if (modinfoEntry && !modinfoEntry?.fileMatch.includes('/modinfo.jsonc')) {
+        modinfoEntry.fileMatch.push('/modinfo.jsonc');
+        updateModinfoSchema = true;
+      }
+      else {
+        updateModinfoSchema = false;
+      }
+
+      if (addModinfoSchema) {
         (settings['json.schemas'] as any[]).push({
-          "fileMatch": [ '/modinfo.json' ],
+          "fileMatch": [ '/modinfo.json', '/modinfo.jsonc' ],
           "url": "https://raw.githubusercontent.com/anno-mods/vscode-anno/main/languages/modinfo-schema.json"
         });
       }
     }
     else {
+      addModinfoSchema = false;
       updateModinfoSchema = false;
     }
 
-    if (updateLanguage || updateModinfoSchema || updateModopSchema) {
+    if (updateLanguage || updateModinfoSchema || addModinfoSchema || updateModopSchema) {
       fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2), 'utf8');
     }
   }

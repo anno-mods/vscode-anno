@@ -16,8 +16,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"workspaceContains:**/assets.xml",
-		"workspaceContains:**/modinfo.json",
+		"workspaceContains:**/{assets.xml,modinfo.json,modinfo.jsonc}",
 		"onLanguage:xml",
 		"command:anno-modding-tools.createAnnoMod"
 	],

@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as jsonc from 'jsonc-parser';
 import * as path from 'path';
 import { Converter } from '../Converter';
 
@@ -19,7 +20,7 @@ export class ModinfoConverter extends Converter {
       }
 
       // deep copy since we modify it
-      const modinfo = JSON.parse(JSON.stringify(options.modJson.modinfo ?? options.modJson));
+      const modinfo = jsonc.parse(JSON.stringify(options.modJson));
 
       // remove some build specific things
       modinfo.bundle = undefined;

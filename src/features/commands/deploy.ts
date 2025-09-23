@@ -36,7 +36,7 @@ export class DeployCommand {
     else {
       mods = DeployCommand._findMods();
       if (mods.length === 0) {
-        vscode.window.showWarningMessage('No modinfo.json found in workspace to build.');
+        vscode.window.showWarningMessage('No \'modinfo.json\' found in workspace to build.');
         return;
       }
     }
@@ -91,7 +91,7 @@ export class DeployCommand {
     let mods: vscode.QuickPickItem[] = [];
     const workspaces = vscode.workspace.workspaceFolders?.map(folder => folder.uri.fsPath) || [];
     for (const folder of workspaces) {
-      mods.push(...(glob.sync('**/modinfo.json', { cwd: folder, nodir: true }).map((e) => ({
+      mods.push(...(glob.sync('**/modinfo.{json,jsonc}', { cwd: folder, nodir: true }).map((e) => ({
         detail: path.join(folder, e),
         label: path.dirname(e)
       }))));

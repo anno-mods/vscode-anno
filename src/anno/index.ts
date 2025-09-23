@@ -1,13 +1,14 @@
 // Anno specific classes without vscode dependencies
 
 import glob = require('glob');
+import * as jsonc from 'jsonc-parser';
 
-import { ModInfo } from './modInfo';
+import { ModInfo, isModinfoFile } from './modInfo';
 import { GameVersion, gameVersionName } from './gameVersion';
 import { ModRegistry } from '../data/modRegistry';
 import * as utils from '../utils';
 
-export { ModInfo, GameVersion, gameVersionName };
+export { ModInfo, GameVersion, gameVersionName, isModinfoFile };
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -74,6 +75,7 @@ export function findModRoot(modFilePath: string) {
 
   for (let i = 0; i < 30 && searchPath && searchPath !== '/'; i++) {
     if (fs.existsSync(path.join(searchPath, "modinfo.json"))
+      || fs.existsSync(path.join(searchPath, "modinfo.jsonc"))
       || fs.existsSync(path.join(searchPath, ANNO7_ASSETS_PATH))
       || fs.existsSync(path.join(searchPath, ANNO8_ASSETS_PATH))
       || fs.existsSync(path.join(searchPath, "data/config/gui"))) {
@@ -138,17 +140,14 @@ export function getRequiredLoadAfterIds(modinfo: any): string[] {
 export function readModinfo(modPath: string): IModinfo | undefined {
   let result: IModinfo;
   try {
-    if (fs.existsSync(path.join(modPath, 'modinfo.json'))) {
-      result = {
-        ...JSON.parse(fs.readFileSync(path.join(modPath, 'modinfo.json'), 'utf8')),
-        'modinfo': JSON.parse(fs.readFileSync(path.join(modPath, 'modinfo.json'), 'utf8')),
-        getRequiredLoadAfterIds
-      };
+    var modinfoPath = path.join(modPath, 'modinfo.jsonc');
+    if (!fs.existsSync(modinfoPath)) {
+      modinfoPath = path.join(modPath, 'modinfo.json');
     }
-    else if (fs.existsSync(path.join(modPath, 'annomod.json'))) {
+
+    if (fs.existsSync(modinfoPath)) {
       result = {
-        ...JSON.parse(fs.readFileSync(path.join(modPath, 'annomod.json'), 'utf8')),
-        'modinfo': JSON.parse(fs.readFileSync(path.join(modPath, 'annomod.json'), 'utf8')),
+        ...jsonc.parse(fs.readFileSync(modinfoPath, 'utf8')),
         getRequiredLoadAfterIds
       };
     }

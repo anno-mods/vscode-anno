@@ -202,13 +202,17 @@ export class ModBuilder {
   }
 
   private async _buildBundle(bundleTarget: string, bundle: string, cache: string, outFolder: string) {
-    const modinfoPath = path.join(path.dirname(bundleTarget), bundle, 'modinfo.json');
+    const modFolder = path.join(path.dirname(bundleTarget), bundle);
+    var modinfoPath = path.join(modFolder, 'modinfo.jsonc');
+    if (!fs.existsSync(modinfoPath)) {
+      modinfoPath = path.join(modFolder, 'modinfo.json');
+    }
     if (!fs.existsSync(modinfoPath)) {
       this._logger.error(`  cannot bundle ${bundle}`);
       return;
     }
 
-    const modinfo = anno.readModinfo(path.dirname(modinfoPath));
+    const modinfo = anno.readModinfo(modFolder);
     if (!modinfo) {
       this._logger.error(`  cannot bundle ${bundle}`);
       return;
@@ -217,8 +221,9 @@ export class ModBuilder {
     // const modName = this._getModName(modinfoPath, modinfo.modinfo);
     const targetFolder = path.join(outFolder, path.basename(bundle));
 
-    const annoRda = path.join(path.dirname(modinfoPath), '.vanilla');
+    const annoRda = path.join(modFolder, '.vanilla');
     const builder = new ModBuilder(this._logger, this._asAbsolutePath, { annoMods: this._variables['annoMods'], annoRda });
+
     await builder.build(modinfoPath, targetFolder);
   }
 
@@ -238,7 +243,7 @@ export class ModBuilder {
   }
 
   private _renameModFolders(modsPath: string) {
-    const modinfoPaths = glob.sync("*/modinfo.json", { cwd: modsPath, nodir: true });
+    const modinfoPaths = glob.sync("*/modinfo.{json,jsonc}", { cwd: modsPath, nodir: true });
     for (var modinfoPath of modinfoPaths) {
       const namedModPath = path.join(modsPath, path.dirname(modinfoPath));
       const modinfo = anno.readModinfo(namedModPath);
