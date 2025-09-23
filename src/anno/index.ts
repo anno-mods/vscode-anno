@@ -118,11 +118,22 @@ interface IModinfo {
   src: string | string[]
   /** @deprecated use Development.Bundle instead */
   bundle?: string[]
-  modinfo: any
   converter?: any
+
+  /** Anno 1800 style */
+  ModDependencies?: string[]
+  OptionalDependencies?: string[]
+  LoadAfterIds?: string[]
+
+  /** Anno 117 style */
+  Dependencies?: {
+    Require?: string[]
+    LoadAfter?: string[]
+  }
   Development?: {
     DeployPath?: string
     Bundle?: string[]
+    Dependencies?: string[]
   }
   getRequiredLoadAfterIds: (modinfo: any) => string[]
 }
@@ -163,18 +174,32 @@ export function readModinfo(modPath: string): IModinfo | undefined {
   result.Development ??= {};
   result.Development.DeployPath ??= result.out ?? "${annoMods}/${modName}";
   result.Development.Bundle ??= result.bundle ?? [];
+  result.Development.Dependencies ??= result.OptionalDependencies;
   result.src ??= ".";
 
   // convert url ModDependencies to bundle
   if (!Array.isArray(result.Development.Bundle)) {
     result.Development.Bundle = Object.values(result.Development.Bundle);
   }
-  if (result.modinfo.ModDependencies && Array.isArray(result.modinfo.ModDependencies)) {
-    for (let i = 0; i < result.modinfo?.ModDependencies.length; i++) {
-      const dep = result.modinfo.ModDependencies[i];
+
+  // 117 style
+  if (result.Dependencies?.Require && Array.isArray(result.Dependencies.Require)) {
+    for (let i = 0; i < result.Dependencies.Require.length; i++) {
+      const dep = result.Dependencies.Require[i];
       if (dep.startsWith("http") || dep.startsWith(".")) {
         result.Development.Bundle.push(dep);
-        result.modinfo.ModDependencies[i] = path.basename(dep, '.zip');
+        result.Dependencies.Require[i] = path.basename(dep, '.zip');
+      }
+    }
+  }
+
+  // 1800 style
+  if (result.ModDependencies && Array.isArray(result.ModDependencies)) {
+    for (let i = 0; i < result.ModDependencies.length; i++) {
+      const dep = result.ModDependencies[i];
+      if (dep.startsWith("http") || dep.startsWith(".")) {
+        result.Development.Bundle.push(dep);
+        result.ModDependencies[i] = path.basename(dep, '.zip');
       }
     }
   }
@@ -195,12 +220,11 @@ export function searchModPaths(patchFilePath: string, modsFolder?: string) {
 
   const sources = modinfo?.src ? utils.ensureArray(modinfo.src).map((e: string) => path.join(modPath, e)) : [ modPath ];
   let deps: string[] = [];
-  if (modsFolder && modinfo?.modinfo) {
+  if (modsFolder && modinfo) {
     deps = [
-        ...utils.ensureArray(modinfo.modinfo?.ModDependencies),
-        ...utils.ensureArray(modinfo.modinfo?.OptionalDependencies),
-        ...utils.ensureArray(modinfo.modinfo?.Development?.OptionalDependencies),
-        ...utils.ensureArray(modinfo.modinfo?.LoadAfterIds)
+        ...utils.ensureArray(modinfo.ModDependencies ?? modinfo.Dependencies?.Require),
+        ...utils.ensureArray(modinfo.Development?.Dependencies),
+        ...utils.ensureArray(modinfo.LoadAfterIds ?? modinfo.Dependencies?.LoadAfter)
       ]
       .map((e: string) => ModRegistry.getPath(e) ?? "")
       .filter((e: string) => e !== "");
