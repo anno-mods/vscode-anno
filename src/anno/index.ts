@@ -61,6 +61,7 @@ export function getLanguagePath(modPath: string, version: GameVersion = GameVers
   return path.join(modPath, 'data/config/gui');
 }
 
+/** @deprecated use findModRoot instead */
 export function searchModPath(patchFilePath: string) {
   return findModRoot(patchFilePath);
 }
@@ -86,21 +87,6 @@ export function findModRoot(modFilePath: string) {
   }
 
   return isFile ? path.dirname(modFilePath) : modFilePath;
-}
-
-export function findModRoots(modFilePath: string): string[] {
-  const root = findModRoot(modFilePath);
-  if (!root) {
-    return [];
-  }
-
-  const modinfo = readModinfo(root);
-  if (!modinfo || !modinfo?.src || modinfo.src.length === 0) {
-    return [ root ];
-  }
-
-  let srcs = Array.isArray(modinfo.src) ? [ '.', ...modinfo.src.filter((e: string) => '.')] : [ modinfo.src ];
-  return srcs.map((e: string) => path.normalize(path.join(root, e)));
 }
 
 export function isAssetsXml(path: string) {
@@ -148,6 +134,7 @@ export function getRequiredLoadAfterIds(modinfo: any): string[] {
   return dependencies.filter(dep => loadAfterIds.includes(dep));
 }
 
+/** @deprecated */
 export function readModinfo(modPath: string): IModinfo | undefined {
   let result: IModinfo;
   try {

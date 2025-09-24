@@ -35,8 +35,7 @@ export class ModInfo {
     let modInfo: any;
     let game: anno.GameVersion = anno.GameVersion.Anno7;
 
-    const fileName = path.basename(filePath);
-    if (fileName.toLowerCase().endsWith(MODINFO_JSON)) {
+    if (anno.isModinfoFile(filePath)) {
       modPath = path.dirname(filePath);
     }
     else {
@@ -91,14 +90,39 @@ export class ModInfo {
   }
 
   public getAllDependencies(): string[] {
-    let deps = new Set([
-      ...utils.ensureArray(this.modInfo_?.ModDependencies),
-      // TODO deprecated, use Development.Dependencies instead
-      ...utils.ensureArray(this.modInfo_?.Development?.Dependencies ?? this.modInfo_?.OptionalDependencies),
-      ...utils.ensureArray(this.modInfo_?.LoadAfterIds)]);
+    if (this.game === anno.GameVersion.Anno8) {
+      let deps = new Set([
+        ...utils.ensureArray(this.modInfo_?.Dependencies?.Require),
+        ...utils.ensureArray(this.modInfo_?.Development?.Dependencies ?? this.modInfo_?.OptionalDependencies),
+        ...utils.ensureArray(this.modInfo_?.Dependencies?.LoadAfter)]);
 
-    // remove duplicates
-    return [...deps];
+      // remove duplicates
+      return [...deps];
+    }
+    else {
+      let deps = new Set([
+        ...utils.ensureArray(this.modInfo_?.ModDependencies),
+        ...utils.ensureArray(this.modInfo_?.Development?.Dependencies ?? this.modInfo_?.OptionalDependencies),
+        ...utils.ensureArray(this.modInfo_?.LoadAfterIds)]);
+
+      // remove duplicates
+      return [...deps];
+    }
+  }
+
+  public getRequiredLoadAfter(): string[] {
+    if (this.game === anno.GameVersion.Anno8) {
+      const dependencies: string[] = this.modInfo_.Dependencies?.Require ?? [];
+      const loadAfterIds: string[] = this.modInfo_.Dependencies?.LoadAfter ?? [];
+
+      return dependencies.filter(dep => loadAfterIds.includes(dep));
+    }
+    else {
+      const dependencies: string[] = this.modInfo_.ModDependencies ?? [];
+      const loadAfterIds: string[] = this.modInfo_.LoadAfterIds ?? [];
+
+      return dependencies.filter(dep => loadAfterIds.includes(dep));
+    }
   }
 
   /** return: modinfo.jsonc or modinfo.json, based on what exists and is supported */
