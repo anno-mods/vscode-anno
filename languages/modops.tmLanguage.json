@@ -309,16 +309,6 @@
 		"comments": {
 			"patterns": [
 				{
-					"begin": "<%--",
-					"captures": {
-						"0": {
-							"name": "punctuation.definition.comment.xml"
-						},
-						"end": "--%>",
-						"name": "comment.block.xml"
-					}
-				},
-				{
 					"begin": "<!--",
 					"captures": {
 						"0": {
@@ -329,12 +319,8 @@
 					"name": "comment.block.xml",
 					"patterns": [
 						{
-							"begin": "--(?!>)",
-							"captures": {
-								"0": {
-									"name": "invalid.illegal.bad-comments-or-CDATA.xml"
-								}
-							}
+							"match": "--(?!>)",
+							"name": "invalid.illegal.bad-comments-or-CDATA.xml"
 						}
 					]
 				}
