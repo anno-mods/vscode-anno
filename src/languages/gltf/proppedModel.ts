@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as jsonc from 'jsonc-parser';
 import * as path from 'path';
 import { getBuffer } from 'gltf-import-export';
-import { Box, Quaternion, Vector, Vector2, sortVectorsByOutline } from './math';
+import { Box, Quaternion, Vector, Vector2, sortVectorsByOutline } from '../../utils/math';
 
 interface IProp {
   /* eslint-disable @typescript-eslint/naming-convention */

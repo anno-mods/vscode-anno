@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as xmldoc from 'xmldoc';
-import ProppedModel, { BlockerType } from '../../utils/proppedModel';
+import ProppedModel, { BlockerType } from '../../languages/gltf/proppedModel';
 import AnnoXml from '../../utils/annoXml';
 import * as channel from '../channel';
 import { Quaternion } from '../../utils/math';

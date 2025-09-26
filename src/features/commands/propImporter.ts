@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as xmldoc from 'xmldoc';
-import ProppedModel, { PROP_DEFAULTS, PROPCONTAINER_DEFAULTS, FILE_DEFAULTS, FILES_DEFAULTS } from '../../utils/proppedModel';
+import ProppedModel, { PROP_DEFAULTS, PROPCONTAINER_DEFAULTS, FILE_DEFAULTS, FILES_DEFAULTS } from '../../languages/gltf/proppedModel';
 import AnnoXml from '../../utils/annoXml';
 import * as channel from '../channel';
 
