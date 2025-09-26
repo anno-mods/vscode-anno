@@ -3,12 +3,12 @@
 import glob = require('glob');
 import * as jsonc from 'jsonc-parser';
 
-import { ModInfo, isModinfoFile } from './modInfo';
+import { ModInfo, ModInfoCache, isModinfoFile } from './modInfo';
 import { GameVersion, gameVersionName } from './gameVersion';
 import { ModRegistry } from '../data/modRegistry';
 import * as utils from '../utils';
 
-export { ModInfo, GameVersion, gameVersionName, isModinfoFile };
+export { ModInfo, ModInfoCache, GameVersion, gameVersionName, isModinfoFile };
 
 import * as fs from 'fs';
 import * as path from 'path';

@@ -66,6 +66,8 @@ async function scanEntireWorkspace() {
 }
 
 async function scanUris(uris: readonly vscode.Uri[]) {
+  anno.ModInfoCache.clear();
+
   for (const uri of uris) {
     if (uri.scheme !== 'file') {
       continue;
@@ -79,6 +81,8 @@ async function scanUris(uris: readonly vscode.Uri[]) {
       pathDiag.delete(uri);
     }
   }
+
+  anno.ModInfoCache.clear();
 }
 
 async function computePathDiagnostics(uri: vscode.Uri): Promise<vscode.Diagnostic[]> {
@@ -86,7 +90,7 @@ async function computePathDiagnostics(uri: vscode.Uri): Promise<vscode.Diagnosti
 
   const modRoot = anno.findModRoot(uri.fsPath);
   const relativePath = path.relative(modRoot, uri.fsPath).replace(/\\/g, '/');
-  const modInfo = anno.ModInfo.read(modRoot);
+  const modInfo = anno.ModInfoCache.read(modRoot);
 
   if (relativePath.startsWith('data/')) {
     if (/\s/.test(relativePath)) {

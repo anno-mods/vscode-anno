@@ -14,6 +14,25 @@ export function isModinfoFile(filePath: string) {
   return basename === MODINFO_JSONC || basename === MODINFO_JSON;
 }
 
+export class ModInfoCache {
+  private static cached_: ModInfo | undefined;
+  private static cachedFilePath_: string | undefined;
+
+  static clear() {
+    this.cachedFilePath_ = undefined;
+    this.cached_ = undefined;
+  }
+
+  static read(filePath: string, requireModinfoFile: boolean = false) : ModInfo | undefined {
+    if (this.cachedFilePath_ === filePath) {
+      return this.cached_;
+    }
+
+    this.cached_ = ModInfo.read(filePath, requireModinfoFile);
+    this.cachedFilePath_ = filePath;
+  }
+}
+
 export class ModInfo {
   private modInfo_: any;
 
@@ -94,20 +113,23 @@ export class ModInfo {
   }
 
   public getAllDependencies(): string[] {
-    if (this.game === anno.GameVersion.Anno8) {
+    if (!this.modInfo_) {
+      return [];
+    }
+    else if (this.game === anno.GameVersion.Anno8) {
       let deps = new Set([
-        ...utils.ensureArray(this.modInfo_?.Dependencies?.Require),
-        ...utils.ensureArray(this.modInfo_?.Development?.Dependencies ?? this.modInfo_?.OptionalDependencies),
-        ...utils.ensureArray(this.modInfo_?.Dependencies?.LoadAfter)]);
+        ...utils.ensureArray(this.modInfo_.Dependencies?.Require),
+        ...utils.ensureArray(this.modInfo_.Development?.Dependencies ?? this.modInfo_?.OptionalDependencies),
+        ...utils.ensureArray(this.modInfo_.Dependencies?.LoadAfter)]);
 
       // remove duplicates
       return [...deps];
     }
     else {
       let deps = new Set([
-        ...utils.ensureArray(this.modInfo_?.ModDependencies),
-        ...utils.ensureArray(this.modInfo_?.Development?.Dependencies ?? this.modInfo_?.OptionalDependencies),
-        ...utils.ensureArray(this.modInfo_?.LoadAfterIds)]);
+        ...utils.ensureArray(this.modInfo_.ModDependencies),
+        ...utils.ensureArray(this.modInfo_.Development?.Dependencies ?? this.modInfo_?.OptionalDependencies),
+        ...utils.ensureArray(this.modInfo_.LoadAfterIds)]);
 
       // remove duplicates
       return [...deps];
@@ -115,7 +137,10 @@ export class ModInfo {
   }
 
   public getRequiredLoadAfter(): string[] {
-    if (this.game === anno.GameVersion.Anno8) {
+    if (!this.modInfo_) {
+      return [];
+    }
+    else if (this.game === anno.GameVersion.Anno8) {
       const dependencies: string[] = this.modInfo_.Dependencies?.Require ?? [];
       const loadAfterIds: string[] = this.modInfo_.Dependencies?.LoadAfter ?? [];
 
