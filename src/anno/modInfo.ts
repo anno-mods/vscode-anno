@@ -176,7 +176,7 @@ export class ModInfo {
   /**
    * @param mustHaveModinfo return `undefined` if there's no modinfo.{json,jsonc}
    * @return: Full path to modinfo.{json,jsonc}, or the mod folder as a fallback. */
-  public getModinfoPath(mustHaveModinfo: boolean): string | undefined {
+  public getModinfoPath(mustHaveModinfo: boolean = false): string | undefined {
     if (this.filename === undefined) {
       return mustHaveModinfo ? undefined : this.path;
     }

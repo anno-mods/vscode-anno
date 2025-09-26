@@ -90,21 +90,42 @@ export class AssetsTocProvider {
     }
   }
 
+  private static readonly _pathKeys = new Set([
+    'Path', 'Add', 'Merge', 'Replace', 'Append', 'Prepend', 'Remove'
+  ]);
+
+  private static _getPathAttribute(element: xmldoc.XmlElement) {
+    for (const key in element.attr) {
+      if (this._pathKeys.has(key)) {
+        return element.attr[key];
+      }
+    }
+    return undefined;
+  }
+
   // returns 'ModOp' or template name
   private _getName(element: xmldoc.XmlElement, name?: string): string {
     if (element.name === 'ModOp') {
       const index = 0;
 
-      const guids = element.attr['GUID'];
+      var guids: string | undefined = element.attr['GUID'];
+      const pathAttr = AssetsTocProvider._getPathAttribute(element);
+
+      if (!guids && pathAttr) {
+        guids = xpath.guid(pathAttr);
+      }
+
       if (guids) {
         const guid = guids.split(',')[index].trim();
         const asset = SymbolRegistry.resolve(guid);
         name = uniqueAssetName(asset);
       }
 
-      const path = xpath.basename(element.attr['Path'], true, true);
-      if (path && path.length > 0) {
-        name = (!name || name.length === 0) ? path : `${path} (${name})`;
+      if (pathAttr) {
+        const path = xpath.basename(pathAttr, true, true);
+        if (path && path.length > 0) {
+          name = (!name || name.length === 0) ? path : `${path} (${name})`;
+        }
       }
 
       return name || element.attr['Template'] || element.name;
