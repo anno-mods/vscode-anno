@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
-import * as diagProvider from './issues';
 import * as diagnostics from './issues';
+import * as life from './life';
 import * as xml from '../../../anno/xml';
 import * as utils from '../../../utils';
 
@@ -14,7 +14,7 @@ export class AssetsActionProvider {
       { language: 'xml', scheme: 'file', pattern: xml.ASSETS_FILENAME_PATTERN }
     ];
     return [
-      diagProvider.diagnosticsCollection,
+      diagnostics.diagnosticsCollection,
       vscode.languages.registerCodeActionsProvider(selector, new AssetsCodeActionProvider(), {
         providedCodeActionKinds: AssetsCodeActionProvider.providedCodeActionKinds
       })
@@ -34,12 +34,12 @@ export class AssetsCodeActionProvider implements vscode.CodeActionProvider {
   }
 
   private createCommandCodeAction(diagnostic: vscode.Diagnostic, document: vscode.TextDocument): vscode.CodeAction | undefined {
-    if (diagnostic.code === diagProvider.GAME_PATH_117) {
-      const action = new vscode.CodeAction(`Open settings for \`${diagProvider.GAME_PATH_117}\``, vscode.CodeActionKind.QuickFix);
+    if (diagnostic.code === life.GAME_PATH_117) {
+      const action = new vscode.CodeAction(`Open settings for \`${life.GAME_PATH_117}\``, vscode.CodeActionKind.QuickFix);
       action.command = {
         title: action.title,
         command: 'workbench.action.openSettings',
-        arguments: [ diagProvider.GAME_PATH_117 ]
+        arguments: [ life.GAME_PATH_117 ]
       };
       action.diagnostics = [diagnostic];
       action.isPreferred = true;
