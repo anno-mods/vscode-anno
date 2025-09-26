@@ -1,15 +1,10 @@
-import * as fs from 'fs';
-import * as path from 'path';
 import * as vscode from 'vscode';
 
-import * as life from './life';
 import * as versionChecks from '../versionChecks';
 import * as anno from '../../../anno';
 import * as xml from '../../../anno/xml';
-import * as rda from '../../../data/rda';
 import * as editor from '../../../editor';
 import * as utils from '../../../utils';
-import * as xmltest from '../../../tools/xmltest';
 import * as editorFormats from '../../../editor/formats';
 
 import * as issues7 from './issues7.json';
@@ -52,15 +47,11 @@ function checkFileName(modPaths: string[], line: string, lineIndex: number, anno
   return undefined;
 };
 
-export function clear(fileUri: vscode.Uri, performanceOnly: boolean = false) {
-  life.clear(fileUri);
-
-  if (!performanceOnly) {
-    diagnosticsCollection.delete(fileUri)
-  }
+export function clear(fileUri: vscode.Uri) {
+  diagnosticsCollection.delete(fileUri)
 }
 
-export function refresh(context: vscode.ExtensionContext, doc: vscode.TextDocument, performanceDiagnostics: boolean = true): void {
+export function refresh(context: vscode.ExtensionContext, doc: vscode.TextDocument): void {
   if (!editor.isActive()) {
     return;
   }
@@ -123,10 +114,6 @@ export function refresh(context: vscode.ExtensionContext, doc: vscode.TextDocume
         result.push(fileAction);
       }
     }
-  }
-
-  if (performanceDiagnostics && editorFormats.allowLiveValidation(doc)) {
-    life.refresh(context, doc);
   }
 
   diagnosticsCollection.set(doc.uri, result);

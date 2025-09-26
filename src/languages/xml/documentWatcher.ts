@@ -2,87 +2,92 @@ import * as vscode from 'vscode';
 
 import * as decorations from './decorations';
 import * as diagnostics from './diagnostics';
+import * as life from './diagnostics/life';
+import * as editorFormats from '../../editor/formats';
 
 export function activate(context: vscode.ExtensionContext) {
-  let timeout: NodeJS.Timer | undefined = undefined;
-  let activeEditor = vscode.window.activeTextEditor;
+  var staticTimeout: NodeJS.Timer | undefined = undefined;
+  var lifeTimeout: NodeJS.Timer | undefined = undefined;
+  var activeEditor = vscode.window.activeTextEditor;
 
-  function updateAssetDecorations() {
-    if (!activeEditor) {
+  function staticScan() {
+    if (activeEditor) {
+      decorations.refresh(activeEditor);
+      diagnostics.refresh(context, activeEditor.document);
+    }
+  }
+
+  function dynamicScan() {
+    if (activeEditor) {
+      life.refresh(context, activeEditor.document);
+    }
+  }
+
+  function triggerDynamicScan() {
+    if (!activeEditor || !editorFormats.allowLiveValidation(activeEditor.document)) {
       return;
     }
 
-    decorations.refresh(activeEditor);
-    diagnostics.refresh(context, activeEditor.document, false);
-  }
-
-  function updateAssetAndPerformanceDecorations() {
-    if (!activeEditor) {
-      return;
+    if (lifeTimeout) {
+      clearTimeout(lifeTimeout);
+      lifeTimeout = undefined;
     }
-
-    decorations.refresh(activeEditor);
-    diagnostics.refresh(context, activeEditor.document);
+    lifeTimeout = setTimeout(dynamicScan, 500 /* ms */);
   }
 
-  function clearPerformanceDecorations() {
-    if (!activeEditor) {
-      return;
-    }
-    diagnostics.clear(activeEditor.document.uri, true);
-  }
-
-  function triggerUpdateDecorations(throttle = false, performance = false) {
-    if (timeout) {
-      clearTimeout(timeout);
-      timeout = undefined;
+  function triggerStaticScan(throttle = false) {
+    if (staticTimeout) {
+      clearTimeout(staticTimeout);
+      staticTimeout = undefined;
     }
     if (throttle) {
-      timeout = setTimeout(performance ? updateAssetAndPerformanceDecorations : updateAssetDecorations,
-        2000 /* ms */);
-    } else if (performance) {
-      timeout = setTimeout(updateAssetAndPerformanceDecorations,
-        100 /* ms */);
+      staticTimeout = setTimeout(staticScan, 100 /* ms */);
     }
     else {
-      updateAssetDecorations();
+      staticScan();
     }
   }
 
   if (activeEditor) {
-    triggerUpdateDecorations(true, true);
+    triggerStaticScan(true);
+    triggerDynamicScan();
   }
 
   vscode.window.onDidChangeActiveTextEditor(editor => {
     activeEditor = editor;
     if (editor) {
-      clearPerformanceDecorations();
-      triggerUpdateDecorations(false, true);
+      life.clear(editor.document.uri);
+      diagnostics.clear(editor.document.uri);
+      triggerStaticScan(false);
+      triggerDynamicScan();
     }
   }, null, context.subscriptions);
 
   vscode.workspace.onDidChangeTextDocument(async (event) => {
     if (activeEditor && event.document === activeEditor.document) {
-      clearPerformanceDecorations();
-      triggerUpdateDecorations(true, false);
+      life.clear(activeEditor.document.uri);
+      triggerStaticScan(true);
     }
   }, null, context.subscriptions);
 
   vscode.workspace.onDidSaveTextDocument(async (event) => {
     if (activeEditor) {
-      triggerUpdateDecorations(false, true);
+      triggerStaticScan(false);
+      triggerDynamicScan();
     }
   }, null, context.subscriptions);
 
   vscode.workspace.onDidRenameFiles(async (event) => {
     for (const { oldUri, newUri } of event.files) {
-      diagnostics.clear(oldUri, false);
+      life.clear(oldUri);
+      diagnostics.clear(oldUri);
     }
   }, null, context.subscriptions);
 
   vscode.workspace.onDidDeleteFiles(async (event) => {
     for (const uri of event.files) {
-      diagnostics.clear(uri, false);
+      life.clear(uri);
+      diagnostics.clear(uri);
     }
   })
 }
