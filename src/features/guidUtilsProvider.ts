@@ -149,7 +149,7 @@ function getValueAt(line: string, position: number) {
   }
 
   const linePrefix = line.substr(0, valueBegin);
-  const match = linePrefix.match(/[\s'"<\[](\w+)\s*(=\s*['"](\s*\d+\s*,\s*)*|>\s*)$/);
+  const match = linePrefix.match(/[\s'"<\[](\w+)\s*(=\s*['"]!?@?(\s*\d+\s*,\s*)*|>\s*)$/);
   if (!match) {
     return undefined;
   }
