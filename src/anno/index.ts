@@ -97,103 +97,6 @@ export function isAssetsXml(path: string) {
   return true;
 }
 
-interface IModinfo {
-  /** @deprecated use Development.DeployPath instead */
-  out?: string
-  /** @deprecated don't use at all */
-  src: string | string[]
-  /** @deprecated use Development.Bundle instead */
-  bundle?: string[]
-  converter?: any
-
-  /** Anno 1800 style */
-  ModDependencies?: string[]
-  OptionalDependencies?: string[]
-  LoadAfterIds?: string[]
-
-  /** Anno 117 style */
-  Dependencies?: {
-    Require?: string[]
-    LoadAfter?: string[]
-  }
-  Development?: {
-    DeployPath?: string
-    Bundle?: string[]
-    Dependencies?: string[]
-  }
-  getRequiredLoadAfterIds: (modinfo: any) => string[]
-}
-
-export function getRequiredLoadAfterIds(modinfo: any): string[] {
-  if (!modinfo) {
-    return [];
-  }
-  const dependencies: string[] = modinfo.ModDependencies ?? [];
-  const loadAfterIds: string[] = modinfo.LoadAfterIds ?? [];
-
-  return dependencies.filter(dep => loadAfterIds.includes(dep));
-}
-
-/** @deprecated */
-export function readModinfo(modPath: string): IModinfo | undefined {
-  let result: IModinfo;
-  try {
-    var modinfoPath = path.join(modPath, 'modinfo.jsonc');
-    if (!fs.existsSync(modinfoPath)) {
-      modinfoPath = path.join(modPath, 'modinfo.json');
-    }
-
-    if (fs.existsSync(modinfoPath)) {
-      result = {
-        ...jsonc.parse(fs.readFileSync(modinfoPath, 'utf8')),
-        getRequiredLoadAfterIds
-      };
-    }
-    else {
-      return undefined;
-    }
-  }
-  catch {
-    // mod jsons can be invalid pretty fast
-    return undefined;
-  }
-
-  result.Development ??= {};
-  result.Development.DeployPath ??= result.out ?? "${annoMods}/${modName}";
-  result.Development.Bundle ??= result.bundle ?? [];
-  result.Development.Dependencies ??= result.OptionalDependencies;
-  result.src ??= ".";
-
-  // convert url ModDependencies to bundle
-  if (!Array.isArray(result.Development.Bundle)) {
-    result.Development.Bundle = Object.values(result.Development.Bundle);
-  }
-
-  // 117 style
-  if (result.Dependencies?.Require && Array.isArray(result.Dependencies.Require)) {
-    for (let i = 0; i < result.Dependencies.Require.length; i++) {
-      const dep = result.Dependencies.Require[i];
-      if (dep.startsWith("http") || dep.startsWith(".")) {
-        result.Development.Bundle.push(dep);
-        result.Dependencies.Require[i] = path.basename(dep, '.zip');
-      }
-    }
-  }
-
-  // 1800 style
-  if (result.ModDependencies && Array.isArray(result.ModDependencies)) {
-    for (let i = 0; i < result.ModDependencies.length; i++) {
-      const dep = result.ModDependencies[i];
-      if (dep.startsWith("http") || dep.startsWith(".")) {
-        result.Development.Bundle.push(dep);
-        result.ModDependencies[i] = path.basename(dep, '.zip');
-      }
-    }
-  }
-
-  return result;
-}
-
 /** Return path of the mod containing the asset file, and it's ModDependencies, OptionalDependencies and LoadAfterIds mod paths */
 export function searchModPaths(patchFilePath: string, modsFolder?: string) {
   if (!fs.existsSync(patchFilePath)) {
@@ -202,23 +105,18 @@ export function searchModPaths(patchFilePath: string, modsFolder?: string) {
 
   ModRegistry.use(modsFolder);
 
-  const modPath = searchModPath(patchFilePath);
-  const modinfo = readModinfo(modPath);
+  const modPath = findModRoot(patchFilePath);
+  const modinfo = ModInfo.read(modPath);
 
-  const sources = modinfo?.src ? utils.ensureArray(modinfo.src).map((e: string) => path.join(modPath, e)) : [ modPath ];
   let deps: string[] = [];
   if (modsFolder && modinfo) {
-    deps = [
-        ...utils.ensureArray(modinfo.ModDependencies ?? modinfo.Dependencies?.Require),
-        ...utils.ensureArray(modinfo.Development?.Dependencies),
-        ...utils.ensureArray(modinfo.LoadAfterIds ?? modinfo.Dependencies?.LoadAfter)
-      ]
+    deps = modinfo.getAllDependencies()
       .map((e: string) => ModRegistry.getPath(e) ?? "")
       .filter((e: string) => e !== "");
   }
 
   // remove duplicates
-  return [...new Set([...sources, ...deps])];
+  return [...new Set([modPath, ...deps])];
 }
 
 /**

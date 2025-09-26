@@ -28,48 +28,52 @@ export class ModInfo {
     return this.read(filePath)?.game || anno.GameVersion.Auto;
   }
 
-  /** filePath: modinfo.json or folder containing one */
-  static read(filePath: string, strict: boolean = false) : ModInfo | undefined {
+  /** filePath: modinfo.json or folder containing one
+   * @param requireModinfoFile return `undefined` if there's no modinfo.json
+   */
+  static read(filePath: string, requireModinfoFile: boolean = false) : ModInfo | undefined {
     let modPath: string | undefined;
     let id: string | undefined;
     let modInfo: any;
     let game: anno.GameVersion = anno.GameVersion.Anno7;
 
-    if (anno.isModinfoFile(filePath)) {
+    const fstat = fs.statSync(filePath);
+    var modinfoPath: string | undefined;
+
+    if (fstat.isFile() && anno.isModinfoFile(filePath)) {
+      modinfoPath = filePath;
       modPath = path.dirname(filePath);
     }
-    else {
+    else if (fstat.isDirectory()) {
+      modinfoPath = path.join(filePath, MODINFO_JSONC);
+
+      if (!fs.existsSync(modinfoPath)) {
+        modinfoPath = path.join(filePath, MODINFO_JSON);
+
+        if (requireModinfoFile && !fs.existsSync(modinfoPath)) {
+          return undefined;
+        }
+      }
+
       modPath = filePath;
     }
-
-    if (!fs.existsSync(modPath)) {
+    else {
       return undefined;
     }
 
-    var modinfoPath = path.join(modPath, MODINFO_JSON);
-
-    if (!fs.existsSync(modinfoPath)) {
-      modinfoPath = path.join(modPath, MODINFO_JSONC);
+    try {
+      modInfo = jsonc.parse(fs.readFileSync(modinfoPath, 'utf8'));
+      id = modInfo?.ModID;
+      if (modInfo && modInfo.Anno === undefined && fs.existsSync(path.join(modPath, "data/base/config"))) {
+        // try to detect Anno8 if the file is valid but doesn't contain a version yet
+        game = anno.GameVersion.Anno8;
+      }
+      else {
+        game = (modInfo?.Anno === "8" || modInfo?.Anno === 8) ? anno.GameVersion.Anno8 : anno.GameVersion.Anno7;
+      }
     }
-
-    if (fs.existsSync(modinfoPath))
-    {
-      try {
-        modInfo = jsonc.parse(fs.readFileSync(modinfoPath, 'utf8'));
-        id = modInfo?.ModID;
-        if (modInfo && modInfo.Anno === undefined && fs.existsSync(path.join(modPath, "data/base/config"))) {
-          // try to detect Anno8 if the file is valid but doesn't contain a version yet
-          game = anno.GameVersion.Anno8;
-        }
-        else {
-          game = (modInfo?.Anno === "8" || modInfo?.Anno === 8) ? anno.GameVersion.Anno8 : anno.GameVersion.Anno7;
-        }
-      }
-      catch {
-        // silently ignore, even in strict mode
-      }
-    } else if (strict) {
-      return undefined;
+    catch {
+      // silently ignore, even in strict mode
     }
 
     if (!id || id === "") {
@@ -125,10 +129,31 @@ export class ModInfo {
     }
   }
 
-  /** return: modinfo.jsonc or modinfo.json, based on what exists and is supported */
-  public getModinfoPath(): string {
+  public getDeploymentPath(): string {
+    return this.modInfo_?.Development?.DeployPath ?? this.modInfo_?.out ?? '${annoMods}/${modName}';
+  }
+
+  public getBundledDependencies(): string[] {
+    return this.modInfo_?.Development?.Bundle as string[] ?? this.modInfo_?.bundle as string[];
+  }
+
+  public getModName() {
+    if (!this.modInfo_?.ModName?.English) {
+      return path.basename(path.dirname(this.path));
+    }
+    return `[${this.modInfo_?.Category?.English}] ${this.modInfo_?.ModName?.English}`;
+  }
+
+  public getJson(): any {
+    return this.modInfo_;
+  }
+
+  /**
+   * @param mustHaveModinfo return `undefined` if there's no modinfo.{json,jsonc}
+   * @return: Full path to modinfo.{json,jsonc}, or the mod folder as a fallback. */
+  public getModinfoPath(mustHaveModinfo: boolean): string | undefined {
     if (this.filename === undefined) {
-      return this.path;
+      return mustHaveModinfo ? undefined : this.path;
     }
     return path.join(this.path, this.filename);
   }
