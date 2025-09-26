@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as channel from '../channel';
 import * as glob from 'glob';
 import * as path from 'path';
-import { Loca } from '../../utils/loca';
+import { Loca } from '../../editor/loca';
 
 export class ImportLoca {
 	public static register(context: vscode.ExtensionContext): vscode.Disposable[] {
