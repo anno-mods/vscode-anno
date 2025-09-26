@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 import { AssetsSymbolProvider } from './outline';
-import { AssetsActionProvider } from './assetsActionProvider';
+import { AssetsActionProvider } from './diagnostics';
 import { registerFolding } from './folding';
 import { registerFormatter } from './formatter';
 import { registerAutoClosing } from './autoClosing';

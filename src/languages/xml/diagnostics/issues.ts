@@ -2,39 +2,37 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 
-import * as diagnostics from './diagnostics';
-import * as versionChecks from './versionChecks';
-import * as anno from '../../anno';
-import * as xml from '../../anno/xml';
-import * as rda from '../../data/rda';
-import * as editor from '../../editor';
-import * as utils from '../../utils';
-import * as xmltest from '../../tools/xmltest';
-import * as editorFormats from '../../editor/formats';
+import * as versionChecks from '../versionChecks';
+import * as anno from '../../../anno';
+import * as xml from '../../../anno/xml';
+import * as rda from '../../../data/rda';
+import * as editor from '../../../editor';
+import * as utils from '../../../utils';
+import * as xmltest from '../../../tools/xmltest';
+import * as editorFormats from '../../../editor/formats';
 
-const GAME_PATH_117 = 'anno.117.gamePath';
+import * as issues7 from './issues7.json';
+import * as issues8 from './issues8.json';
+
+export function getIssues(): IIssueDescription[] {
+  return editor.ModContext.get().version === anno.GameVersion.Anno7 ? issues7 : issues8;
+}
+
+export interface IIssueDescription {
+  matchWord?: string
+  matchRegex?: string
+  fix?: string
+  fixMessage?: string
+  code: string
+  message: string
+}
+
+export const GAME_PATH_117 = 'anno.117.gamePath';
 const XML_DOUBLE_DASH = 'xml-double-dash-in-comment';
 const XML_NESTED_COMMENT = 'xml-nested-comment';
 
 export const diagnosticsCollection = vscode.languages.createDiagnosticCollection('anno');
 const performanceDecorationType = vscode.window.createTextEditorDecorationType({});
-
-export class AssetsActionProvider {
-  public static register(context: vscode.ExtensionContext): vscode.Disposable[] {
-    // subscribeToDocumentChanges(context, diagnostics);
-
-    const selector: vscode.DocumentSelector = [
-      { language: 'anno-xml', scheme: 'file' },
-      { language: 'xml', scheme: 'file', pattern: xml.ASSETS_FILENAME_PATTERN }
-    ];
-    return [
-      diagnosticsCollection,
-      vscode.languages.registerCodeActionsProvider(selector, new AssetsCodeActionProvider(), {
-        providedCodeActionKinds: AssetsCodeActionProvider.providedCodeActionKinds
-      })
-    ];
-  }
-}
 
 function checkFileName(modPaths: string[], line: string, lineIndex: number, annoRda?: string) {
   const regEx = /<(Filename|FileName|IconFilename|RecipeImage|RecipeListMoodImage)>([^<]+)<\/\1>/g;
@@ -89,7 +87,7 @@ export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode
   var inComment = false;
 
   // line diagonstics
-  const issues = diagnostics.issues();
+  const issues = getIssues();
   for (let lineIndex = 0; lineIndex < doc.lineCount; lineIndex++) {
     const lineOfText = doc.lineAt(lineIndex);
 
@@ -215,7 +213,7 @@ function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
   return decorations;
 }
 
-function checkDiagnosticIssue(textLine: string, lineIndex: number, issue: diagnostics.IIssueDescription) {
+function checkDiagnosticIssue(textLine: string, lineIndex: number, issue: IIssueDescription) {
 
   if (issue.matchWord && utils.findWord(textLine, issue.matchWord)) {
     const index = textLine.indexOf(issue.matchWord);
@@ -238,60 +236,4 @@ function checkDiagnosticIssue(textLine: string, lineIndex: number, issue: diagno
   }
 
   return undefined;
-}
-
-export class AssetsCodeActionProvider implements vscode.CodeActionProvider {
-  public static readonly providedCodeActionKinds = [
-    vscode.CodeActionKind.QuickFix
-  ];
-
-  provideCodeActions(document: vscode.TextDocument, range: vscode.Range | vscode.Selection, context: vscode.CodeActionContext, token: vscode.CancellationToken): vscode.CodeAction[] {
-    return context.diagnostics
-      .map(diagnostic => this.createCommandCodeAction(diagnostic, document))
-      .filter(utils.removeNulls);
-  }
-
-  private createCommandCodeAction(diagnostic: vscode.Diagnostic, document: vscode.TextDocument): vscode.CodeAction | undefined {
-    if (diagnostic.code === GAME_PATH_117) {
-      const action = new vscode.CodeAction(`Open settings for \`${GAME_PATH_117}\``, vscode.CodeActionKind.QuickFix);
-      action.command = {
-        title: action.title,
-        command: 'workbench.action.openSettings',
-        arguments: [ GAME_PATH_117 ]
-      };
-      action.diagnostics = [diagnostic];
-      action.isPreferred = true;
-      return action;
-    }
-    else {
-      const issues = diagnostics.issues();
-      for (var issue of issues) {
-        if (issue.fix !== undefined && diagnostic.code === issue.code) {
-          const action = new vscode.CodeAction(issue.fixMessage || 'Fix it', vscode.CodeActionKind.QuickFix);
-          action.edit = new vscode.WorkspaceEdit();
-
-          if (issue.matchRegex && issue.fix.indexOf('\\1') >= 0) {
-            // regex use detected
-            var newText = issue.fix;
-            const issueText = document.getText(diagnostic.range);
-            const match = issueText.match(new RegExp(issue.matchRegex));
-            if (match) {
-              for (var i = 1; i < (match?.length ?? 0); i++) {
-                newText = newText.replace('\\' + i, match[i]);
-              }
-            }
-            action.edit.replace(document.uri, diagnostic.range, newText);
-          }
-          else {
-            action.edit.replace(document.uri, diagnostic.range, issue.fix);
-          }
-          action.diagnostics = [diagnostic];
-          action.isPreferred = true;
-          return action;
-        }
-      }
-    }
-
-    return undefined;
-  }
 }

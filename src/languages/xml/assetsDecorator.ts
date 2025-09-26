@@ -7,7 +7,7 @@ import { englishWithTemplate } from '../../anno/xml/assets';
 import { SymbolRegistry } from '../../data/symbols';
 import * as editorFormats from '../../editor/formats';
 
-import { clearDiagnostics, refreshDiagnostics } from './assetsActionProvider';
+import { clearDiagnostics, refreshDiagnostics } from './diagnostics/issues';
 
 // this method is called when vs code is activated
 export function activate(context: vscode.ExtensionContext) {
