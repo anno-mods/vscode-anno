@@ -53,7 +53,7 @@ function checkFileName(modPaths: string[], line: string, lineIndex: number, anno
   return undefined;
 };
 
-export function clearDiagnostics(fileUri: vscode.Uri, performanceOnly: boolean = false) {
+export function clear(fileUri: vscode.Uri, performanceOnly: boolean = false) {
   vscode.window.activeTextEditor?.setDecorations(performanceDecorationType, []);
 
   if (!performanceOnly) {
@@ -61,7 +61,7 @@ export function clearDiagnostics(fileUri: vscode.Uri, performanceOnly: boolean =
   }
 }
 
-export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode.TextDocument, performanceDiagnostics: boolean = true): void {
+export function refresh(context: vscode.ExtensionContext, doc: vscode.TextDocument, performanceDiagnostics: boolean = true): void {
   if (!editor.isActive()) {
     return;
   }

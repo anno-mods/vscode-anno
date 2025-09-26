@@ -3,7 +3,7 @@ import * as annoContext from './editor/modContext';
 import { registerGuidUtilsProvider } from './features/guidUtilsProvider';
 import * as dds from './tools/dds';
 import * as rdp from './tools/rdp';
-import * as AssetsDecorator from './languages/xml/assetsDecorator';
+import * as AssetsDecorator from './languages/xml/documentWatcher';
 import * as AssetsSymbolProvider from './languages/xml/assetsSymbolProvider';
 import * as commands from './features/commands';
 import * as cfg from './languages/cfg';

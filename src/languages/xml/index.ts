@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 
 import { AssetsSymbolProvider } from './outline';
+import * as decorations from './decorations';
 import { AssetsActionProvider } from './diagnostics';
 import { registerFolding } from './folding';
 import { registerFormatter } from './formatter';
@@ -17,4 +18,5 @@ export function activate(context: vscode.ExtensionContext) {
       registerAutoClosing(context),
       autoComplete.activate())
   );
+  decorations.activate(context);
 }
