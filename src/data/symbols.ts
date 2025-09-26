@@ -7,7 +7,7 @@ import * as rda from './rda';
 import * as anno from '../anno';
 import * as editor from '../editor';
 import * as modContext from '../editor/modContext';
-import { AssetsDocument, ASSETS_FILENAME_PATTERN_STRICT, IAsset } from '../utils/assetsXml';
+import { AssetsDocument, ASSETS_FILENAME_PATTERN_STRICT, IAsset } from '../anno/xml';
 import * as logger from '../utils/logger';
 
 type GuidCache = Map<string, IAsset>;
@@ -124,7 +124,8 @@ export namespace SymbolRegistry {
 
   function _readGuidsFromText(text: string, filePath: string, modinfo: anno.ModInfo)
   {
-    let xmlContent;
+    var xmlContent;
+    var lines = text.split(/\r\n|\r|\n/);
     try {
       xmlContent = new xmldoc.XmlDocument(text);
     }
@@ -133,12 +134,12 @@ export namespace SymbolRegistry {
       return;
     }
 
-    _readGuidsFromXmlContent(xmlContent, filePath, modinfo);
+    _readGuidsFromXmlContent(xmlContent, lines, filePath, modinfo);
   }
 
-  function _readGuidsFromXmlContent(xmlContent: xmldoc.XmlDocument, filePath: string, modinfo: anno.ModInfo)
+  function _readGuidsFromXmlContent(xmlContent: xmldoc.XmlDocument, lines: string[], filePath: string, modinfo: anno.ModInfo)
   {
-    let assetsDocument = new AssetsDocument(xmlContent, filePath);
+    let assetsDocument = new AssetsDocument(xmlContent, lines, filePath);
     registerAll(Object.values(assetsDocument.assets), modinfo.game, modinfo.id);
   }
 
@@ -163,9 +164,12 @@ export namespace SymbolRegistry {
         return;
       }
 
-      let xmlContent: xmldoc.XmlDocument;
+      var xmlContent: xmldoc.XmlDocument;
+      var lines: string[];
       try {
-        xmlContent = new xmldoc.XmlDocument(fs.readFileSync(vanillaPath, 'utf8'));
+        const fileContent = fs.readFileSync(vanillaPath, 'utf8');
+        lines = fileContent.split(/\r\n|\r|\n/);
+        xmlContent = new xmldoc.XmlDocument(fileContent);
       }
       catch {
         logger.errorMessage(`Can't parse \`${vanillaPath}\`. GUID lookup will not work properly.`);
@@ -173,7 +177,7 @@ export namespace SymbolRegistry {
         return;
       }
 
-      let assetsDocument = new AssetsDocument(xmlContent, vanillaPath);
+      let assetsDocument = new AssetsDocument(xmlContent, lines, vanillaPath);
 
       for (var guid of Object.keys(assetsDocument.assets)) {
         assetsDocument.assets[guid].location = undefined;

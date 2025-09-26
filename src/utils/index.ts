@@ -1,6 +1,4 @@
-import { findWord } from './text';
-
-export { findWord };
+export * from './text';
 
 export const removeNulls = <S>(value: S | null | undefined): value is S => value !== null && value !== undefined;
 

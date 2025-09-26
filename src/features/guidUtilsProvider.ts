@@ -2,17 +2,16 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 
 import { GuidCounter } from './guidCounter';
+import * as xml from '../anno/xml';
 import { ModRegistry } from '../data/modRegistry';
 import { SymbolRegistry } from '../data/symbols';
 import * as editor from '../editor';
-import * as editorDocument from '../editor/assetsDocument';
 import * as editorFormats from '../editor/formats';
 import * as text from '../editor/text';
 import { AssetsTocProvider } from '../languages/xml/assetsTocProvider';
-import { AssetsDocument, ASSETS_FILENAME_PATTERN, IAsset } from '../utils/assetsXml';
 import { AllGuidCompletionItems, GuidCompletionItems } from './guidCompletionItems';
 
-let assetsDocument: AssetsDocument | undefined;
+let assetsDocument: xml.AssetsDocument | undefined;
 
 function resolveGuidRange(guid: string) {
   const vanilla = _guidRanges || {};
@@ -116,7 +115,10 @@ function findKeywordAtPosition(document: vscode.TextDocument, position: vscode.P
   let parent = undefined;
   if (position.line > 0) {
     // TODO: parsing the whole document is unnecessary expensive
-    parent = new AssetsTocProvider(new editorDocument.AssetsDocument(document)).getParentPath(position.line, position.character);
+    const assetDoc = xml.AssetsDocument.from(document.getText());
+    if (assetDoc) {
+      parent = new AssetsTocProvider(assetDoc).getParentPath(position.line, position.character);
+    }
   }
 
   return {
@@ -257,9 +259,9 @@ export function registerGuidUtilsProvider(context: vscode.ExtensionContext): vsc
   subscribeToDocumentChanges(context);
 
 	return [
-    vscode.Disposable.from(vscode.languages.registerHoverProvider({ language: 'xml', scheme: 'file', pattern: ASSETS_FILENAME_PATTERN }, { provideHover })),
+    vscode.Disposable.from(vscode.languages.registerHoverProvider({ language: 'xml', scheme: 'file', pattern: xml.ASSETS_FILENAME_PATTERN }, { provideHover })),
     vscode.Disposable.from(vscode.languages.registerHoverProvider({ language: 'anno-xml', scheme: 'file' }, { provideHover })),
-    vscode.Disposable.from(vscode.languages.registerCompletionItemProvider({ language: 'xml', scheme: 'file', pattern: ASSETS_FILENAME_PATTERN }, { provideCompletionItems }, '\'', '"'))
+    vscode.Disposable.from(vscode.languages.registerCompletionItemProvider({ language: 'xml', scheme: 'file', pattern: xml.ASSETS_FILENAME_PATTERN }, { provideCompletionItems }, '\'', '"'))
   ];
 }
 

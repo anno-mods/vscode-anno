@@ -5,10 +5,10 @@ import * as vscode from 'vscode';
 import * as diagnostics from './diagnostics';
 import * as versionChecks from './versionChecks';
 import * as anno from '../../anno';
+import { ASSETS_FILENAME_PATTERN } from '../../anno/xml';
 import * as rda from '../../data/rda';
 import * as editor from '../../editor';
 import * as utils from '../../utils';
-import { ASSETS_FILENAME_PATTERN } from '../../utils/assetsXml';
 import * as xmltest from '../../tools/xmltest';
 import * as editorFormats from '../../editor/formats';
 

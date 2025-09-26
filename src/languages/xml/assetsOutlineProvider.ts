@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
-import { SkinnyTextDocument, AssetsTocProvider, TocEntry } from './assetsTocProvider';
-import { AssetsDocument } from '../../editor/assetsDocument';
-import { ASSETS_FILENAME_PATTERN } from '../../utils/assetsXml';
+import { AssetsTocProvider, TocEntry } from './assetsTocProvider';
+import { AssetsDocument, ASSETS_FILENAME_PATTERN } from '../../anno/xml';
 
 interface MarkdownSymbol {
 	readonly level: number;
@@ -26,8 +25,11 @@ export class AssetsSymbolProvider {
 	private static lastSymbols: vscode.DocumentSymbol[] = [];
 	private static lastFile: string | undefined;
 
-  public async provideDocumentSymbols(document: SkinnyTextDocument): Promise<vscode.DocumentSymbol[]> {
-		const patchDocument = new AssetsDocument(document);
+  public async provideDocumentSymbols(document: vscode.TextDocument): Promise<vscode.DocumentSymbol[]> {
+		const patchDocument = AssetsDocument.from(document.getText(), document.uri.fsPath);
+		if (!patchDocument) {
+			return AssetsSymbolProvider.lastSymbols;
+		}
 
 		const toc = new AssetsTocProvider(patchDocument).getToc();
 		if (toc) {

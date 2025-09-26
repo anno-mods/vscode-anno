@@ -1,11 +1,11 @@
 import * as vscode from 'vscode';
 
 import * as anno from '../../anno';
+import { ASSETS_FILENAME_PATTERN, guidNamed, IAsset } from '../../anno/xml';
 import * as rda from '../../data/rda';
 import * as editorFormats from '../../editor/formats';
 import * as modContext from '../../editor/modContext';
 import * as xmltest from '../../tools/xmltest';
-import { ASSETS_FILENAME_PATTERN, guidWithName, IAsset } from '../../utils/assetsXml';
 import { SymbolRegistry } from '../../data/symbols';
 
 const vanillaAssetContentProvider = new (class implements vscode.TextDocumentContentProvider {
@@ -55,15 +55,15 @@ const infotipContentProvider = new (class implements vscode.TextDocumentContentP
 
 function getLocationFromSymbol(symbol: IAsset) {
   if (symbol.location) {
-    return new vscode.Location(symbol.location.filePath, new vscode.Position(symbol.location.line, 0));
+    return new vscode.Location(vscode.Uri.file(symbol.location.filePath), new vscode.Position(symbol.location.line, 0));
   }
   else if (symbol.template === 'InfoTip') {
     const versionNumber = modContext.getVersion().toString();
-    return new vscode.Location(vscode.Uri.from({ scheme: "annoinfotip" + versionNumber, path: guidWithName(symbol) }), new vscode.Position(0, 0));
+    return new vscode.Location(vscode.Uri.from({ scheme: "annoinfotip" + versionNumber, path: guidNamed(symbol) }), new vscode.Position(0, 0));
   }
   else {
     const versionNumber = modContext.getVersion().toString();
-    return new vscode.Location(vscode.Uri.from({ scheme: "annoasset" + versionNumber, path: guidWithName(symbol) }), new vscode.Position(0, 0));
+    return new vscode.Location(vscode.Uri.from({ scheme: "annoasset" + versionNumber, path: guidNamed(symbol) }), new vscode.Position(0, 0));
   }
 }
 
@@ -109,7 +109,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
     const asset = SymbolRegistry.resolve(text);
 
     if (asset && asset.location) {
-      return new vscode.Location(asset.location.filePath, new vscode.Position(asset.location.line, 0));
+      return new vscode.Location(vscode.Uri.file(asset.location.filePath), new vscode.Position(asset.location.line, 0));
     }
     else if (asset) {
       return getLocationFromSymbol(asset);

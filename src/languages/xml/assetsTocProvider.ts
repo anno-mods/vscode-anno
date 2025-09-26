@@ -2,10 +2,10 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import * as xmldoc from 'xmldoc';
 
-import { uniqueAssetName} from '../../utils/assetsXml';
+import * as xml from '../../anno/xml';
+import * as utils from '../../utils';
 import * as xpath from '../../utils/xpath';
 import { SymbolRegistry } from '../../data/symbols';
-import { AssetsDocument } from '../../editor/assetsDocument';
 
 export interface TocEntry {
   text: string;
@@ -18,52 +18,11 @@ export interface TocEntry {
   readonly symbol: vscode.SymbolKind;
 }
 
-export interface SkinnyTextLine {
-  text: string;
-}
-
-export interface SkinnyTextDocument {
-  readonly uri: vscode.Uri;
-  readonly version: number;
-  readonly lineCount: number;
-
-  lineAt(line: number): SkinnyTextLine;
-  getText(): string;
-}
-
-/** return first simple element (without element children) */
-function _firstElement(parent: xmldoc.XmlElement) {
-  for (const element of parent.children) {
-    if (element.type === 'element') {
-      var hasElementChildren = false;
-      for (const child of element.children) {
-        if (child.type === 'element') {
-          hasElementChildren = true;
-        }
-      }
-
-      if (!hasElementChildren) {
-        return element;
-      }
-    }
-  }
-
-  return undefined;
-}
-
-/** shorten text to fit into length */
-function _ellipse(text: string | undefined, length: number) {
-  if (!text || length < 6 || text.length <= length - 5) {
-    return text;
-  }
-  return text.substring(0, length - 5) + ' [..]';
-}
-
 export class AssetsTocProvider {
   private toc?: TocEntry[];
-  private _doc: AssetsDocument;
+  private _doc: xml.AssetsDocument | undefined;
 
-  public constructor(doc: AssetsDocument) {
+  public constructor(doc: xml.AssetsDocument | undefined) {
     this._doc = doc;
   }
 
@@ -79,28 +38,15 @@ export class AssetsTocProvider {
   }
 
   public getParentPath(line: number, position: number): string {
-    if (!this._doc.xml) {
+    if (!this._doc?.content) {
       return '';
     }
 
     try {
-      return this._getParentPath(this._doc.xml, line, position);
+      return this._getParentPath(this._doc.content, line, position);
     } catch (e) {
       return '';
     }
-  }
-
-  private static readonly _pathKeys = new Set([
-    'Path', 'Add', 'Merge', 'Replace', 'Append', 'Prepend', 'Remove'
-  ]);
-
-  private static _getPathAttribute(element: xmldoc.XmlElement) {
-    for (const key in element.attr) {
-      if (this._pathKeys.has(key)) {
-        return element.attr[key];
-      }
-    }
-    return undefined;
   }
 
   // returns 'ModOp' or template name
@@ -109,20 +55,20 @@ export class AssetsTocProvider {
       const index = 0;
 
       var guids: string | undefined = element.attr['GUID'];
-      const pathAttr = AssetsTocProvider._getPathAttribute(element);
+      const [ _, pathValue ] = xml.getPathAttribute(element);
 
-      if (!guids && pathAttr) {
-        guids = xpath.guid(pathAttr);
+      if (!guids && pathValue) {
+        guids = xpath.guid(pathValue);
       }
 
       if (guids) {
         const guid = guids.split(',')[index].trim();
         const asset = SymbolRegistry.resolve(guid);
-        name = uniqueAssetName(asset);
+        name = xml.english(asset);
       }
 
-      if (pathAttr) {
-        const path = xpath.basename(pathAttr, true, true);
+      if (pathValue) {
+        const path = xpath.basename(pathValue, true, true);
         if (path && path.length > 0) {
           name = (!name || name.length === 0) ? path : `${path} (${name})`;
         }
@@ -158,69 +104,31 @@ export class AssetsTocProvider {
 
   private _getDetail(element: xmldoc.XmlElement, index: number = 0) {
     if (element.name === 'ModOp') {
-      if (element.attr['Add'] !== undefined) {
-        return 'Add';
-      }
-      else if (element.attr['Remove'] !== undefined) {
-        return 'Remove';
-      }
-      else if (element.attr['Replace'] !== undefined) {
-        return 'Replace';
-      }
-      else if (element.attr['Merge'] !== undefined) {
-        return 'Merge';
-      }
-      else if (element.attr['Append'] !== undefined) {
-        return 'Append';
-      }
-      else if (element.attr['Prepend'] !== undefined) {
-        return 'Prepend';
-      }
-      return element.attr['Type'] || 'ModOp';
+      const [ pathAttr, _ ] = xml.getPathAttribute(element);
+      return (pathAttr && pathAttr !== 'Path') ? pathAttr : element.attr['Type'] || 'ModOp';
     }
     else if (element.name === 'Asset') {
-      const template = element.valueWithPath('Template');
-      if (template) {
-        return template;
-      }
-      const base = element.valueWithPath('BaseAssetGUID');
-      if (base) {
-        const resolvedGuid = SymbolRegistry.resolve(base);
-        if (resolvedGuid) {
-          return `${resolvedGuid.template}: ${resolvedGuid.name}`;
-        }
-        else {
-          return `${base}`;
-        }
-      }
+      const [ template, name ] = xml.resolveTemplate(element);
+      return (template && name) ? `${template}: ${name}` : template ?? name ?? "";
     }
     else if (element.name === 'Group') {
       const maxRepeat = element.attr['MaxRepeat'];
-      if (maxRepeat) {
-        return `MaxRepeat=${maxRepeat}`;
-      }
+      return (maxRepeat) ? `MaxRepeat=${maxRepeat}` : '';
     }
     else if (element.name === 'Include') {
       return element.name;
     }
+
     return '';
   }
 
-  private _getSymbol(element: xmldoc.XmlElement, index: number = 0) {
-    if (element.name === 'Asset') {
-      const guid = element.valueWithPath('Values.Standard.GUID');
-      return guid;
-    }
-    return undefined;
-  }
-
   /// Return line number where the comment has occured. Max: 10 lines up.
-  private _findCommentUp(document: SkinnyTextDocument, start: number, comment: string) {
+  private _findCommentUp(document: xml.AssetsDocument, start: number, comment: string) {
     let line = start;
     let maxLineUp = Math.max(0, start - 9);
     for (; line >= maxLineUp; line--) {
-      let text = document.lineAt(line);
-      if (text.text.includes(comment)) {
+      let text = document.textLineAt(line);
+      if (text.includes(comment)) {
         return line;
       }
     }
@@ -233,10 +141,11 @@ export class AssetsTocProvider {
   }
 
   private _buildToc(): TocEntry[] | undefined {
-    if (!this._doc.xml) {
+    if (!this._doc || !this._doc?.content || !this._doc.filePath) {
       return undefined;
     }
 
+    const uri = vscode.Uri.file(this._doc.filePath);
     let toc: TocEntry[] = [];
 
     const relevantSections: { [index: string]: any } = {
@@ -252,7 +161,7 @@ export class AssetsTocProvider {
     let sectionComment: string | undefined = 'ModOps';
     let groupComment: string | undefined;
 
-    const nodeStack: { depth: number, element: xmldoc.XmlNode, property: boolean }[] = [{ depth: 0, element: this._doc.xml, property: false }];
+    const nodeStack: { depth: number, element: xmldoc.XmlNode, property: boolean }[] = [{ depth: 0, element: this._doc.content, property: false }];
     for (let top = nodeStack.pop(); top; top = nodeStack.pop()) {
       if (top.element.type === 'comment') {
         let comment = top.element.comment.trim();
@@ -270,13 +179,13 @@ export class AssetsTocProvider {
       else if (top.element.type === 'element') {
         // open ModOp section
         if (sectionComment && relevantSections[top.element.name]) {
-          const line = this._findCommentUp(this._doc.document, top.element.line, sectionComment);
+          const line = this._findCommentUp(this._doc, top.element.line, sectionComment);
           toc.push({
             text: sectionComment,
             detail: '',
             level: top.depth - 1,
             line,
-            location: new vscode.Location(this._doc.uri, new vscode.Range(line, 0, line, 1)),
+            location: new vscode.Location(uri, new vscode.Range(line, 0, line, 1)),
             symbol: vscode.SymbolKind.Number
           });
           sectionComment = undefined;
@@ -299,15 +208,15 @@ export class AssetsTocProvider {
         if (tocRelevant && children.length >= tocRelevant.minChildren || top.property) {
           // TODO tagStartColumn is 0 for multiline tags, not correct but ...
           const tagStartColumn = Math.max(0, top.element.column - top.element.position + top.element.startTagPosition - 1);
-          const line = (groupComment && top.element.name === 'Group') ? this._findCommentUp(this._doc.document, top.element.line, groupComment) : top.element.line;
+          const line = (groupComment && top.element.name === 'Group') ? this._findCommentUp(this._doc, top.element.line, groupComment) : top.element.line;
 
           var symbol = relevantSections[top.element.name]?.symbol ?? vscode.SymbolKind.String;
-          const location = new vscode.Location(this._doc.uri,
+          const location = new vscode.Location(uri,
               new vscode.Range(line, tagStartColumn, line, top.element.column));
 
           // Text below ModOp
           if (top.element.name === 'Text' && top.property && top.element.childNamed('Text')) {
-            const text = _ellipse(top.element.childNamed('Text')?.val, 35);
+            const text = utils.ellipse(top.element.childNamed('Text')?.val, 35);
 
             toc.push({
               text: text || 'Text',
@@ -343,7 +252,7 @@ export class AssetsTocProvider {
               text: this._getName(top.element, groupComment),
               detail: this._getDetail(top.element),
               level: top.depth, line,
-              guid: this._getSymbol(top.element),
+              guid: xml.getAssetGUID(top.element),
               location, symbol
             });
           }
@@ -352,10 +261,10 @@ export class AssetsTocProvider {
             // try to get name from Item/ModItem first
             var name: string | undefined = undefined;
             if (top.element.name === 'Item' || top.element.name === 'ModItem') {
-              const item = _firstElement(top.element);
+              const item = xml.firstLeafChild(top.element);
               if (item) {
                 const asset = SymbolRegistry.resolve(item.val);
-                name = (asset ? uniqueAssetName(asset) : item.val);
+                name = (asset ? xml.english(asset) : item.val);
               }
             }
 
@@ -381,7 +290,7 @@ export class AssetsTocProvider {
               text: this._getName(top.element, groupComment),
               detail: this._getDetail(top.element),
               level: top.depth, line,
-              guid: this._getSymbol(top.element),
+              guid: xml.getAssetGUID(top.element),
               location, symbol
             });
 
@@ -438,13 +347,13 @@ export class AssetsTocProvider {
           break;
         }
       }
-      const endLine = end ?? this._doc.document.lineCount - 1;
+      const endLine = end ?? this._doc!.lineCount - 1;
       return {
         ...entry,
-        location: new vscode.Location(this._doc.uri,
+        location: new vscode.Location(uri,
           new vscode.Range(
             entry.location.range.start,
-            new vscode.Position(endLine, this._doc.document.lineAt(endLine).text.length)))
+            new vscode.Position(endLine, this._doc?.textLineAt(endLine)?.length ?? 0)))
       };
     });
   }

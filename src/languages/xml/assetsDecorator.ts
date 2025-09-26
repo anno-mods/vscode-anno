@@ -3,9 +3,9 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import * as anno from '../../anno';
+import { englishWithTemplate } from '../../anno/xml/assets';
 import { SymbolRegistry } from '../../data/symbols';
 import * as editorFormats from '../../editor/formats';
-import { assetNameWithOrigin } from '../../utils/assetsXml';
 
 import { clearDiagnostics, refreshDiagnostics } from './assetsActionProvider';
 
@@ -41,7 +41,7 @@ export function activate(context: vscode.ExtensionContext) {
       return '(not set)';
     }
 
-    return assetNameWithOrigin(SymbolRegistry.resolve(guid), mod);
+    return englishWithTemplate(SymbolRegistry.resolve(guid), mod);
   }
 
   function updateDecorations() {

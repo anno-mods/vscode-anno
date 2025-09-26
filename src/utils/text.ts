@@ -13,3 +13,11 @@ export function findWord(line: string, text: string)
     charBefore === '"' || charAfter === '"' ||
     charBefore === ',' && charAfter === ',');
 }
+
+/** Shorten text to fit into length */
+export function ellipse(text: string | undefined, length: number) {
+  if (!text || length < 6 || text.length <= length - 5) {
+    return text;
+  }
+  return text.substring(0, length - 5) + ' [..]';
+}

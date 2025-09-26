@@ -1,5 +1,6 @@
 import * as xmldoc from 'xmldoc';
-import * as vscode from 'vscode';
+
+import { SymbolRegistry } from '../../data/symbols';
 
 export const ASSETS_FILENAME_PATTERN_STRICT = '**/{assets*,*.include,game/asset/**/*}.xml';
 export const ASSETS_FILENAME_PATTERN = '**/{assets*,*.include,game/asset/**/*,templates,tests/*-input,tests/*-expectation,gui/texts_*,.modcache/*-patched,export.bin,*.fc,*.cfg}.xml';
@@ -11,19 +12,17 @@ export interface IAsset {
   english?: string;
   modName?: string;
   location?: {
-    filePath: vscode.Uri;
+    filePath: string;
     line: number;
   }
   baseAsset?: string;
 }
 
-export function guidWithName(asset: IAsset): string {
-  return (asset.name ?? asset.english) ? `${asset.guid}: ${asset.name ?? asset.english}` : asset.guid;
-}
-
-export function uniqueAssetName(asset?: IAsset) {
+/** Try to get the best name: `english` > `name` > `guid`.
+ * Skip `english` for some templates, or when `name` is a shorter version of it. */
+export function english(asset?: IAsset) {
   if (!asset) {
-    return ''
+    return '';
   }
 
   if (!asset.english) {
@@ -54,11 +53,10 @@ export function uniqueAssetName(asset?: IAsset) {
   }
 
   return asset.english;
-
-  // return `${asset.english} (${asset.name})`;
 }
 
-export function assetNameWithOrigin(asset: IAsset | undefined, excludeMod?: string) {
+/** Get English (or name as fallback) with template and mod origin. */
+export function englishWithTemplate(asset: IAsset | undefined, excludeMod?: string) {
   if (!asset) {
     return '??';
   }
@@ -74,6 +72,19 @@ export function assetNameWithOrigin(asset: IAsset | undefined, excludeMod?: stri
   return text;
 }
 
+/** Get GUID with name (or English as fallback). */
+export function guidNamed(asset: IAsset): string {
+  return (asset.name ?? asset.english) ? `${asset.guid}: ${asset.name ?? asset.english}` : asset.guid;
+}
+
+/** Get template from asset, or base asset. */
+export function template(asset: IAsset): string | undefined {
+  if (!asset.template) {
+    SymbolRegistry.resolveTemplate(asset);
+  }
+  return asset.template;
+}
+
 export interface IPositionedElement {
   history: xmldoc.XmlElement[];
   element: xmldoc.XmlElement;
@@ -85,13 +96,29 @@ export class AssetsDocument {
   assets: { [index: string]: IAsset };
 
   lines: IPositionedElement[][];
+  readonly textLines: string[];
+  readonly lineCount: number;
+  readonly filePath: string | undefined;
 
-  constructor(content: xmldoc.XmlDocument, filePath?: string) {
+  public static from(text: string, filePath?: string) {
+    var xml: xmldoc.XmlDocument | undefined;
+    try {
+      xml = new xmldoc.XmlDocument(text);
+    }
+    catch {
+      return undefined;
+    }
+
+    return new AssetsDocument(xml, text.split(/\r\n|\r|\n/), filePath);
+  }
+
+  constructor(content: xmldoc.XmlDocument, lines: string[], filePath?: string) {
     const relevantNodes = new Set<string>(['ModOps', 'ModOp', 'Asset', 'Values', 'Standard', 'GUID']);
 
     this.content = content;
     this.assets = {};
     this.lines = [];
+    this.textLines = lines;
 
     const nodeStack: { history: xmldoc.XmlElement[], element: xmldoc.XmlNode }[] = [{ history: [], element: this.content }];
     while (nodeStack.length > 0) {
@@ -113,7 +140,7 @@ export class AssetsDocument {
 
           if (parent?.name === 'Standard' && name) {
             const location = (filePath && asset) ? {
-              filePath: vscode.Uri.file(filePath),
+              filePath,
               line: asset?.line ?? 0
             } : undefined;
 
@@ -140,6 +167,9 @@ export class AssetsDocument {
         // ignore
       }
     }
+
+    this.lineCount = this.lines.length;
+    this.filePath = filePath;
   }
 
   hasLine(line: number) {
@@ -151,6 +181,18 @@ export class AssetsDocument {
       this.lines.push([]);
     }
     return this.lines[line];
+  }
+
+  textLineAt(line: number) {
+    if (line < this.textLines.length) {
+      return '';
+    }
+    return this.textLines[line];
+  }
+
+  getLastElementInLine(line: number) {
+    const elements = this.getLine(line);
+    return elements[elements.length - 1];
   }
 
   getClosestElementLeft(line: number, position: number) {
