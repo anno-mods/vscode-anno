@@ -2,13 +2,13 @@
   {
     "matchWord": "190611",
     "message": "`190611` is deprecated and won't work with 'Captain of Industry' properly. Use `368` instead.",
-    "code": "game_buildings_with_maintenance",
+    "code": "game-buildings-with-maintenance",
     "fix": "368",
     "fixMessage": "Replace with `368`"
   },
   {
     "matchWord": "193879",
-    "code": "game_buildings_with_maintenance",
+    "code": "game-buildings-with-maintenance",
     "message": "`190611` is deprecated and won't work with 'Captain of Industry' properly. Use `368` instead.",
     "fix": "368",
     "fixMessage": "Replace with `368`"
@@ -16,7 +16,7 @@
   {
     "matchRegex": "(?<=(@\\d+))/Values",
     "message": "`/Values` is already part of @GUID.",
-    "code": "xpath_at_values",
+    "code": "xpath-at-values",
     "fix": "",
     "fixMessage": "Remove `/Values`"
   }

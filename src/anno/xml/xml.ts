@@ -68,3 +68,43 @@ export function firstLeafChild(parent: xmldoc.XmlElement) {
 
   return undefined;
 }
+
+/** Replace comments with spaces.
+ * @param inside true if previous line left comment open
+*/
+export function removeComments(line: string, inside: boolean): [string, boolean, string] {
+  let result = "";
+  let inverse = "";
+  let i = 0;
+
+  while (i < line.length) {
+    if (!inside) {
+      const start = line.indexOf("<!--", i);
+      if (start === -1) {
+        result += line.slice(i);
+        inverse += " ".repeat(line.length - i);
+        break;
+      }
+      result += line.slice(i, start) + " ".repeat(4);
+      inverse += " ".repeat(start - i + 4);
+      i = start + 4;
+      inside = true;
+    }
+    else {
+      const end = line.indexOf("-->", i);
+      if (end === -1) {
+        result += " ".repeat(line.length - i);
+        inverse += line.slice(i);
+        i = line.length;
+      }
+      else {
+        result += " ".repeat(end + 3 - i);
+        inverse += line.slice(i, end) + " ".repeat(3);
+        i = end + 3;
+        inside = false;
+      }
+    }
+  }
+
+  return [result, inside, inverse];
+}

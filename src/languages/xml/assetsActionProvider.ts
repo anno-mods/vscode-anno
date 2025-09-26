@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 import * as diagnostics from './diagnostics';
 import * as versionChecks from './versionChecks';
 import * as anno from '../../anno';
-import { ASSETS_FILENAME_PATTERN } from '../../anno/xml';
+import * as xml from '../../anno/xml';
 import * as rda from '../../data/rda';
 import * as editor from '../../editor';
 import * as utils from '../../utils';
@@ -13,8 +13,10 @@ import * as xmltest from '../../tools/xmltest';
 import * as editorFormats from '../../editor/formats';
 
 const GAME_PATH_117 = 'anno.117.gamePath';
+const XML_DOUBLE_DASH = 'xml-double-dash-in-comment';
+const XML_NESTED_COMMENT = 'xml-nested-comment';
 
-export const diagnosticsCollection = vscode.languages.createDiagnosticCollection("assets-xml");
+export const diagnosticsCollection = vscode.languages.createDiagnosticCollection('anno');
 const performanceDecorationType = vscode.window.createTextEditorDecorationType({});
 
 export class AssetsActionProvider {
@@ -23,7 +25,7 @@ export class AssetsActionProvider {
 
     const selector: vscode.DocumentSelector = [
       { language: 'anno-xml', scheme: 'file' },
-      { language: 'xml', scheme: 'file', pattern: ASSETS_FILENAME_PATTERN }
+      { language: 'xml', scheme: 'file', pattern: xml.ASSETS_FILENAME_PATTERN }
     ];
     return [
       diagnosticsCollection,
@@ -34,13 +36,13 @@ export class AssetsActionProvider {
   }
 }
 
-function checkFileName(modPaths: string[], line: vscode.TextLine, annoRda?: string) {
+function checkFileName(modPaths: string[], line: string, lineIndex: number, annoRda?: string) {
   const regEx = /<(Filename|FileName|IconFilename|RecipeImage|RecipeListMoodImage)>([^<]+)<\/\1>/g;
-  let match = regEx.exec(line.text);
+  let match = regEx.exec(line);
   let checked;
   if (match && (checked = anno.hasGraphicsFile(modPaths, match[2], annoRda)).length > 0) {
-    const index = line.text.indexOf(match[2]);
-    const range = new vscode.Range(line.lineNumber, index, line.lineNumber, index + match[2].length);
+    const index = line.indexOf(match[2]);
+    const range = new vscode.Range(lineIndex, index, lineIndex, index + match[2].length);
 
     const allPaths = annoRda ? [annoRda, ...modPaths] : modPaths;
 
@@ -84,19 +86,42 @@ export function refreshDiagnostics(context: vscode.ExtensionContext, doc: vscode
   const result: vscode.Diagnostic[] = [];
   result.push(...versionChecks.checkFilePaths(doc, version));
 
+  var inComment = false;
+
+  // line diagonstics
   const issues = diagnostics.issues();
   for (let lineIndex = 0; lineIndex < doc.lineCount; lineIndex++) {
     const lineOfText = doc.lineAt(lineIndex);
 
+    var line, comment;
+    [ line, inComment, comment ] = xml.removeComments(lineOfText.text, inComment);
+
+    if (comment.trim()) {
+      const [ problem, found ] = utils.indexOfFirst(comment, '<!--', '--');
+      if (problem >= 0) {
+        const range = new vscode.Range(lineIndex, problem, lineIndex, problem + found.length);
+        const diagnostic = new vscode.Diagnostic(range,
+          found === '--' ? 'The string "--" is not allowed within comments.' : 'Comments are not allowed within comments.',
+          vscode.DiagnosticSeverity.Error);
+        diagnostic.code = found === '--' ? XML_DOUBLE_DASH : XML_NESTED_COMMENT;
+        diagnostic.source = 'anno';
+        result.push(diagnostic);
+      }
+    }
+
+    if (!line.trim()) {
+      continue;
+    }
+
     for (var issue of issues) {
-      const detected = checkDiagnosticIssue(lineOfText.text, lineIndex, issue);
+      const detected = checkDiagnosticIssue(line, lineIndex, issue);
       if (detected) {
         result.push(detected);
       }
     }
 
     if (checkFileNames) {
-      const fileAction = checkFileName(modPaths, lineOfText, annoRda);
+      const fileAction = checkFileName(modPaths, line, lineIndex, annoRda);
       if (fileAction) {
         result.push(fileAction);
       }
@@ -134,6 +159,7 @@ function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
       `Path \`anno.${editor.getGamePathSetting({ uri: doc.uri, version })}\` is not configured. Please check your settings.`,
       vscode.DiagnosticSeverity.Warning);
     diagnostic.code = GAME_PATH_117;
+    diagnostic.source = 'anno';
     result.push(diagnostic);
     return [];
   }
@@ -144,6 +170,7 @@ function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
       `Patch target not found. Please check your gamePath / rdaFolder settings and content.\n${vanillaXml}`,
       vscode.DiagnosticSeverity.Warning);
     diagnostic.code = GAME_PATH_117;
+    diagnostic.source = 'anno';
     result.push(diagnostic);
     return [];
   }
@@ -179,6 +206,7 @@ function runXmlTest(context: vscode.ExtensionContext, doc: vscode.TextDocument,
 
         const diagnostic = new vscode.Diagnostic(range, issue.message,
           warning ? vscode.DiagnosticSeverity.Warning : vscode.DiagnosticSeverity.Error);
+        diagnostic.source = 'anno';
         result.push(diagnostic);
       }
     }
@@ -194,6 +222,7 @@ function checkDiagnosticIssue(textLine: string, lineIndex: number, issue: diagno
     const range = new vscode.Range(lineIndex, index, lineIndex, index + issue.matchWord.length);
     const diagnostic = new vscode.Diagnostic(range, issue.message, vscode.DiagnosticSeverity.Error);
     diagnostic.code = issue.code;
+    diagnostic.source = 'anno';
     return diagnostic;
   }
   else if (issue.matchRegex) {
@@ -203,6 +232,7 @@ function checkDiagnosticIssue(textLine: string, lineIndex: number, issue: diagno
       const range = new vscode.Range(lineIndex, index, lineIndex, index + match[0].length);
       const diagnostic = new vscode.Diagnostic(range, issue.message, vscode.DiagnosticSeverity.Error);
       diagnostic.code = issue.code;
+      diagnostic.source = 'anno';
       return diagnostic;
     }
   }
