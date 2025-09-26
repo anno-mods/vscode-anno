@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import { AssetsSymbolProvider } from './assetsOutlineProvider';
+import { AssetsSymbolProvider } from './outline';
 import { AssetsActionProvider } from './assetsActionProvider';
 import { registerFolding } from './folding';
 import { registerFormatter } from './formatter';

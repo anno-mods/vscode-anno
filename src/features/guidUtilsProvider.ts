@@ -8,7 +8,7 @@ import { SymbolRegistry } from '../data/symbols';
 import * as editor from '../editor';
 import * as editorFormats from '../editor/formats';
 import * as text from '../editor/text';
-import { AssetsTocProvider } from '../languages/xml/assetsTocProvider';
+import { AssetsTocProvider } from '../languages/xml/outline';
 import { AllGuidCompletionItems, GuidCompletionItems } from './guidCompletionItems';
 
 let assetsDocument: xml.AssetsDocument | undefined;

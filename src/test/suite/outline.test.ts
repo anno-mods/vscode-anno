@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 
-import { AssetsTocProvider } from '../../languages/xml/assetsTocProvider';
+import { AssetsTocProvider } from '../../languages/xml/outline';
 import { AssetsDocument } from '../../anno/xml';
 
 const text = `<ModOps>
