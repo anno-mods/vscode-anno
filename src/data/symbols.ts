@@ -125,7 +125,6 @@ export namespace SymbolRegistry {
   function _readGuidsFromText(text: string, filePath: string, modinfo: anno.ModInfo)
   {
     var xmlContent;
-    var lines = text.split(/\r\n|\r|\n/);
     try {
       xmlContent = new xmldoc.XmlDocument(text);
     }
@@ -134,12 +133,12 @@ export namespace SymbolRegistry {
       return;
     }
 
-    _readGuidsFromXmlContent(xmlContent, lines, filePath, modinfo);
+    _readGuidsFromXmlContent(xmlContent, text, filePath, modinfo);
   }
 
-  function _readGuidsFromXmlContent(xmlContent: xmldoc.XmlDocument, lines: string[], filePath: string, modinfo: anno.ModInfo)
+  function _readGuidsFromXmlContent(xmlContent: xmldoc.XmlDocument, text: string, filePath: string, modinfo: anno.ModInfo)
   {
-    let assetsDocument = new AssetsDocument(xmlContent, lines, filePath);
+    let assetsDocument = new AssetsDocument(xmlContent, text, filePath);
     registerAll(Object.values(assetsDocument.assets), modinfo.game, modinfo.id);
   }
 
@@ -165,10 +164,9 @@ export namespace SymbolRegistry {
       }
 
       var xmlContent: xmldoc.XmlDocument;
-      var lines: string[];
+      var fileContent: string;
       try {
-        const fileContent = fs.readFileSync(vanillaPath, 'utf8');
-        lines = fileContent.split(/\r\n|\r|\n/);
+        fileContent = fs.readFileSync(vanillaPath, 'utf8');
         xmlContent = new xmldoc.XmlDocument(fileContent);
       }
       catch {
@@ -177,7 +175,7 @@ export namespace SymbolRegistry {
         return;
       }
 
-      let assetsDocument = new AssetsDocument(xmlContent, lines, vanillaPath);
+      let assetsDocument = new AssetsDocument(xmlContent, fileContent, vanillaPath);
 
       for (var guid of Object.keys(assetsDocument.assets)) {
         assetsDocument.assets[guid].location = undefined;

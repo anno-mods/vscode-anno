@@ -125,8 +125,7 @@ export function activate(context: vscode.ExtensionContext) {
       { language: 'xml', scheme: 'file', pattern: ASSETS_FILENAME_PATTERN },
       { language: 'anno-xml', scheme: 'annoasset8' },
       { language: 'anno-xml', scheme: 'annoasset7' },
-      { language: 'anno-xml', scheme: 'annodiff8' },
-      { language: 'anno-xml', scheme: 'annodiff7' },
+      { language: 'anno-xml', scheme: 'annodiff' }
     ];
 
   context.subscriptions.push(

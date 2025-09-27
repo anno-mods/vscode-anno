@@ -1,6 +1,7 @@
 import * as xmldoc from 'xmldoc';
 
 import { SymbolRegistry } from '../../data/symbols';
+import * as utils from '../../utils';
 
 export const ASSETS_FILENAME_PATTERN_STRICT = '**/{assets*,*.include,game/asset/**/*}.xml';
 export const ASSETS_FILENAME_PATTERN = '**/{assets*,*.include,game/asset/**/*,templates,tests/*-input,tests/*-expectation,gui/texts_*,.modcache/*-patched,export.bin,*.fc,*.cfg}.xml';
@@ -96,9 +97,9 @@ export class AssetsDocument {
   assets: { [index: string]: IAsset };
 
   lines: IPositionedElement[][];
-  readonly textLines: string[];
-  readonly lineCount: number;
-  readonly filePath: string | undefined;
+  public readonly textLines: utils.TextLines;
+  public readonly lineCount: number;
+  public readonly filePath: string | undefined;
 
   public static from(text: string, filePath?: string) {
     var xml: xmldoc.XmlDocument | undefined;
@@ -109,27 +110,28 @@ export class AssetsDocument {
       return undefined;
     }
 
-    return new AssetsDocument(xml, text.split(/\r\n|\r|\n/), filePath);
+    return new AssetsDocument(xml, text, filePath);
   }
 
-  constructor(content: xmldoc.XmlDocument, lines: string[], filePath?: string) {
+  constructor(content: xmldoc.XmlDocument, text: string, filePath?: string) {
     const relevantNodes = new Set<string>(['ModOps', 'ModOp', 'Asset', 'Values', 'Standard', 'GUID']);
 
     this.content = content;
     this.assets = {};
     this.lines = [];
-    this.textLines = lines;
+    this.textLines = new utils.TextLines(text);
+    this.lineCount = this.textLines.length;
 
     const nodeStack: { history: xmldoc.XmlElement[], element: xmldoc.XmlNode }[] = [{ history: [], element: this.content }];
     while (nodeStack.length > 0) {
       const top = nodeStack.pop();
       if (top?.element.type === 'element' /*&& relevantNodes.has(top.element.name)*/) {
-        const column = top.element.column - (top.element.position - top.element.startTagPosition + 1);
+        const position = this.textLines.positionAt(top.element.startTagPosition - 1);
 
-        this.getLine(top.element.line).push({
+        this.getLine(position.line).push({
           history: top.history.slice(),
           element: top.element,
-          column
+          column: position.column
         });
 
         if (top.element.name === 'GUID') {
@@ -168,8 +170,12 @@ export class AssetsDocument {
       }
     }
 
-    this.lineCount = this.lines.length;
     this.filePath = filePath;
+
+    if (this.lines.length > this.textLines.length) {
+      // Oh noes!
+      throw "AssetsDocument (this.lineCount != this.textLines.length): " + filePath;
+    }
   }
 
   hasLine(line: number) {
@@ -184,10 +190,7 @@ export class AssetsDocument {
   }
 
   textLineAt(line: number) {
-    if (line < this.textLines.length) {
-      return '';
-    }
-    return this.textLines[line];
+    return this.textLines.lineAt(line) ?? '';
   }
 
   getLastElementInLine(line: number) {
