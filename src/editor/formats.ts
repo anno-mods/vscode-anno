@@ -30,6 +30,10 @@ export function isAssetsXml(document: vscode.TextDocument): boolean {
 }
 
 export function allowLiveValidation(document: vscode.TextDocument): boolean {
+  if (document.uri.scheme !== 'file') {
+    return false;
+  }
+
   const config = vscode.workspace.getConfiguration('anno', document.uri);
 
   return (document.languageId ==='anno-xml' || minimatch(document.fileName, PATCH_FILENAME_PATTERN_STRICT, { dot: true }))
