@@ -18,7 +18,7 @@ interface MarkdownSymbol {
 interface INodeStackNode {
   depth: number;
   element: xmldoc.XmlNode;
-  property: boolean
+  leaf: boolean
 }
 
 export class AssetsSymbolProvider {
@@ -26,8 +26,9 @@ export class AssetsSymbolProvider {
 		const selector: vscode.DocumentSelector = [
 			{ language: 'anno-xml', scheme: 'file' },
 			{ language: 'xml', scheme: 'file', pattern: xml.ASSETS_FILENAME_PATTERN },
-      { language: 'xml', scheme: 'annodiff' },
-      { language: 'anno-xml', scheme: 'annodiff' },
+      { scheme: 'annodiff' },
+      { scheme: 'annoasset7' },
+      { scheme: 'annoasset8' }
 		];
 
     const symbolProvider = new AssetsSymbolProvider();
@@ -99,7 +100,6 @@ export interface TocEntry {
   detail: string;
   guid?: string;
   level: number;
-  readonly line: number;
   readonly range: vscode.Range;
   // readonly selection: vscode.Range;
   readonly symbol: vscode.SymbolKind;
@@ -213,18 +213,18 @@ export class AssetsTocProvider {
     return element.children ? element.children.filter((e) => e.type === 'element' || e.type === 'comment') : [];
   }
 
-  private _addChildren(current: INodeStackNode, isLeaf: boolean, stack: INodeStackNode[]) {
+  private _addChildren(current: INodeStackNode, leaf: boolean, stack: INodeStackNode[]) {
     if (current.element.type !== 'element') {
       return 0;
     }
 
     const depth = current.depth;
     const children = this._getNonTextChildren(current.element).map((e) => (
-      { depth: depth + 1, element: e, property: isLeaf }
+      { depth: depth + 1, element: e, leaf }
     ));
 
     // stop going deeper after parent was ModOp (aka this is property)
-    if (children.length > 0 && !current.property) {
+    if (children.length > 0 && !current.leaf) {
       stack.push(...children.reverse());
       return children.length;
     }
@@ -255,17 +255,14 @@ export class AssetsTocProvider {
   }
 
   private _buildToc(): TocEntry[] | undefined {
-    if (!this._doc || !this._doc?.content || !this._doc.filePath) {
+    if (!this._doc || !this._doc?.content) {
       return undefined;
     }
 
-    const uri = vscode.Uri.file(this._doc.filePath);
     var toc: TocEntry[] = [];
 
     const relevantSections: { [index: string]: any } = {
       /* eslint-disable @typescript-eslint/naming-convention */
-      // 'ModOps': { symbol: vscode.SymbolKind.Number },
-      // 'Assets': { symbol: vscode.SymbolKind.Number },
       'ModOp': { symbol: vscode.SymbolKind.Class, isLeaf: true },
       'Group': { symbol: vscode.SymbolKind.Module },
       'Asset': { symbol: vscode.SymbolKind.Function, needsChildren: true },
@@ -280,7 +277,16 @@ export class AssetsTocProvider {
 
     const nodeStack: INodeStackNode[] = [];
     if (this._doc.content.name === 'ModOps' || this._doc.content.name === 'Assets') {
-      this._addChildren({ depth: 0, element: this._doc.content, property: false }, false, nodeStack);
+      // ModOps: standard patch XML
+      // Assets: show diff
+      this._addChildren({ depth: 0, element: this._doc.content, leaf: false }, false, nodeStack);
+    }
+    else if (this._doc.content.name === 'Asset') {
+      // Asset: show definition of vanilla asset
+      const values = this._doc.content.childNamed('Values');
+      if (values) {
+        this._addChildren({ depth: 0, element: values, leaf: false }, true, nodeStack);
+      }
     }
 
     for (let top = nodeStack.pop(); top; top = nodeStack.pop()) {
@@ -305,13 +311,12 @@ export class AssetsTocProvider {
         }
 
         // open ModOp section
-        if (sectionComment && tocRelevant) {
+        if (sectionComment) {
           const line = this._findCommentUp(this._doc, top.element.line, sectionComment);
           toc.push({
             text: sectionComment,
             detail: '',
             level: top.depth - 1,
-            line,
             range: new vscode.Range(line, 0, line, 1),
             symbol: vscode.SymbolKind.Number
           });
@@ -319,26 +324,22 @@ export class AssetsTocProvider {
         }
 
         // check if relevant, also ignore simple items
-        if (tocRelevant || top.property) {
+        if (tocRelevant || top.leaf) {
           if (tocRelevant) {
             this._addChildren(top, tocRelevant.isLeaf, nodeStack);
           }
 
-          // TODO tagStartColumn is 0 for multiline tags, not correct but ...
-          // const line = (groupComment && top.element.name === 'Group') ? this._findCommentUp(this._doc, top.element.line, groupComment) : top.element.line;
-
           var symbol = tocRelevant?.symbol ?? vscode.SymbolKind.String;
           const range = this._elementRangeName(top.element, this._doc);
-          const line = range.start.line;
 
           // Text below ModOp
-          if (top.element.name === 'Text' && top.property && top.element.childNamed('Text')) {
+          if (top.element.name === 'Text' && top.leaf && top.element.childNamed('Text')) {
             const text = utils.ellipse(top.element.childNamed('Text')?.val, 35);
 
             toc.push({
               text: text || 'Text',
               detail: '',
-              level: top.depth, line,
+              level: top.depth,
               guid: undefined,
               range,
               symbol: vscode.SymbolKind.Key
@@ -349,7 +350,7 @@ export class AssetsTocProvider {
             toc.push({
               text: top.element.childNamed('Name')?.val || '<template>',
               detail: 'Template',
-              level: top.depth, line,
+              level: top.depth,
               guid: undefined,
               range,
               symbol: vscode.SymbolKind.TypeParameter
@@ -368,13 +369,13 @@ export class AssetsTocProvider {
             toc.push({
               text: this._getName(top.element, groupComment),
               detail: this._getDetail(top.element),
-              level: top.depth, line,
+              level: top.depth,
               guid: xml.getAssetGUID(top.element),
               range, symbol
             });
           }
           // Non-Asset below ModOp
-          else if (top.property && top.element && top.element.name !== 'Asset') {
+          else if (top.leaf && top.element && top.element.name !== 'Asset') {
             // try to get name from Item/ModItem first
             var name: string | undefined = undefined;
             if (top.element.name === 'Item' || top.element.name === 'ModItem') {
@@ -388,7 +389,7 @@ export class AssetsTocProvider {
             toc.push({
               text: name || top.element.name,
               detail: name ? top.element.name : '',
-              level: top.depth, line, guid: undefined, range,
+              level: top.depth, guid: undefined, range,
               symbol: vscode.SymbolKind.Field
             });
           }
@@ -397,7 +398,7 @@ export class AssetsTocProvider {
             toc.push({
               text: this._getName(top.element),
               detail: this._getDetail(top.element),
-              level: top.depth, line, guid: undefined, range, symbol
+              level: top.depth, guid: undefined, range, symbol
             });
           }
           // anything else
@@ -406,7 +407,7 @@ export class AssetsTocProvider {
             toc.push({
               text: this._getName(top.element, groupComment),
               detail: this._getDetail(top.element),
-              level: top.depth, line,
+              level: top.depth,
               guid: xml.getAssetGUID(top.element),
               range, symbol
             });
@@ -460,7 +461,7 @@ export class AssetsTocProvider {
       let end: number | undefined = undefined;
       for (let i = startIndex + 1; i < toc.length; ++i) {
         if (toc[i].level <= entry.level) {
-          end = toc[i].line - 1;
+          end = toc[i].range.start.line - 1;
           break;
         }
       }
