@@ -108,3 +108,14 @@ export function removeComments(line: string, inside: boolean): [string, boolean,
 
   return [result, inside, inverse];
 }
+
+export function getInvalidAttributes(element: xmldoc.XmlElement, allowed: (string | { name: string })[]) {
+  const result: string[] = [];
+  for (const attrib of Object.keys(element.attr)) {
+    if (!allowed.find(e => (e as {name:string})?.name === attrib || e === attrib)) {
+      result.push(attrib);
+    }
+  }
+
+  return result;
+}

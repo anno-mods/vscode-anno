@@ -14,6 +14,7 @@ import * as editorFormats from '../../../editor/formats';
 import * as issues7 from './issues7.json';
 import * as issues8 from './issues8.json';
 import { StaticAnalysis } from '../analyzer';
+import * as modops from '../modops';
 
 export function getIssues(): IIssueDescription[] {
   return editor.ModContext.get().version === anno.GameVersion.Anno7 ? issues7 : issues8;
@@ -126,6 +127,21 @@ function _checkModOps(element: xmldoc.XmlElement, assetsDocument: xml.AssetsDocu
         target: vscode.Uri.parse('https://jakobharder.github.io/anno-mod-loader/modops/')
       }
       result.push(diagnostic);
+    }
+
+    const config = modops.getTagInfos()[modop.name];
+    if (config && config.code && config.url) {
+      const invalidAttributes = xml.getInvalidAttributes(modop, config.attributes);
+      for (const attrib of invalidAttributes) {
+        const range = text.getAttributeNameRange(modop, attrib, assetsDocument);
+        const diagnostic = new vscode.Diagnostic(range, `Attribute \`${attrib}\` is not allowed.`, vscode.DiagnosticSeverity.Error);
+        diagnostic.source = 'anno';
+        diagnostic.code = {
+          value: config.code,
+          target: vscode.Uri.parse(config.url)
+        }
+        result.push(diagnostic);
+      }
     }
   }
 }

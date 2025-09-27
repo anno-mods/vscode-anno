@@ -6,19 +6,37 @@
         "name": "MaxRepeat",
         "values": [ "10", "20", "30" ],
         "autoSuggest": true
+      },
+      {
+        "name": "Skip",
+        "hidden": true
       }
-    ]
+    ],
+    "code": "modop-group-invalid-attribut",
+    "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#group"
   },
   "Include": {
     "attributes": [
       "File",
-      "Condition"
-    ]
+      "Condition",
+      {
+        "name": "Skip",
+        "hidden": true
+      }
+    ],
+    "code": "modop-include-invalid-attribut",
+    "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#include"
   },
   "Asset": {
     "attributes": [
-      "Condition"
-    ]
+      "Condition",
+      {
+        "name": "Skip",
+        "hidden": true
+      }
+    ],
+    "code": "modop-asset-invalid-attribut",
+    "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#group"
   },
   "ModOp": {
     "attributes": [
@@ -92,7 +110,13 @@
         "conflicts": [ "Condition" ],
         "insert": "AllowNowMatch=\"1\"",
         "sort": "31"
+      },
+      {
+        "name": "Skip",
+        "hidden": true
       }
-    ]
+    ],
+    "code": "modop-invalid-attribut",
+    "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#group"
   }
 }

@@ -2,25 +2,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 
+import * as modops from './modops';
 import * as anno from '../../anno';
 import { GuidCounter } from '../../features/guidCounter';
 import * as text from '../../editor/text';
 import { SymbolRegistry } from '../../data/symbols';
-
-import * as assets7 from './autoCompleteAssets7.json';
-
-interface IAutoCompleteAttributeInfo {
-  name: string
-  requires?: string[]
-  conflicts?: string[]
-  insert?: string
-  sort?: string
-  values?: string[]
-  autoSuggest?: boolean
-}
-interface IAutoCompleteTagInfo {
-  attributes: (string | IAutoCompleteAttributeInfo)[]
-}
 
 function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenClosePosition) {
   const startingBracket = skipOpenBracket ? '' : '<';
@@ -115,7 +101,7 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
 }
 
 function getModOpAttributeCompletion(nodeInfo: text.XmlPosition) {
-  const dict = assets7 as Record<string, IAutoCompleteTagInfo>;
+  const dict = modops.getTagInfos();
   const tagInfo = nodeInfo?.tag as string ? dict[nodeInfo.tag as string] : undefined;
 
   if (tagInfo) {
@@ -133,10 +119,10 @@ function getModOpAttributeCompletion(nodeInfo: text.XmlPosition) {
         item.insertText = new vscode.SnippetString(`${attribute}="$0"`);
         items.push(item);
       }
-      else if (typeof attribute === 'object' && attribute as IAutoCompleteAttributeInfo) {
-        const complex = attribute as IAutoCompleteAttributeInfo;
-
-        if (nodeInfo.attributes && nodeInfo.attributes.find(x => x === complex.name)) {
+      else if (typeof attribute === 'object' && attribute as modops.IModOpAttributeInfo) {
+        const complex = attribute as modops.IModOpAttributeInfo;
+        if (complex.hidden || nodeInfo.attributes && nodeInfo.attributes.find(x => x === complex.name)) {
+          // do not show hidden
           // do not allow duplicate attributes
           continue;
         }
@@ -188,7 +174,7 @@ function getModOpAttributeCompletion(nodeInfo: text.XmlPosition) {
 }
 
 function getModOpAttributeValueCompletion(nodeInfo: text.XmlPosition, document: vscode.TextDocument, position: vscode.Position) {
-  const dict = assets7 as Record<string, IAutoCompleteTagInfo>;
+  const dict = modops.getTagInfos();
   const tagInfo = nodeInfo?.tag as string ? dict[nodeInfo.tag as string] : undefined;
   if (!tagInfo) {
     return [];
@@ -197,7 +183,7 @@ function getModOpAttributeValueCompletion(nodeInfo: text.XmlPosition, document: 
   const items: vscode.CompletionItem[] = [];
 
   for (const attribute of tagInfo.attributes) {
-    if (typeof attribute === 'object' && attribute as IAutoCompleteAttributeInfo) {
+    if (typeof attribute === 'object' && attribute as modops.IModOpAttributeInfo) {
       if (attribute.name === nodeInfo.attribute && attribute.values) {
         for (const val of attribute.values) {
           const item = new vscode.CompletionItem({
