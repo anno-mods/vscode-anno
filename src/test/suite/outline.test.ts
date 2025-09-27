@@ -2,6 +2,7 @@ import * as assert from 'assert';
 
 import { AssetsTocProvider } from '../../languages/xml/outline';
 import { AssetsDocument } from '../../anno/xml';
+import { GameVersion } from '../../anno';
 
 const text = `<ModOps>
   <ModOp Type="add">
@@ -20,7 +21,7 @@ const text = `<ModOps>
 suite('outline tests', () => {
   test('template names', async () => {
 
-    const provider = new AssetsTocProvider(AssetsDocument.from(text));
+    const provider = new AssetsTocProvider(AssetsDocument.from(text, GameVersion.Anno7));
     const toc = provider.getToc();
 
     assert.strictEqual(toc ? toc[1].text : undefined, "add");
@@ -38,7 +39,7 @@ suite('outline tests', () => {
       <Include />
     </ModOps>`;
 
-    const provider = new AssetsTocProvider(AssetsDocument.from(text));
+    const provider = new AssetsTocProvider(AssetsDocument.from(text, GameVersion.Anno7));
     const toc = provider.getToc();
 
     assert.strictEqual(toc ? toc[0].text : undefined, "Section 1");
@@ -59,7 +60,7 @@ suite('outline tests', () => {
       </Group>
     </ModOps>`;
 
-    const provider = new AssetsTocProvider(AssetsDocument.from(text));
+    const provider = new AssetsTocProvider(AssetsDocument.from(text, GameVersion.Anno7));
     const toc = provider.getToc();
 
     assert.strictEqual(toc ? toc[0].text : undefined, "Lists");

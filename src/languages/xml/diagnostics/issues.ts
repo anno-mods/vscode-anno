@@ -129,7 +129,7 @@ function _checkModOps(element: xmldoc.XmlElement, assetsDocument: xml.AssetsDocu
       result.push(diagnostic);
     }
 
-    const config = modops.getTagInfos()[modop.name];
+    const config = modops.getTagInfos(assetsDocument.gameVersion)[modop.name];
     if (config && config.code && config.url) {
       const invalidAttributes = xml.getInvalidAttributes(modop, config.attributes);
       for (const attrib of invalidAttributes) {

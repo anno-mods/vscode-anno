@@ -124,7 +124,7 @@ export namespace SymbolRegistry {
 
   function _readGuidsFromText(text: string, filePath: string, modinfo: anno.ModInfo)
   {
-    const assetsDocument = AssetsDocument.from(text, filePath, true);
+    const assetsDocument = AssetsDocument.from(text, modinfo.game, filePath, true);
     if (!assetsDocument) {
       // be quiet, this happens a lot during typing
       return;
@@ -153,7 +153,7 @@ export namespace SymbolRegistry {
         return;
       }
 
-      const assetsDocument = AssetsDocument.from(fs.readFileSync(vanillaPath, 'utf8'), vanillaPath, true);
+      const assetsDocument = AssetsDocument.from(fs.readFileSync(vanillaPath, 'utf8'), version, vanillaPath, true);
       if (!assetsDocument) {
         logger.errorMessage(`Can't parse \`${vanillaPath}\`. GUID lookup will not work properly.`);
         // don't retry. you need to change gamePath to reset

@@ -4,6 +4,7 @@ import * as decorations from './decorations';
 import * as diagnostics from './diagnostics';
 import * as life from './diagnostics/life';
 import * as xml from '../../anno/xml';
+import * as editor from '../../editor';
 import * as editorFormats from '../../editor/formats';
 
 export interface StaticAnalysis {
@@ -96,7 +97,7 @@ export function activate(context: vscode.ExtensionContext) {
       return {
         version: document.version,
         document,
-        assets: xml.AssetsDocument.from(document.getText(), document.uri.fsPath, false)
+        assets: xml.AssetsDocument.from(document.getText(), editor.ModContext.getVersion(), document.uri.fsPath, false)
        };
     },
     (uri: vscode.Uri) => { diagnostics.clear(uri); }

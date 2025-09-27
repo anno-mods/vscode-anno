@@ -1,6 +1,8 @@
+import * as path from 'path';
 import * as sax from "sax";
 import * as xmldoc from 'xmldoc';
 
+import { GameVersion } from '../../anno';
 import { SymbolRegistry } from '../../data/symbols';
 import * as utils from '../../utils';
 
@@ -18,6 +20,30 @@ export interface IAsset {
     line: number;
   }
   baseAsset?: string;
+}
+
+export type PatchType = 'assets' | 'templates' | 'infotips' | 'texts' | 'generic';
+
+export function getPatchType(filePath?: string): PatchType {
+  if (!filePath) {
+    return 'generic';
+  }
+  if (path.basename(filePath) === 'assets.xml' || filePath.endsWith('.include.xml')) {
+    return 'assets';
+  }
+
+  const type = path.basename(path.dirname(filePath));
+  if (type === 'gui') {
+    return 'texts';
+  }
+  else if (type === 'infotips') {
+    return 'infotips'
+  }
+  else if (type === 'templates.xml') {
+    return 'templates';
+  }
+
+  return 'generic';
 }
 
 /** Try to get the best name: `english` > `name` > `guid`.
@@ -102,7 +128,10 @@ export class AssetsDocument {
   public readonly lineCount: number;
   public readonly filePath: string | undefined;
 
-  public static from(text: string, filePath?: string, fast: boolean = false) {
+  public readonly type: PatchType;
+  public readonly gameVersion: GameVersion;
+
+  public static from(text: string, game: GameVersion, filePath?: string, fast: boolean = false) {
     var xml: xmldoc.XmlDocument | undefined;
     try {
       xml = new xmldoc.XmlDocument(text);
@@ -111,19 +140,22 @@ export class AssetsDocument {
       return undefined;
     }
 
-    const doc = new AssetsDocument(xml, text, filePath);
+    const doc = new AssetsDocument(xml, text, game, filePath);
     if (!fast) {
       doc.indexCloseEnds(text, xml);
     }
     return doc;
   }
 
-  private constructor(content: xmldoc.XmlDocument, text: string, filePath?: string) {
+  private constructor(content: xmldoc.XmlDocument, text: string, game: GameVersion, filePath?: string) {
     this.content = content;
     this.assets = {};
     this.lines = [];
     this.textLines = new utils.TextLines(text);
     this.lineCount = this.textLines.length;
+
+    this.type = getPatchType(filePath);
+    this.gameVersion = game;
 
     const nodeStack: { history: xmldoc.XmlElement[], element: xmldoc.XmlNode }[] = [{ history: [], element: this.content }];
     while (nodeStack.length > 0) {

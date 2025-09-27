@@ -5,10 +5,12 @@ import * as vscode from 'vscode';
 import * as modops from './modops';
 import * as anno from '../../anno';
 import { GuidCounter } from '../../features/guidCounter';
+import * as editor from '../../editor';
 import * as text from '../../editor/text';
 import { SymbolRegistry } from '../../data/symbols';
+import { AssetsDocument } from '../../anno/xml';
 
-function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenClosePosition) {
+function getModOpCompletion(gameVersion: anno.GameVersion, skipOpenBracket: boolean, nextOpenClose?: text.OpenClosePosition) {
   const startingBracket = skipOpenBracket ? '' : '<';
   const close = nextOpenClose?.character === '<' || nextOpenClose === undefined;
 
@@ -16,64 +18,65 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
     return [];
   }
 
-  // TODO // getAutoComplete should know if it's tag, attribute, value, XPath, ...
-  const add = new vscode.CompletionItem({
-    label: `ModOp Add`,
-    description: `Adds the content at the end insider of the selection`,
-  }, vscode.CompletionItemKind.Property);
-  add.insertText = new vscode.SnippetString(`${startingBracket}ModOp Add="$0">\n</ModOp>`);
-  add.sortText = `12`;
-  const remove = new vscode.CompletionItem({
-    label: `ModOp Remove`,
-    description: `Removes the selected elements`,
-  }, vscode.CompletionItemKind.Property);
-  remove.sortText = `15`;
-  remove.insertText = new vscode.SnippetString(`${startingBracket}ModOp Remove="$0" />`);
-  const append = new vscode.CompletionItem({
-    label: `ModOp Append`,
-    detail: ` aka addNextSibling`,
-    description: `Adds the content after the selection`,
-  }, vscode.CompletionItemKind.Property);
-  append.insertText = new vscode.SnippetString(`${startingBracket}ModOp Append="$0">\n</ModOp>`);
-  const prepend = new vscode.CompletionItem({
-    label: `ModOp Prepend`,
-    detail: ` aka addPrevSibling`,
-    description: `Adds the content before the selection`,
-  }, vscode.CompletionItemKind.Property);
-  append.sortText = `13`;
-  prepend.insertText = new vscode.SnippetString(`${startingBracket}ModOp Prepend="$0">\n</ModOp>`);
-  const replace = new vscode.CompletionItem({
-    label: `ModOp Replace`,
-    description: `Replaces the selected element`,
-  }, vscode.CompletionItemKind.Property);
-  prepend.sortText = `14`;
-  replace.insertText = new vscode.SnippetString(`${startingBracket}ModOp Replace="$0">\n</ModOp>`);
-  replace.sortText = `10`;
-  const merge = new vscode.CompletionItem({
-    label: `ModOp Merge`,
-    description: `Adds the content, or replaces it if it already exists`,
-  }, vscode.CompletionItemKind.Property);
-  merge.insertText = new vscode.SnippetString(`${startingBracket}ModOp Merge="$0">\n</ModOp>`);
-  merge.sortText = `11`;
+  if (gameVersion === anno.GameVersion.Anno8) {
+    // TODO // getAutoComplete should know if it's tag, attribute, value, XPath, ...
+    const add = new vscode.CompletionItem({
+      label: `ModOp Add`,
+      description: `Adds the content at the end insider of the selection`,
+    }, vscode.CompletionItemKind.Property);
+    add.insertText = new vscode.SnippetString(`${startingBracket}ModOp Add="$0">\n</ModOp>`);
+    add.sortText = `12`;
+    const remove = new vscode.CompletionItem({
+      label: `ModOp Remove`,
+      description: `Removes the selected elements`,
+    }, vscode.CompletionItemKind.Property);
+    remove.sortText = `15`;
+    remove.insertText = new vscode.SnippetString(`${startingBracket}ModOp Remove="$0" />`);
+    const append = new vscode.CompletionItem({
+      label: `ModOp Append`,
+      detail: ` aka addNextSibling`,
+      description: `Adds the content after the selection`,
+    }, vscode.CompletionItemKind.Property);
+    append.insertText = new vscode.SnippetString(`${startingBracket}ModOp Append="$0">\n</ModOp>`);
+    const prepend = new vscode.CompletionItem({
+      label: `ModOp Prepend`,
+      detail: ` aka addPrevSibling`,
+      description: `Adds the content before the selection`,
+    }, vscode.CompletionItemKind.Property);
+    append.sortText = `13`;
+    prepend.insertText = new vscode.SnippetString(`${startingBracket}ModOp Prepend="$0">\n</ModOp>`);
+    const replace = new vscode.CompletionItem({
+      label: `ModOp Replace`,
+      description: `Replaces the selected element`,
+    }, vscode.CompletionItemKind.Property);
+    prepend.sortText = `14`;
+    replace.insertText = new vscode.SnippetString(`${startingBracket}ModOp Replace="$0">\n</ModOp>`);
+    replace.sortText = `10`;
+    const merge = new vscode.CompletionItem({
+      label: `ModOp Merge`,
+      description: `Adds the content, or replaces it if it already exists`,
+    }, vscode.CompletionItemKind.Property);
+    merge.insertText = new vscode.SnippetString(`${startingBracket}ModOp Merge="$0">\n</ModOp>`);
+    merge.sortText = `11`;
 
-  const include = new vscode.CompletionItem({
-    label: `Include`,
-    description: `Includes ModOps from another XML file`
-  }, vscode.CompletionItemKind.Property);
-  include.insertText = new vscode.SnippetString(`${startingBracket}Include File="$0" />`);
+    const include = new vscode.CompletionItem({
+      label: `Include`,
+      description: `Includes ModOps from another XML file`
+    }, vscode.CompletionItemKind.Property);
+    include.insertText = new vscode.SnippetString(`${startingBracket}Include File="$0" />`);
 
-  const group = new vscode.CompletionItem({
-    label: `Group`,
-    description: `Groups multiple ModOps`
-  }, vscode.CompletionItemKind.Property);
-  group.insertText = new vscode.SnippetString(`${startingBracket}Group>\n  $0\n</Group>`);
+    const group = new vscode.CompletionItem({
+      label: `Group`,
+      description: `Groups multiple ModOps`
+    }, vscode.CompletionItemKind.Property);
+    group.insertText = new vscode.SnippetString(`${startingBracket}Group>\n  $0\n</Group>`);
 
-  const asset = new vscode.CompletionItem({
-    label: `Asset`,
-    detail: ` template`,
-    description: `Adds an asset using \`Template\``
-  }, vscode.CompletionItemKind.Property);
-  asset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
+    const asset = new vscode.CompletionItem({
+      label: `Asset`,
+      detail: ` template`,
+      description: `Adds an asset using \`Template\``
+    }, vscode.CompletionItemKind.Property);
+    asset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
   <Template>$0</Template>
   <Values>
     <Standard>
@@ -82,12 +85,12 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
     </Standard>
   </Values>
 </Asset>`);
-  const baseAsset = new vscode.CompletionItem({
-    label: `Asset`,
-    detail: ` base asset`,
-    description: `Adds an asset using \`BaseAssetGUID\``
-  }, vscode.CompletionItemKind.Property);
-  baseAsset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
+    const baseAsset = new vscode.CompletionItem({
+      label: `Asset`,
+      detail: ` base asset`,
+      description: `Adds an asset using \`BaseAssetGUID\``
+    }, vscode.CompletionItemKind.Property);
+    baseAsset.insertText = new vscode.SnippetString(`${startingBracket}Asset>
   <BaseAssetGUID>$0</BaseAssetGUID>
   <Values>
     <Standard>
@@ -97,11 +100,33 @@ function getModOpCompletion(skipOpenBracket: boolean, nextOpenClose?: text.OpenC
   </Values>
 </Asset>`);
 
-  return [ add, append, prepend, replace, merge, remove, include, group, asset, baseAsset ];
+    return [ add, append, prepend, replace, merge, remove, include, group, asset, baseAsset ];
+  }
+  else {
+    const modop = new vscode.CompletionItem({
+      label: `ModOp`,
+    }, vscode.CompletionItemKind.Property);
+    modop.insertText = new vscode.SnippetString(`${startingBracket}ModOp Type="$0">\n</ModOp>`);
+    modop.sortText = `11`;
+
+    const include = new vscode.CompletionItem({
+      label: `Include`,
+      description: `Includes ModOps from another XML file`
+    }, vscode.CompletionItemKind.Property);
+    include.insertText = new vscode.SnippetString(`${startingBracket}Include File="$0" />`);
+
+    const group = new vscode.CompletionItem({
+      label: `Group`,
+      description: `Groups multiple ModOps`
+    }, vscode.CompletionItemKind.Property);
+    group.insertText = new vscode.SnippetString(`${startingBracket}Group>\n  $0\n</Group>`);
+
+    return [ modop, include, group ];
+  }
 }
 
-function getModOpAttributeCompletion(nodeInfo: text.XmlPosition) {
-  const dict = modops.getTagInfos();
+function getModOpAttributeCompletion(nodeInfo: text.XmlPosition, gameVersion: anno.GameVersion) {
+  const dict = modops.getTagInfos(gameVersion);
   const tagInfo = nodeInfo?.tag as string ? dict[nodeInfo.tag as string] : undefined;
 
   if (tagInfo) {
@@ -173,8 +198,9 @@ function getModOpAttributeCompletion(nodeInfo: text.XmlPosition) {
   return [];
 }
 
-function getModOpAttributeValueCompletion(nodeInfo: text.XmlPosition, document: vscode.TextDocument, position: vscode.Position) {
-  const dict = modops.getTagInfos();
+function getModOpAttributeValueCompletion(nodeInfo: text.XmlPosition, gameVersion: anno.GameVersion,
+  document: vscode.TextDocument, position: vscode.Position) {
+  const dict = modops.getTagInfos(gameVersion);
   const tagInfo = nodeInfo?.tag as string ? dict[nodeInfo.tag as string] : undefined;
   if (!tagInfo) {
     return [];
@@ -300,24 +326,26 @@ export function activate() {
       provideCompletionItems(document, position, token, context) {
         const nodeInfo = text.getAutoCompletePath(document, position);
 
+        const gameVersion = editor.ModContext.getVersion();
+
         if (!nodeInfo.path && !nodeInfo.tag && nodeInfo.type !== 'freshOpen') {
           return [];
         }
 
         if (nodeInfo.isModOpLevel) {
           if (nodeInfo.type === 'freshOpen' || nodeInfo.type === 'freshTagName' || nodeInfo.type === undefined) {
-            return getModOpCompletion(nodeInfo.type === 'freshOpen' || nodeInfo.type === 'freshTagName',
+            return getModOpCompletion(gameVersion, nodeInfo.type === 'freshOpen' || nodeInfo.type === 'freshTagName',
               nodeInfo.nextOpenClose);
           }
           else if (nodeInfo.type === 'attribute') {
-            return getModOpAttributeCompletion(nodeInfo);
+            return getModOpAttributeCompletion(nodeInfo, gameVersion);
           }
         }
 
         var acceptGuids = false;
         if (nodeInfo.type === 'value') {
           if (nodeInfo.attribute === 'Type' || nodeInfo.attribute === 'MaxRepeat') {
-            return getModOpAttributeValueCompletion(nodeInfo, document, position);
+            return getModOpAttributeValueCompletion(nodeInfo, gameVersion, document, position);
           }
           else if (nodeInfo.tag === 'Include' && nodeInfo.attribute === 'File') {
             return getIncludeCompletion(nodeInfo, document, position);

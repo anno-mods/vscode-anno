@@ -468,7 +468,7 @@ export function getAttributeValuePrefixAtCursor(
 }
 
 export function getNameRange(element: xmldoc.XmlElement, doc: xml.AssetsDocument) {
-  const position = doc.textLines.positionAt(element.startTagPosition + 1);
+  const position = doc.textLines.positionAt(element.startTagPosition);
   return new vscode.Range(position.line, position.column, position.line, position.column + element.name.length);
 }
 

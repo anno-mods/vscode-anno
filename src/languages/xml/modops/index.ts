@@ -1,5 +1,6 @@
-
-import * as assets7 from './modops8.json';
+import * as assets7 from './modops7.json';
+import * as assets8 from './modops8.json';
+import * as anno from '../../../anno';
 
 export interface IModOpAttributeInfo {
   name: string
@@ -18,6 +19,11 @@ export interface IModOpTagInfo {
   url?: string
 }
 
-export function getTagInfos() {
-  return assets7 as Record<string, IModOpTagInfo>;
+export function getTagInfos(gameVersion: anno.GameVersion) {
+  if (gameVersion === anno.GameVersion.Anno8) {
+    return assets8 as Record<string, IModOpTagInfo>;
+  }
+  else {
+    return assets7 as Record<string, IModOpTagInfo>;
+  }
 }

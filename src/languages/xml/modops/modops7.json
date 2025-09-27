@@ -1,0 +1,68 @@
+{
+  "Group": {
+    "attributes": [
+      "Condition",
+      {
+        "name": "Skip",
+        "hidden": true
+      }
+    ],
+    "code": "modop-group-invalid-attribut",
+    "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#group"
+  },
+  "Include": {
+    "attributes": [
+      "File",
+      "Condition",
+      {
+        "name": "Skip",
+        "hidden": true
+      }
+    ],
+    "code": "modop-include-invalid-attribut",
+    "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#include"
+  },
+  "ModOp": {
+    "attributes": [
+      {
+        "name": "GUID",
+        "sort": "01",
+        "autoSuggest": true
+      },
+      {
+        "name": "Type",
+        "sort": "04",
+        "values": [ "add", "remove", "replace", "merge", "addNextSibling", "addPrevSibling" ],
+        "autoSuggest": true
+      },
+      {
+        "name": "Path",
+        "requires": [ "Type" ],
+        "sort": "04"
+      },
+      {
+        "name": "Content",
+        "conflicts": [ "Remove" ],
+        "requires": [ "Path" ],
+        "sort": "30"
+      },
+      {
+        "name": "Condition",
+        "sort": "05"
+      },
+      {
+        "name": "AllowNoMatch",
+        "requires": [ "Path" ],
+        "conflicts": [ "Condition" ],
+        "insert": "AllowNowMatch=\"1\"",
+        "sort": "31"
+      },
+      {
+        "name": "Skip",
+        "hidden": true
+      }
+    ],
+    "code": "modop-invalid-attribut",
+    "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#group"
+  }
+}
