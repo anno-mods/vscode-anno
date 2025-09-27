@@ -81,7 +81,7 @@ export function getSelectedModOps(doc: vscode.TextDocument, selection: vscode.Se
   const end = doc.offsetAt(selection.end);
 
   const reduceRegexes = [
-    /<ModOp [^>]*>([\s\S]*?)<\/ModOp>/g,
+    /<ModOp [^>]*(?<!\/)>([\s\S]*?)<\/ModOp>/g,
     /<(ModOp|Include) [^>]*\/>/g
   ];
 

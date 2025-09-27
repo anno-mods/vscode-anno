@@ -32,7 +32,7 @@ class DiffRequest {
     }
 
     if (!this.originalContent) {
-      const modPath = anno.searchModPath(this.patchPath);
+      const modPath = anno.findModRoot(this.patchPath);
       const modsFolder = editor.getModsFolder({ filePath: this.patchPath, version: this.modInfo?.game })
 
       const result = this.diff(this.originalPath,
