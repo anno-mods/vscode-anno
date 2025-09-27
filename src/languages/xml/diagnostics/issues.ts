@@ -1,14 +1,19 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import * as vscode from 'vscode';
+import * as xmldoc from 'xmldoc';
 
 import * as versionChecks from '../versionChecks';
 import * as anno from '../../../anno';
 import * as xml from '../../../anno/xml';
 import * as editor from '../../../editor';
+import * as text from '../../../editor/text';
 import * as utils from '../../../utils';
 import * as editorFormats from '../../../editor/formats';
 
 import * as issues7 from './issues7.json';
 import * as issues8 from './issues8.json';
+import { StaticAnalysis } from '../analyzer';
 
 export function getIssues(): IIssueDescription[] {
   return editor.ModContext.get().version === anno.GameVersion.Anno7 ? issues7 : issues8;
@@ -51,35 +56,109 @@ export function clear(fileUri: vscode.Uri) {
   diagnosticsCollection.delete(fileUri)
 }
 
-export function refresh(context: vscode.ExtensionContext, doc: vscode.TextDocument): void {
+function _checkModOps(element: xmldoc.XmlElement, assetsDocument: xml.AssetsDocument, modPath: string, result: vscode.Diagnostic[]) {
+  const stack = [ element ];
+  for (var modop = stack.pop(); modop; modop = stack.pop()) {
+    if (modop.name === 'ModOps' || modop.name === 'Group') {
+      stack.push(...modop.children.filter(e => e.type === 'element'));
+    }
+
+    if (modop.name === 'ModOps') {
+      
+    }
+    else if (modop.name === 'Group') {
+      
+    }
+    else if (modop.name === 'ModOp') {
+      var [ type, path_ ] = xml.getPathAttribute(modop);
+      if (!type || type === 'Path') {
+        type = modop.attr['Type'];
+      }
+      if (!type) {
+        const range = text.getNameRange(modop, assetsDocument);
+        const diagnostic = new vscode.Diagnostic(range, 'Missing `Type` attribute.', vscode.DiagnosticSeverity.Error);
+        diagnostic.source = 'anno';
+        diagnostic.code = {
+          value: 'modop-missing-type',
+          target: vscode.Uri.parse('https://jakobharder.github.io/anno-mod-loader/modops/#choose-type')
+        }
+        result.push(diagnostic);
+      }
+    }
+    else if (modop.name === 'Include') {
+      const file = modop.attr['File'];
+      if (file === undefined) {
+        const range = text.getNameRange(modop, assetsDocument);
+        const diagnostic = new vscode.Diagnostic(range, 'Missing `File` attribute.', vscode.DiagnosticSeverity.Error);
+        diagnostic.source = 'anno';
+        diagnostic.code = {
+          value: 'modop-include-missing-file',
+          target: vscode.Uri.parse('https://jakobharder.github.io/anno-mod-loader/modops/control/#include')
+        }
+        result.push(diagnostic);
+      }
+      else {
+        const filePath = file.startsWith('/')
+          ? path.join(modPath, file.substring(1))
+          : path.join(path.dirname(assetsDocument.filePath!), file);
+        if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+          const relativePath = path.relative(modPath, filePath).replace(/\\/g, '/');
+          const range = text.getAttributeValueRange(modop, 'File', assetsDocument);
+          const diagnostic = new vscode.Diagnostic(range, `File \"${relativePath}\" not found.`, vscode.DiagnosticSeverity.Warning);
+          diagnostic.source = 'anno';
+          diagnostic.code = {
+            value: 'modop-include-not-found',
+            target: vscode.Uri.parse('https://jakobharder.github.io/anno-mod-loader/modops/control/#include')
+          }
+          result.push(diagnostic);
+        }
+      }
+    }
+    else if (modop.name === 'Asset') {
+
+    }
+    else {
+      const range = text.getNameRange(modop, assetsDocument);
+      const diagnostic = new vscode.Diagnostic(range, 'Expected `ModOp`, `Group`, `Include` or `Asset`.', vscode.DiagnosticSeverity.Error);
+      diagnostic.source = 'anno';
+      diagnostic.code = {
+        value: 'modop-invalid',
+        target: vscode.Uri.parse('https://jakobharder.github.io/anno-mod-loader/modops/')
+      }
+      result.push(diagnostic);
+    }
+  }
+}
+
+export function refresh(context: vscode.ExtensionContext, parsed: StaticAnalysis): void {
   if (!editor.isActive()) {
     return;
   }
 
-  if (!editorFormats.isPatchXml(doc)) {
+  if (!editorFormats.isPatchXml(parsed.document)) {
     vscode.commands.executeCommand('setContext', 'anno-modding-tools.openPatchFile', false);
     return;
   }
   vscode.commands.executeCommand('setContext', 'anno-modding-tools.openPatchFile', true);
 
   const config = vscode.workspace.getConfiguration('anno');
-  const checkFileNames = vscode.workspace.getConfiguration('anno', doc.uri).get('checkFileNames');
+  const checkFileNames = vscode.workspace.getConfiguration('anno', parsed.document.uri).get('checkFileNames');
   const annoRda: string | undefined = config.get('rdaFolder'); // TODO
   const modsFolder: string | undefined = config.get('modsFolder'); // TODO
 
-  const modPaths = anno.searchModPaths(doc.uri.fsPath, modsFolder);
-  const modPath = anno.findModRoot(doc.fileName);
+  const modPaths = anno.searchModPaths(parsed.document.uri.fsPath, modsFolder);
+  const modPath = anno.findModRoot(parsed.document.fileName);
   const version = anno.ModInfo.readVersion(modPath);
 
   const result: vscode.Diagnostic[] = [];
-  result.push(...versionChecks.checkFilePaths(doc, version));
+  result.push(...versionChecks.checkFilePaths(parsed.document, version));
 
   var inComment = false;
 
-  // line diagonstics
+  // line diagnostics
   const issues = getIssues();
-  for (let lineIndex = 0; lineIndex < doc.lineCount; lineIndex++) {
-    const lineOfText = doc.lineAt(lineIndex);
+  for (let lineIndex = 0; lineIndex < parsed.document.lineCount; lineIndex++) {
+    const lineOfText = parsed.document.lineAt(lineIndex);
 
     var line, comment;
     [ line, inComment, comment ] = xml.removeComments(lineOfText.text, inComment);
@@ -116,7 +195,12 @@ export function refresh(context: vscode.ExtensionContext, doc: vscode.TextDocume
     }
   }
 
-  diagnosticsCollection.set(doc.uri, result);
+  // xml diagnostics
+  if (parsed.assets?.content.name === 'ModOps') {
+    _checkModOps(parsed.assets?.content, parsed.assets, modPath, result);
+  }
+
+  diagnosticsCollection.set(parsed.document.uri, result);
 }
 
 function checkDiagnosticIssue(textLine: string, lineIndex: number, issue: IIssueDescription) {

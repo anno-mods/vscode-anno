@@ -5,6 +5,7 @@ import * as xmldoc from 'xmldoc';
 import * as analyzer from './analyzer';
 import * as xml from '../../anno/xml';
 import { SymbolRegistry } from '../../data/symbols';
+import * as text from '../../editor/text';
 import * as utils from '../../utils';
 import * as xpath from '../../utils/xpath';
 
@@ -230,22 +231,6 @@ export class AssetsTocProvider {
     return 0;
   }
 
-  private _getNameRange(element: xmldoc.XmlElement, doc: xml.AssetsDocument) {
-    const position = doc.textLines.positionAt(element.startTagPosition);
-    return new vscode.Range(position.line, position.column, position.line, position.column + element.name.length);
-  }
-
-  private _getElementRange(element: xmldoc.XmlElement, doc: xml.AssetsDocument) {
-    const endOffset = doc.getEndOffset(element);
-    if (!endOffset) {
-      return this._getNameRange(element, doc);
-    }
-
-    const start = doc.textLines.positionAt(element.startTagPosition - 1); // -1 to move before <
-    const end = doc.textLines.positionAt(endOffset);
-    return new vscode.Range(start.line, start.column, end.line, end.column);
-  }
-
   /// Return line number where the comment has occured. Max: 10 lines up.
   private _findCommentUp(document: xml.AssetsDocument, start: number, comment: string) {
     let line = start;
@@ -341,8 +326,8 @@ export class AssetsTocProvider {
           }
 
           var symbol = tocRelevant?.symbol ?? vscode.SymbolKind.String;
-          const range = this._getElementRange(top.element, this._doc);
-          const selection = this._getNameRange(top.element, this._doc);
+          const range = text.getElementRange(top.element, this._doc);
+          const selection = text.getNameRange(top.element, this._doc);
 
           // Text below ModOp
           if (top.element.name === 'Text' && top.leaf && top.element.childNamed('Text')) {

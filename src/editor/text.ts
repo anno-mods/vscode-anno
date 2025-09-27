@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-
-import * as guidUtilsProvider from '../features/guidUtilsProvider';
+import * as xmldoc from 'xmldoc';
+import * as xml from '../anno/xml';
 
 export function getTagCloseAt(doc: vscode.TextDocument, position: vscode.Position) {
   let lineNumber = position.line;
@@ -465,4 +465,53 @@ export function getAttributeValuePrefixAtCursor(
   const dirPrefix = valuePrefix.replace(/[^\\/]*$/, "");
 
   return { attrName, valuePrefix, valueRange, dirPrefix };
+}
+
+export function getNameRange(element: xmldoc.XmlElement, doc: xml.AssetsDocument) {
+  const position = doc.textLines.positionAt(element.startTagPosition + 1);
+  return new vscode.Range(position.line, position.column, position.line, position.column + element.name.length);
+}
+
+export function getAttributeNameRange(element: xmldoc.XmlElement, name: string, doc: xml.AssetsDocument) {
+  const position = doc.textLines.positionAt(element.startTagPosition + 1);
+  const line = doc.textLines.lineAt(position.line);
+  if (!line) {
+    return getNameRange(element, doc);
+  }
+
+  const match = line.match(new RegExp("(?<= )" + name + "(?=[ =])"));
+  if (!match || !match.index) {
+    return getNameRange(element, doc);
+  }
+
+  return new vscode.Range(position.line, match.index, position.line, match.index + name.length);
+}
+
+export function getAttributeValueRange(element: xmldoc.XmlElement, name: string, doc: xml.AssetsDocument) {
+  const position = doc.textLines.positionAt(element.startTagPosition + 1);
+  const line = doc.textLines.lineAt(position.line);
+  if (!line) {
+    return getNameRange(element, doc);
+  }
+
+  const match = line.match(new RegExp(name + "\s*=\s*(?:[\"]([^\"]*)[\"]|[\']([^']*)[\'])"));
+  if (!match || !match.index || match[1].length === 0) {
+    return getAttributeNameRange(element, name, doc);
+  }
+
+  const start = match.index + match[0].indexOf(match[1]);
+  const end = start + match[1].length;
+
+  return new vscode.Range(position.line, start, position.line, end);
+}
+
+export function getElementRange(element: xmldoc.XmlElement, doc: xml.AssetsDocument) {
+  const endOffset = doc.getEndOffset(element);
+  if (!endOffset) {
+    return getNameRange(element, doc);
+  }
+
+  const start = doc.textLines.positionAt(element.startTagPosition - 1); // -1 to move before <
+  const end = doc.textLines.positionAt(endOffset);
+  return new vscode.Range(start.line, start.column, end.line, end.column);
 }

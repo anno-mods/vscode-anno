@@ -4,13 +4,16 @@ import * as decorations from './decorations';
 import * as diagnostics from './diagnostics';
 import * as life from './diagnostics/life';
 import * as xml from '../../anno/xml';
+import * as editorFormats from '../../editor/formats';
 
 export interface StaticAnalysis {
+  version: number;
   document: vscode.TextDocument;
   assets: xml.AssetsDocument | undefined;
 }
 
 export interface Analysis {
+  version: number;
   document: vscode.TextDocument;
 }
 
@@ -42,7 +45,7 @@ export class Analyzer<ResultType extends Analysis> {
     const key = doc.uri.toString();
 
     const cached = this.cache.get(key);
-    if (cached && cached.document.version === doc.version) {
+    if (cached && cached.version === doc.version) {
       return cached;
     }
 
@@ -52,7 +55,7 @@ export class Analyzer<ResultType extends Analysis> {
     const promise = (async () => {
       try {
         const result = await this.parse(doc);
-        if (result && result.document.version === doc.version) {
+        if (result && result.version === doc.version) {
           this.cache.set(key, result);
           this.onAnalyzedEmitter.fire({ uri: doc.uri, result });
         }
@@ -91,6 +94,7 @@ export function activate(context: vscode.ExtensionContext) {
   staticAnalyzer = new Analyzer<StaticAnalysis>(100,
     (document: vscode.TextDocument) => {
       return {
+        version: document.version,
         document,
         assets: xml.AssetsDocument.from(document.getText(), document.uri.fsPath, false)
        };
@@ -99,14 +103,14 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   const dynamicAnalyzer = new Analyzer<Analysis>(500,
-    (document: vscode.TextDocument) => { return { document } },
+    (document: vscode.TextDocument) => { return { version: document.version, document } },
     (uri: vscode.Uri) => { life.clear(uri); });
 
   const refreshStaticAnalysis = (result: StaticAnalysis) => {
     if (vscode.window.activeTextEditor?.document === result.document) {
       decorations.refresh(vscode.window.activeTextEditor);
     }
-    diagnostics.refresh(context, result.document);
+    diagnostics.refresh(context, result);
   }
 
   const refreshLifeAnalysis = (result: Analysis) => {
@@ -120,21 +124,21 @@ export function activate(context: vscode.ExtensionContext) {
 
   vscode.window.onDidChangeActiveTextEditor(editor => {
     activeEditor = editor;
-    if (editor) {
+    if (editor && editorFormats.isPatchXml(editor.document)) {
       staticAnalyzer.ensure(editor.document).then(refreshStaticAnalysis);
       dynamicAnalyzer.ensure(editor.document).then(refreshLifeAnalysis);
     }
   }, null, context.subscriptions);
 
   vscode.workspace.onDidChangeTextDocument(async (event) => {
-    if (activeEditor?.document && event.document) {
+    if (activeEditor?.document && event.document && editorFormats.isPatchXml(event.document)) {
       staticAnalyzer.ensure(activeEditor.document).then(refreshStaticAnalysis);
       dynamicAnalyzer.clear(activeEditor.document.uri);
     }
   }, null, context.subscriptions);
 
   vscode.workspace.onDidSaveTextDocument(async (event) => {
-    if (activeEditor?.document.uri === event.uri) {
+    if (activeEditor?.document.uri === event.uri && editorFormats.isPatchXml(activeEditor?.document)) {
       staticAnalyzer.ensure(activeEditor.document).then(refreshStaticAnalysis);
       dynamicAnalyzer.ensure(activeEditor.document).then(refreshLifeAnalysis);
     }
