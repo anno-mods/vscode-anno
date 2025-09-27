@@ -5,6 +5,7 @@
 - Improved responsiveness of diagnostics and outline
 - Outline improvements
   - Vanilla assets now show a property list
+  - Ctrl+Shift+O support in diff view (no outline unfortunately)
   - Support `@GUID` and short ModOps in paths
 - Diagnostics improvements
   - Warn when comments are nested
