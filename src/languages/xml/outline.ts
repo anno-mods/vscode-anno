@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import * as xmldoc from 'xmldoc';
 
+import * as analyzer from './analyzer';
 import * as xml from '../../anno/xml';
 import { SymbolRegistry } from '../../data/symbols';
 import * as utils from '../../utils';
@@ -19,7 +20,7 @@ interface INodeStackNode {
   leaf: boolean
 }
 
-export class AssetsSymbolProvider {
+export class OutlineSymbolProvider {
 	public static register(context: vscode.ExtensionContext): vscode.Disposable[] {
 		const selector: vscode.DocumentSelector = [
 			{ language: 'anno-xml', scheme: 'file' },
@@ -29,7 +30,7 @@ export class AssetsSymbolProvider {
       { scheme: 'annoasset8' }
 		];
 
-    const symbolProvider = new AssetsSymbolProvider();
+    const symbolProvider = new OutlineSymbolProvider();
 
     return [
       vscode.Disposable.from(vscode.languages.registerDocumentSymbolProvider(selector, symbolProvider))
@@ -40,12 +41,12 @@ export class AssetsSymbolProvider {
 	private static lastFile: string | undefined;
 
   public async provideDocumentSymbols(document: vscode.TextDocument): Promise<vscode.DocumentSymbol[]> {
-		const patchDocument = xml.AssetsDocument.from(document.getText(), document.uri.fsPath);
-		if (!patchDocument) {
-			return AssetsSymbolProvider.lastSymbols;
+    const result = await analyzer.staticAnalyzer.ensure(document);
+    if (!result.document) {
+			return OutlineSymbolProvider.lastSymbols;
 		}
 
-		const toc = new AssetsTocProvider(patchDocument).getToc();
+		const toc = new AssetsTocProvider(result.assets).getToc();
 		if (toc) {
 			const root: MarkdownSymbol = {
 				level: -Infinity,
@@ -54,16 +55,16 @@ export class AssetsSymbolProvider {
 			};
 			this.buildTree(root, toc);
 
-			AssetsSymbolProvider.lastSymbols = root.children;
-			AssetsSymbolProvider.lastFile = document.uri.toString();
+			OutlineSymbolProvider.lastSymbols = root.children;
+			OutlineSymbolProvider.lastFile = result.document.uri.toString();
 		}
-		else if (AssetsSymbolProvider.lastFile !== document.uri.toString()) {
+		else if (OutlineSymbolProvider.lastFile !== result.document.uri.toString()) {
 			// clear outline symbols when the file changed
-			AssetsSymbolProvider.lastSymbols = [];
-			AssetsSymbolProvider.lastFile = document.uri.toString();
+			OutlineSymbolProvider.lastSymbols = [];
+			OutlineSymbolProvider.lastFile = result.document.uri.toString();
 		}
 
-		return AssetsSymbolProvider.lastSymbols;
+		return OutlineSymbolProvider.lastSymbols;
 	}
 
 	private buildTree(parent: MarkdownSymbol, entries: TocEntry[]) {

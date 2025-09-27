@@ -45,7 +45,7 @@ export function refresh(activeEditor: vscode.TextEditor) {
     return;
   }
 
-  const modName = path.basename(anno.searchModPath(activeEditor.document.uri.fsPath));
+  const modName = path.basename(anno.findModRoot(activeEditor.document.uri.fsPath));
 
   const traverse = (activeEditor: vscode.TextEditor, color: string,
     regex: RegExp, onMatch: (match: RegExpExecArray) => string,

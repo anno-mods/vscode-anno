@@ -21,7 +21,10 @@ export function clear(uri: vscode.Uri) {
 export function refresh(context: vscode.ExtensionContext, doc: vscode.TextDocument) {
   const result: vscode.Diagnostic[] = [];
   const performance = runXmlTest(context, doc, result);
-  vscode.window.activeTextEditor?.setDecorations(performanceDecorationType, performance);
+
+  if (vscode.window.activeTextEditor?.document === doc) {
+    vscode.window.activeTextEditor?.setDecorations(performanceDecorationType, performance);
+  }
 
   diagnosticsCollection.set(doc.uri, result);
 }
