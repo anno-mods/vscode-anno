@@ -7,8 +7,6 @@ import { SymbolRegistry } from '../../data/symbols';
 import * as utils from '../../utils';
 import * as xpath from '../../utils/xpath';
 
-import * as logger from '../../utils/logger';
-
 interface MarkdownSymbol {
 	readonly level: number;
 	readonly parent: MarkdownSymbol | undefined;
@@ -89,8 +87,8 @@ export class AssetsSymbolProvider {
 			entry.text,
 			entry.detail,
 			entry.symbol,
-			entry.range,
-			entry.range); // TODO
+			entry.range!,
+			entry.selection);
 	}
 }
 
@@ -100,8 +98,8 @@ export interface TocEntry {
   detail: string;
   guid?: string;
   level: number;
-  readonly range: vscode.Range;
-  // readonly selection: vscode.Range;
+  range: vscode.Range | undefined;
+  readonly selection: vscode.Range;
   readonly symbol: vscode.SymbolKind;
 }
 
@@ -231,9 +229,20 @@ export class AssetsTocProvider {
     return 0;
   }
 
-  private _elementRangeName(element: xmldoc.XmlElement, doc: xml.AssetsDocument) {
+  private _getNameRange(element: xmldoc.XmlElement, doc: xml.AssetsDocument) {
     const position = doc.textLines.positionAt(element.startTagPosition);
     return new vscode.Range(position.line, position.column, position.line, position.column + element.name.length);
+  }
+
+  private _getElementRange(element: xmldoc.XmlElement, doc: xml.AssetsDocument) {
+    const endOffset = doc.getEndOffset(element);
+    if (!endOffset) {
+      return this._getNameRange(element, doc);
+    }
+
+    const start = doc.textLines.positionAt(element.startTagPosition - 1); // -1 to move before <
+    const end = doc.textLines.positionAt(endOffset);
+    return new vscode.Range(start.line, start.column, end.line, end.column);
   }
 
   /// Return line number where the comment has occured. Max: 10 lines up.
@@ -317,7 +326,8 @@ export class AssetsTocProvider {
             text: sectionComment,
             detail: '',
             level: top.depth - 1,
-            range: new vscode.Range(line, 0, line, 1),
+            range: undefined,
+            selection: new vscode.Range(line, 0, line, 1),
             symbol: vscode.SymbolKind.Number
           });
           sectionComment = undefined;
@@ -330,7 +340,8 @@ export class AssetsTocProvider {
           }
 
           var symbol = tocRelevant?.symbol ?? vscode.SymbolKind.String;
-          const range = this._elementRangeName(top.element, this._doc);
+          const range = this._getElementRange(top.element, this._doc);
+          const selection = this._getNameRange(top.element, this._doc);
 
           // Text below ModOp
           if (top.element.name === 'Text' && top.leaf && top.element.childNamed('Text')) {
@@ -341,7 +352,7 @@ export class AssetsTocProvider {
               detail: '',
               level: top.depth,
               guid: undefined,
-              range,
+              range, selection,
               symbol: vscode.SymbolKind.Key
             });
           }
@@ -352,7 +363,7 @@ export class AssetsTocProvider {
               detail: 'Template',
               level: top.depth,
               guid: undefined,
-              range,
+              range, selection,
               symbol: vscode.SymbolKind.TypeParameter
             });
           }
@@ -371,7 +382,7 @@ export class AssetsTocProvider {
               detail: this._getDetail(top.element),
               level: top.depth,
               guid: xml.getAssetGUID(top.element),
-              range, symbol
+              range, selection, symbol
             });
           }
           // Non-Asset below ModOp
@@ -389,7 +400,7 @@ export class AssetsTocProvider {
             toc.push({
               text: name || top.element.name,
               detail: name ? top.element.name : '',
-              level: top.depth, guid: undefined, range,
+              level: top.depth, guid: undefined, range, selection,
               symbol: vscode.SymbolKind.Field
             });
           }
@@ -398,7 +409,7 @@ export class AssetsTocProvider {
             toc.push({
               text: this._getName(top.element),
               detail: this._getDetail(top.element),
-              level: top.depth, guid: undefined, range, symbol
+              level: top.depth, guid: undefined, range, selection, symbol
             });
           }
           // anything else
@@ -409,7 +420,7 @@ export class AssetsTocProvider {
               detail: this._getDetail(top.element),
               level: top.depth,
               guid: xml.getAssetGUID(top.element),
-              range, symbol
+              range, selection, symbol
             });
 
             // for (let index = 1; index < multiModOpCount; index++) {
@@ -456,12 +467,16 @@ export class AssetsTocProvider {
 
     toc = this._mergeUpOnlyChildGroups(toc);
 
-    // Get full range of section
+    // extend #section ranges
     return toc.map((entry, startIndex): TocEntry => {
+      if (entry.range) {
+        return entry;
+      }
+
       let end: number | undefined = undefined;
       for (let i = startIndex + 1; i < toc.length; ++i) {
         if (toc[i].level <= entry.level) {
-          end = toc[i].range.start.line - 1;
+          end = toc[i].selection.start.line - 1;
           break;
         }
       }
@@ -469,7 +484,7 @@ export class AssetsTocProvider {
       return {
         ...entry,
         range: new vscode.Range(
-            entry.range.start,
+            entry.selection.start,
             new vscode.Position(endLine, this._doc?.textLineAt(endLine)?.length ?? 0))
       };
     });

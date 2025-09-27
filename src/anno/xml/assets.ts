@@ -1,3 +1,4 @@
+import * as sax from "sax";
 import * as xmldoc from 'xmldoc';
 
 import { SymbolRegistry } from '../../data/symbols';
@@ -101,7 +102,7 @@ export class AssetsDocument {
   public readonly lineCount: number;
   public readonly filePath: string | undefined;
 
-  public static from(text: string, filePath?: string) {
+  public static from(text: string, filePath?: string, fast: boolean = false) {
     var xml: xmldoc.XmlDocument | undefined;
     try {
       xml = new xmldoc.XmlDocument(text);
@@ -110,12 +111,14 @@ export class AssetsDocument {
       return undefined;
     }
 
-    return new AssetsDocument(xml, text, filePath);
+    const doc = new AssetsDocument(xml, text, filePath);
+    if (!fast) {
+      doc.indexCloseEnds(text, xml);
+    }
+    return doc;
   }
 
-  constructor(content: xmldoc.XmlDocument, text: string, filePath?: string) {
-    const relevantNodes = new Set<string>(['ModOps', 'ModOp', 'Asset', 'Values', 'Standard', 'GUID']);
-
+  private constructor(content: xmldoc.XmlDocument, text: string, filePath?: string) {
     this.content = content;
     this.assets = {};
     this.lines = [];
@@ -243,5 +246,30 @@ export class AssetsDocument {
       path = path.slice(0, -1);
     }
     return path ? ((prefix ?? '/') + path.map(e => e.name).join('/')) : undefined;
+  }
+
+  private _startEndPairs: Map<number, number> = new Map<number, number>();
+
+  private indexCloseEnds(xmlText: string, root: xmldoc.XmlDocument) {
+    const parser = sax.parser(true);
+    const openStarts: number[] = [];
+
+    parser.onopentag = () => {
+      // sax startTagPosition is 1-based index of '<'
+      openStarts.push((parser as any).startTagPosition as number);
+    };
+    parser.onclosetag = () => {
+      // parser.position is 1-based index AFTER '>' of the closing tag
+      const openStart1 = openStarts.pop()!;
+      const closeAfter1 = parser.position;
+      this._startEndPairs.set(openStart1 - 1, closeAfter1 - 1);
+    };
+
+    parser.write(xmlText).close();
+  }
+
+  public getEndOffset(el: xmldoc.XmlElement): number | undefined {
+    const endOffset = this._startEndPairs.get(el.startTagPosition);
+    return endOffset != null ? endOffset : undefined;
   }
 }

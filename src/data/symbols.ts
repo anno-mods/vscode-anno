@@ -124,21 +124,11 @@ export namespace SymbolRegistry {
 
   function _readGuidsFromText(text: string, filePath: string, modinfo: anno.ModInfo)
   {
-    var xmlContent;
-    try {
-      xmlContent = new xmldoc.XmlDocument(text);
-    }
-    catch {
+    const assetsDocument = AssetsDocument.from(text, filePath, true);
+    if (!assetsDocument) {
       // be quiet, this happens a lot during typing
       return;
     }
-
-    _readGuidsFromXmlContent(xmlContent, text, filePath, modinfo);
-  }
-
-  function _readGuidsFromXmlContent(xmlContent: xmldoc.XmlDocument, text: string, filePath: string, modinfo: anno.ModInfo)
-  {
-    let assetsDocument = new AssetsDocument(xmlContent, text, filePath);
     registerAll(Object.values(assetsDocument.assets), modinfo.game, modinfo.id);
   }
 
@@ -163,19 +153,12 @@ export namespace SymbolRegistry {
         return;
       }
 
-      var xmlContent: xmldoc.XmlDocument;
-      var fileContent: string;
-      try {
-        fileContent = fs.readFileSync(vanillaPath, 'utf8');
-        xmlContent = new xmldoc.XmlDocument(fileContent);
-      }
-      catch {
+      const assetsDocument = AssetsDocument.from(fs.readFileSync(vanillaPath, 'utf8'), vanillaPath, true);
+      if (!assetsDocument) {
         logger.errorMessage(`Can't parse \`${vanillaPath}\`. GUID lookup will not work properly.`);
         // don't retry. you need to change gamePath to reset
         return;
       }
-
-      let assetsDocument = new AssetsDocument(xmlContent, fileContent, vanillaPath);
 
       for (var guid of Object.keys(assetsDocument.assets)) {
         assetsDocument.assets[guid].location = undefined;
