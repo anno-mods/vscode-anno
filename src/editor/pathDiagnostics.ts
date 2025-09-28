@@ -98,7 +98,7 @@ async function computePathDiagnostics(uri: vscode.Uri): Promise<vscode.Diagnosti
     }
 
     if (/[A-Z]/.test(relativePath)) {
-      const severity = modInfo?.game === anno.GameVersion.Anno7 ? vscode.DiagnosticSeverity.Information : vscode.DiagnosticSeverity.Warning;
+      const severity = modInfo?.game === anno.GameVersion.Anno8 ? vscode.DiagnosticSeverity.Warning : vscode.DiagnosticSeverity.Information;
       issues.push(makePathDiagnostic(`Avoid uppercase characters in path: \`${relativePath}\``, severity));
     }
 
@@ -111,7 +111,7 @@ async function computePathDiagnostics(uri: vscode.Uri): Promise<vscode.Diagnosti
     }
 
     if (relativePath.startsWith('data/modgraphics/') || relativePath.startsWith('data/base/modgraphics/')) {
-      const severity = modInfo?.game === anno.GameVersion.Anno7 ? vscode.DiagnosticSeverity.Information : vscode.DiagnosticSeverity.Warning;
+      const severity = modInfo?.game === anno.GameVersion.Anno8 ? vscode.DiagnosticSeverity.Warning : vscode.DiagnosticSeverity.Information;
       issues.push(makePathDiagnostic(`\`modgraphics/\` is prone to collisions. Use a more unique name.`,
         severity));
     }
@@ -131,8 +131,8 @@ async function getFilesExcludeGlob(): Promise<string | undefined> {
   const cfg = vscode.workspace.getConfiguration('files');
   const excludes = cfg.get<Record<string, boolean>>('exclude') ?? {};
   const on = Object.entries(excludes).filter(([, v]) => v).map(([k]) => k);
-  on.push("**/node_modules|**/.git");
-  return on.join('|') + "";
+  on.push("**/node_modules,**/.git,**/.*");
+  return "{" + on.join(',') + "}";
 }
 
 function removeFiles(uri: vscode.Uri, diag: vscode.DiagnosticCollection) {
