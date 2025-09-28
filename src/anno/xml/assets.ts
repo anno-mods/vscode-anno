@@ -28,7 +28,7 @@ export function getPatchType(filePath?: string): PatchType {
   if (!filePath) {
     return 'generic';
   }
-  if (path.basename(filePath) === 'assets.xml' || filePath.endsWith('.include.xml')) {
+  if (path.basename(filePath) === 'assets.xml' || path.basename(filePath) === 'assets_.xml' || filePath.endsWith('.include.xml')) {
     return 'assets';
   }
   else if (path.basename(filePath) === 'templates.xml') {

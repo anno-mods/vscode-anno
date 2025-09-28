@@ -133,14 +133,28 @@ function _checkModOps(element: xmldoc.XmlElement, assetsDocument: xml.AssetsDocu
     if (config && config.code && config.url) {
       const invalidAttributes = xml.getInvalidAttributes(modop, config.attributes, assetsDocument.type);
       for (const attrib of invalidAttributes) {
-        const range = text.getAttributeNameRange(modop, attrib, assetsDocument);
-        const diagnostic = new vscode.Diagnostic(range, `Attribute \`${attrib}\` is not allowed.`, vscode.DiagnosticSeverity.Error);
-        diagnostic.source = 'anno';
-        diagnostic.code = {
-          value: config.code,
-          target: vscode.Uri.parse(config.url)
+        const range = text.getAttributeNameRange(modop, attrib.name, assetsDocument);
+
+        if (attrib.wrongType) {
+          const diagnostic = new vscode.Diagnostic(range, `Patch type \`${assetsDocument.type}\` does not support the attribute \`${attrib.name}\`.`,
+            vscode.DiagnosticSeverity.Warning);
+          diagnostic.source = 'anno';
+          diagnostic.code = {
+            value: config.code,
+            target: vscode.Uri.parse(config.url)
+          }
+          result.push(diagnostic);
         }
-        result.push(diagnostic);
+        else {
+          const diagnostic = new vscode.Diagnostic(range, `Attribute \`${attrib.name}\` is not allowed.`,
+            vscode.DiagnosticSeverity.Warning);
+          diagnostic.source = 'anno';
+          diagnostic.code = {
+            value: config.code,
+            target: vscode.Uri.parse(config.url)
+          }
+          result.push(diagnostic);
+        }
       }
     }
   }

@@ -110,17 +110,17 @@ export function removeComments(line: string, inside: boolean): [string, boolean,
 }
 
 export function getInvalidAttributes(element: xmldoc.XmlElement, allowed: (string | { name: string, patchTypes?: string[] })[], type: string) {
-  const result: string[] = [];
+  const result: { name: string, wrongType: boolean}[] = [];
   for (const attrib of Object.keys(element.attr)) {
     const f = allowed.find(e => (e as {name:string})?.name === attrib || e === attrib);
     if (!f) {
-      result.push(attrib);
+      result.push({ name: attrib, wrongType: false });
     }
     else if (f as { name: string, patchTypes: string[] }) {
       // if patchTypes are defined, then type must match it
       const ff = f as { name: string, patchTypes: string[] };
       if (ff.patchTypes?.indexOf(type) ?? 0 < 0) {
-        result.push(attrib);
+        result.push({ name: attrib, wrongType: true });
       }
     }
   }
