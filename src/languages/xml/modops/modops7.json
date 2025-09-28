@@ -7,7 +7,7 @@
         "hidden": true
       }
     ],
-    "code": "modop-group-invalid-attribut",
+    "code": "modop-group-invalid-attribute",
     "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#group"
   },
   "Include": {
@@ -19,15 +19,21 @@
         "hidden": true
       }
     ],
-    "code": "modop-include-invalid-attribut",
+    "code": "modop-include-invalid-attribute",
     "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#include"
   },
   "ModOp": {
     "attributes": [
       {
         "name": "GUID",
+        "patchTypes": [ "assets" ],
         "sort": "01",
         "autoSuggest": true
+      },
+      {
+        "name": "Template",
+        "patchTypes": [ "templates" ],
+        "sort": "02"
       },
       {
         "name": "Type",
@@ -62,7 +68,7 @@
         "hidden": true
       }
     ],
-    "code": "modop-invalid-attribut",
+    "code": "modop-invalid-attribute",
     "url": "https://jakobharder.github.io/anno-mod-loader/modops/control/#group"
   }
 }

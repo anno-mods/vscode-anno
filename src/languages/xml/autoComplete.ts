@@ -4,11 +4,11 @@ import * as vscode from 'vscode';
 
 import * as modops from './modops';
 import * as anno from '../../anno';
+import * as xml from '../../anno/xml';
 import { GuidCounter } from '../../features/guidCounter';
 import * as editor from '../../editor';
 import * as text from '../../editor/text';
 import { SymbolRegistry } from '../../data/symbols';
-import { AssetsDocument } from '../../anno/xml';
 
 function getModOpCompletion(gameVersion: anno.GameVersion, skipOpenBracket: boolean, nextOpenClose?: text.OpenClosePosition) {
   const startingBracket = skipOpenBracket ? '' : '<';
@@ -125,7 +125,7 @@ function getModOpCompletion(gameVersion: anno.GameVersion, skipOpenBracket: bool
   }
 }
 
-function getModOpAttributeCompletion(nodeInfo: text.XmlPosition, gameVersion: anno.GameVersion) {
+function getModOpAttributeCompletion(nodeInfo: text.XmlPosition, gameVersion: anno.GameVersion, type: string) {
   const dict = modops.getTagInfos(gameVersion);
   const tagInfo = nodeInfo?.tag as string ? dict[nodeInfo.tag as string] : undefined;
 
@@ -149,6 +149,11 @@ function getModOpAttributeCompletion(nodeInfo: text.XmlPosition, gameVersion: an
         if (complex.hidden || nodeInfo.attributes && nodeInfo.attributes.find(x => x === complex.name)) {
           // do not show hidden
           // do not allow duplicate attributes
+          continue;
+        }
+
+        if (complex.patchTypes && complex.patchTypes.indexOf(type) < 0) {
+          // if patchTypes are defined, type must match it
           continue;
         }
 
@@ -327,6 +332,7 @@ export function activate() {
         const nodeInfo = text.getAutoCompletePath(document, position);
 
         const gameVersion = editor.ModContext.getVersion();
+        const type = xml.getPatchType(document.uri.fsPath);
 
         if (!nodeInfo.path && !nodeInfo.tag && nodeInfo.type !== 'freshOpen') {
           return [];
@@ -338,7 +344,7 @@ export function activate() {
               nodeInfo.nextOpenClose);
           }
           else if (nodeInfo.type === 'attribute') {
-            return getModOpAttributeCompletion(nodeInfo, gameVersion);
+            return getModOpAttributeCompletion(nodeInfo, gameVersion, type);
           }
         }
 

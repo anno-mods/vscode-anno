@@ -11,12 +11,14 @@ export interface IModOpAttributeInfo {
   values?: string[]
   autoSuggest?: boolean
   hidden?: boolean
+  patchTypes?: string[]
 }
 
 export interface IModOpTagInfo {
   attributes: (string | IModOpAttributeInfo)[]
   code?: string
   url?: string
+  patchTypes?: string[]
 }
 
 export function getTagInfos(gameVersion: anno.GameVersion) {

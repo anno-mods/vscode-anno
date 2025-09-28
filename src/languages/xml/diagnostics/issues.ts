@@ -131,7 +131,7 @@ function _checkModOps(element: xmldoc.XmlElement, assetsDocument: xml.AssetsDocu
 
     const config = modops.getTagInfos(assetsDocument.gameVersion)[modop.name];
     if (config && config.code && config.url) {
-      const invalidAttributes = xml.getInvalidAttributes(modop, config.attributes);
+      const invalidAttributes = xml.getInvalidAttributes(modop, config.attributes, assetsDocument.type);
       for (const attrib of invalidAttributes) {
         const range = text.getAttributeNameRange(modop, attrib, assetsDocument);
         const diagnostic = new vscode.Diagnostic(range, `Attribute \`${attrib}\` is not allowed.`, vscode.DiagnosticSeverity.Error);

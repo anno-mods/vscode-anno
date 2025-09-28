@@ -31,6 +31,9 @@ export function getPatchType(filePath?: string): PatchType {
   if (path.basename(filePath) === 'assets.xml' || filePath.endsWith('.include.xml')) {
     return 'assets';
   }
+  else if (path.basename(filePath) === 'templates.xml') {
+    return 'templates';
+  }
 
   const type = path.basename(path.dirname(filePath));
   if (type === 'gui') {
@@ -38,9 +41,6 @@ export function getPatchType(filePath?: string): PatchType {
   }
   else if (type === 'infotips') {
     return 'infotips'
-  }
-  else if (type === 'templates.xml') {
-    return 'templates';
   }
 
   return 'generic';
