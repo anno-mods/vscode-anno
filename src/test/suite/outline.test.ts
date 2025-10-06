@@ -1,8 +1,8 @@
 import * as assert from 'assert';
-import * as vscode from 'vscode';
 
-import { AssetsTocProvider, SkinnyTextDocument } from '../../languages/xml/assetsTocProvider';
-import { AssetsDocument } from '../../editor/assetsDocument';
+import { AssetsTocProvider } from '../../languages/xml/outline';
+import { AssetsDocument } from '../../anno/xml';
+import { GameVersion } from '../../anno';
 
 const text = `<ModOps>
   <ModOp Type="add">
@@ -16,24 +16,12 @@ const text = `<ModOps>
       </Values>
     </Asset>
   </ModOp>
-</ModOps>`.split('\n');
+</ModOps>`;
 
 suite('outline tests', () => {
   test('template names', async () => {
 
-    let textDocument: SkinnyTextDocument = {
-      uri: vscode.Uri.file('abc.xml'),
-      version: 0,
-      lineCount: text.length,
-      getText: () => {
-        return text.join('\n');
-      },
-      lineAt: (line: number) => {
-        return { text: text[line] };
-      }
-    };
-
-    const provider = new AssetsTocProvider(new AssetsDocument(textDocument));
+    const provider = new AssetsTocProvider(AssetsDocument.from(text, GameVersion.Anno7));
     const toc = provider.getToc();
 
     assert.strictEqual(toc ? toc[1].text : undefined, "add");
@@ -49,21 +37,9 @@ suite('outline tests', () => {
       <Group />
       <!-- # Section 3 -->
       <Include />
-    </ModOps>`.split('\n');
+    </ModOps>`;
 
-    let textDocument: SkinnyTextDocument = {
-      uri: vscode.Uri.file('abc.xml'),
-      version: 0,
-      lineCount: text.length,
-      getText: () => {
-        return text.join('\n');
-      },
-      lineAt: (line: number) => {
-        return { text: text[line] };
-      }
-    };
-
-    const provider = new AssetsTocProvider(new AssetsDocument(textDocument));
+    const provider = new AssetsTocProvider(AssetsDocument.from(text, GameVersion.Anno7));
     const toc = provider.getToc();
 
     assert.strictEqual(toc ? toc[0].text : undefined, "Section 1");
@@ -82,21 +58,9 @@ suite('outline tests', () => {
         <!-- After Furs -->
         <Group />
       </Group>
-    </ModOps>`.split('\n');
+    </ModOps>`;
 
-    let textDocument: SkinnyTextDocument = {
-      uri: vscode.Uri.file('abc.xml'),
-      version: 0,
-      lineCount: text.length,
-      getText: () => {
-        return text.join('\n');
-      },
-      lineAt: (line: number) => {
-        return { text: text[line] };
-      }
-    };
-
-    const provider = new AssetsTocProvider(new AssetsDocument(textDocument));
+    const provider = new AssetsTocProvider(AssetsDocument.from(text, GameVersion.Anno7));
     const toc = provider.getToc();
 
     assert.strictEqual(toc ? toc[0].text : undefined, "Lists");

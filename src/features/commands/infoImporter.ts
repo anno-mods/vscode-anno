@@ -2,10 +2,10 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as xmldoc from 'xmldoc';
-import ProppedModel, { BlockerType } from '../../other/proppedModel';
-import AnnoXml from '../../other/annoXml';
+import ProppedModel, { BlockerType } from '../../languages/gltf/proppedModel';
+import AnnoXml from '../../utils/annoXml';
 import * as channel from '../channel';
-import { Quaternion } from '../../other/math';
+import { Quaternion } from '../../utils/math';
 
 export class InfoImporter {
   insertPropContainer: xmldoc.XmlElement | undefined = undefined;

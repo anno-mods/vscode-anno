@@ -1,5 +1,10 @@
+import * as path from 'path';
+import * as sax from "sax";
 import * as xmldoc from 'xmldoc';
-import * as vscode from 'vscode';
+
+import { GameVersion } from '../../anno';
+import { SymbolRegistry } from '../../data/symbols';
+import * as utils from '../../utils';
 
 export const ASSETS_FILENAME_PATTERN_STRICT = '**/{assets*,*.include,game/asset/**/*}.xml';
 export const ASSETS_FILENAME_PATTERN = '**/{assets*,*.include,game/asset/**/*,templates,tests/*-input,tests/*-expectation,gui/texts_*,.modcache/*-patched,export.bin,*.fc,*.cfg}.xml';
@@ -11,19 +16,41 @@ export interface IAsset {
   english?: string;
   modName?: string;
   location?: {
-    filePath: vscode.Uri;
+    filePath: string;
     line: number;
   }
   baseAsset?: string;
 }
 
-export function guidWithName(asset: IAsset): string {
-  return (asset.name ?? asset.english) ? `${asset.guid}: ${asset.name ?? asset.english}` : asset.guid;
+export type PatchType = 'assets' | 'templates' | 'infotips' | 'texts' | 'generic';
+
+export function getPatchType(filePath?: string): PatchType {
+  if (!filePath) {
+    return 'generic';
+  }
+  if (path.basename(filePath) === 'assets.xml' || path.basename(filePath) === 'assets_.xml' || filePath.endsWith('.include.xml')) {
+    return 'assets';
+  }
+  else if (path.basename(filePath) === 'templates.xml') {
+    return 'templates';
+  }
+
+  const type = path.basename(path.dirname(filePath));
+  if (type === 'gui') {
+    return 'texts';
+  }
+  else if (type === 'infotips') {
+    return 'infotips'
+  }
+
+  return 'generic';
 }
 
-export function uniqueAssetName(asset?: IAsset) {
+/** Try to get the best name: `english` > `name` > `guid`.
+ * Skip `english` for some templates, or when `name` is a shorter version of it. */
+export function english(asset?: IAsset) {
   if (!asset) {
-    return ''
+    return '';
   }
 
   if (!asset.english) {
@@ -54,11 +81,10 @@ export function uniqueAssetName(asset?: IAsset) {
   }
 
   return asset.english;
-
-  // return `${asset.english} (${asset.name})`;
 }
 
-export function assetNameWithOrigin(asset: IAsset | undefined, excludeMod?: string) {
+/** Get English (or name as fallback) with template and mod origin. */
+export function englishWithTemplate(asset: IAsset | undefined, excludeMod?: string) {
   if (!asset) {
     return '??';
   }
@@ -74,6 +100,19 @@ export function assetNameWithOrigin(asset: IAsset | undefined, excludeMod?: stri
   return text;
 }
 
+/** Get GUID with name (or English as fallback). */
+export function guidNamed(asset: IAsset): string {
+  return (asset.name ?? asset.english) ? `${asset.guid}: ${asset.name ?? asset.english}` : asset.guid;
+}
+
+/** Get template from asset, or base asset. */
+export function template(asset: IAsset): string | undefined {
+  if (!asset.template) {
+    SymbolRegistry.resolveTemplate(asset);
+  }
+  return asset.template;
+}
+
 export interface IPositionedElement {
   history: xmldoc.XmlElement[];
   element: xmldoc.XmlElement;
@@ -85,24 +124,49 @@ export class AssetsDocument {
   assets: { [index: string]: IAsset };
 
   lines: IPositionedElement[][];
+  public readonly textLines: utils.TextLines;
+  public readonly lineCount: number;
+  public readonly filePath: string | undefined;
 
-  constructor(content: xmldoc.XmlDocument, filePath?: string) {
-    const relevantNodes = new Set<string>(['ModOps', 'ModOp', 'Asset', 'Values', 'Standard', 'GUID']);
+  public readonly type: PatchType;
+  public readonly gameVersion: GameVersion;
 
+  public static from(text: string, game: GameVersion, filePath?: string, fast: boolean = false) {
+    var xml: xmldoc.XmlDocument | undefined;
+    try {
+      xml = new xmldoc.XmlDocument(text);
+    }
+    catch {
+      return undefined;
+    }
+
+    const doc = new AssetsDocument(xml, text, game, filePath);
+    if (!fast) {
+      doc.indexCloseEnds(text, xml);
+    }
+    return doc;
+  }
+
+  private constructor(content: xmldoc.XmlDocument, text: string, game: GameVersion, filePath?: string) {
     this.content = content;
     this.assets = {};
     this.lines = [];
+    this.textLines = new utils.TextLines(text);
+    this.lineCount = this.textLines.length;
+
+    this.type = getPatchType(filePath);
+    this.gameVersion = game;
 
     const nodeStack: { history: xmldoc.XmlElement[], element: xmldoc.XmlNode }[] = [{ history: [], element: this.content }];
     while (nodeStack.length > 0) {
       const top = nodeStack.pop();
       if (top?.element.type === 'element' /*&& relevantNodes.has(top.element.name)*/) {
-        const column = top.element.column - (top.element.position - top.element.startTagPosition + 1);
+        const position = this.textLines.positionAt(top.element.startTagPosition - 1);
 
-        this.getLine(top.element.line).push({
+        this.getLine(position.line).push({
           history: top.history.slice(),
           element: top.element,
-          column
+          column: position.column
         });
 
         if (top.element.name === 'GUID') {
@@ -113,7 +177,7 @@ export class AssetsDocument {
 
           if (parent?.name === 'Standard' && name) {
             const location = (filePath && asset) ? {
-              filePath: vscode.Uri.file(filePath),
+              filePath,
               line: asset?.line ?? 0
             } : undefined;
 
@@ -140,6 +204,13 @@ export class AssetsDocument {
         // ignore
       }
     }
+
+    this.filePath = filePath;
+
+    if (this.lines.length > this.textLines.length) {
+      // Oh noes!
+      throw "AssetsDocument (this.lineCount != this.textLines.length): " + filePath;
+    }
   }
 
   hasLine(line: number) {
@@ -151,6 +222,15 @@ export class AssetsDocument {
       this.lines.push([]);
     }
     return this.lines[line];
+  }
+
+  textLineAt(line: number) {
+    return this.textLines.lineAt(line) ?? '';
+  }
+
+  getLastElementInLine(line: number) {
+    const elements = this.getLine(line);
+    return elements[elements.length - 1];
   }
 
   getClosestElementLeft(line: number, position: number) {
@@ -198,5 +278,30 @@ export class AssetsDocument {
       path = path.slice(0, -1);
     }
     return path ? ((prefix ?? '/') + path.map(e => e.name).join('/')) : undefined;
+  }
+
+  private _startEndPairs: Map<number, number> = new Map<number, number>();
+
+  private indexCloseEnds(xmlText: string, root: xmldoc.XmlDocument) {
+    const parser = sax.parser(true);
+    const openStarts: number[] = [];
+
+    parser.onopentag = () => {
+      // sax startTagPosition is 1-based index of '<'
+      openStarts.push((parser as any).startTagPosition as number);
+    };
+    parser.onclosetag = () => {
+      // parser.position is 1-based index AFTER '>' of the closing tag
+      const openStart1 = openStarts.pop()!;
+      const closeAfter1 = parser.position;
+      this._startEndPairs.set(openStart1 - 1, closeAfter1 - 1);
+    };
+
+    parser.write(xmlText).close();
+  }
+
+  public getEndOffset(el: xmldoc.XmlElement): number | undefined {
+    const endOffset = this._startEndPairs.get(el.startTagPosition);
+    return endOffset != null ? endOffset : undefined;
   }
 }

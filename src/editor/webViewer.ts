@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import * as text from './text';
-import { toUnicode } from 'punycode';
+import * as anno from '../anno';
 
 export function activate(context: vscode.ExtensionContext) {
   return [
@@ -51,10 +51,8 @@ function openReference(context: vscode.ExtensionContext, fileUri: vscode.Uri) {
     );
   }
 
-  const basename = fileUri ? path.basename(fileUri.path).toLowerCase() : undefined;
-
   var url = 'https://jakobharder.github.io/anno-mod-loader/';
-  if (basename === 'modinfo.json' || basename === 'modinfo.jsonc') {
+  if (fileUri?.path && anno.isModinfoFile(fileUri.path)) {
     url += "modinfo/";
   }
   else {

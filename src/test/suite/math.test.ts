@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 
-import { Vector, Quaternion } from '../../other/math';
+import { Vector, Quaternion } from '../../utils/math';
 
 suite('math tests', () => {
   test('quaternion rotation', async () => {

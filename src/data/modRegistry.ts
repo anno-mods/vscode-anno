@@ -1,9 +1,8 @@
 import { glob } from 'glob';
 import * as path from 'path';
 
-import { ModInfo } from '../anno';
-import * as logger from '../other/logger';
-import * as utils from '../other/utils';
+import { ModInfo, searchModPath } from '../anno';
+import * as logger from '../utils/logger';
 
 export namespace ModRegistry {
   let mods_: { [index: string]: ModInfo } = {};
@@ -26,7 +25,7 @@ export namespace ModRegistry {
   }
 
   function scan(folder: string, prioritize: boolean) {
-    const modinfos = glob.sync('{,*/,*/*/,*/*/*/}modinfo.json', { cwd: folder, nodir: true });
+    const modinfos = glob.sync('{,*/,*/*/,*/*/*/}modinfo.{json,jsonc}', { cwd: folder, nodir: true });
 
     for (const modinfoPath of modinfos) {
       const metaInfo = ModInfo.read(path.join(folder, modinfoPath));
@@ -69,7 +68,7 @@ export namespace ModRegistry {
   }
 
   export function findMod(filePath: string) : ModInfo | undefined {
-    const modFolder = utils.searchModPath(filePath);
+    const modFolder = searchModPath(filePath);
     const modMetaInfo = ModInfo.read(modFolder);
 
     if (modMetaInfo === undefined) {

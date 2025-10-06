@@ -1,12 +1,11 @@
 import * as fs from 'fs';
+import * as jsonc from 'jsonc-parser';
 import * as path from 'path';
-import { Converter } from '../Converter';
 import { ConvertToGLB } from 'gltf-import-export';
 import * as child from 'child_process';
-import * as glob from 'glob';
 
-import * as utils from '../../other/utils';
-import { chdir } from 'process';
+import { Converter } from '../Converter';
+import * as fsutils from '../../utils/fsutils';
 
 interface IAnimation {
   name: string,
@@ -33,7 +32,7 @@ export class GltfConverter extends Converter {
   }
 
   public async run(files: string[], sourceFolder: string, outFolder: string, options: { 
-    cache: string, 
+    cache: string,
     converterOptions: any }) {
 
     const fakePngPath = this._asAbsolutePath("./images/fake.png");
@@ -41,20 +40,20 @@ export class GltfConverter extends Converter {
     const changePath = options.converterOptions.changePath || '';
     const animPath = options.converterOptions.animPath || '';
     const plantPattern = options.converterOptions.plantPattern || '';
-    
+
     for (const file of files) {
       this._logger.log(`  => ${file}`);
       try {
         const dirname = path.dirname(file);
         const basename = path.basename(file, '.gltf');
 
-        utils.ensureDir(path.join(outFolder, dirname, changePath));
-        utils.ensureDir(path.join(options.cache, dirname));
+        fsutils.ensureDir(path.join(outFolder, dirname, changePath));
+        fsutils.ensureDir(path.join(options.cache, dirname));
 
         const lodLevels = Math.max(1, Math.min(9, options.converterOptions.lods === undefined ? 4 : options.converterOptions.lods));
         const lodDisabled = options.converterOptions.lods === 0;
 
-        let variantNames = !lodDisabled ? this._findVariantNames(JSON.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'))) : [];
+        let variantNames = !lodDisabled ? this._findVariantNames(jsonc.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'))) : [];
         if (variantNames.length > 1) {
           this._logger.log(`     has named variants: ${variantNames.map((e:string) => `'${e}'`).join(', ')}`);
         }
@@ -62,7 +61,7 @@ export class GltfConverter extends Converter {
         for (let lodNameIdx = 0; lodNameIdx < Math.max(1, variantNames.length); lodNameIdx++) {
           for (let lodLevel = 0; lodLevel < lodLevels; lodLevel++) {
             const variantName = variantNames.length > 1 ? variantNames[lodNameIdx] : undefined;
-            const gltf = JSON.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'));
+            const gltf = jsonc.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'));
 
             // replace images to avoid errors with missing ones (we don't need them anyways)
             this._replaceImages(gltf, fakePngPath);
@@ -115,7 +114,7 @@ export class GltfConverter extends Converter {
 
             let alreadyExportedModel;
             if (useAnimation && !variantName) { // don't support animation and multiple variants
-              utils.ensureDir(path.join(outFolder, dirname, animPath));
+              fsutils.ensureDir(path.join(outFolder, dirname, animPath));
               for (let anim of anims) {
                 const tempAnimFile = path.join(options.cache, dirname, `${basename}_${anim.name}_anim_0.rdm`);
                 const tempRdmFile = path.join(options.cache, dirname, `${basename}_${anim.name}.rdm`);
@@ -124,11 +123,11 @@ export class GltfConverter extends Converter {
 
                 // we need a separate copy of gltf because we're modifying it
                 // reading is easier than to do a deep copy
-                const gltfForAnim = JSON.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'));
+                const gltfForAnim = jsonc.parse(fs.readFileSync(path.join(sourceFolder, file), 'utf8'));
                 this._replaceImages(gltfForAnim, fakePngPath);
 
                 this._makeUniqueBoneNames(gltfForAnim, anims, anim.name);
-                await this._writeRdmFile(gltfForAnim, tempAnimFile, tempGlbFile, resourceDirectory, rdmPath, meshIdx, useAnimation, 
+                await this._writeRdmFile(gltfForAnim, tempAnimFile, tempGlbFile, resourceDirectory, rdmPath, meshIdx, useAnimation,
                   useSkeleton ? VertexFormat.Skeleton : VertexFormat.Normal);
                 // move only anim rdm to target location
                 fs.rmSync(tempGlbFile);

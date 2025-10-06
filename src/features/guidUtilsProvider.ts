@@ -2,17 +2,15 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 
 import { GuidCounter } from './guidCounter';
+import * as xml from '../anno/xml';
 import { ModRegistry } from '../data/modRegistry';
 import { SymbolRegistry } from '../data/symbols';
 import * as editor from '../editor';
-import * as editorDocument from '../editor/assetsDocument';
 import * as editorFormats from '../editor/formats';
 import * as text from '../editor/text';
-import { AssetsTocProvider } from '../languages/xml/assetsTocProvider';
-import { AssetsDocument, ASSETS_FILENAME_PATTERN, IAsset } from '../other/assetsXml';
+import { AssetsTocProvider } from '../languages/xml/outline';
+import * as analyzer from '../languages/xml/analyzer';
 import { AllGuidCompletionItems, GuidCompletionItems } from './guidCompletionItems';
-
-let assetsDocument: AssetsDocument | undefined;
 
 function resolveGuidRange(guid: string) {
   const vanilla = _guidRanges || {};
@@ -107,7 +105,7 @@ function findKeywordBeforePosition(document: vscode.TextDocument, position: vsco
   };
 }
 
-function findKeywordAtPosition(document: vscode.TextDocument, position: vscode.Position) {
+function findKeywordAtPosition(document: vscode.TextDocument, position: vscode.Position, assetsDocument?: xml.AssetsDocument) {
   const word = document.getWordRangeAtPosition(position);
   if (!word) {
     return undefined;
@@ -115,8 +113,9 @@ function findKeywordAtPosition(document: vscode.TextDocument, position: vscode.P
 
   let parent = undefined;
   if (position.line > 0) {
-    // TODO: parsing the whole document is unnecessary expensive
-    parent = new AssetsTocProvider(new editorDocument.AssetsDocument(document)).getParentPath(position.line, position.character);
+    if (assetsDocument) {
+      parent = new AssetsTocProvider(assetsDocument).getParentPath(position.line, position.character);
+    }
   }
 
   return {
@@ -125,7 +124,7 @@ function findKeywordAtPosition(document: vscode.TextDocument, position: vscode.P
   };
 }
 
-function getValueAt(line: string, position: number) {
+function getGuidAt(line: string, position: number) {
   let valueEnd = line.length;
   for (let i = position; i < line.length; i++) {
     const codeValue = line.charCodeAt(i);
@@ -147,7 +146,7 @@ function getValueAt(line: string, position: number) {
   }
 
   const linePrefix = line.substr(0, valueBegin);
-  const match = linePrefix.match(/[\s'"<\[](\w+)\s*(=\s*['"](\s*\d+\s*,\s*)*|>\s*)$/);
+  const match = linePrefix.match(/[\s'"<\[](\w+)\s*(=\s*['"]!?@?(\s*\d+\s*,\s*)*|>\s*)$/);
   if (!match) {
     return undefined;
   }
@@ -257,9 +256,9 @@ export function registerGuidUtilsProvider(context: vscode.ExtensionContext): vsc
   subscribeToDocumentChanges(context);
 
 	return [
-    vscode.Disposable.from(vscode.languages.registerHoverProvider({ language: 'xml', scheme: 'file', pattern: ASSETS_FILENAME_PATTERN }, { provideHover })),
+    vscode.Disposable.from(vscode.languages.registerHoverProvider({ language: 'xml', scheme: 'file', pattern: xml.ASSETS_FILENAME_PATTERN }, { provideHover })),
     vscode.Disposable.from(vscode.languages.registerHoverProvider({ language: 'anno-xml', scheme: 'file' }, { provideHover })),
-    vscode.Disposable.from(vscode.languages.registerCompletionItemProvider({ language: 'xml', scheme: 'file', pattern: ASSETS_FILENAME_PATTERN }, { provideCompletionItems }, '\'', '"'))
+    vscode.Disposable.from(vscode.languages.registerCompletionItemProvider({ language: 'xml', scheme: 'file', pattern: xml.ASSETS_FILENAME_PATTERN }, { provideCompletionItems }, '\'', '"'))
   ];
 }
 
@@ -313,8 +312,10 @@ function provideCompletionItems(document: vscode.TextDocument, position: vscode.
   return items;
 }
 
-function provideHover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
-  const keyword = findKeywordAtPosition(document, position);
+async function provideHover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
+  const staticAnalyzerResult = await analyzer.staticAnalyzer.ensure(document);
+
+  const keyword = findKeywordAtPosition(document, position, staticAnalyzerResult.assets);
   if (keyword && _keywordHelp) {
     const keywordHelp = _keywordHelp[keyword.name];
     if (keywordHelp) {
@@ -326,36 +327,33 @@ function provideHover(document: vscode.TextDocument, position: vscode.Position, 
     }
   }
 
-  const value = getValueAt(document.lineAt(position).text, position.character);
+  const value = getGuidAt(document.lineAt(position).text, position.character);
   if (!value) {
     return undefined;
   }
 
-  const path = assetsDocument?.getPath(position.line, position.character, true);
-  if (AllGuidCompletionItems.get(value.name, path)) {
-    const guid = value.text;
-    if (guid) {
-      const namedGuid = SymbolRegistry.resolve(guid);
-      const templateText = namedGuid?.template ? `${namedGuid.template}: ` : '';
-      let name = [ ];
-      if (namedGuid) {
-        if (namedGuid.english) {
-          name = [ `${templateText}${namedGuid.english} (${namedGuid.name})` ];
-        }
-        else {
-          name = [ `${templateText}${namedGuid.name}` ];
-        }
+  const guid = value.text;
+  if (guid) {
+    const namedGuid = SymbolRegistry.resolve(guid);
+    const templateText = namedGuid?.template ? `${namedGuid.template}: ` : '';
+    let name = [ ];
+    if (namedGuid) {
+      if (namedGuid.english) {
+        name = [ `${templateText}${namedGuid.english} (${namedGuid.name})` ];
       }
       else {
-        name = [ `GUID ${guid} not found. Some assets like Audio are omitted due to performance.` ];
+        name = [ `${templateText}${namedGuid.name}` ];
       }
-      const range = resolveGuidRange(guid);
-      const safe = (namedGuid || range.length > 0) ? [] : resolveSafeRange(guid);
-
-      return {
-        contents: [ ...name, ...range, ...safe ]
-      };
     }
+    else {
+      name = [ `GUID ${guid} not found. Some assets like Audio are omitted due to performance.` ];
+    }
+    const range = resolveGuidRange(guid);
+    const safe = (namedGuid || range.length > 0) ? [] : resolveSafeRange(guid);
+
+    return {
+      contents: [ ...name, ...range, ...safe ]
+    };
   }
 
   return undefined;

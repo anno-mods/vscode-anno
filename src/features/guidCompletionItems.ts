@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import { IAsset } from '../other/assetsXml';
-import { SymbolRegistry } from '../data/symbols';
+import { IAsset } from '../anno/xml';
 
 interface ITagJson
 {
@@ -146,7 +145,7 @@ export class GuidCompletionItems {
       }
     }
     const paths = path ? tag.paths.filter(e => e.hasMatchingPath(path!)) : tag.paths;
-    
+
     let templates = new Set<string>();
     for (var p of paths) {
       for (var t of p.templates) {
@@ -164,19 +163,6 @@ export class GuidCompletionItems {
 
     items.push(...Object.values(this._baseAssetItems));
     return items;
-  }
-
-  getTemplate(asset: IAsset): string | undefined {
-    if (asset.template) {
-      return asset.template;
-    }
-    else if (asset.baseAsset) {
-      const base = SymbolRegistry.resolve(asset.baseAsset);
-      if (base) {
-        return this.getTemplate(base);
-      }
-    }
-    return undefined;
   }
 
   getAllItems() {

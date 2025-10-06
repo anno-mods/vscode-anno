@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 
 import * as anno from '../../anno';
 import * as schemas from '../../languages/schemas';
-import * as utils from '../../other/utils';
+import * as fsutils from '../../utils/fsutils';
 
 export class AddTemplateCommands {
   static _templatesPath: string;
@@ -85,7 +85,7 @@ export class AddTemplateCommands {
     const creatorName = getCreatorName(modid);
 
     if (version === anno.GameVersion.Anno8) {
-      files = utils.copyFolderNoOverwrite(path.join(AddTemplateCommands._templatesPath, 'anno117'), root);
+      files = fsutils.copyFolderNoOverwrite(path.join(AddTemplateCommands._templatesPath, 'anno117'), root);
 
       AddTemplateCommands.addFile(modinfoPath, `{
   "ModID": "${modid}",
@@ -103,7 +103,7 @@ export class AddTemplateCommands {
 }`);
     }
     else if (version === anno.GameVersion.Anno7) {
-      files = utils.copyFolderNoOverwrite(path.join(AddTemplateCommands._templatesPath, 'anno1800'), root);
+      files = fsutils.copyFolderNoOverwrite(path.join(AddTemplateCommands._templatesPath, 'anno1800'), root);
 
       AddTemplateCommands.addFile(modinfoPath, `{
   "ModID": "${modid}",

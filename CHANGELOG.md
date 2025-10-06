@@ -1,5 +1,18 @@
 # Change Log
 
+## [Unreleased]
+
+- Improved responsiveness of diagnostics and outline
+- Outline improvements
+  - Vanilla assets now show a property list
+  - Ctrl+Shift+O support in diff view (no outline unfortunately)
+  - Support `@GUID` and short ModOps in paths
+- Diagnostics improvements
+  - Warn when comments are nested
+  - Warn when `ubi/` or `modgraphics/` is used
+  - Quickfix to remove `/Values` in short ModOps and after `@GUID`
+- Show tooltip when hovering over `@GUID` in paths
+
 ## 2.3
 
 - Improved outline to focus more on content, less on ModOp type

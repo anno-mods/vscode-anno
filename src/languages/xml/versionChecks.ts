@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 
 import * as anno from '../../anno';
 
-export function checkCorrectVersion(doc: vscode.TextDocument, version: anno.GameVersion) {
+export function checkFilePaths(doc: vscode.TextDocument, version: anno.GameVersion) {
   const diagnostics: vscode.Diagnostic[] = [];
   const filePath = path.normalize(doc.fileName);
 

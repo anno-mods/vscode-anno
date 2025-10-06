@@ -61,3 +61,13 @@ export function basename(xpath: string, dropPredicate: boolean = true, itemParen
 
   return last;
 }
+
+/** @return GUID from at GUID helper */
+export function guid(xpath: string) {
+  const match = xpath.match(/!?@(\d+)/);
+  if (!match || match.length < 2) {
+    return undefined;
+  }
+
+  return match[1];
+}

@@ -1,10 +1,12 @@
 
 import * as crypto from 'crypto';
 import * as fs from 'fs';
-import * as utils from '../other/utils';
+import * as jsonc from 'jsonc-parser';
 import * as path from 'path';
 
-interface ICachedFile { 
+import * as fsutils from '../utils/fsutils';
+
+interface ICachedFile {
   sha: string,
   output: { [index: string]: {
     sha: string
@@ -82,13 +84,13 @@ export class ModCache {
       if (file.startsWith(this._rda)) {
         const relative = file.substring(this._rda.length + 1);
         if (!firstVanilla) {
-          utils.ensureDir(this._vanilla);
+          fsutils.ensureDir(this._vanilla);
           fs.writeFileSync(path.join(this._vanilla, 'readme.md'), 'This folder stores unmodified files included with ${annoRda} to be able to build the mod without them.');
           firstVanilla = true;
         }
 
         const target = path.join(this._vanilla, relative);
-        utils.ensureDir(path.dirname(target));
+        fsutils.ensureDir(path.dirname(target));
         fs.copyFileSync(file, target);
       }
     }
@@ -97,12 +99,12 @@ export class ModCache {
   public load() {
     const filesJson = path.join(this._cache, 'files.json');
     if (fs.existsSync(filesJson)) {
-      this.old = JSON.parse(fs.readFileSync(filesJson, 'utf8'));
+      this.old = jsonc.parse(fs.readFileSync(filesJson, 'utf8'));
     }
   }
 
   public save() {
-    utils.ensureDir(this._cache);
+    fsutils.ensureDir(this._cache);
     fs.writeFileSync(path.join(this._cache, 'files.json'), JSON.stringify(this.data, undefined, "  "));
   }
 }

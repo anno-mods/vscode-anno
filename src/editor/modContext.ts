@@ -2,8 +2,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import * as anno from '../anno';
-import * as logger from '../other/logger';
-import * as utils from '../other/utils';
+import * as logger from '../utils/logger';
 
 export class ModContext {
   public document?: vscode.TextDocument;
@@ -24,7 +23,7 @@ export class ModContext {
       this.version = version;
     }
     else if (document?.uri.scheme === 'file' &&  document?.uri.fsPath) {
-      this.modinfo = anno.ModInfo.read(utils.findModRoot(document?.uri.fsPath), true);
+      this.modinfo = anno.ModInfo.read(anno.findModRoot(document?.uri.fsPath), true);
       if (this.modinfo?.game) {
         this.version = this.modinfo.game;
       }
@@ -73,7 +72,8 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   vscode.workspace.onDidSaveTextDocument(document => {
-    if (document.languageId === 'json' && path.basename(document.fileName) === 'modinfo.json') {
+    if ((document.languageId === 'json' || document.languageId === 'jsonc')
+        && anno.isModinfoFile(document.fileName)) {
       _current = new ModContext(document);
       for (let listener of _onDidChangeActiveTextEditor) {
         listener(_current);

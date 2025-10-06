@@ -8,7 +8,6 @@ import * as rda from '../../data/rda';
 import * as editor from '../../editor';
 import * as modContext from '../../editor/modContext';
 import * as text from '../../editor/text';
-import * as utils from '../../other/utils';
 import * as xmltest from '../../tools/xmltest';
 
 class DiffRequest {
@@ -33,7 +32,7 @@ class DiffRequest {
     }
 
     if (!this.originalContent) {
-      const modPath = utils.searchModPath(this.patchPath);
+      const modPath = anno.findModRoot(this.patchPath);
       const modsFolder = editor.getModsFolder({ filePath: this.patchPath, version: this.modInfo?.game })
 
       const result = this.diff(this.originalPath,
@@ -129,7 +128,7 @@ export class ShowDiffCommand {
     }
 
     let patchFilePath = fileUri.fsPath;
-    if (path.basename(patchFilePath) === 'modinfo.json') {
+    if (anno.isModinfoFile(patchFilePath)) {
       patchFilePath = anno.getAssetsXmlPath(path.dirname(patchFilePath), request.modInfo?.game ?? anno.GameVersion.Anno7);
     }
 
@@ -168,7 +167,7 @@ export class ShowDiffCommand {
       return undefined;
     }
 
-    const modPath = utils.findModRoot(fileUri.fsPath);
+    const modPath = anno.findModRoot(fileUri.fsPath);
     const modInfo = anno.ModInfo.read(modPath);
 
     if (!editor.ensureGamePath({ version: modInfo?.game, filePath: fileUri.fsPath } )) {

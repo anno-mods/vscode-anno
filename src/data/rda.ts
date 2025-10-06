@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 
 import * as anno from '../anno';
 import * as rdaConsole from '../tools/rdaConsole';
-import * as logger from '../other/logger';
+import * as logger from '../utils/logger';
 import * as editor from '../editor';
 
 let _storageFolder: string;

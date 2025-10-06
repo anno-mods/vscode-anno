@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as minimatch from 'minimatch';
 import * as vscode from 'vscode';
-import { ASSETS_FILENAME_PATTERN, ASSETS_FILENAME_PATTERN_STRICT } from '../other/assetsXml';
+import { ASSETS_FILENAME_PATTERN } from '../anno/xml';
 
 const PATCH_FILENAME_PATTERN_STRICT = '**/{assets*,*.include,game/asset/**/*,export.bin,*.fc,*.cfg}.xml';
 
@@ -30,6 +30,10 @@ export function isAssetsXml(document: vscode.TextDocument): boolean {
 }
 
 export function allowLiveValidation(document: vscode.TextDocument): boolean {
+  if (document.uri.scheme !== 'file') {
+    return false;
+  }
+
   const config = vscode.workspace.getConfiguration('anno', document.uri);
 
   return (document.languageId ==='anno-xml' || minimatch(document.fileName, PATCH_FILENAME_PATTERN_STRICT, { dot: true }))

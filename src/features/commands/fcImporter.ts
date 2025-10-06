@@ -2,8 +2,8 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as xmldoc from 'xmldoc';
-import ProppedModel from '../../other/proppedModel';
-import AnnoXml from '../../other/annoXml';
+import ProppedModel from '../../languages/gltf/proppedModel';
+import AnnoXml from '../../utils/annoXml';
 import * as channel from '../channel';
 
 export class FcImporter {

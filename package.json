@@ -16,8 +16,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"workspaceContains:**/assets.xml",
-		"workspaceContains:**/modinfo.json",
+		"workspaceContains:**/{assets.xml,modinfo.json,modinfo.jsonc}",
 		"onLanguage:xml",
 		"command:anno-modding-tools.createAnnoMod"
 	],
@@ -571,6 +570,7 @@
 		"@types/glob": "^7.1.4",
 		"@types/mocha": "^9.0.0",
 		"@types/node": "14.x",
+		"@types/sax": "^1.2.7",
 		"@types/vscode": "^1.70.0",
 		"@types/xml2js": "^0.4.9",
 		"@types/xmldoc": "^1.1.6",
@@ -592,6 +592,7 @@
 		"jimp": "^0.16.1",
 		"js-yaml": "^4.1.0",
 		"jsonc-parser": "^3.3.1",
+		"sax": "^1.4.1",
 		"vsce": "^2.3.0",
 		"xml2js": "^0.4.23",
 		"xmldoc": "^1.2.0"

@@ -1,0 +1,16 @@
+[
+  {
+    "matchRegex": "(?<=(@\\d+))/Values",
+    "message": "`/Values` is already part of @GUID.",
+    "code": "xpath-at-values",
+    "fix": "",
+    "fixMessage": "Remove `/Values`"
+  },
+  {
+    "matchRegex": "(?<=(Merge|Replace|Add|Remove|Append|Prepend)\\s*=\\s*(\"|'))/Values",
+    "message": "`/Values` is already part of the path when using short ModOps.",
+    "code": "xpath-short-values",
+    "fix": "",
+    "fixMessage": "Remove `/Values`"
+  }
+]

@@ -11,12 +11,13 @@ import { ModinfoConverter } from './converter/modinfo';
 import { RdpxmlConverter } from './converter/rdpxml';
 import { CfgYamlConverter } from './converter/cfgyaml';
 
+import { ModCache } from './ModCache';
+import * as anno from '../anno';
+import * as curltar from '../tools/curltar';
 import * as rdp from '../tools/rdp';
 import * as dds from '../tools/dds';
-
 import * as xmltest from '../tools/xmltest';
-import { ModCache } from './ModCache';
-import * as utils from '../other/utils';
+import * as fsutils from '../utils/fsutils';
 import { AssetsConverter } from './converter/assets';
 
 export class ModBuilder {
@@ -50,34 +51,21 @@ export class ModBuilder {
 
   public async build(filePath: string, targetFolder?: string): Promise<boolean> {
     this._logger.log('Build ' + filePath);
-    const modJson = utils.readModinfo(path.dirname(filePath));
-    if (!modJson) {
+    const modinfo = anno.ModInfo.read(filePath);
+    if (!modinfo) {
       this._logger.error('Errors in modinfo.json: ' + path.dirname(filePath));
       return false;
     }
 
-    let sourceFolders: string[] = Array.isArray(modJson.src) ? modJson.src : [ modJson.src ];
-    sourceFolders = sourceFolders.map(x => path.dirname(filePath) + '/' + x);
-    for (let folder of sourceFolders) {
-      if (!fs.existsSync(folder)) {
-        this._logger.error('Incorrect source folder: ' + folder);
-        return false;
-      }
-    }
-    if (sourceFolders.length === 0) {
-      this._logger.error('No source folder specified');
-      return false;
-    }
-
-    const outFolder = targetFolder ?? this._getOutFolder(filePath, modJson);
+    const outFolder = targetFolder ?? this._getOutFolder(modinfo);
     const cache = path.join(path.dirname(filePath), '.modcache');
     this._logger.log('Target folder: ' + outFolder);
-    utils.ensureDir(outFolder);
+    fsutils.ensureDir(outFolder);
 
     const modCache = new ModCache(path.dirname(filePath), this._variables['annoRda']);
     modCache.load();
 
-    modJson.converter = modJson.converter ? [...modJson.converter, {
+    modinfo.getJson().converter = modinfo.getJson().converter ? [...modinfo.getJson().converter, {
       "action": "assets"
     }] : [
       {
@@ -132,37 +120,35 @@ export class ModBuilder {
       }
     ];
 
-    for (const sourceFolder of sourceFolders) {
-      this._logger.log('Source folder: ' + sourceFolder);
-
-      for (const entry of modJson.converter) {
-        const allFiles = entry.pattern ? glob.sync(entry.pattern, { cwd: sourceFolder, nodir: true }) : [];
-        const converter = this._converters[entry.action];
-        if (converter) {
-          this._logger.log(`${entry.action}` + (entry.pattern?`: ${entry.pattern}`:''));
-          const result = await converter.run(allFiles, sourceFolder, outFolder, {
-            cache,
-            modJson,
-            converterOptions: entry,
-            variables: this._variables,
-            modCache
-          });
-          if (!result) {
-            this._logger.error('Error: converter failed: ' + entry.action);
-            return false;
-          }
-        }
-        else {
-          this._logger.error('Error: no converter with name: ' + entry.action);
+    this._logger.log('Source folder: ' + modinfo.path);
+    for (const entry of modinfo.getJson().converter) {
+      const allFiles = entry.pattern ? glob.sync(entry.pattern, { cwd: modinfo.path, nodir: true }) : [];
+      const converter = this._converters[entry.action];
+      if (converter) {
+        this._logger.log(`${entry.action}` + (entry.pattern?`: ${entry.pattern}`:''));
+        const result = await converter.run(allFiles, modinfo.path, outFolder, {
+          cache,
+          modJson: modinfo.getJson(),
+          converterOptions: entry,
+          variables: this._variables,
+          modCache
+        });
+        if (!result) {
+          this._logger.error('Error: converter failed: ' + entry.action);
           return false;
         }
+      }
+      else {
+        this._logger.error('Error: no converter with name: ' + entry.action);
+        return false;
       }
     }
 
     this._logger.log(`bundles`);
 
-    if (modJson.Development?.Bundle) {
-      for (const bundle of modJson.Development?.Bundle) {
+    const bundles = modinfo.getBundledDependencies();
+    if (bundles) {
+      for (const bundle of bundles) {
         if (bundle.startsWith('.')) {
           await this._buildBundle(filePath, bundle, cache, outFolder);
         } else {
@@ -173,22 +159,17 @@ export class ModBuilder {
       this._renameModFolders(outFolder);
     }
 
-    for (const sourceFolder of sourceFolders) {
-      const testInputFolder = path.join(sourceFolder, 'tests');
-      if (fs.existsSync(sourceFolder)) {
-        this._logger.log(`Run tests from ${testInputFolder}`);
+    const testInputFolder = path.join(modinfo.path, 'tests');
+    if (fs.existsSync(testInputFolder)) {
+      this._logger.log(`Run tests from ${testInputFolder}`);
 
-        const testTarget = path.join(outFolder, 'data/config/export/main/asset/assets.xml');
+      const testTarget = path.join(outFolder, 'data/config/export/main/asset/assets.xml');
 
-        this._logger.log(`cache: ${cache}`);
+      this._logger.log(`cache: ${cache}`);
 
-        if (!xmltest.test(testInputFolder, outFolder, testTarget, cache)) {
-          return false;
-        }
+      if (!xmltest.test(testInputFolder, outFolder, testTarget, cache)) {
+        return false;
       }
-      // else {
-      //   this._logger.log(`No test folder available: ${testFolder}`);
-      // }
     }
 
     if (!modCache.isCiRun()) {
@@ -196,19 +177,20 @@ export class ModBuilder {
     }
     modCache.save();
 
-    this._logger.log(`${this._getModName(filePath, modJson.modinfo ?? modJson)} done`);
+    this._logger.log(`${modinfo.getModName()} done`);
     return true;
   }
 
   private async _buildBundle(bundleTarget: string, bundle: string, cache: string, outFolder: string) {
-    const modinfoPath = path.join(path.dirname(bundleTarget), bundle, 'modinfo.json');
-    if (!fs.existsSync(modinfoPath)) {
+    const modFolder = path.join(path.dirname(bundleTarget), bundle);
+
+    const modinfo = anno.ModInfo.read(modFolder);
+    if (!modinfo) {
       this._logger.error(`  cannot bundle ${bundle}`);
       return;
     }
-
-    const modinfo = utils.readModinfo(path.dirname(modinfoPath));
-    if (!modinfo) {
+    const modinfoPath = modinfo.getModinfoPath(true);
+    if (!modinfoPath) {
       this._logger.error(`  cannot bundle ${bundle}`);
       return;
     }
@@ -216,40 +198,41 @@ export class ModBuilder {
     // const modName = this._getModName(modinfoPath, modinfo.modinfo);
     const targetFolder = path.join(outFolder, path.basename(bundle));
 
-    const annoRda = path.join(path.dirname(modinfoPath), '.vanilla');
+    const annoRda = path.join(modFolder, '.vanilla');
     const builder = new ModBuilder(this._logger, this._asAbsolutePath, { annoMods: this._variables['annoMods'], annoRda });
+
     await builder.build(modinfoPath, targetFolder);
   }
 
   private _downloadBundle(bundle: string, cache: string, outFolder: string) {
     const fileName = path.basename(bundle);
     const version = path.basename(path.dirname(bundle)).replace(/[^\w\-\.]/g, '');
-    const targetPath = path.join(cache, 'downloads', utils.insertEnding(fileName, '-' + version));
+    const targetPath = path.join(cache, 'downloads', fsutils.insertEnding(fileName, '-' + version));
     if (!fs.existsSync(targetPath)) {
       this._logger.log(`   * download ${version}/${fileName}`);
-      utils.downloadFile(bundle, targetPath, this._logger);
+      curltar.downloadFile(bundle, targetPath, this._logger);
     }
     else {
       this._logger.log(`   * skip download of ${version}/${fileName}`);
     }
     this._logger.log(`  <= extract content`);
-    utils.extractZip(targetPath, outFolder, this._logger);
+    curltar.extractZip(targetPath, outFolder, this._logger);
   }
 
   private _renameModFolders(modsPath: string) {
-    const modinfoPaths = glob.sync("*/modinfo.json", { cwd: modsPath, nodir: true });
+    const modinfoPaths = glob.sync("*/modinfo.{json,jsonc}", { cwd: modsPath, nodir: true });
     for (var modinfoPath of modinfoPaths) {
       const namedModPath = path.join(modsPath, path.dirname(modinfoPath));
-      const modinfo = utils.readModinfo(namedModPath);
+      const modinfo = anno.ModInfo.read(namedModPath);
       if (!modinfo) {
         continue;
       }
 
-      if (!modinfo.modinfo.ModID) {
+      if (!modinfo.id) {
         continue;
       }
 
-      const idModPath = path.join(path.dirname(namedModPath), modinfo.modinfo.ModID);
+      const idModPath = path.join(path.dirname(namedModPath), modinfo.id);
       if (namedModPath != idModPath) {
         if (fs.existsSync(idModPath)) {
           fs.rmdirSync(idModPath, { recursive: true });
@@ -259,14 +242,14 @@ export class ModBuilder {
     }
   }
 
-  private _getOutFolder(filePath: string, modJson: any) {
-    let outFolder = modJson?.Development?.DeployPath ?? modJson.out ?? '${annoMods}/${modName}';
-    outFolder = outFolder.replace('${modName}', this._getModName(filePath, modJson.modinfo ?? modJson));
+  private _getOutFolder(modinfo: anno.ModInfo) {
+    let outFolder = modinfo.getDeploymentPath();
+    outFolder = outFolder.replace('${modName}', modinfo.getModName());
     if (this._variables['annoMods']) {
       outFolder = path.normalize(outFolder.replace('${annoMods}', this._variables['annoMods']));
     }
     if (!path.isAbsolute(outFolder)) {
-      outFolder = path.join(path.dirname(filePath), outFolder);
+      outFolder = path.join(modinfo.path, outFolder);
     }
     return outFolder;
   }
