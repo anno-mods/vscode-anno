@@ -10,8 +10,10 @@
 - Diagnostics improvements
   - Warn when comments are nested
   - Warn when `ubi/` or `modgraphics/` is used
+  - Various other warnings
   - Quickfix to remove `/Values` in short ModOps and after `@GUID`
 - Show tooltip when hovering over `@GUID` in paths
+- Fixed show diff troubles with empty ModOps
 
 ## 2.3
 
