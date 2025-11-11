@@ -1,5 +1,8 @@
 site_name: Anno Modding Tools
 site_url: https://anno-mods.github.io/vscode-anno
+copyright: This is a personal project and not an official product of Ubisoft. Anno is a trademark of Ubisoft Entertainment in the US and/or other countries.
+repo_url: https://github.com/anno-mods/vscode-anno
+repo_name: vscode-anno
 
 plugins:
   - search
