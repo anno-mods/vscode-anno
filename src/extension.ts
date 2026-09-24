@@ -4,6 +4,7 @@ import { registerGuidUtilsProvider } from './features/guidUtilsProvider';
 import * as dds from './tools/dds';
 import * as rdp from './tools/rdp';
 import * as commands from './features/commands';
+import * as assetsIndex from './features/assetsIndex';
 import * as cfg from './languages/cfg';
 import * as cf7 from './languages/cf7';
 import * as ifo from './languages/ifo';
@@ -45,6 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 	editor.onDidChangeGamePath(() => SymbolRegistry.resetVanilla());
 
 	statusBar.activate(context);
+	assetsIndex.activate(context);
 	commands.registerCommands(context);
 }
 
