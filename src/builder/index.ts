@@ -110,7 +110,7 @@ export class ModBuilder {
       },
       {
         "action": "static",
-        "pattern": "{data,products,shared}/**/*.{cfg,ifo,prp,fc,rdm,dds,rdp}"
+        "pattern": "{data,products,shared}/**/*.{cfg,ifo,prp,fc,rdm,dds,rdp,bnk}"
       },
       {
         "action": "assets"

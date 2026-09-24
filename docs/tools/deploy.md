@@ -127,7 +127,7 @@ Icon | `icon*.png` | Copy PNG and create DDS textures LODs as needed.
 Feedback | `.cf7` | Convert to `.fc`.
 Models | `.gltf` | Extract and convert models with the name `_lod0` etc. to individual `.rdm` files.
 Skin | `.cfg.yaml` | Generate `.cfg`, `.ifo`, `.fc`.
-Other | `.cfg`, `.ifo`, `.prp`, `.fc`, `.rdm`, `.dds`, `.rdp`, `.fx` | Copy.
+Other | `.cfg`, `.ifo`, `.prp`, `.fc`, `.rdm`, `.dds`, `.rdp`, `.fx`, `.bnk` | Copy.
 Config | `data/config/*` | Copy.
 Readme | `README.md` | Insert text into `Description.English` in the modinfo.json.
 Banner | `banner.png`, `banner.jpg` | Copy.
