@@ -449,6 +449,44 @@
 						"markdownDescription": "Check file paths set in `Filename`, `FileName` and `IconFilename`.",
 						"scope": "resource"
 					},
+					"anno.assetsIndex.autoUpdate": {
+						"type": "boolean",
+						"default": true,
+						"markdownDescription": "Keep `assets__index.xml` files up to date: newly created files (and indexes in sub folders) are added to the closest index above them, deleted files and folders are removed and renamed or moved ones are updated.",
+						"scope": "resource"
+					},
+					"anno.assetsIndex.insertPosition": {
+						"type": "string",
+						"default": "sorted",
+						"enum": [
+							"sorted",
+							"end"
+						],
+						"enumDescriptions": [
+							"Insert new entries alphabetically by path.",
+							"Append new entries behind the last `<Include>`."
+						],
+						"markdownDescription": "Where new entries are inserted into an index.",
+						"scope": "resource"
+					},
+					"anno.assetsIndex.showNotifications": {
+						"type": "boolean",
+						"default": true,
+						"markdownDescription": "Show a notification whenever an `assets__index.xml` was changed automatically.",
+						"scope": "resource"
+					},
+					"anno.assetsIndex.indexName": {
+						"type": "string",
+						"default": "assets__index.xml",
+						"markdownDescription": "File name of the index files that list the `<Include>` entries.",
+						"scope": "resource"
+					},
+					"anno.assetsIndex.filePattern": {
+						"type": "string",
+						"default": "assets_*.xml",
+						"markdownDescription": "Pattern (`*` and `?` wildcards) for files that are added to the index.",
+						"scope": "resource"
+					},
 					"anno.liveModopAnalysis.validate": {
 						"type": "boolean",
 						"default": true,

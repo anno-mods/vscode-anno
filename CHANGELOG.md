@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- `assets__index.xml` files are kept up to date automatically: new files and sub indexes are added (alphabetically or at the end), deleted files are removed, renamed and moved files are updated with a notification (see `anno.assetsIndex.*` settings)
 - Improved responsiveness of diagnostics and outline
 - Outline improvements
   - Vanilla assets now show a property list
